@@ -1,0 +1,105 @@
+
+/* Class = "UINavigationItem"; title = "壹心快修"; ObjectID = "9qU-aj-Pec"; */
+"9qU-aj-Pec.title" = "壹心快修";
+
+/* Class = "UIViewController"; title = "验证手机"; ObjectID = "Azk-av-R6b"; */
+"Azk-av-R6b.title" = "验证手机";
+
+/* Class = "UIButton"; normalTitle = "我是维修师傅"; ObjectID = "BG0-xL-0Hw"; */
+"BG0-xL-0Hw.normalTitle" = "我是维修师傅";
+
+/* Class = "UIBarButtonItem"; title = "确认"; ObjectID = "E0V-l3-vbd"; */
+"E0V-l3-vbd.title" = "确认";
+
+/* Class = "UINavigationItem"; title = "输入价格"; ObjectID = "F5x-Gh-kJB"; */
+"F5x-Gh-kJB.title" = "输入价格";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "GLh-Gt-hPO"; */
+"GLh-Gt-hPO.text" = "Title";
+
+/* Class = "UILabel"; text = "点击选择"; ObjectID = "Hk3-90-drs"; */
+"Hk3-90-drs.text" = "点击选择";
+
+/* Class = "UILabel"; text = "普通维修"; ObjectID = "Hqw-U1-CEm"; */
+"Hqw-U1-CEm.text" = "普通维修";
+
+/* Class = "UIViewController"; title = "发单"; ObjectID = "K8W-Jn-BMl"; */
+"K8W-Jn-BMl.title" = "发单";
+
+/* Class = "UISearchBar"; placeholder = "请输入维修类别"; ObjectID = "MIs-mW-RiH"; */
+"MIs-mW-RiH.placeholder" = "请输入维修类别";
+
+/* Class = "UILabel"; text = "上门检查费"; ObjectID = "Mnm-pz-VFf"; */
+"Mnm-pz-VFf.text" = "上门检查费";
+
+/* Class = "UILabel"; text = "156****3001"; ObjectID = "Pq4-Bd-ROt"; */
+"Pq4-Bd-ROt.text" = "156****3001";
+
+/* Class = "UILabel"; text = "即时发单，需支付上门检查费。维修费与物料费另算。"; ObjectID = "QMl-wA-kh6"; */
+"QMl-wA-kh6.text" = "即时发单，需支付上门检查费。维修费与物料费另算。";
+
+/* Class = "UIButton"; normalTitle = "退出登录"; ObjectID = "QtV-jo-d7J"; */
+"QtV-jo-d7J.normalTitle" = "退出登录";
+
+/* Class = "UILabel"; text = "地址"; ObjectID = "SRQ-YT-bwR"; */
+"SRQ-YT-bwR.text" = "地址";
+
+/* Class = "UILabel"; text = "壹心快修"; ObjectID = "Xx7-tp-i9d"; */
+"Xx7-tp-i9d.text" = "壹心快修";
+
+/* Class = "UIButton"; normalTitle = "我要发单"; ObjectID = "boI-RI-krx"; */
+"boI-RI-krx.normalTitle" = "我要发单";
+
+/* Class = "UILabel"; text = "分类"; ObjectID = "cXh-kz-ZAF"; */
+"cXh-kz-ZAF.text" = "分类";
+
+/* Class = "UITextField"; placeholder = "请输入验证码"; ObjectID = "cqg-PA-cSL"; */
+"cqg-PA-cSL.placeholder" = "请输入验证码";
+
+/* Class = "UILabel"; text = "张三"; ObjectID = "fOS-y2-qLE"; */
+"fOS-y2-qLE.text" = "张三";
+
+/* Class = "UILabel"; text = "点击开始，即表示同意"; ObjectID = "gO6-GL-Thi"; */
+"gO6-GL-Thi.text" = "点击开始，即表示同意";
+
+/* Class = "UIBarButtonItem"; title = "发布"; ObjectID = "gqY-E3-CBy"; */
+"gqY-E3-CBy.title" = "发布";
+
+/* Class = "UITextField"; placeholder = "请输入手机号"; ObjectID = "hc4-WF-TgR"; */
+"hc4-WF-TgR.placeholder" = "请输入手机号";
+
+/* Class = "UILabel"; text = "《壹心快修用户协议》"; ObjectID = "hvQ-W6-6UU"; */
+"hvQ-W6-6UU.text" = "《壹心快修用户协议》";
+
+/* Class = "UILabel"; text = "点击选择"; ObjectID = "iAV-mE-7Te"; */
+"iAV-mE-7Te.text" = "点击选择";
+
+/* Class = "UIButton"; normalTitle = "开始"; ObjectID = "nIO-5q-Tpj"; */
+"nIO-5q-Tpj.normalTitle" = "开始";
+
+/* Class = "UITableViewController"; title = "普通维修"; ObjectID = "nRF-1r-f6o"; */
+"nRF-1r-f6o.title" = "普通维修";
+
+/* Class = "UILabel"; text = "您的居家维修助手"; ObjectID = "of6-jX-xqG"; */
+"of6-jX-xqG.text" = "您的居家维修助手";
+
+/* Class = "UILabel"; text = "点击选择"; ObjectID = "omP-7q-ahA"; */
+"omP-7q-ahA.text" = "点击选择";
+
+/* Class = "UITableViewSection"; footerTitle = "壹心快修建议价格为¥20.00。"; ObjectID = "opi-DA-jwR"; */
+"opi-DA-jwR.footerTitle" = "壹心快修建议价格为¥20.00。";
+
+/* Class = "UITextField"; placeholder = "请输入大于0的数字"; ObjectID = "uT3-x8-4pb"; */
+"uT3-x8-4pb.placeholder" = "请输入大于0的数字";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "uak-0f-Dme"; */
+"uak-0f-Dme.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "验证"; ObjectID = "uyH-Gc-o2N"; */
+"uyH-Gc-o2N.normalTitle" = "验证";
+
+/* Class = "UIButton"; normalTitle = "我是户主"; ObjectID = "xoU-0f-lrO"; */
+"xoU-0f-lrO.normalTitle" = "我是户主";
+
+/* Class = "UILabel"; text = "¥"; ObjectID = "zpZ-XE-08A"; */
+"zpZ-XE-08A.text" = "¥";

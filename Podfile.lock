@@ -1,0 +1,45 @@
+PODS:
+  - Alamofire (3.3.0)
+  - BaiduMapKit (2.10.2)
+  - Bugly (2.0)
+  - HanekeSwift (0.10.1)
+  - KYDrawerController (1.1.2)
+  - ReachabilitySwift (2.3.3)
+  - SwiftyJSON (2.3.2)
+  - SWXMLHash (2.2.0)
+  - UMengAnalytics (3.6.6)
+
+DEPENDENCIES:
+  - Alamofire
+  - BaiduMapKit
+  - Bugly
+  - HanekeSwift
+  - KYDrawerController
+  - ReachabilitySwift
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - SWXMLHash
+  - UMengAnalytics
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  BaiduMapKit: b1706a062597c70ec62a0cca93212cba1d3017e1
+  Bugly: 9c1cb4f1dbfb75edeb5ec8cf19dc68e1730d2e7d
+  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+  KYDrawerController: 222c4d07ed09fa7842011d36d73e3599dcbccab3
+  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  SWXMLHash: cf2a62b04514211b238b39b3aa348ba4746523af
+  UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
+
+PODFILE CHECKSUM: d52be7acc615b8457418d4718192b74ee9f807ee
+
+COCOAPODS: 1.0.0.beta.6
