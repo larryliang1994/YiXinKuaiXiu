@@ -15,12 +15,15 @@ class OrderTypeViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
 
         self.tableView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
-        self.tableView.sectionHeaderHeight = 16
         self.automaticallyAdjustsScrollViewInsets = false
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 16 : 10
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,8 +41,8 @@ class OrderTypeViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("orderTypeCell")
         
-        cell?.layer.cornerRadius = 5
-        cell?.contentView.layer.cornerRadius = 5
+        cell?.layer.cornerRadius = 3
+        cell?.contentView.layer.cornerRadius = 3
         
         let image = cell?.viewWithTag(Constants.Tag.OrderTypeCellImage) as! UIImageView
         let title = cell?.viewWithTag(Constants.Tag.OrderTypeCellTitle) as! UILabel

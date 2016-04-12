@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderPublishConfirmViewController: UITableViewController {
+class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDataSource,PopBottomViewDelegate {
     @IBOutlet var doPayButton: UIButton!
     @IBOutlet var descLabel: UILabel!
     @IBOutlet var addressLabel: UILabel!
@@ -16,8 +16,8 @@ class OrderPublishConfirmViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        doPayButton.layer.cornerRadius = 5
-        doPayButton.backgroundColor = UIColor(red: 46/255, green: 204/255, blue: 139/255, alpha: 1.0)
+        doPayButton.layer.cornerRadius = 3
+        doPayButton.backgroundColor = Constants.Color.Primary
         
         self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
         
@@ -25,7 +25,36 @@ class OrderPublishConfirmViewController: UITableViewController {
     }
     
     @IBAction func doPay(sender: UIButton) {
-        UtilBox.alert(self, message: "hah")
+        let v = PopBottomView(frame: self.view.bounds)
+        v.dataSource = self
+        v.delegate = self
+        v.showInView(self.view)
+
+    }
+    
+    func hide(){
+        for v in self.view.subviews {
+            if let vv = v as? PopBottomView{
+                vv.hide()
+            }
+        }
+    }
+    
+    //MARK : - PopBottomViewDataSource
+    func viewPop() -> UIView {
+        let payPopoverView = UIView.loadFromNibNamed("PayPopoverView") as! PayPopoverView
+        payPopoverView.doPayButton.backgroundColor = Constants.Color.Primary
+        payPopoverView.doPayButton.layer.cornerRadius = 3
+        
+        return payPopoverView
+    }
+    
+    func viewHeight() -> CGFloat {
+        return 295
+    }
+    
+    func isEffectView() -> Bool {
+        return false
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

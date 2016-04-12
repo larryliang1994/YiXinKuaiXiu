@@ -18,7 +18,7 @@ public class SMSimpleListViewController: UIViewController, UITableViewDataSource
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        mainTableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Plain)
+        mainTableView = UITableView(frame: UIScreen.mainScreen().bounds, style: UITableViewStyle.Grouped)
         
         mainTableView.delegate = self
         mainTableView.dataSource = self
@@ -31,14 +31,13 @@ public class SMSimpleListViewController: UIViewController, UITableViewDataSource
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return dataSource?.count ?? 0
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource?.count ?? 0
+        return 1
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

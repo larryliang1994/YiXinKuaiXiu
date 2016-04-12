@@ -19,8 +19,9 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        publishButton.backgroundColor = UIColor(red: 46/255, green: 204/255, blue: 139/255, alpha: 1.0)
-        publishButton.layer.cornerRadius = 5
+        publishButton.backgroundColor = Constants.Color.Primary
+        publishButton.layer.cornerRadius = 3
+        publishButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 24)
         
         drawerController = self.navigationController?.parentViewController as? KYDrawerController
         
@@ -43,7 +44,30 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate {
     
     func didSelected(index: Int){
         drawerController?.setDrawerState(KYDrawerController.DrawerState.Closed, animated: true)
-        performSegueWithIdentifier(Constants.SegueID.CustomerDrawerToOrderListSegue, sender: self)
+        
+        var segue: String = ""
+        switch index {
+        case 0:
+            segue = Constants.SegueID.CustomerDrawerToPersonalInfoSegue
+            break
+            
+        case 1:
+            segue = Constants.SegueID.CustomerDrawerToOrderListSegue
+            break
+            
+        case 2:
+            segue = Constants.SegueID.CustomerDrawerToMessageCenterSegue
+            break
+            
+        case 3:
+            segue = Constants.SegueID.CustomerDrawerToMallSegue
+            break
+            
+        default:
+            break
+        }
+        
+        performSegueWithIdentifier(segue, sender: self)
     }
     
     override func viewWillAppear(animated: Bool) {

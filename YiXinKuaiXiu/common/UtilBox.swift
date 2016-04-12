@@ -118,10 +118,14 @@ class UtilBox {
     }
     
     // 弹出提示对话框
-    static func funcAlert(vc: UIViewController, message: String, okAction: UIAlertAction, cancelAction: UIAlertAction) {
+    static func funcAlert(vc: UIViewController, message: String, okAction: UIAlertAction?, cancelAction: UIAlertAction?) {
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
-        alertController.addAction(cancelAction)
-        alertController.addAction(okAction)
+        if cancelAction != nil {
+            alertController.addAction(cancelAction!)
+        }
+        if okAction != nil {
+            alertController.addAction(okAction!)
+        }
         
         vc.presentViewController(alertController, animated: true, completion: nil)
     }

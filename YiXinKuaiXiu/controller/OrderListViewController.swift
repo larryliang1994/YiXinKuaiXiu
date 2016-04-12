@@ -27,7 +27,7 @@ class OrderListViewController: UIViewController, SMSwipeableTabViewControllerDel
         
         swipeableView.segmentBarAttributes = [SMBackgroundColorAttribute : UIColor.whiteColor()]
         swipeableView.selectionBarAttributes = [
-            SMBackgroundColorAttribute : UIColor(red: 46/255, green: 204/255, blue: 139/255, alpha: 1.0),
+            SMBackgroundColorAttribute : Constants.Color.Primary,
             SMAlphaAttribute : 1.0
         ]
         
@@ -38,6 +38,7 @@ class OrderListViewController: UIViewController, SMSwipeableTabViewControllerDel
             SMForegroundColorAttribute : UIColor.darkGrayColor()
         ]
         
+        swipeableView.segementBarHeight = 39
         swipeableView.selectionBarHeight = 3.0 //For thin line
         swipeableView.buttonPadding = 0.0 //Default is 8.0
         swipeableView.kSelectionBarSwipeConstant = 2.0
@@ -51,9 +52,9 @@ class OrderListViewController: UIViewController, SMSwipeableTabViewControllerDel
     //MARK: SMSwipeableTabViewController Delegate CallBack
     
     func didLoadViewControllerAtIndex(index: Int) -> UIViewController {
-        let listVC = SMSimpleListViewController()
-        listVC.dataSource = viewControllerDataSourceCollection[index]
-        return listVC
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let list = storyboard.instantiateViewControllerWithIdentifier("OrderListTableViewController")
+        return list
     }
 
 }

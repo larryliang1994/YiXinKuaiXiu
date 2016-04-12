@@ -21,7 +21,7 @@ class MaintenanceTypeViewController: UITableViewController, UISearchBarDelegate,
         
         self.tableView.tableFooterView = UIView()
         
-        searchBar.tintColor = UIColor(red: 46/255, green: 204/255, blue: 139/255, alpha: 1.0)
+        searchBar.tintColor = Constants.Color.Primary
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

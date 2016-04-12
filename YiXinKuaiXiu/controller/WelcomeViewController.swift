@@ -10,20 +10,45 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var descLabel: UILabel!
     @IBOutlet var handymanButton: UIButton!
     @IBOutlet var customerButton: UIButton!
+    @IBOutlet var mainImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         handymanButton.layer.borderWidth = 1
-        handymanButton.layer.cornerRadius = 5
-        handymanButton.layer.borderColor = UIColor(red: 46/255, green: 204/255, blue: 139/255, alpha: 1.0).CGColor
+        handymanButton.layer.cornerRadius = 3
+        handymanButton.layer.borderColor = Constants.Color.Primary.CGColor
         
-        customerButton.backgroundColor = UIColor(red: 46/255, green: 204/255, blue: 139/255, alpha: 1.0)
-        customerButton.layer.cornerRadius = 5
+        customerButton.backgroundColor = Constants.Color.Primary
+        customerButton.layer.cornerRadius = 3
+        
+        titleLabel.text = "壹 心 快 修"
+        descLabel.text = "您 的 居 家 维 修 助 手"
+        
+        setImageViewAnimation()
         
         initNavBar()
+    }
+    
+    func setImageViewAnimation() {
+        let origin = mainImageView.frame
+        mainImageView.frame = CGRect(x: origin.minY, y: origin.minY, width: origin.width * 0.8, height: origin.height * 0.8)
+        
+        UIView.animateWithDuration(1) {
+            self.mainImageView.frame = origin
+        }
+    }
+    
+    // 初始化NavigationBar
+    func initNavBar() {
+        let back = UIBarButtonItem()
+        back.title = "返回"
+        self.navigationItem.backBarButtonItem = back
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -38,11 +63,24 @@ class WelcomeViewController: UIViewController {
         performSegueWithIdentifier("loginSegue", sender: self)
     }
 
-    // 初始化NavigationBar
-    func initNavBar() {
-        let back = UIBarButtonItem()
-        back.title = "返回"
-        self.navigationItem.backBarButtonItem = back
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as UIViewController
+        
+        if let navCon = destination as? UINavigationController {
+            // 取出最上层的viewController，即FaceView
+            destination = navCon.visibleViewController!
+        }
+        
+        if let lvc = destination as? LoginViewController {
+            lvc.role = "customer"
+//            if let identifier = segue.identifier {
+//                switch identifier {
+//                case "sad": hvc.happiness = 0
+//                case "happy": hvc.happiness = 100
+//                case "nothing": hvc.happiness = 25
+//                default: hvc.happiness = 50
+//                }
+//            }
+        }
     }
 }

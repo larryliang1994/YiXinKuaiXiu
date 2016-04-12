@@ -12,9 +12,12 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
     
     var delegate: CustomerDrawerDelegate?
     
+    @IBOutlet var logoutButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        logoutButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
     }
     
     @IBAction func logout(sender: UIButton) {
@@ -36,13 +39,19 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("drawerItem", forIndexPath: indexPath)
             
-            let label = cell.viewWithTag(Constants.Tag.CustomerDrawerTitle) as? UILabel
+            let label = cell.viewWithTag(Constants.Tag.CustomerDrawerTitle) as! UILabel
+            let image = cell.viewWithTag(Constants.Tag.CustomerDrawerImage) as! UIImageView
             if indexPath.row == 1 {
-                label?.text = "订单信息"
+                label.text = "订单信息"
+                let img = UIImage(named: "orderList")
+                img?.resizableImageWithCapInsets(UIEdgeInsetsMake(2, 2, 2, 2))
+                image.image = img
             } else if indexPath.row == 2 {
-                label?.text = "消息中心"
+                label.text = "消息中心"
+                image.image = UIImage(named: "messageCenter")
             } else if indexPath.row == 3 {
-                label?.text = "壹心商城"
+                label.text = "壹心商城"
+                image.image = UIImage(named: "mall")
             }
             
             return cell
@@ -63,7 +72,7 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return indexPath.row == 0 ? 120 : 55
+        return indexPath.row == 0 ? 120 : 44
     }
     
 }
