@@ -25,6 +25,8 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate {
         
         drawerController = self.navigationController?.parentViewController as? KYDrawerController
         
+        drawerController?.drawerWidth = UIScreen.mainScreen().bounds.width * 0.75
+        
         (drawerController?.drawerViewController as! CustomerDrawerViewController).delegate = self
         
         initNavBar()

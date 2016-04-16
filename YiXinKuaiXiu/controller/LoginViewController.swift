@@ -45,7 +45,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func login(sender: UIButton) {
-        performSegueWithIdentifier("customerMainSegue", sender: self)
+        if Config.Role == "customer" {
+            performSegueWithIdentifier(Constants.SegueID.CustomerMainSegue, sender: self)
+        } else {
+            performSegueWithIdentifier(Constants.SegueID.HandymanMainSegue, sender: self)
+        }
     }
  
     // 控制编辑中的视图样式

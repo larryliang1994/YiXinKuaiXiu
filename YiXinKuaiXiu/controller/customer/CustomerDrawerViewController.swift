@@ -12,10 +12,13 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
     
     var delegate: CustomerDrawerDelegate?
     
+    @IBOutlet var tableView: UITableView!
     @IBOutlet var logoutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.tableFooterView = UIView()
         
         logoutButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
     }
@@ -41,17 +44,24 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
             
             let label = cell.viewWithTag(Constants.Tag.CustomerDrawerTitle) as! UILabel
             let image = cell.viewWithTag(Constants.Tag.CustomerDrawerImage) as! UIImageView
+            let badge = cell.viewWithTag(Constants.Tag.CustomerDrawerBadge) as! SwiftBadge
+            
             if indexPath.row == 1 {
                 label.text = "订单信息"
                 let img = UIImage(named: "orderList")
                 img?.resizableImageWithCapInsets(UIEdgeInsetsMake(2, 2, 2, 2))
                 image.image = img
+                badge.badgeColor = Constants.Color.Orange
+                badge.text = "3"
             } else if indexPath.row == 2 {
                 label.text = "消息中心"
                 image.image = UIImage(named: "messageCenter")
+                badge.badgeColor = Constants.Color.Primary
+                badge.text = "11"
             } else if indexPath.row == 3 {
                 label.text = "壹心商城"
                 image.image = UIImage(named: "mall")
+                badge.alpha = 0
             }
             
             return cell

@@ -9,9 +9,8 @@
 import UIKit
 
 class OrderPublishViewController: UITableViewController {
-
-    @IBOutlet var picture1ImageView: UIImageView!
-    @IBOutlet var picture2ImageView: UIImageView!
+    @IBOutlet var picture1Button: UIButton!
+    @IBOutlet var picture2Button: UIButton!
     @IBOutlet var descTextView: BRPlaceholderTextView!
     
     override func viewDidLoad() {
@@ -22,9 +21,8 @@ class OrderPublishViewController: UITableViewController {
         descTextView.placeholder = "在这儿输入问题详情"
         descTextView.setPlaceholderFont(UIFont(name: (descTextView.font?.fontName)!, size: 16))
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(OrderPublishViewController.choosePicture))
-        picture1ImageView.addGestureRecognizer(tap)
-        picture2ImageView.addGestureRecognizer(tap)
+        picture1Button.addTarget(self, action: #selector(OrderPublishViewController.choosePicture), forControlEvents: UIControlEvents.TouchUpInside)
+        picture2Button.addTarget(self, action: #selector(OrderPublishViewController.choosePicture), forControlEvents: UIControlEvents.TouchUpInside)
         
         initNavBar()
     }
@@ -37,8 +35,6 @@ class OrderPublishViewController: UITableViewController {
     }
     
     func choosePicture(){
-        print("here")
-        
         let pickerController = DKImagePickerController()
         //pickerController.defaultSelectedAssets = self.selecedPhotos
         pickerController.showsCancelButton = true

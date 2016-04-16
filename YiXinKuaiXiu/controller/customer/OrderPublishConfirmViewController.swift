@@ -29,7 +29,6 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         v.dataSource = self
         v.delegate = self
         v.showInView(self.view)
-
     }
     
     func hide(){
@@ -43,8 +42,6 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
     //MARK : - PopBottomViewDataSource
     func viewPop() -> UIView {
         let payPopoverView = UIView.loadFromNibNamed("PayPopoverView") as! PayPopoverView
-        payPopoverView.doPayButton.backgroundColor = Constants.Color.Primary
-        payPopoverView.doPayButton.layer.cornerRadius = 3
         
         return payPopoverView
     }

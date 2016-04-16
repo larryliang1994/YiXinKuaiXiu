@@ -10,10 +10,6 @@ import UIKit
 
 class OrderListViewController: UIViewController, SMSwipeableTabViewControllerDelegate {
 
-    let customize = false
-    let showImageOnButton = true
-    var viewControllerDataSourceCollection = [["Delhi", "Gurgaon", "Noida"], ["Mumbai", "Bandra", "Andheri", "Dadar"]]
-    
     let titleBarDataSource = ["进行中", "已完成"]
     
     let swipeableView = SMSwipeableTabViewController()
@@ -47,6 +43,15 @@ class OrderListViewController: UIViewController, SMSwipeableTabViewControllerDel
         self.addChildViewController(swipeableView)
         self.view.addSubview(swipeableView.view)
         swipeableView.didMoveToParentViewController(self)
+        
+        initNavBar()
+    }
+    
+    func initNavBar() {
+        let back = UIBarButtonItem()
+        back.title = "返回"
+        self.navigationItem.backBarButtonItem = back
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
     
     //MARK: SMSwipeableTabViewController Delegate CallBack

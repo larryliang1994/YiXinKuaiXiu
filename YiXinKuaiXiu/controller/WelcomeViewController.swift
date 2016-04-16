@@ -59,10 +59,16 @@ class WelcomeViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @IBAction func login(sender: UIButton) {
+    @IBAction func handymanLogin(sender: UIButton) {
+        Config.Role = "handyman"
         performSegueWithIdentifier("loginSegue", sender: self)
     }
 
+    @IBAction func customerLogin(sender: UIButton) {
+        Config.Role = "customer"
+        performSegueWithIdentifier("loginSegue", sender: self)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destination = segue.destinationViewController as UIViewController
         

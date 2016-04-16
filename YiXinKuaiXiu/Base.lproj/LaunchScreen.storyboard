@@ -17,14 +17,90 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iw-gR-2ZX">
-                                <rect key="frame" x="168" y="239" width="37" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="壹 心 快 修" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVZ-MK-4sD">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="3ep-np-Udk"/>
+                                    <constraint firstAttribute="height" constant="36" id="HM2-kE-9cg"/>
+                                    <constraint firstAttribute="height" constant="63" id="e0A-XR-kdA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="32"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="HM2-kE-9cg"/>
+                                        <exclude reference="3ep-np-Udk"/>
+                                        <exclude reference="e0A-XR-kdA"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="HM2-kE-9cg"/>
+                                        <exclude reference="3ep-np-Udk"/>
+                                        <exclude reference="e0A-XR-kdA"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您 的 居 家 维 修 助 手" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Xd-dD-s4r">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="197" id="0cY-hz-Pzi"/>
+                                    <constraint firstAttribute="height" constant="45" id="h7u-IE-YMD"/>
+                                    <constraint firstAttribute="height" constant="36" id="z6f-id-Wdd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0cY-hz-Pzi"/>
+                                        <exclude reference="h7u-IE-YMD"/>
+                                        <exclude reference="z6f-id-Wdd"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="0cY-hz-Pzi"/>
+                                        <exclude reference="h7u-IE-YMD"/>
+                                        <include reference="z6f-id-Wdd"/>
+                                    </mask>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2Xd-dD-s4r" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="1Vd-Dn-yQK"/>
+                            <constraint firstItem="eVZ-MK-4sD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="TFo-mv-TlN"/>
+                            <constraint firstItem="2Xd-dD-s4r" firstAttribute="top" secondItem="eVZ-MK-4sD" secondAttribute="bottom" id="ghM-Se-h9V">
+                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="2Xd-dD-s4r" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="l2G-iQ-a5Z"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="eVZ-MK-4sD"/>
+                                <exclude reference="2Xd-dD-s4r"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="TFo-mv-TlN"/>
+                                <exclude reference="1Vd-Dn-yQK"/>
+                                <exclude reference="ghM-Se-h9V"/>
+                                <exclude reference="l2G-iQ-a5Z"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="eVZ-MK-4sD"/>
+                                <include reference="2Xd-dD-s4r"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="TFo-mv-TlN"/>
+                                <include reference="1Vd-Dn-yQK"/>
+                                <include reference="ghM-Se-h9V"/>
+                                <include reference="l2G-iQ-a5Z"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

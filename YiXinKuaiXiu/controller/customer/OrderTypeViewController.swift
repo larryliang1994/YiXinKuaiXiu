@@ -49,15 +49,15 @@ class OrderTypeViewController: UIViewController, UITableViewDelegate, UITableVie
         let desc = cell?.viewWithTag(Constants.Tag.OrderTypeCellDesc) as! UILabel
         
         if indexPath.section == 0 {
-            image.backgroundColor = UIColor(red: 255/255, green: 115/255, blue: 0/255, alpha: 1.0)
+            image.image = UIImage(named: "normalOrder")
             title.text = "普通维修"
             desc.text = "即时发单，需支付上门检查费。维修费与物料费另算。"
         } else if indexPath.section == 1 {
-            image.backgroundColor = UIColor(red: 0/255, green: 215/255, blue: 140/255, alpha: 1.0)
+            image.image = UIImage(named: "packOrder")
             title.text = "打包维修"
             desc.text = "即时发单，一次性支付所有费用。"
         } else if indexPath.section == 2 {
-            image.backgroundColor = UIColor(red: 37/255, green: 137/255, blue: 255/255, alpha: 1.0)
+            image.image = UIImage(named: "reservationOrder")
             title.text = "预约维修"
             desc.text = "预约维修，不收取上门检查费。"
         }

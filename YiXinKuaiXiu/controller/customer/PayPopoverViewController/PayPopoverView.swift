@@ -18,4 +18,8 @@ class PayPopoverView: UIView {
     //@IBOutlet var doPayButton: UIButton!
     @IBOutlet var doPayButton: UIButton!
 
+    override func awakeFromNib() {
+        doPayButton.backgroundColor = Constants.Color.Primary
+        doPayButton.layer.cornerRadius = 3
+    }
 }

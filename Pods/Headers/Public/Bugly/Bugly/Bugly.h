@@ -1,1 +1,1 @@
-../../../../Bugly/Bugly.framework/Versions/A/Headers/Bugly.h
+../../../../Bugly/Bugly.framework/Headers/Bugly.h

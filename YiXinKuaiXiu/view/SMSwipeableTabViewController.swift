@@ -47,6 +47,8 @@ public protocol SMSwipeableTabViewControllerDelegate {
 
 public class SMSwipeableTabViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate {
     
+    private var buttons: [UIButton] = []
+    
     /// To set the height of segment bar(Top swipable tab bar).
     public var segementBarHeight: CGFloat = 44.0
     
@@ -122,7 +124,7 @@ public class SMSwipeableTabViewController: UIViewController, UIPageViewControlle
     private lazy var selectionBar = UIView()
     
     private var buttonsFrameArray = [CGRect]()
-    private var currentPageIndex = 0
+    private var currentPageIndex: Int = 0
     private let contentSizeOffset: CGFloat = 10.0
     private var pageScrollView: UIScrollView?
     
@@ -164,7 +166,7 @@ public class SMSwipeableTabViewController: UIViewController, UIPageViewControlle
     
     private func setupSegmentBar() {
         segmentBarView.frame = CGRectMake(0.0, 0.0, UIScreen.mainScreen().bounds.width, segementBarHeight)
-        segmentBarView.scrollEnabled = true
+        segmentBarView.scrollEnabled = false
         segmentBarView.showsHorizontalScrollIndicator = false
         segmentBarView.backgroundColor = defaultSegmentBarBgColor
 
@@ -177,12 +179,15 @@ public class SMSwipeableTabViewController: UIViewController, UIPageViewControlle
                 segmentBarView.backgroundColor = UIColor(patternImage: bgImage)
             }
         }
-       
+        
         setupSegmentBarButtons()
         self.view.addSubview(segmentBarView)
         setupSelectionBar()
+        
+        let line = UIView(frame: CGRectMake(0, segementBarHeight - 1, UIScreen.mainScreen().bounds.width, 1))
+        line.backgroundColor = Constants.Color.Gray
+        segmentBarView.addSubview(line)
     }
-    
     
     private func setupSegmentBarButtons() {
         if let buttonList = titleBarDataSource {
@@ -192,6 +197,7 @@ public class SMSwipeableTabViewController: UIViewController, UIPageViewControlle
                 let previousButtonW = i > 0 ? buttonsFrameArray[i-1].size.width : 0.0
                 
                 let segmentButton = UIButton(frame: CGRectMake(previousButtonX + previousButtonW + buttonPadding, 0.0, getWidthForText(buttonList[i]) + buttonPadding, segementBarHeight))
+                buttons.append(segmentButton)
                 buttonsFrameArray.append(segmentButton.frame)
                 segmentButton.setTitle(buttonList[i], forState: .Normal)
                 segmentButton.tag = i
@@ -233,6 +239,8 @@ public class SMSwipeableTabViewController: UIViewController, UIPageViewControlle
                     if let alpha = attributes[SMAlphaAttribute] as? CGFloat {
                         segmentButton.alpha = alpha
                     }
+                    
+                    buttons[0].setTitleColor(selectionBarAttributes?[SMBackgroundColorAttribute] as? UIColor, forState: UIControlState.Normal)
                 }
                 
                 segmentBarView.addSubview(segmentButton)
@@ -329,30 +337,59 @@ public class SMSwipeableTabViewController: UIViewController, UIPageViewControlle
         if completed {
             if let lastVC = pageViewController.viewControllers?.last {
                 currentPageIndex = lastVC.view.tag
+                updateSegmentBarColor(last!, target: lastVC.view.tag)
             }
             setupSelectionBarFrame(currentPageIndex)
             segmentBarView.scrollRectToVisible(CGRectMake(buttonsFrameArray[currentPageIndex].origin.x, 0.0,  buttonsFrameArray[currentPageIndex].size.width, 44.0), animated: true)
         }
     }
     
+    private var last: Int?
+    
+    public func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+        last = pageViewController.viewControllers?.last?.view.tag
+    }
+    
+    private var targetIndex: Int = -1
+    private var isTap = false
+    
     //MARK : Segment Button Action
     func didSegmentButtonTap(sender: UIButton) {
         let tempIndex = currentPageIndex
         if sender.tag == tempIndex { return }
+        
+        targetIndex = sender.tag
+        isTap = true
+        
         let scrollDirection: UIPageViewControllerNavigationDirection = sender.tag > tempIndex ? .Forward : .Reverse
         pageViewController?.setViewControllers([viewControllerAtIndex(sender.tag)!], direction: scrollDirection, animated: true, completion: { (complete) -> Void in
             if complete {
+                self.updateSegmentBarColor(self.currentPageIndex, target: self.targetIndex)
+                self.isTap = false
                 self.currentPageIndex = sender.tag
                 self.segmentBarView.scrollRectToVisible(CGRectMake(self.buttonsFrameArray[self.currentPageIndex].origin.x, 0.0,  self.buttonsFrameArray[self.currentPageIndex].size.width, self.segementBarHeight), animated: true)
             }
         })
     }
     
+    private func updateSegmentBarColor(last: Int, target: Int) {
+        buttons[last].setTitleColor(buttonAttributes?[SMForegroundColorAttribute] as? UIColor, forState: UIControlState.Normal)
+        buttons[target].setTitleColor(selectionBarAttributes?[SMBackgroundColorAttribute] as? UIColor, forState: UIControlState.Normal)
+    }
+    
     //MARK : ScrollView Delegate Methods
     public func scrollViewDidScroll(scrollView: UIScrollView) {
         let xFromCenter:CGFloat = self.view.frame.size.width-scrollView.contentOffset.x
-        //let xFromCenter:CGFloat = self.view.frame.size.width
+        
         let xCoor = buttonsFrameArray[currentPageIndex].origin.x;
-        selectionBar.frame = CGRectMake(xCoor-xFromCenter/kSelectionBarSwipeConstant, selectionBar.frame.origin.y, buttonsFrameArray[currentPageIndex].size.width, selectionBar.frame.size.height)
+        
+        if isTap {
+            // 基本原理是如果有5格，当前在第0格，目标是第3格，需要移动3格，而页面只滑动了1页，所以常数为5/3
+            let constant = CGFloat((titleBarDataSource?.count)!) / CGFloat(abs(Int(targetIndex - currentPageIndex)))
+            
+            selectionBar.frame = CGRectMake(xCoor-xFromCenter / CGFloat(constant), selectionBar.frame.origin.y, buttonsFrameArray[currentPageIndex].size.width, selectionBar.frame.size.height)
+        } else {
+            selectionBar.frame = CGRectMake(xCoor-xFromCenter/kSelectionBarSwipeConstant, selectionBar.frame.origin.y, buttonsFrameArray[currentPageIndex].size.width, selectionBar.frame.size.height)
+        }
     }
 }

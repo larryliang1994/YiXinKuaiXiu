@@ -19,4 +19,7 @@ class Config {
     static var CompanyBackground: String?
     static var Time: String?
     static var IsReachable: Bool?
+    
+    
+    static var Role: String?
 }
