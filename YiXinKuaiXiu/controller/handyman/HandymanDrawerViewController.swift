@@ -9,6 +9,9 @@
 import UIKit
 
 class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var delegate: HandymanDrawerDelegate?
+    
     @IBOutlet var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -84,4 +87,13 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
             return cell
         }
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        delegate?.didSelected(indexPath.row)
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+    }
+}
+
+protocol HandymanDrawerDelegate{
+    func didSelected(index: Int)
 }

@@ -7,24 +7,41 @@
 //
 
 import UIKit
+import Photos
 
-class OrderPublishViewController: UITableViewController {
-    @IBOutlet var picture1Button: UIButton!
-    @IBOutlet var picture2Button: UIButton!
+class OrderPublishViewController: UITableViewController, UITextViewDelegate, OrderPublishDelegate {
+    @IBOutlet var publishButtonItem: UIBarButtonItem!
+    @IBOutlet var picture1ImageView: UIImageView!
+    @IBOutlet var picture2ImageView: UIImageView!
+    
     @IBOutlet var descTextView: BRPlaceholderTextView!
+    @IBOutlet var feeCell: UITableViewCell!
+    
+    @IBOutlet var feeLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var maintenanceTypeLabel: UILabel!
+    
+    var selectedImage: [DKAsset] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "普通维修"
+        if title == "打包维修" {
+            feeCell.textLabel?.text = "打包费"
+        } else if title == "预约维修" {
+            feeCell.hidden = true
+        }
         
+        initView()
+        
+        initNavBar()
+    }
+    
+    func initView() {
         descTextView.placeholder = "在这儿输入问题详情"
         descTextView.setPlaceholderFont(UIFont(name: (descTextView.font?.fontName)!, size: 16))
         
-        picture1Button.addTarget(self, action: #selector(OrderPublishViewController.choosePicture), forControlEvents: UIControlEvents.TouchUpInside)
-        picture2Button.addTarget(self, action: #selector(OrderPublishViewController.choosePicture), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        initNavBar()
+        publishButtonItem.enabled = false
     }
     
     func initNavBar() {
@@ -34,30 +51,26 @@ class OrderPublishViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
     
-    func choosePicture(){
+    @IBAction func choosePicture(sender: UITapGestureRecognizer){
         let pickerController = DKImagePickerController()
-        //pickerController.defaultSelectedAssets = self.selecedPhotos
+        pickerController.defaultSelectedAssets = self.selectedImage
         pickerController.showsCancelButton = true
         pickerController.maxSelectableCount = 2
         
         pickerController.didSelectAssets = { (assets: [DKAsset]) in
-//            self.photos.removeAll()
-//            
-//            if assets.count != 0 {
-//                for index in 0...assets.count-1 {
-//                    self.photos.append(
-//                        UtilBox.getAssetThumbnail(assets[index].originalAsset!))
-//                }
-//            }
-//            
-//            self.photos.append(UIImage(named: "add_picture")!)
-//            
-//            self.selecedPhotos = assets
-//            
-//            self.photoCollectionView.reloadData()
-//            self.tableView.beginUpdates()
-//            self.tableView.endUpdates()
+            self.selectedImage = assets
             
+            if self.selectedImage.count == 0 {
+                self.picture1ImageView.image = UIImage(named: "add_picture")
+                self.picture2ImageView.image = nil
+            } else if self.selectedImage.count == 1 {
+                self.picture1ImageView.image = UtilBox.getAssetThumbnail(self.selectedImage[0].originalAsset!)
+                self.picture2ImageView.image = UIImage(named: "add_picture")
+                
+            } else {
+                self.picture1ImageView.image = UtilBox.getAssetThumbnail(self.selectedImage[0].originalAsset!)
+                self.picture2ImageView.image = UtilBox.getAssetThumbnail(self.selectedImage[1].originalAsset!)
+            }
         }
         
         self.presentViewController(pickerController, animated: true){}
@@ -68,7 +81,7 @@ class OrderPublishViewController: UITableViewController {
     }
     
     @IBAction func publish(sender: UIBarButtonItem) {
-        //UtilBox.alert(self, message: "发布")
+        descTextView.resignFirstResponder()
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -88,6 +101,91 @@ class OrderPublishViewController: UITableViewController {
             } else if indexPath.row == 1 {
                 performSegueWithIdentifier(Constants.SegueID.ChooseLocationSegue, sender: self)
             }
+            
+            descTextView.resignFirstResponder()
         }
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as UIViewController
+        
+        if let navCon = destination as? UINavigationController {
+            // 取出最上层的viewController，即FaceView
+            destination = navCon.visibleViewController!
+        }
+        
+        if let mtvc = destination as? MaintenanceTypeViewController {
+            mtvc.delegate = self
+        } else if let cltc = destination as? ChooseLocationTableViewController {
+            cltc.delegate = self
+        } else if let cfvc = destination as? CheckFeeViewController {
+            cfvc.delegate = self
+        } else if let opcvc = destination as? OrderPublishConfirmViewController {
+            var image1: DKAsset?, image2: DKAsset?
+            if selectedImage.count == 0 {
+                image1 = nil
+                image2 = nil
+            } else if selectedImage.count == 1 {
+                image1 = selectedImage[0]
+                image2 = nil
+            } else {
+                image1 = selectedImage[0]
+                image2 = selectedImage[1]
+            }
+            
+            let order = Order(type: self.title!, desc: descTextView.text, maintenanceType: maintenanceTypeLabel.text!, location: locationLabel.text!, fee: feeLabel.text!, image1: image1, image2: image2)
+            opcvc.order = order
+        }
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        if textView.text?.characters.count != 0 && maintenanceTypeLabel.text != "点击选择" && locationLabel.text != "点击选择" {
+            if title != "预约维修" && feeLabel.text == "点击选择" {
+                return
+            }
+            publishButtonItem.enabled = true
+        } else {
+            publishButtonItem.enabled = false
+        }
+    }
+    
+    func didSelectedMaintenanceType(type: String) {
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))
+        cell?.detailTextLabel?.text = type
+        
+        if locationLabel.text != "点击选择" && descTextView.text != nil {
+            if title != "预约维修" && feeLabel.text == "点击选择" {
+                return
+            }
+            publishButtonItem.enabled = true
+        }
+    }
+    
+    func didSelectedLocation(name: String, location: CLLocation) {
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1))
+        cell?.detailTextLabel?.text = name
+        
+        if maintenanceTypeLabel.text != "点击选择" && descTextView.text != nil {
+            if title != "预约维修" && feeLabel.text == "点击选择" {
+                return
+            }
+            publishButtonItem.enabled = true
+        }
+    }
+    
+    func didSelectedFee(fee: String) {
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1))
+        cell?.detailTextLabel?.text = "￥ " + fee
+        
+        if maintenanceTypeLabel.text != "点击选择" && locationLabel.text != "点击选择" && descTextView.text != nil {
+            publishButtonItem.enabled = true
+        }
+    }
+    
+}
+
+protocol OrderPublishDelegate {
+    func didSelectedMaintenanceType(type: String)
+    func didSelectedLocation(name: String, location: CLLocation)
+    func didSelectedFee(fee: String)
 }

@@ -84,24 +84,24 @@ extension CFCityPickerVC: UITableViewDataSource,UITableViewDelegate{
         if self.currentCity != nil {return}
         
         //定位开始
-        let location = LocationManager.sharedInstance
-        
-        location.autoUpdate = true
+//        let location = LocationManager.sharedInstance
+//        
+//        location.autoUpdate = true
 
-        location.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
-            
-            location.stopUpdatingLocation()
-            
-            location.reverseGeocodeLocationWithLatLon(latitude: latitude, longitude: longitude, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
-                
-                if error != nil {return}
-                if placemark == nil {return}
-                let city: NSString = (placemark!.locality! as NSString).stringByReplacingOccurrencesOfString("市", withString: "")
-                self.currentCity = city as String
-                
-            })
-            
-        }
+//        location.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
+//            
+//            location.stopUpdatingLocation()
+//            
+//            location.reverseGeocodeLocationWithLatLon(latitude: latitude, longitude: longitude, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
+//                
+//                if error != nil {return}
+//                if placemark == nil {return}
+//                let city: NSString = (placemark!.locality! as NSString).stringByReplacingOccurrencesOfString("市", withString: "")
+//                self.currentCity = city as String
+//                
+//            })
+//            
+//        }
     }
     
     
@@ -197,7 +197,7 @@ extension CFCityPickerVC: UITableViewDataSource,UITableViewDelegate{
         }
         
         
-        headerView.frame = CGRectMake(0, 0, headViewWith, headerViewH)
+        headerView.frame = CGRectMake(0, 0, headViewWith, searchH)
         
         let itemView = HeaderItemView.getHeaderItemView("当前城市")
         currentCityItemView = itemView
@@ -207,7 +207,7 @@ extension CFCityPickerVC: UITableViewDataSource,UITableViewDelegate{
         var frame1 = headItemViewH(itemView.cityModles.count)
         frame1.origin.y = searchH
         itemView.frame = frame1
-        headerView.addSubview(itemView)
+        //headerView.addSubview(itemView)
         
         
         
@@ -218,7 +218,7 @@ extension CFCityPickerVC: UITableViewDataSource,UITableViewDelegate{
         var frame2 = headItemViewH(itemView2.cityModles.count)
         frame2.origin.y = CGRectGetMaxY(frame1)
         itemView2.frame = frame2
-        headerView.addSubview(itemView2)
+        //headerView.addSubview(itemView2)
         
         
         
@@ -229,7 +229,7 @@ extension CFCityPickerVC: UITableViewDataSource,UITableViewDelegate{
         var frame3 = headItemViewH(itemView3.cityModles.count)
         frame3.origin.y = CGRectGetMaxY(frame2)
         itemView3.frame = frame3
-        headerView.addSubview(itemView3)
+        //headerView.addSubview(itemView3)
         
         
         self.tableView?.tableHeaderView = headerView

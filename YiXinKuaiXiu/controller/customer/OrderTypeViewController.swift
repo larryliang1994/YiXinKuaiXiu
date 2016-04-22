@@ -10,6 +10,7 @@ import UIKit
 
 class OrderTypeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
+    var type: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,7 @@ class OrderTypeViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if indexPath.section == 0 {
             image.image = UIImage(named: "normalOrder")
-            title.text = "普通维修"
+            title.text = "普通维修 "
             desc.text = "即时发单，需支付上门检查费。维修费与物料费另算。"
         } else if indexPath.section == 1 {
             image.image = UIImage(named: "packOrder")
@@ -66,9 +67,25 @@ class OrderTypeViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.selected = false
+        
+        let title = cell?.viewWithTag(Constants.Tag.OrderTypeCellTitle) as! UILabel
+        type = title.text
         
         performSegueWithIdentifier(Constants.SegueID.PubilshOrderSegue, sender: self)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as UIViewController
+        
+        if let navCon = destination as? UINavigationController {
+            // 取出最上层的viewController，即FaceView
+            destination = navCon.visibleViewController!
+        }
+        
+        if let opvc = destination as? OrderPublishViewController {
+            opvc.title = type!
+        }
+    }
 }

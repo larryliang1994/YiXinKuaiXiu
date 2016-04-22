@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Photos
 
 class UtilBox {
     // 验证是否为手机号
@@ -53,6 +54,18 @@ class UtilBox {
         _ = NSUserDefaults.standardUserDefaults()
         
         
+    }
+    
+    // PHAsset转UIImage
+    static func getAssetThumbnail(asset: PHAsset) -> UIImage {
+        let manager = PHImageManager.defaultManager()
+        let option = PHImageRequestOptions()
+        var thumbnail = UIImage()
+        option.synchronous = true
+        manager.requestImageForAsset(asset, targetSize: CGSize(width: 60.0, height: 60.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
+            thumbnail = result!
+        })
+        return thumbnail
     }
     
     // 时间戳转字符串

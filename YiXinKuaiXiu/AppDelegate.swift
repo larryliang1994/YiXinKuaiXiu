@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KYDrawerController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        setInitialViewController()
         
         // 初始化百度地图
         initBMK()
@@ -26,6 +29,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                  channelId: "developer")
         
         return true
+    }
+    
+    func setInitialViewController() {
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        Config.Role = userDefault.stringForKey(Constants.UserDefaultKey.Role)
+        Config.TelephoneNum = userDefault.stringForKey(Constants.UserDefaultKey.TelephoneNum)
+        Config.VerifyCode = userDefault.stringForKey(Constants.UserDefaultKey.VerifyCode)
+        Config.Aid = userDefault.stringForKey(Constants.UserDefaultKey.Aid)
+        
+        var initialViewController: UIViewController?
+        if Config.Role != nil && Config.TelephoneNum != nil && Config.VerifyCode != nil && Config.Aid != nil {
+            if Config.Role == Constants.Role.Customer {
+                initialViewController = storyboard.instantiateViewControllerWithIdentifier("CustomerMainVC") as! KYDrawerController
+            } else {
+                
+                initialViewController = storyboard.instantiateViewControllerWithIdentifier("HandymanMainVC") as! KYDrawerController
+            }
+        } else {
+            initialViewController = storyboard.instantiateViewControllerWithIdentifier("WelcomeVCNavigation") as! UINavigationController
+        }
+    
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
     }
     
     func initBMK(){

@@ -19,6 +19,14 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initView()
+        
+        setImageViewAnimation()
+        
+        initNavBar()
+    }
+    
+    func initView() {
         handymanButton.layer.borderWidth = 1
         handymanButton.layer.cornerRadius = 3
         handymanButton.layer.borderColor = Constants.Color.Primary.CGColor
@@ -28,15 +36,13 @@ class WelcomeViewController: UIViewController {
         
         titleLabel.text = "壹 心 快 修"
         descLabel.text = "您 的 居 家 维 修 助 手"
-        
-        setImageViewAnimation()
-        
-        initNavBar()
     }
     
     func setImageViewAnimation() {
         let origin = mainImageView.frame
-        mainImageView.frame = CGRect(x: origin.minY, y: origin.minY, width: origin.width * 0.8, height: origin.height * 0.8)
+        let center = mainImageView.center
+        mainImageView.frame.size = CGSize(width: origin.width * 0.8, height: origin.height * 0.8)
+        mainImageView.center = center
         
         UIView.animateWithDuration(1) {
             self.mainImageView.frame = origin
@@ -60,33 +66,13 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func handymanLogin(sender: UIButton) {
-        Config.Role = "handyman"
+        Config.Role = Constants.Role.Handyman
         performSegueWithIdentifier("loginSegue", sender: self)
     }
 
     @IBAction func customerLogin(sender: UIButton) {
-        Config.Role = "customer"
+        Config.Role = Constants.Role.Customer
         performSegueWithIdentifier("loginSegue", sender: self)
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var destination = segue.destinationViewController as UIViewController
-        
-        if let navCon = destination as? UINavigationController {
-            // 取出最上层的viewController，即FaceView
-            destination = navCon.visibleViewController!
-        }
-        
-        if let lvc = destination as? LoginViewController {
-            lvc.role = "customer"
-//            if let identifier = segue.identifier {
-//                switch identifier {
-//                case "sad": hvc.happiness = 0
-//                case "happy": hvc.happiness = 100
-//                case "nothing": hvc.happiness = 25
-//                default: hvc.happiness = 50
-//                }
-//            }
-        }
-    }
+
 }

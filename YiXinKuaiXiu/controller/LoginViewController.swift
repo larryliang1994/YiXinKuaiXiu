@@ -8,32 +8,37 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate {
 
     @IBOutlet var verifyCodeTextField: UITextField!
     @IBOutlet var telephoneNumTextField: UITextField!
     @IBOutlet var getVerifyCodeButton: UIButton!
     @IBOutlet var loginButton: UIButton!
     
-    var role: String?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initView()
+    }
+    
+    func initView() {
         getVerifyCodeButton.backgroundColor = UIColor.lightGrayColor()
         getVerifyCodeButton.layer.cornerRadius = 3
+        //getVerifyCodeButton.enabled = false
         
         loginButton.backgroundColor = UIColor.lightGrayColor()
         loginButton.layer.cornerRadius = 3
+        //loginButton.enabled = false
+        //loginButtonEnabled = false
     }
     
     @IBAction func getVerifyCode(sender: UIButton) {
-        //self.pleaseWait()
-        
         // 关闭键盘
         telephoneNumTextField.resignFirstResponder()
         
-        //GetVerifyCodeModel(getVerifyCodeDelegate: self).doGetVerifyCode(telephoneNumTextField.text!)
+        self.pleaseWait()
+        
+        LoginModel(loginDelegate: self).doGetVerifyCode(Config.Role!, telephoneNum: telephoneNumTextField.text!)
         
         let timer = NSTimer.scheduledTimerWithTimeInterval(
             1.0, target: self, selector: #selector(LoginViewController.counting(_:)),
@@ -43,12 +48,38 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         timer.tolerance = 0.1
         timer.fire()
     }
+    
+    func onGetVerifyCodeResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        
+        if result {
+            self.noticeSuccess(info, autoClear: true, autoClearTime: 2)
+        } else {
+            self.noticeError(info, autoClear: true, autoClearTime: 2)
+        }
+    }
 
     @IBAction func login(sender: UIButton) {
-        if Config.Role == "customer" {
-            performSegueWithIdentifier(Constants.SegueID.CustomerMainSegue, sender: self)
+        verifyCodeTextField.resignFirstResponder()
+        
+        self.pleaseWait()
+        
+        LoginModel(loginDelegate: self).doLogin(telephoneNumTextField.text!, verifyCode: verifyCodeTextField.text!)
+    }
+    
+    func onLoginResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        if result {
+            print("here")
+            
+            self.noticeSuccess(info, autoClear: true, autoClearTime: 2)
+            if Config.Role == Constants.Role.Customer {
+                performSegueWithIdentifier(Constants.SegueID.CustomerMainSegue, sender: self)
+            } else {
+                performSegueWithIdentifier(Constants.SegueID.HandymanMainSegue, sender: self)
+            }
         } else {
-            performSegueWithIdentifier(Constants.SegueID.HandymanMainSegue, sender: self)
+            self.noticeError(info, autoClear: true, autoClearTime: 2)
         }
     }
  
@@ -85,11 +116,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 loginButton.backgroundColor = UIColor.lightGrayColor()
             }
         } else if textField == verifyCodeTextField {
-            if range.location >= 6 {
+            if range.location >= 5 {
                 return false
             }
             
-            if range.location >= 5 && textField.text?.characters.count == 5 {
+            if range.location >= 4 && textField.text?.characters.count == 4 {
                 loginButton.enabled = true
                 loginButtonEnabled = true
                 loginButton.backgroundColor = Constants.Color.Primary
@@ -117,12 +148,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             time -= 1
         } else {
             isCounting = false
-            getVerifyCodeButton.backgroundColor = Constants.Color.Primary
-            getVerifyCodeButton.enabled = true
             getVerifyCodeButton.setTitle("验证", forState: .Normal)
             timer.invalidate()
             
-            textField(telephoneNumTextField, shouldChangeCharactersInRange: NSRange(location: 10, length: 1), replacementString: telephoneNumTextField.text!)
+            if telephoneNumTextField.text?.characters.count >= 11 {
+                getVerifyCodeButton.backgroundColor = Constants.Color.Primary
+                getVerifyCodeButton.enabled = true
+            } else {
+                getVerifyCodeButton.backgroundColor = UIColor.lightGrayColor()
+                getVerifyCodeButton.enabled = false
+            }
         }
     }
 }

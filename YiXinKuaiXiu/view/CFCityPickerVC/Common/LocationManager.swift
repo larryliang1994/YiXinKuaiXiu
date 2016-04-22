@@ -269,8 +269,14 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         locationStatus = NSLocalizedString("Allowed access", comment: "")
         hasAuthorised = true
       }
-      
-      verboseMessage = verboseMessageDictionary[verboseKey]!
+    
+    //print(verboseKey)
+    
+    if let message = verboseMessageDictionary[verboseKey] {
+        verboseMessage = message
+    } else {
+        verboseMessage = NSLocalizedString("It's undefined.", comment: "")
+    }
       
       if hasAuthorised {
         startLocationManger()

@@ -14,6 +14,8 @@ class MaintenanceTypeViewController: UITableViewController, UISearchBarDelegate,
     
     let types = ["门窗修理", "空调、冰箱修理", "彩电修理", "电路修理"]
     
+    var delegate: OrderPublishDelegate?
+    
     var filteredTypes: [String] = []
     
     override func viewDidLoad() {
@@ -22,6 +24,12 @@ class MaintenanceTypeViewController: UITableViewController, UISearchBarDelegate,
         self.tableView.tableFooterView = UIView()
         
         searchBar.tintColor = Constants.Color.Primary
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        delegate?.didSelectedMaintenanceType((cell?.textLabel?.text)!)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -10,17 +10,23 @@ import Foundation
 import Alamofire
 
 class AlamofireUtil {
-    static func requestWithCookie(url: String, parameters: [String: String]?,
+    static func doRequest(url: String, parameters: [String: String]!,
         callback : (result: Bool, response: String) -> Void) {
+        
+        var requestUrl = Urls.ServerUrl + url
+        
+        for (key, value) in parameters {
+             requestUrl += key + "=" + value + "&"
+        }
 
-            request(.POST, "/ajax.php?a=" + url, parameters: parameters)
-                .responseString{ response in
-                    if response.result.isSuccess {
-                        callback(result: true, response: response.result.value!)
-                    } else {
-                        callback(result: false, response: "")
-                    }
-            }
+        request(.GET, requestUrl)
+            .responseString{ response in
+                if response.result.isSuccess {
+                    callback(result: true, response: response.result.value!)
+                } else {
+                    callback(result: false, response: "")
+                }
+        }
     }
     
 }

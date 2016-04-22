@@ -9,22 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>EasyAnimation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>HanekeSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>KYDrawerController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>MartyJunior.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>MisterFusion.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,7 +47,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0AC9CDCB206D48B40BA4D71B07BC1503</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2C2B1953A91633859BF7AD238FF567A0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>42020691A7D55C61EEEEDDCD4DA1F1A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,37 +67,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>73A63A95A5B94FCAE340377FBA79E023</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7D1D0556C4380FF7B8BAC333A9D69910</key>
+		<key>A376E868ED408EE8EEBD1DDBCE639EF5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>90080D948323CEEBE8FF5433E6F4CF56</key>
+		<key>ABE0E10CAA8881A65ED40A091B291406</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>915112A1582B704A845037D6A178FDA7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BBAAF9AE826432C1A8D58EACC6CF66EB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D5AEFA3996BD6E96D4E870E26D01A6D5</key>
+		<key>E4847B182991B4D39446B1789A5CA913</key>
 		<dict>
 			<key>primary</key>
 			<true/>

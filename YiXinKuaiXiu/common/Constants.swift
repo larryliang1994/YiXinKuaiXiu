@@ -12,7 +12,10 @@ class Constants {
     }
     
     struct UserDefaultKey {
-        
+        static let TelephoneNum = "telephoneNum"
+        static let VerifyCode = "verifyCode"
+        static let Aid = "aid"
+        static let Role = "role"
     }
     
     struct Tag {
@@ -26,13 +29,13 @@ class Constants {
         static let OrderPublishConfirmDesc = 5
         static let OrderPublishConfirmAddress = 6
         
-        static let OrderListCellType = 8
-        static let OrderListCellDesc = 9
-        static let OrderListCellService = 10
-        static let OrderListCellStatus = 11
-        static let OrderListCellReminder = 12
-        static let OrderListCellLeftButton = 13
-        static let OrderListCellRightButton = 14
+        static let CustomerOrderListCellType = 8
+        static let CustomerOrderListCellDesc = 9
+        static let CustomerOrderListCellService = 10
+        static let CustomerOrderListCellStatus = 11
+        static let CustomerOrderListCellReminder = 12
+        static let CustomerOrderListCellLeftButton = 13
+        static let CustomerOrderListCellRightButton = 14
         
         static let PartsMallLeftCellLabel = 15
         static let PartsMallLeftCellSeperator = 16
@@ -51,6 +54,23 @@ class Constants {
         static let HandymanDrawerLabelImage = 28
         static let HandymanDrawerLabelTitle = 29
         static let HandymanDrawerLabel = 30
+        
+        static let OrderGrabCellType = 31
+        static let OrderGrabCellDesc = 32
+        static let OrderGrabCellMaintenanceType = 33
+        static let OrderGrabCellFee = 34
+        static let OrderGrabCellFeeImg = 35
+        static let OrderGrabCellDistance = 36
+        static let OrderGrabCellTime = 37
+        static let OrderGrabCellButton = 38
+        
+        static let HandymanOrderListCellType = 39
+        static let HandymanOrderListCellDesc = 40
+        static let HandymanOrderListCellService = 41
+        static let HandymanOrderListCellStatus = 42
+        static let HandymanOrderListCellReminder = 43
+        static let HandymanOrderListCellLeftButton = 44
+        static let HandymanOrderListCellRightButton = 45
     }
     
     struct SegueID {
@@ -72,6 +92,16 @@ class Constants {
         static let CustomerMainSegue = "customerMainSegue"
         
         static let ShowGrabListSegue = "showGrabListSegue"
+        static let ShowOrderGrabDetailSegue = "showOrderGrabDetailSegue"
+        
+        static let HandymanDrawerToOrderListSegue = "handymanDrawerToOrderListSegue"
+        static let HandymanDrawerToWalletSegue = "handymanDrawerToWalletSegue"
+        static let HandymanDrawerToAuditIDSegue = "handymanDrawerToAuditIDSegue"
+        static let HandymanDrawerToMessageCenterSegue = "handymanDrawerToMessageCenterSegue"
+        static let HandymanDrawerToProjectBidingSegue = "handymanDrawerToProjectBidingSegue"
+        
+        static let ShowHandymanOrderDetailSegue = "showHandymanOrderDetailSegue"
+        static let ShowHandymanD2DAccountSegue = "showHandymanD2DAccountSegue"
     }
     
     struct Color {
@@ -87,7 +117,13 @@ class Constants {
         static let BuglyAppID = "900024596"
     }
     
+    struct Role {
+        static let Customer = "0"
+        static let Handyman = "1"
+    }
+    
     struct DateFormat {
+        static let YMD = "YYYY年MM月dd日"
         static let MDHm = "MM/dd HH:mm"
         static let Full = "YYYY/MM/dd HH:mm"
     }
@@ -98,6 +134,6 @@ class Constants {
         static let Portrait = 1000 * 1024
     }
    
-    static let Success = 900001
+    static let Success = 0
     static let Failed = 0
 }

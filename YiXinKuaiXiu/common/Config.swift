@@ -7,19 +7,8 @@
 //
 
 class Config {
-    static var Random: String?
-    static var Cookie: String?
-    static var Portrait: String?
-    static var Mid: String?
-    static var Nickname: String?
-    static var Mobile: String?
-    static var CID: String?
-    static var CompanyName: String?
-    static var CompanyCreator: String?
-    static var CompanyBackground: String?
-    static var Time: String?
-    static var IsReachable: Bool?
-    
-    
     static var Role: String?
+    static var Aid: String?
+    static var TelephoneNum: String?
+    static var VerifyCode: String?
 }

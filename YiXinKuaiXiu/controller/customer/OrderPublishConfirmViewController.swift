@@ -7,21 +7,59 @@
 //
 
 import UIKit
+import Photos
 
 class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDataSource,PopBottomViewDelegate {
     @IBOutlet var doPayButton: UIButton!
     @IBOutlet var descLabel: UILabel!
-    @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var feeLabel: UILabel!
+    @IBOutlet var feeTitleLabel: UILabel!
+    @IBOutlet var feeCell: UITableViewCell!
+    @IBOutlet var imageCell: UITableViewCell!
+    @IBOutlet var image2: UIImageView!
+    @IBOutlet var image1: UIImageView!
+    
+    var order: Order?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        doPayButton.layer.cornerRadius = 3
-        doPayButton.backgroundColor = Constants.Color.Primary
+        initView()
         
         self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
         
         self.tableView.layoutIfNeeded()
+    }
+    
+    func initView() {
+        doPayButton.layer.cornerRadius = 3
+        doPayButton.backgroundColor = Constants.Color.Primary
+        
+        descLabel.text = order?.desc
+        
+        locationLabel.text = order?.location
+        
+        timeLabel.text = UtilBox.getDateFromString(String(NSDate().timeIntervalSince1970), format: Constants.DateFormat.YMD)
+        
+        if order?.type == "打包维修" {
+            feeTitleLabel.text = "打包费"
+            feeLabel.text = order?.fee
+        } else if order?.type == "预约维修" {
+            feeCell.hidden = true
+        } else {
+            feeLabel.text = order?.fee
+        }
+        
+        if order?.image1 == nil {
+            imageCell.hidden = true
+        } else if order?.image2 == nil {
+            image2.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
+        } else {
+            image1.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
+            image2.image = UtilBox.getAssetThumbnail((order?.image2!.originalAsset)!)
+        }
     }
     
     @IBAction func doPay(sender: UIButton) {
@@ -42,8 +80,15 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
     //MARK : - PopBottomViewDataSource
     func viewPop() -> UIView {
         let payPopoverView = UIView.loadFromNibNamed("PayPopoverView") as! PayPopoverView
-        
+        payPopoverView.closeButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
+        payPopoverView.doPayButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
+        payPopoverView.doPayButton.addTarget(self, action: #selector(OrderPublishConfirmViewController.goPay), forControlEvents: UIControlEvents.TouchUpInside)
+        payPopoverView.feeLabel.text = order?.fee
         return payPopoverView
+    }
+    
+    func goPay() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     func viewHeight() -> CGFloat {
@@ -62,9 +107,9 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
             if indexPath.row == 0 {
                 return descLabel.frame.size.height + 28
             } else if indexPath.row == 2 {
-                return addressLabel.frame.size.height + 28
+                return locationLabel.frame.size.height + 28
             } else if indexPath.row == 1{
-                return 66
+               return order?.image1 == nil ? 0 : 70
             } else {
                 return 44
             }
@@ -85,8 +130,4 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         return 3
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section != 1 ? 1 : 4
-    }
-    
 }
