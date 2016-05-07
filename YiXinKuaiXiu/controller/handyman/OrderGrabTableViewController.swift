@@ -9,6 +9,18 @@
 import UIKit
 
 class OrderGrabTableViewController: UITableViewController {
+    
+    let orders = [
+        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .ToBeBilled, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [Payment(name: "上门检查费", price: 10, paid: false)]),
+        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .OnGoing, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
+        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .BeingCancelled, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
+        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .Cancelling, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
+        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .ToBeRating, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true), Payment(name: "维修费", price: 200, paid: true)]),
+        Order(type: .Pack, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .ToBeBilled, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [Payment(name: "打包维修费", price: 200, paid: false)]),
+        Order(type: .Reservation, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: nil, image1: nil, image2: nil, status: .ToBeGrabbed, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [])
+    ]
+    
+    var segueOrder: Order?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +33,7 @@ class OrderGrabTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return orders.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,6 +55,8 @@ class OrderGrabTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("OrderGrabCell", forIndexPath: indexPath)
+        
+        let order = orders[indexPath.section]
 
         let typeLabel = cell.viewWithTag(Constants.Tag.OrderGrabCellType) as! UILabel
         let descLabel = cell.viewWithTag(Constants.Tag.OrderGrabCellDesc) as! UILabel
@@ -55,13 +69,24 @@ class OrderGrabTableViewController: UITableViewController {
         
         typeLabel.clipsToBounds = true
         typeLabel.layer.cornerRadius = 3
-        typeLabel.backgroundColor = Constants.Color.Orange
+        if order.type == .Normal {
+            typeLabel.backgroundColor = Constants.Color.Orange
+            typeLabel.text = "普通"
+            feeLabel.text = "检查费" + " ￥" + String(order.fee!)
+        } else if order.type == .Pack {
+            typeLabel.backgroundColor = Constants.Color.Primary
+            typeLabel.text = "打包"
+            feeLabel.text = "打包费" + " ￥" + String(order.fee!)
+        } else {
+            typeLabel.backgroundColor = Constants.Color.Blue
+            typeLabel.text = "预约"
+            feeImg.hidden = true
+            feeLabel.hidden = true
+        }
         
-        descLabel.text = "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了"
+        descLabel.text = order.desc
         
-        maintenanceTypeLabel.text = "水维修"
-        
-        feeLabel.text = "检查费 ¥20"
+        maintenanceTypeLabel.text = order.mType
         
         distanceLabel.text = "距离您3公里"
         
@@ -75,6 +100,20 @@ class OrderGrabTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        segueOrder = orders[indexPath.section]
         performSegueWithIdentifier(Constants.SegueID.ShowOrderGrabDetailSegue, sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as UIViewController
+        
+        if let navCon = destination as? UINavigationController {
+            // 取出最上层的viewController，即FaceView
+            destination = navCon.visibleViewController!
+        }
+        
+        if let ogdvc = destination as? OrderGrabDetailViewController {
+            ogdvc.order = segueOrder
+        }
     }
 }

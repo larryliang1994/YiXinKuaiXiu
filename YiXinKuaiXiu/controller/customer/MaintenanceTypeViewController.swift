@@ -12,8 +12,6 @@ class MaintenanceTypeViewController: UITableViewController, UISearchBarDelegate,
     
     @IBOutlet var searchBar: UISearchBar!
     
-    let types = ["门窗修理", "空调、冰箱修理", "彩电修理", "电路修理"]
-    
     var delegate: OrderPublishDelegate?
     
     var filteredTypes: [String] = []
@@ -28,7 +26,7 @@ class MaintenanceTypeViewController: UITableViewController, UISearchBarDelegate,
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        delegate?.didSelectedMaintenanceType((cell?.textLabel?.text)!)
+        delegate?.didSelectedMaintenanceType((cell?.textLabel?.text)!, id: "")
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -36,7 +34,7 @@ class MaintenanceTypeViewController: UITableViewController, UISearchBarDelegate,
         if tableView == self.searchDisplayController!.searchResultsTableView {
             return self.filteredTypes.count
         } else {
-            return self.types.count
+            return Config.MTypeNames!.count
         }
     }
     
@@ -47,14 +45,14 @@ class MaintenanceTypeViewController: UITableViewController, UISearchBarDelegate,
         if tableView == self.searchDisplayController!.searchResultsTableView {
             cell.textLabel!.text = filteredTypes[indexPath.row]
         } else {
-            cell.textLabel!.text = types[indexPath.row]
+            cell.textLabel!.text = Config.MTypeNames![indexPath.row]
         }
         
         return cell
     }
     
     func filterContentForSearchText(searchText: String) {
-        self.filteredTypes = self.types.filter({( string : String) -> Bool in
+        self.filteredTypes = Config.MTypeNames!.filter({( string : String) -> Bool in
             return string.rangeOfString(searchText) != nil
         })
     }

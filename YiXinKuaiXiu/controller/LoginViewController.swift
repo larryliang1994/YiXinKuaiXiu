@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KYDrawerController
 
 class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate {
 
@@ -73,11 +74,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate 
             print("here")
             
             self.noticeSuccess(info, autoClear: true, autoClearTime: 2)
+//            if Config.Role == Constants.Role.Customer {
+//                performSegueWithIdentifier(Constants.SegueID.CustomerMainSegue, sender: self)
+//            } else {
+//                performSegueWithIdentifier(Constants.SegueID.HandymanMainSegue, sender: self)
+//            }
+            
+            var initialViewController: UIViewController?
             if Config.Role == Constants.Role.Customer {
-                performSegueWithIdentifier(Constants.SegueID.CustomerMainSegue, sender: self)
+                initialViewController = storyboard!.instantiateViewControllerWithIdentifier("CustomerMainVC") as! KYDrawerController
             } else {
-                performSegueWithIdentifier(Constants.SegueID.HandymanMainSegue, sender: self)
+                initialViewController = storyboard!.instantiateViewControllerWithIdentifier("HandymanMainVC") as! KYDrawerController
             }
+            
+            UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
+                UIApplication.sharedApplication().keyWindow?.rootViewController = initialViewController
+                }, completion: nil)
+        
         } else {
             self.noticeError(info, autoClear: true, autoClearTime: 2)
         }

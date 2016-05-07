@@ -13,6 +13,8 @@ class HandymanD2DAccountViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    
 
     // MARK: - Table view data source
 
@@ -34,7 +36,6 @@ class HandymanD2DAccountViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("handymanD2DAccountCell", forIndexPath: indexPath)
-
 
         return cell
     }

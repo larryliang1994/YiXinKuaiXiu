@@ -28,9 +28,28 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         
         initView()
         
+        initNavBar()
+        
         self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
         
         self.tableView.layoutIfNeeded()
+    }
+    
+    func initNavBar() {
+        let back = UIButton(type: .Custom)
+        back.setTitleColor(Constants.Color.Primary, forState: .Normal)
+        back.setTitle("主页", forState: .Normal)
+        back.titleLabel?.font = UIFont(name: (back.titleLabel?.font?.fontName)!, size: 17)
+        back.frame = CGRectMake(0, 0, 43, 43)
+        back.addTarget(self, action: #selector(OrderPublishConfirmViewController.goBack), forControlEvents: .TouchUpInside)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: back)
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+    }
+    
+    func goBack() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     func initView() {
@@ -43,13 +62,13 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         
         timeLabel.text = UtilBox.getDateFromString(String(NSDate().timeIntervalSince1970), format: Constants.DateFormat.YMD)
         
-        if order?.type == "打包维修" {
+        if order?.type == .Pack {
             feeTitleLabel.text = "打包费"
-            feeLabel.text = order?.fee
-        } else if order?.type == "预约维修" {
+            feeLabel.text = order!.fee!
+        } else if order?.type == .Reservation {
             feeCell.hidden = true
         } else {
-            feeLabel.text = order?.fee
+            feeLabel.text = order!.fee!
         }
         
         if order?.image1 == nil {
@@ -83,12 +102,13 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         payPopoverView.closeButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.doPayButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.doPayButton.addTarget(self, action: #selector(OrderPublishConfirmViewController.goPay), forControlEvents: UIControlEvents.TouchUpInside)
-        payPopoverView.feeLabel.text = order?.fee
+        payPopoverView.feeLabel.text = String(order?.fee)
         return payPopoverView
     }
     
     func goPay() {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.noticeSuccess("订单发布成功", autoClear: true, autoClearTime: 2)
+        goBack()
     }
     
     func viewHeight() -> CGFloat {

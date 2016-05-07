@@ -11,4 +11,20 @@ class Config {
     static var Aid: String?
     static var TelephoneNum: String?
     static var VerifyCode: String?
+    static var Name: String?
+    static var Location: String?
+    static var Company: String?
+    static var Age: String?
+    static var Money: String?
+    static var Sex: String?
+    static var IDNum: String?
+    static var MType: String?
+    static var Password: String?
+    static var BankName: String?
+    static var BankNum: String?
+    static var TotalStar: String?
+    static var MaintenanceNum: String?
+    
+    static var MTypes: [MaintenanceType]?
+    static var MTypeNames: [String]?
 }

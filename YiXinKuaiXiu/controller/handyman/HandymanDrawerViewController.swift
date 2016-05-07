@@ -20,8 +20,23 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
         tableView.tableFooterView = UIView()
     }
 
-    @IBAction func doLogout(sender: UIButton) {
+    var alert: OYSimpleAlertController?
+    @IBAction func logout(sender: UIButton) {
+        alert = OYSimpleAlertController()
+        UtilBox.showAlertView(self, alertViewController: alert!, message: "确认退出？", cancelButtonTitle: "取消", cancelButtonAction: #selector(CustomerDrawerViewController.cancel), confirmButtonTitle: "退出", confirmButtonAction: #selector(CustomerDrawerViewController.doLogout))
+    }
+    
+    // 点击退出按钮
+    func doLogout() {
+        alert?.dismissViewControllerAnimated(true, completion: nil)
         
+        delegate?.didLogout()
+    }
+    
+    // 点击取消
+    func cancel() {
+        alert?.dismissViewControllerAnimated(true, completion: nil)
+        alert = nil
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -69,12 +84,12 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
             let label = cell.viewWithTag(Constants.Tag.HandymanDrawerLabel) as! UILabel
             
             if indexPath.row == 2 {
-                image.image = UIImage(named: "orderList")
+                image.image = UIImage(named: "wallet")
                 title.text = "我的钱包"
                 label.text = "¥ 20.00"
                 label.textColor = Constants.Color.Orange
             } else if indexPath.row == 3 {
-                image.image = UIImage(named: "messageCenter")
+                image.image = UIImage(named: "audit")
                 title.text = "身份认证"
                 label.text = "已认证"
                 label.textColor = Constants.Color.Primary
@@ -96,4 +111,5 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
 
 protocol HandymanDrawerDelegate{
     func didSelected(index: Int)
+    func didLogout()
 }

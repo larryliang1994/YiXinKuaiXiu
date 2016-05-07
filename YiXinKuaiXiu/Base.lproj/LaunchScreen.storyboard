@@ -29,15 +29,15 @@
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="HM2-kE-9cg"/>
                                         <exclude reference="3ep-np-Udk"/>
+                                        <exclude reference="HM2-kE-9cg"/>
                                         <exclude reference="e0A-XR-kdA"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="HM2-kE-9cg"/>
                                         <exclude reference="3ep-np-Udk"/>
+                                        <include reference="HM2-kE-9cg"/>
                                         <exclude reference="e0A-XR-kdA"/>
                                     </mask>
                                 </variation>
@@ -83,10 +83,10 @@
                                 <exclude reference="2Xd-dD-s4r"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="TFo-mv-TlN"/>
                                 <exclude reference="1Vd-Dn-yQK"/>
                                 <exclude reference="ghM-Se-h9V"/>
                                 <exclude reference="l2G-iQ-a5Z"/>
+                                <exclude reference="TFo-mv-TlN"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -95,10 +95,10 @@
                                 <include reference="2Xd-dD-s4r"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="TFo-mv-TlN"/>
                                 <include reference="1Vd-Dn-yQK"/>
                                 <include reference="ghM-Se-h9V"/>
                                 <include reference="l2G-iQ-a5Z"/>
+                                <include reference="TFo-mv-TlN"/>
                             </mask>
                         </variation>
                     </view>

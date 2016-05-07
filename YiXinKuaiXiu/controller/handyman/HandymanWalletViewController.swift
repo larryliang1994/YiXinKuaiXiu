@@ -16,10 +16,23 @@ class HandymanWalletViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        withdrawButton.layer.cornerRadius = 3
-        withdrawButton.backgroundColor = Constants.Color.Primary
+        initView()
+        
+        initNavBar()
         
         self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
+    }
+    
+    func initView() {
+        withdrawButton.layer.cornerRadius = 3
+        withdrawButton.backgroundColor = Constants.Color.Primary
+    }
+    
+    func initNavBar() {
+        let back = UIBarButtonItem()
+        back.title = "钱包"
+        self.navigationItem.backBarButtonItem = back
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

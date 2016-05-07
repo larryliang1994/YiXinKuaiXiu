@@ -82,7 +82,7 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        delegate?.didSelectedLocation((cell?.textLabel?.text)!, location: CLLocation())
+        delegate?.didSelectedLocation((cell?.textLabel?.text)!, locationInfo: CLLocation())
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -130,56 +130,6 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
         }
         
         tableView.reloadData()
-    }
-    
-}
-
-/** 这里是无关的解析业务 */
-extension UIViewController{
-    
-    /** 解析字典数据，由于swift中字典转模型工具不完善，这里先手动处理 */
-    func cityModelsPrepare() -> [CFCityPickerVC.CityModel]{
-        
-        //加载plist，你也可以加载网络数据
-        let plistUrl = NSBundle.mainBundle().URLForResource("City", withExtension: "plist")!
-        let cityArray = NSArray(contentsOfURL: plistUrl) as! [NSDictionary]
-        
-        var cityModels: [CFCityPickerVC.CityModel] = []
-        
-        for dict in cityArray{
-            let cityModel = parse(dict)
-            cityModels.append(cityModel)
-        }
-        
-        return cityModels
-    }
-    
-    func parse(dict: NSDictionary) -> CFCityPickerVC.CityModel{
-        
-        let id = dict["id"] as! Int
-        let pid = dict["pid"] as! Int
-        let name = dict["name"] as! String
-        let spell = dict["spell"] as! String
-        
-        let cityModel = CFCityPickerVC.CityModel(id: id, pid: pid, name: name, spell: spell)
-        
-        let children = dict["children"]
-        
-        if children != nil { //有子级
-            
-            var childrenArr: [CFCityPickerVC.CityModel] = []
-            for childDict in children as! NSArray {
-                
-                let childrencityModel = parse(childDict as! NSDictionary)
-                
-                childrenArr.append(childrencityModel)
-            }
-            
-            cityModel.children = childrenArr
-        }
-        
-        
-        return cityModel
     }
     
 }

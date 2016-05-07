@@ -94,9 +94,7 @@ public class OYSimpleAlertController: UIViewController,UIViewControllerTransitio
     
     private let animater = LunchAnimation()
     
-    convenience public init(contentView: UIView) {
-        self.init()
-        
+    func initView(contentView: UIView) {
         self.contentView = contentView
         
         self.transitioningDelegate = self
@@ -104,6 +102,21 @@ public class OYSimpleAlertController: UIViewController,UIViewControllerTransitio
         self.providesPresentationContextTransitionStyle = true
         self.modalPresentationStyle = .Custom
     }
+    
+//    convenience public init(contentView: UIView) {
+//        self.init()
+//        
+//        self.contentView = contentView
+//        
+//        self.transitioningDelegate = self
+//        self.definesPresentationContext = true
+//        self.providesPresentationContextTransitionStyle = true
+//        self.modalPresentationStyle = .Custom
+//    }
+//    
+//    required public init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     public override func viewDidLoad() {
         backgroundView.frame = self.view.bounds

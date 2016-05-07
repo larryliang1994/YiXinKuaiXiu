@@ -138,6 +138,7 @@ class PopBottomView: UIView {
         }
         
         if isDel {
+            self.delegate?.viewWillDisappear!()
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 btn.alpha = 0
                 var frame = view.frame

@@ -21,10 +21,24 @@ class CustomerOrderDetailViewController: UITableViewController {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var serviceRating: FloatRatingView!
     @IBOutlet var ratingLabel: UILabel!
+    
+    @IBOutlet var imageCell: UITableViewCell!
+    @IBOutlet var picture2ImageView: UIImageView!
+    @IBOutlet var picture1ImageView: UIImageView!
+    var order: Order?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initView()
+        
+        self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
+        self.tableView.layoutIfNeeded()
+        
+        initNavBar()
+    }
+    
+    func initView() {
         cancelButton.layer.cornerRadius = 3
         cancelButton.layer.borderWidth = 0.5
         cancelButton.layer.borderColor = Constants.Color.Gray.CGColor
@@ -37,10 +51,18 @@ class CustomerOrderDetailViewController: UITableViewController {
         ratingLabel.layer.cornerRadius = 3
         ratingLabel.backgroundColor = Constants.Color.Gray
         
-        self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
-        self.tableView.layoutIfNeeded()
+        descLabel.text = order?.desc
         
-        initNavBar()
+        locationLabel.text = order?.location
+    
+        if order?.image1 == nil {
+            imageCell.hidden = true
+        } else if order?.image2 == nil {
+            picture2ImageView.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
+        } else {
+            picture1ImageView.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
+            picture2ImageView.image = UtilBox.getAssetThumbnail((order?.image2!.originalAsset)!)
+        }
     }
     
     func initNavBar() {
@@ -57,7 +79,7 @@ class CustomerOrderDetailViewController: UITableViewController {
         case 1:
             switch indexPath.row {
             case 0: return descLabel.frame.size.height + 24
-            case 1: return 70
+            case 1: return order?.image1 == nil ? 0 : 70
             case 2: return locationLabel.frame.size.height + 24
             case 3: return 44
             default:    return 44

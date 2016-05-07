@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import KYDrawerController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,56 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        setInitialViewController()
-        
-        // 初始化百度地图
-        initBMK()
-        
-        // 初始化Bugly
-        Bugly.startWithAppId(Constants.Key.BuglyAppID)
-        
-        // 初始化数据统计服务
-        MobClick.startWithAppkey(Constants.Key.UMAppKey, reportPolicy: BATCH,
-                                 channelId: "developer")
-        
+        //window = UIWindow(frame: UIScreen.mainScreen().bounds)
         return true
-    }
-    
-    func setInitialViewController() {
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let userDefault = NSUserDefaults.standardUserDefaults()
-        Config.Role = userDefault.stringForKey(Constants.UserDefaultKey.Role)
-        Config.TelephoneNum = userDefault.stringForKey(Constants.UserDefaultKey.TelephoneNum)
-        Config.VerifyCode = userDefault.stringForKey(Constants.UserDefaultKey.VerifyCode)
-        Config.Aid = userDefault.stringForKey(Constants.UserDefaultKey.Aid)
-        
-        var initialViewController: UIViewController?
-        if Config.Role != nil && Config.TelephoneNum != nil && Config.VerifyCode != nil && Config.Aid != nil {
-            if Config.Role == Constants.Role.Customer {
-                initialViewController = storyboard.instantiateViewControllerWithIdentifier("CustomerMainVC") as! KYDrawerController
-            } else {
-                
-                initialViewController = storyboard.instantiateViewControllerWithIdentifier("HandymanMainVC") as! KYDrawerController
-            }
-        } else {
-            initialViewController = storyboard.instantiateViewControllerWithIdentifier("WelcomeVCNavigation") as! UINavigationController
-        }
-    
-        self.window?.rootViewController = initialViewController
-        self.window?.makeKeyAndVisible()
-    }
-    
-    func initBMK(){
-        let mapManager = BMKMapManager()
-        
-        let ret = mapManager.start(Constants.Key.BaiDuMapAK, generalDelegate: nil)
-        if ret == false {
-            NSLog("manager start failed!")
-        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

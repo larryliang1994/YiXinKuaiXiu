@@ -220,6 +220,7 @@ class SwiftNotice: NSObject {
         
         let label = UILabel(frame: CGRectMake(0, 60, 90, 16))
         label.font = UIFont.systemFontOfSize(13)
+        label.numberOfLines = 0
         label.textColor = UIColor.whiteColor()
         label.text = text
         label.textAlignment = NSTextAlignment.Center

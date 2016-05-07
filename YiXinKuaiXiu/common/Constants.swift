@@ -7,6 +7,9 @@
 //
 
 class Constants {
+    static let Types = ["普通维修 ", "打包维修", "预约维修"]
+    static let Status = ["待发单", "进行中", "对方请求取消", "申请取消中", "待评价", "待抢单", "已完成"]
+    
     struct ControllerID {
         static let PayPopover = "payPopover"
     }
@@ -23,6 +26,9 @@ class Constants {
         static let CustomerDrawerImage = 7
         static let CustomerDrawerBadge = 31
         
+        static let CustomerDrawerName = 48
+        static let CustomerDrawerTelephone = 49
+        
         static let OrderTypeCellImage = 2
         static let OrderTypeCellTitle = 3
         static let OrderTypeCellDesc = 4
@@ -31,7 +37,7 @@ class Constants {
         
         static let CustomerOrderListCellType = 8
         static let CustomerOrderListCellDesc = 9
-        static let CustomerOrderListCellService = 10
+        static let CustomerOrderListCellMaintenanceType = 10
         static let CustomerOrderListCellStatus = 11
         static let CustomerOrderListCellReminder = 12
         static let CustomerOrderListCellLeftButton = 13
@@ -66,11 +72,14 @@ class Constants {
         
         static let HandymanOrderListCellType = 39
         static let HandymanOrderListCellDesc = 40
-        static let HandymanOrderListCellService = 41
+        static let HandymanOrderListCellMaintanceType = 41
         static let HandymanOrderListCellStatus = 42
         static let HandymanOrderListCellReminder = 43
         static let HandymanOrderListCellLeftButton = 44
         static let HandymanOrderListCellRightButton = 45
+        
+        static let HandymanChooseMaintenanceTypeCellTitle = 46
+        static let HandymanChooseMaintenanceTypeCellCheck = 47
     }
     
     struct SegueID {
@@ -88,6 +97,8 @@ class Constants {
         static let ShowHandymanInfoSugue = "showHandymanInfoSugue"
         static let ShowCustomerWalletSegue = "showCustomerWalletSegue"
         
+        static let ShowOrderPublishConfirmSegue = "showOrderPublishConfirmSegue"
+        
         static let HandymanMainSegue = "handymanMainSegue"
         static let CustomerMainSegue = "customerMainSegue"
         
@@ -102,12 +113,22 @@ class Constants {
         
         static let ShowHandymanOrderDetailSegue = "showHandymanOrderDetailSegue"
         static let ShowHandymanD2DAccountSegue = "showHandymanD2DAccountSegue"
+        
+        static let ShowHandymanChooseMaintenanceTypeSegue = "showHandymanChooseMaintenanceTypeSegue"
+        static let ShowHandymanChooseLocationSegue = "showHandymanChooseLocationSegue"
+        
+        static let CustomerModifyPersonInfoSefue = "customerModifyPersonInfoSefue"
+        static let CustomerChoosePersonInfoLocationSefue = "customerChoosePersonInfoLocationSefue"
+        
+        static let ShowCustomerD2DAccountSegue = "showCustomerD2DAccountSegue"
+        static let ShowCustomerChangePasswordSegue = "showCustomerChangePasswordSegue"
     }
     
     struct Color {
         static let Primary = UIColor(red: 46/255, green: 204/255, blue: 139/255, alpha: 1.0)
         static let Orange = UIColor(red: 253/255, green: 114/255, blue: 0/255, alpha: 1.0)
         static let Gray = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
+        static let Blue = UIColor(red: 38/255, green: 135/255, blue: 253/255, alpha: 1.0)
     }
     
     struct Key {
@@ -129,9 +150,8 @@ class Constants {
     }
     
     struct ImageSize {
-        static let Background = 1000 * 1024
-        static let Task = 1000 * 1024
         static let Portrait = 1000 * 1024
+        static let Order = 1000 * 1024
     }
    
     static let Success = 0

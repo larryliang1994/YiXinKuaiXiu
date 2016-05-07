@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerOrderListViewController: UIViewController, SMSwipeableTabViewControllerDelegate {
+class CustomerOrderListViewController: UIViewController, SMSwipeableTabViewControllerDelegate, OrderDelegate {
 
     let titleBarDataSource = ["进行中", "已完成"]
     
@@ -17,6 +17,12 @@ class CustomerOrderListViewController: UIViewController, SMSwipeableTabViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initView()
+        
+        initNavBar()
+    }
+    
+    func initView() {
         swipeableView.titleBarDataSource = titleBarDataSource
         swipeableView.delegate = self
         swipeableView.viewFrame = CGRectMake(0.0, 64.0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height-64.0)
@@ -43,8 +49,6 @@ class CustomerOrderListViewController: UIViewController, SMSwipeableTabViewContr
         self.addChildViewController(swipeableView)
         self.view.addSubview(swipeableView.view)
         swipeableView.didMoveToParentViewController(self)
-        
-        initNavBar()
     }
     
     func initNavBar() {
@@ -52,6 +56,12 @@ class CustomerOrderListViewController: UIViewController, SMSwipeableTabViewContr
         back.title = "返回"
         self.navigationItem.backBarButtonItem = back
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+    }
+    
+    func onPublishOrderResult(result: Bool, info: String) {}
+    
+    func onPullOrderListResult(result: Bool, info: String) {
+        
     }
     
     //MARK: SMSwipeableTabViewController Delegate CallBack

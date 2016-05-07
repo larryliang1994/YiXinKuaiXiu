@@ -40,18 +40,15 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate {
     }
     
     @IBAction func doGrab(sender: UIButton) {
+        //showAuditAlertView()
         performSegueWithIdentifier(Constants.SegueID.ShowGrabListSegue, sender: self)
     }
     
     var notAuditYetAlert: OYSimpleAlertController?
     
     func showAuditAlertView() {
-        let view = UIView.loadFromNibNamed("NotAuditYetAlertView") as! NotAuditYetAlertView
-        view.doAuditButton.addTarget(self, action: #selector(HandymanHomeViewController.doAudit), forControlEvents: UIControlEvents.TouchUpInside)
-        view.cancelButton.addTarget(self, action: #selector(HandymanHomeViewController.auditCancel), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        notAuditYetAlert = OYSimpleAlertController(contentView: view)
-        presentViewController(notAuditYetAlert!, animated: true, completion: nil)
+        notAuditYetAlert = OYSimpleAlertController()
+        UtilBox.showAlertView(self, alertViewController: notAuditYetAlert!, message: "尚未认证身份", cancelButtonTitle: "取消", cancelButtonAction: #selector(HandymanHomeViewController.auditCancel), confirmButtonTitle: "去认证", confirmButtonAction: #selector(HandymanHomeViewController.doAudit))
     }
     
     // 点击去认证按钮
@@ -64,6 +61,16 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate {
     // 点击取消
     func auditCancel() {
         notAuditYetAlert?.dismissViewControllerAnimated(true, completion: nil)
+        notAuditYetAlert = nil
+    }
+    
+    func didLogout() {
+        UtilBox.clearUserDefaults()
+        
+        UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("WelcomeVCNavigation")
+            UIApplication.sharedApplication().keyWindow?.rootViewController = controller
+            }, completion: nil)
     }
     
     @IBAction func drawerToggle(sender: UIBarButtonItem) {

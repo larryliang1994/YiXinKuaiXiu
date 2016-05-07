@@ -12,6 +12,10 @@ class ShoppingCartPopoverView: UIView, UITableViewDelegate, UITableViewDataSourc
     
     @IBOutlet var tableView: UITableView!
     
+    var parts: [Part] = []
+    
+    var delegate: PartsMallDelegate?
+    
     override func awakeFromNib() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -24,19 +28,27 @@ class ShoppingCartPopoverView: UIView, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return parts.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 46
+        return parts[indexPath.row].num == 0 ? 0 : 46
+    }
+    
+    @IBAction func clear(sender: UIButton) {
+        delegate?.didClear()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("ShoppingCartPopoverViewCell")
+        var cell = tableView.dequeueReusableCellWithIdentifier("ShoppingCartPopoverViewCell") as? ShoppingCartPopoverViewCell
         
         if cell == nil {
-            cell = NSBundle.mainBundle().loadNibNamed("ShoppingCartPopoverViewCell", owner: self, options: nil)[0] as! ShoppingCartPopoverViewCell
+            cell = NSBundle.mainBundle().loadNibNamed("ShoppingCartPopoverViewCell", owner: self, options: nil)[0] as? ShoppingCartPopoverViewCell
         }
+        
+        cell?.part = parts[indexPath.row]
+        cell?.initView()
+        cell?.delegate = delegate
         
         return cell!
     }

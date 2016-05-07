@@ -51,9 +51,14 @@ class UtilBox {
     
     // 清除用户数据
     static func clearUserDefaults() {
-        _ = NSUserDefaults.standardUserDefaults()
+        let userDefault = NSUserDefaults.standardUserDefaults()
         
+        let dictionary = userDefault.dictionaryRepresentation()
         
+        for var key in dictionary.keys {
+            userDefault.removeObjectForKey(key)
+            userDefault.synchronize()
+        }
     }
     
     // PHAsset转UIImage
@@ -62,7 +67,7 @@ class UtilBox {
         let option = PHImageRequestOptions()
         var thumbnail = UIImage()
         option.synchronous = true
-        manager.requestImageForAsset(asset, targetSize: CGSize(width: 60.0, height: 60.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
+        manager.requestImageForAsset(asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
             thumbnail = result!
         })
         return thumbnail
@@ -141,5 +146,23 @@ class UtilBox {
         }
         
         vc.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    // 弹出自定义对话框
+    static func showAlertView(parentController: UIViewController, alertViewController: OYSimpleAlertController, message: String, cancelButtonTitle: String, cancelButtonAction: Selector, confirmButtonTitle: String, confirmButtonAction: Selector) {
+        
+        let alertView = UIView.loadFromNibNamed("AlertView") as! AlertView
+        
+        alertView.messageLabel.text = message
+        
+        alertView.cancelButton.setTitle(cancelButtonTitle, forState: .Normal)
+        alertView.cancelButton.addTarget(parentController, action: cancelButtonAction, forControlEvents: UIControlEvents.TouchUpInside)
+        
+        alertView.confirmButton.setTitle(confirmButtonTitle, forState: .Normal)
+        alertView.confirmButton.addTarget(parentController, action: confirmButtonAction, forControlEvents: UIControlEvents.TouchUpInside)
+        
+        alertViewController.initView(alertView)
+        
+        parentController.presentViewController(alertViewController, animated: true, completion: nil)
     }
 }

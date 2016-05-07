@@ -9,7 +9,7 @@
 import UIKit
 import KYDrawerController
 
-class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate {
+class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, CustomerPersonInfoDelgate {
 
     @IBOutlet var publishButton: UIButton!
     @IBOutlet var mapView: BMKMapView!
@@ -72,6 +72,32 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate {
         performSegueWithIdentifier(segue, sender: self)
     }
     
+    func didLogout() {
+        UtilBox.clearUserDefaults()
+        
+        UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("WelcomeVCNavigation")
+            UIApplication.sharedApplication().keyWindow?.rootViewController = controller
+            }, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as UIViewController
+        
+        if let navCon = destination as? UINavigationController {
+            // 取出最上层的viewController，即FaceView
+            destination = navCon.visibleViewController!
+        }
+        
+        if let cpivc = destination as? CustomerPersonInfoViewController {
+            cpivc.delegate = self
+        }
+    }
+    
+    func didModify() {
+        (drawerController?.drawerViewController as! CustomerDrawerViewController).tableView.reloadData()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         mapView.viewWillAppear()
@@ -83,4 +109,8 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate {
         mapView.viewWillDisappear()
        //mapView.delegate = nil // 不用时，置nil
     }
+}
+
+protocol CustomerPersonInfoDelgate {
+    func didModify()
 }

@@ -62,6 +62,9 @@
                             <include reference="QLa-bo-5Tt"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="clear:" destination="iN0-l3-epB" eventType="touchUpInside" id="Sgc-7b-vRZ"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZP-6q-EyG">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -89,6 +92,9 @@
                             <include reference="fAc-6M-7kn"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <action selector="clear:" destination="iN0-l3-epB" eventType="touchUpInside" id="jCv-fh-T3q"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-cM-XVr">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -170,23 +176,23 @@
                     <exclude reference="iyW-mn-esp"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="5sV-4e-mbL"/>
-                    <exclude reference="cJd-Nx-Atu"/>
-                    <exclude reference="vkp-C3-O7Y"/>
+                    <exclude reference="98g-yS-Ufj"/>
+                    <exclude reference="Cod-mw-bsc"/>
+                    <exclude reference="PnR-TA-Li1"/>
+                    <exclude reference="Fqz-A1-QFy"/>
                     <exclude reference="Hz0-Kc-T6q"/>
                     <exclude reference="TKL-m4-OOw"/>
                     <exclude reference="VYI-AV-rxm"/>
                     <exclude reference="nw7-RS-2EH"/>
+                    <exclude reference="5sV-4e-mbL"/>
+                    <exclude reference="cJd-Nx-Atu"/>
+                    <exclude reference="vkp-C3-O7Y"/>
                     <exclude reference="6MY-Ns-3xC"/>
                     <exclude reference="AbV-XK-9D6"/>
                     <exclude reference="FLw-92-8Cx"/>
                     <exclude reference="8Wr-o0-017"/>
                     <exclude reference="Txf-F7-RBF"/>
                     <exclude reference="qnm-8A-A0A"/>
-                    <exclude reference="Fqz-A1-QFy"/>
-                    <exclude reference="98g-yS-Ufj"/>
-                    <exclude reference="Cod-mw-bsc"/>
-                    <exclude reference="PnR-TA-Li1"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -199,23 +205,23 @@
                     <include reference="iyW-mn-esp"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="5sV-4e-mbL"/>
-                    <include reference="cJd-Nx-Atu"/>
-                    <include reference="vkp-C3-O7Y"/>
+                    <exclude reference="98g-yS-Ufj"/>
+                    <include reference="Cod-mw-bsc"/>
+                    <include reference="PnR-TA-Li1"/>
+                    <include reference="Fqz-A1-QFy"/>
                     <include reference="Hz0-Kc-T6q"/>
                     <exclude reference="TKL-m4-OOw"/>
                     <include reference="VYI-AV-rxm"/>
                     <include reference="nw7-RS-2EH"/>
+                    <include reference="5sV-4e-mbL"/>
+                    <include reference="cJd-Nx-Atu"/>
+                    <include reference="vkp-C3-O7Y"/>
                     <include reference="6MY-Ns-3xC"/>
                     <include reference="AbV-XK-9D6"/>
                     <include reference="FLw-92-8Cx"/>
                     <include reference="8Wr-o0-017"/>
                     <include reference="Txf-F7-RBF"/>
                     <include reference="qnm-8A-A0A"/>
-                    <include reference="Fqz-A1-QFy"/>
-                    <exclude reference="98g-yS-Ufj"/>
-                    <include reference="Cod-mw-bsc"/>
-                    <include reference="PnR-TA-Li1"/>
                 </mask>
             </variation>
             <connections>

@@ -63,7 +63,7 @@ class LoginModel : LoginProtocol{
                 } else {
                     var info = ""
                     if ret == 1 {
-                        info = "手机号/验证码错误"
+                        info = "验证码错误"
                     } else if ret == 2 {
                         info = "用户被锁定"
                     }
@@ -80,10 +80,10 @@ class LoginModel : LoginProtocol{
     func handleUserDefault() {
         let userDefault = NSUserDefaults.standardUserDefaults()
         
-        userDefault.setValue(Config.TelephoneNum!, forKey: Constants.UserDefaultKey.TelephoneNum)
-        userDefault.setValue(Config.VerifyCode!, forKey: Constants.UserDefaultKey.VerifyCode)
-        userDefault.setValue(Config.Aid!, forKey: Constants.UserDefaultKey.Aid)
-        userDefault.setValue(Config.Role!, forKey: Constants.UserDefaultKey.Role)
+        userDefault.setValue(Config.TelephoneNum, forKey: Constants.UserDefaultKey.TelephoneNum)
+        userDefault.setValue(Config.VerifyCode, forKey: Constants.UserDefaultKey.VerifyCode)
+        userDefault.setValue(Config.Aid, forKey: Constants.UserDefaultKey.Aid)
+        userDefault.setValue(Config.Role, forKey: Constants.UserDefaultKey.Role)
     }
 }
 

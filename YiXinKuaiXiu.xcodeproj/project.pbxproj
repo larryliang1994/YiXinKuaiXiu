@@ -30,7 +30,6 @@
 		4912888C1CB25634007DD199 /* BRPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4912888B1CB25634007DD199 /* BRPlaceholderTextView.m */; };
 		4912888E1CB256D0007DD199 /* OrderPublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912888D1CB256D0007DD199 /* OrderPublishViewController.swift */; };
 		491288901CB2A7F1007DD199 /* MaintenanceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912888F1CB2A7F1007DD199 /* MaintenanceTypeViewController.swift */; };
-		491288921CB2AD1A007DD199 /* Candy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491288911CB2AD1A007DD199 /* Candy.swift */; };
 		494D6E8A1CB80F19007824F1 /* PopBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494D6E891CB80F19007824F1 /* PopBottomView.swift */; };
 		496C5D371CC13D0300CA63AC /* ShoppingCartPopoverViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 496C5D361CC13D0300CA63AC /* ShoppingCartPopoverViewCell.xib */; };
 		496C5D391CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D381CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift */; };
@@ -42,7 +41,24 @@
 		496C5D471CC20F1C00CA63AC /* HandymanDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D461CC20F1C00CA63AC /* HandymanDrawerViewController.swift */; };
 		496C5D491CC2323A00CA63AC /* OrderGrabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D481CC2323A00CA63AC /* OrderGrabViewController.swift */; };
 		496C5D4B1CC232FA00CA63AC /* OrderGrabTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D4A1CC232FA00CA63AC /* OrderGrabTableViewController.swift */; };
+		4970BF0C1CDA385F00E20E70 /* GetInitialInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF0B1CDA385F00E20E70 /* GetInitialInfoProtocol.swift */; };
+		4970BF0E1CDA387500E20E70 /* GetInitialInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF0D1CDA387500E20E70 /* GetInitialInfoModel.swift */; };
+		4970BF101CDA3AA600E20E70 /* MaintenanceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF0F1CDA3AA600E20E70 /* MaintenanceType.swift */; };
+		4970BF121CDA439300E20E70 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF111CDA439300E20E70 /* OrderModel.swift */; };
+		4970BF141CDA43A000E20E70 /* OrderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF131CDA43A000E20E70 /* OrderProtocol.swift */; };
+		4970BF161CDAE8E100E20E70 /* UploadImageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF151CDAE8E100E20E70 /* UploadImageProtocol.swift */; };
+		4970BF181CDAE90400E20E70 /* UploadImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF171CDAE90400E20E70 /* UploadImageModel.swift */; };
+		4970BF1A1CDCC8D000E20E70 /* PartProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF191CDCC8D000E20E70 /* PartProtocol.swift */; };
+		497542491CDDDB1200E23D38 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497542481CDDDB1200E23D38 /* Category.swift */; };
 		4979E8961CB4AD5800D03919 /* SMSwipeableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979E8951CB4AD5800D03919 /* SMSwipeableTabViewController.swift */; };
+		497E9AB81CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */; };
+		497E9ABA1CD253A300A7D934 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9AB91CD253A300A7D934 /* ChooseLocationViewController.swift */; };
+		497E9ABC1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9ABB1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift */; };
+		497E9ABE1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9ABD1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift */; };
+		497E9AC01CD45B1300A7D934 /* CustomerD2DAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9ABF1CD45B1300A7D934 /* CustomerD2DAccountViewController.swift */; };
+		497E9AC21CD45F6100A7D934 /* CustomerChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9AC11CD45F6100A7D934 /* CustomerChangePasswordViewController.swift */; };
+		4981966F1CD1A43E0046B72A /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4981966E1CD1A43E0046B72A /* AlertView.xib */; };
+		498196711CD1A4520046B72A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498196701CD1A4520046B72A /* AlertView.swift */; };
 		498E26171CBB9C3C00DE6EDC /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E26161CBB9C3C00DE6EDC /* SwiftNotice.swift */; };
 		498E26211CBBA45B00DE6EDC /* AlamofireUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E26201CBBA45B00DE6EDC /* AlamofireUtil.swift */; };
 		498E263B1CBBAA7D00DE6EDC /* DKCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E26271CBBAA7D00DE6EDC /* DKCamera.swift */; };
@@ -78,8 +94,6 @@
 		49A15E631CC5D2020028023C /* HandymanOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E621CC5D2020028023C /* HandymanOrderDetailViewController.swift */; };
 		49A15E651CC5D4E30028023C /* HandymanWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E641CC5D4E30028023C /* HandymanWalletViewController.swift */; };
 		49A15E671CC5DC650028023C /* AuditIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E661CC5DC650028023C /* AuditIDViewController.swift */; };
-		49A15E751CC621140028023C /* NotAuditYetAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E741CC621140028023C /* NotAuditYetAlertView.swift */; };
-		49A15E771CC6306A0028023C /* NotAuditYetAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49A15E761CC6306A0028023C /* NotAuditYetAlertView.xib */; };
 		49A15E791CC675430028023C /* ProjectBidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E781CC675430028023C /* ProjectBidingViewController.swift */; };
 		49A15E7B1CC6781F0028023C /* OYSimpleAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E7A1CC6781F0028023C /* OYSimpleAlertController.swift */; };
 		49A15E7D1CC7BF280028023C /* HandymanD2DAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E7C1CC7BF280028023C /* HandymanD2DAccountViewController.swift */; };
@@ -119,6 +133,11 @@
 		49D76BA81CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D76BA71CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift */; };
 		49F36D221CB79575000DF874 /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F36D211CB79575000DF874 /* SearchTextField.m */; };
 		49F36D241CB79BE8000DF874 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F36D231CB79BE8000DF874 /* MallViewController.swift */; };
+		49F580B01CCF0DFF0084EE99 /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580AF1CCF0DFF0084EE99 /* Part.swift */; };
+		49F580B21CCF1A190084EE99 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580B11CCF1A190084EE99 /* Payment.swift */; };
+		49F580B61CCF56280084EE99 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580B51CCF56280084EE99 /* UserInfoModel.swift */; };
+		49F580B81CCF56510084EE99 /* UserInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580B71CCF56510084EE99 /* UserInfoProtocol.swift */; };
+		49F580BA1CCF64A20084EE99 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580B91CCF64A20084EE99 /* SplashScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,7 +189,6 @@
 		4912888B1CB25634007DD199 /* BRPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRPlaceholderTextView.m; path = view/PlaceholderTextView/BRPlaceholderTextView.m; sourceTree = "<group>"; };
 		4912888D1CB256D0007DD199 /* OrderPublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderPublishViewController.swift; path = controller/customer/OrderPublishViewController.swift; sourceTree = "<group>"; };
 		4912888F1CB2A7F1007DD199 /* MaintenanceTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaintenanceTypeViewController.swift; path = controller/customer/MaintenanceTypeViewController.swift; sourceTree = "<group>"; };
-		491288911CB2AD1A007DD199 /* Candy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candy.swift; sourceTree = "<group>"; };
 		491288931CB2B099007DD199 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		491288941CB2B099007DD199 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Main.strings; sourceTree = "<group>"; };
 		491288951CB2B0DD007DD199 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -186,7 +204,24 @@
 		496C5D461CC20F1C00CA63AC /* HandymanDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanDrawerViewController.swift; path = controller/handyman/HandymanDrawerViewController.swift; sourceTree = "<group>"; };
 		496C5D481CC2323A00CA63AC /* OrderGrabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderGrabViewController.swift; path = controller/handyman/OrderGrabViewController.swift; sourceTree = "<group>"; };
 		496C5D4A1CC232FA00CA63AC /* OrderGrabTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderGrabTableViewController.swift; path = controller/handyman/OrderGrabTableViewController.swift; sourceTree = "<group>"; };
+		4970BF0B1CDA385F00E20E70 /* GetInitialInfoProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetInitialInfoProtocol.swift; path = model/GetInitialInfoProtocol.swift; sourceTree = "<group>"; };
+		4970BF0D1CDA387500E20E70 /* GetInitialInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetInitialInfoModel.swift; path = model/GetInitialInfoModel.swift; sourceTree = "<group>"; };
+		4970BF0F1CDA3AA600E20E70 /* MaintenanceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaintenanceType.swift; path = bean/MaintenanceType.swift; sourceTree = "<group>"; };
+		4970BF111CDA439300E20E70 /* OrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderModel.swift; path = model/OrderModel.swift; sourceTree = "<group>"; };
+		4970BF131CDA43A000E20E70 /* OrderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderProtocol.swift; path = model/OrderProtocol.swift; sourceTree = "<group>"; };
+		4970BF151CDAE8E100E20E70 /* UploadImageProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadImageProtocol.swift; path = model/UploadImageProtocol.swift; sourceTree = "<group>"; };
+		4970BF171CDAE90400E20E70 /* UploadImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadImageModel.swift; path = model/UploadImageModel.swift; sourceTree = "<group>"; };
+		4970BF191CDCC8D000E20E70 /* PartProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartProtocol.swift; path = model/PartProtocol.swift; sourceTree = "<group>"; };
+		497542481CDDDB1200E23D38 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = bean/Category.swift; sourceTree = "<group>"; };
 		4979E8951CB4AD5800D03919 /* SMSwipeableTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSwipeableTabViewController.swift; path = view/SMSwipeableTabViewController.swift; sourceTree = "<group>"; };
+		497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseMaintenanceTypeViewController.swift; path = controller/handyman/ChooseMaintenanceTypeViewController.swift; sourceTree = "<group>"; };
+		497E9AB91CD253A300A7D934 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseLocationViewController.swift; path = controller/handyman/ChooseLocationViewController.swift; sourceTree = "<group>"; };
+		497E9ABB1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerPersonInfoModifyViewController.swift; path = controller/customer/CustomerPersonInfoModifyViewController.swift; sourceTree = "<group>"; };
+		497E9ABD1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerPersonInfoLocationViewController.swift; path = controller/customer/CustomerPersonInfoLocationViewController.swift; sourceTree = "<group>"; };
+		497E9ABF1CD45B1300A7D934 /* CustomerD2DAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerD2DAccountViewController.swift; path = controller/customer/CustomerD2DAccountViewController.swift; sourceTree = "<group>"; };
+		497E9AC11CD45F6100A7D934 /* CustomerChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerChangePasswordViewController.swift; path = controller/customer/CustomerChangePasswordViewController.swift; sourceTree = "<group>"; };
+		4981966E1CD1A43E0046B72A /* AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertView.xib; path = view/AlertView/AlertView.xib; sourceTree = "<group>"; };
+		498196701CD1A4520046B72A /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = view/AlertView/AlertView.swift; sourceTree = "<group>"; };
 		498E26161CBB9C3C00DE6EDC /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftNotice.swift; path = view/SwiftNotice.swift; sourceTree = "<group>"; };
 		498E26201CBBA45B00DE6EDC /* AlamofireUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireUtil.swift; path = common/AlamofireUtil.swift; sourceTree = "<group>"; };
 		498E26231CBBA75F00DE6EDC /* DKImagePickerController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DKImagePickerController.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/DKImagePickerController/DKImagePickerController.framework"; sourceTree = "<group>"; };
@@ -230,8 +265,6 @@
 		49A15E621CC5D2020028023C /* HandymanOrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanOrderDetailViewController.swift; path = controller/handyman/HandymanOrderDetailViewController.swift; sourceTree = "<group>"; };
 		49A15E641CC5D4E30028023C /* HandymanWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanWalletViewController.swift; path = controller/handyman/HandymanWalletViewController.swift; sourceTree = "<group>"; };
 		49A15E661CC5DC650028023C /* AuditIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuditIDViewController.swift; path = controller/handyman/AuditIDViewController.swift; sourceTree = "<group>"; };
-		49A15E741CC621140028023C /* NotAuditYetAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotAuditYetAlertView.swift; path = controller/handyman/NotAuditYetAlertView/NotAuditYetAlertView.swift; sourceTree = "<group>"; };
-		49A15E761CC6306A0028023C /* NotAuditYetAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotAuditYetAlertView.xib; path = controller/handyman/NotAuditYetAlertView/NotAuditYetAlertView.xib; sourceTree = "<group>"; };
 		49A15E781CC675430028023C /* ProjectBidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectBidingViewController.swift; path = controller/handyman/ProjectBidingViewController.swift; sourceTree = "<group>"; };
 		49A15E7A1CC6781F0028023C /* OYSimpleAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OYSimpleAlertController.swift; path = view/OYSimpleAlertController.swift; sourceTree = "<group>"; };
 		49A15E7C1CC7BF280028023C /* HandymanD2DAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanD2DAccountViewController.swift; path = controller/handyman/HandymanD2DAccountViewController.swift; sourceTree = "<group>"; };
@@ -277,6 +310,11 @@
 		49F36D201CB7951A000DF874 /* SearchTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SearchTextField.h; path = view/SearchTextField/SearchTextField.h; sourceTree = "<group>"; };
 		49F36D211CB79575000DF874 /* SearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTextField.m; path = view/SearchTextField/SearchTextField.m; sourceTree = "<group>"; };
 		49F36D231CB79BE8000DF874 /* MallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MallViewController.swift; path = controller/customer/MallViewController.swift; sourceTree = "<group>"; };
+		49F580AF1CCF0DFF0084EE99 /* Part.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Part.swift; path = bean/Part.swift; sourceTree = "<group>"; };
+		49F580B11CCF1A190084EE99 /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Payment.swift; path = bean/Payment.swift; sourceTree = "<group>"; };
+		49F580B51CCF56280084EE99 /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoModel.swift; path = model/UserInfoModel.swift; sourceTree = "<group>"; };
+		49F580B71CCF56510084EE99 /* UserInfoProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoProtocol.swift; path = model/UserInfoProtocol.swift; sourceTree = "<group>"; };
+		49F580B91CCF64A20084EE99 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashScreenViewController.swift; path = controller/SplashScreenViewController.swift; sourceTree = "<group>"; };
 		5D71ECBF79F79DDB689A7357 /* Pods-YiXinKuaiXiu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YiXinKuaiXiu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YiXinKuaiXiu/Pods-YiXinKuaiXiu.debug.xcconfig"; sourceTree = "<group>"; };
 		B4634183D301F81F555E28AC /* Pods_YiXinKuaiXiu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YiXinKuaiXiu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C2A98F15285661340C7D4D /* Pods-YiXinKuaiXiu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YiXinKuaiXiu.release.xcconfig"; path = "Pods/Target Support Files/Pods-YiXinKuaiXiu/Pods-YiXinKuaiXiu.release.xcconfig"; sourceTree = "<group>"; };
@@ -317,6 +355,7 @@
 		4912885E1CB13AA6007DD199 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				4981966D1CD1A4080046B72A /* AlertView */,
 				49A15E851CC866420028023C /* SimpleButton */,
 				498E26251CBBAA6900DE6EDC /* DKImagePicker */,
 				49C3807D1CB8F6BF00242B7A /* CGCityPickerVC */,
@@ -338,9 +377,6 @@
 				49C380741CB89D1600242B7A /* PayPopoverViewController */,
 				49D76BA11CC0CE00005E2213 /* ShoppingCartPopoverView */,
 				496C5D3A1CC1D64800CA63AC /* ShoppingCartPayPopoverViewController */,
-				49A15E571CC51E4B0028023C /* CustomerOrderListTableViewController.swift */,
-				49A15E581CC51E4B0028023C /* CustomerOrderListViewController.swift */,
-				49A15E591CC51E4B0028023C /* PartsMallViewController.swift */,
 				491288791CB147F3007DD199 /* CustomerDrawerViewController.swift */,
 				4912887B1CB15189007DD199 /* CustomerHomeViewController.swift */,
 				491288871CB16AC3007DD199 /* OrderTypeViewController.swift */,
@@ -349,11 +385,18 @@
 				49A15E561CC51E4B0028023C /* ChooseLocationTableViewController.swift */,
 				49A2E9171CB7FD890079C690 /* CheckFeeViewController.swift */,
 				49BF67891CB3653B002257C0 /* OrderPublishConfirmViewController.swift */,
-				49F36D231CB79BE8000DF874 /* MallViewController.swift */,
+				49A15E581CC51E4B0028023C /* CustomerOrderListViewController.swift */,
+				49A15E571CC51E4B0028023C /* CustomerOrderListTableViewController.swift */,
+				49A15E591CC51E4B0028023C /* PartsMallViewController.swift */,
 				49D76B9D1CC0C581005E2213 /* CustomerRatingViewController.swift */,
+				49F36D231CB79BE8000DF874 /* MallViewController.swift */,
 				49D76BA71CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift */,
 				496C5D3F1CC1E79200CA63AC /* CustomerPersonInfoViewController.swift */,
+				497E9ABB1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift */,
+				497E9ABD1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift */,
 				496C5D411CC1E8CA00CA63AC /* CustomerWalletViewController.swift */,
+				497E9ABF1CD45B1300A7D934 /* CustomerD2DAccountViewController.swift */,
+				497E9AC11CD45F6100A7D934 /* CustomerChangePasswordViewController.swift */,
 			);
 			name = customer;
 			sourceTree = "<group>";
@@ -362,7 +405,6 @@
 			isa = PBXGroup;
 			children = (
 				498E26201CBBA45B00DE6EDC /* AlamofireUtil.swift */,
-				491288911CB2AD1A007DD199 /* Candy.swift */,
 				491288811CB15C22007DD199 /* Config.swift */,
 				491288821CB15C22007DD199 /* Constants.swift */,
 				491288831CB15C22007DD199 /* UtilBox.swift */,
@@ -393,21 +435,31 @@
 		496C5D431CC20E9800CA63AC /* handyman */ = {
 			isa = PBXGroup;
 			children = (
-				49A15E711CC61D5C0028023C /* NotAuditYetAlertView */,
-				49A15E5E1CC5225C0028023C /* HandymanOrderListTableViewController.swift */,
-				49A15E5F1CC5225C0028023C /* HandymanOrderListViewController.swift */,
 				496C5D441CC20EEE00CA63AC /* HandymanHomeViewController.swift */,
 				496C5D461CC20F1C00CA63AC /* HandymanDrawerViewController.swift */,
 				496C5D481CC2323A00CA63AC /* OrderGrabViewController.swift */,
 				496C5D4A1CC232FA00CA63AC /* OrderGrabTableViewController.swift */,
 				49A15E541CC515330028023C /* OrderGrabDetailViewController.swift */,
+				49A15E5F1CC5225C0028023C /* HandymanOrderListViewController.swift */,
+				49A15E5E1CC5225C0028023C /* HandymanOrderListTableViewController.swift */,
 				49A15E621CC5D2020028023C /* HandymanOrderDetailViewController.swift */,
 				49A15E641CC5D4E30028023C /* HandymanWalletViewController.swift */,
-				49A15E661CC5DC650028023C /* AuditIDViewController.swift */,
-				49A15E781CC675430028023C /* ProjectBidingViewController.swift */,
 				49A15E7C1CC7BF280028023C /* HandymanD2DAccountViewController.swift */,
+				49A15E661CC5DC650028023C /* AuditIDViewController.swift */,
+				497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */,
+				497E9AB91CD253A300A7D934 /* ChooseLocationViewController.swift */,
+				49A15E781CC675430028023C /* ProjectBidingViewController.swift */,
 			);
 			name = handyman;
+			sourceTree = "<group>";
+		};
+		4981966D1CD1A4080046B72A /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				498196701CD1A4520046B72A /* AlertView.swift */,
+				4981966E1CD1A43E0046B72A /* AlertView.xib */,
+			);
+			name = AlertView;
 			sourceTree = "<group>";
 		};
 		498E26251CBBAA6900DE6EDC /* DKImagePicker */ = {
@@ -546,6 +598,7 @@
 				491288781CB147CB007DD199 /* customer */,
 				4991F3411CB1029A00E1BF85 /* WelcomeViewController.swift */,
 				4991F3431CB113A100E1BF85 /* LoginViewController.swift */,
+				49F580B91CCF64A20084EE99 /* SplashScreenViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -562,20 +615,20 @@
 			name = support;
 			sourceTree = "<group>";
 		};
-		49A15E711CC61D5C0028023C /* NotAuditYetAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				49A15E741CC621140028023C /* NotAuditYetAlertView.swift */,
-				49A15E761CC6306A0028023C /* NotAuditYetAlertView.xib */,
-			);
-			name = NotAuditYetAlertView;
-			sourceTree = "<group>";
-		};
 		49A15E7E1CC7C6900028023C /* model */ = {
 			isa = PBXGroup;
 			children = (
-				49A15E7F1CC7C6DF0028023C /* LoginModel.swift */,
 				49A15E801CC7C6DF0028023C /* LoginProtocol.swift */,
+				49A15E7F1CC7C6DF0028023C /* LoginModel.swift */,
+				49F580B71CCF56510084EE99 /* UserInfoProtocol.swift */,
+				49F580B51CCF56280084EE99 /* UserInfoModel.swift */,
+				4970BF0B1CDA385F00E20E70 /* GetInitialInfoProtocol.swift */,
+				4970BF0D1CDA387500E20E70 /* GetInitialInfoModel.swift */,
+				4970BF131CDA43A000E20E70 /* OrderProtocol.swift */,
+				4970BF111CDA439300E20E70 /* OrderModel.swift */,
+				4970BF151CDAE8E100E20E70 /* UploadImageProtocol.swift */,
+				4970BF171CDAE90400E20E70 /* UploadImageModel.swift */,
+				4970BF191CDCC8D000E20E70 /* PartProtocol.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -595,6 +648,10 @@
 			isa = PBXGroup;
 			children = (
 				49A15E901CCA23BE0028023C /* Order.swift */,
+				49F580AF1CCF0DFF0084EE99 /* Part.swift */,
+				49F580B11CCF1A190084EE99 /* Payment.swift */,
+				4970BF0F1CDA3AA600E20E70 /* MaintenanceType.swift */,
+				497542481CDDDB1200E23D38 /* Category.swift */,
 			);
 			name = bean;
 			sourceTree = "<group>";
@@ -847,6 +904,7 @@
 				496C5D371CC13D0300CA63AC /* ShoppingCartPopoverViewCell.xib in Resources */,
 				49D76BA51CC0CF5D005E2213 /* ShoppingCartPopoverView.xib in Resources */,
 				4991F31A1CB0FCD600E1BF85 /* LaunchScreen.storyboard in Resources */,
+				4981966F1CD1A43E0046B72A /* AlertView.xib in Resources */,
 				498E26411CBBAA7D00DE6EDC /* DKImagePickerController.bundle in Resources */,
 				49C380A31CB8F6E900242B7A /* City.plist in Resources */,
 				496C5D3E1CC1D64800CA63AC /* ShoppingCartPayPopoverView.xib in Resources */,
@@ -858,7 +916,6 @@
 				49C380A11CB8F6DB00242B7A /* HeaderItemView.xib in Resources */,
 				49C3809B1CB8F6DB00242B7A /* img.bundle in Resources */,
 				498E263C1CBBAA7D00DE6EDC /* DKCameraResource.bundle in Resources */,
-				49A15E771CC6306A0028023C /* NotAuditYetAlertView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -932,6 +989,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				498E26491CBBAA7D00DE6EDC /* DKPermissionView.swift in Sources */,
+				497E9AC01CD45B1300A7D934 /* CustomerD2DAccountViewController.swift in Sources */,
+				4970BF1A1CDCC8D000E20E70 /* PartProtocol.swift in Sources */,
 				4991F3441CB113A100E1BF85 /* LoginViewController.swift in Sources */,
 				49A15E551CC515330028023C /* OrderGrabDetailViewController.swift in Sources */,
 				49C380941CB8F6DB00242B7A /* CFCityPickerVCCommon.swift in Sources */,
@@ -939,7 +998,6 @@
 				49A15E7B1CC6781F0028023C /* OYSimpleAlertController.swift in Sources */,
 				49C380961CB8F6DB00242B7A /* CitySearchResultVC.swift in Sources */,
 				496C5D471CC20F1C00CA63AC /* HandymanDrawerViewController.swift in Sources */,
-				491288921CB2AD1A007DD199 /* Candy.swift in Sources */,
 				4991F3101CB0FCD600E1BF85 /* AppDelegate.swift in Sources */,
 				49A15E811CC7C6DF0028023C /* LoginModel.swift in Sources */,
 				498E26481CBBAA7D00DE6EDC /* DKAssetGroupListVC.swift in Sources */,
@@ -948,15 +1006,19 @@
 				49A15E601CC5225C0028023C /* HandymanOrderListTableViewController.swift in Sources */,
 				498E26401CBBAA7D00DE6EDC /* DKImageManager.swift in Sources */,
 				498E26211CBBA45B00DE6EDC /* AlamofireUtil.swift in Sources */,
+				4970BF121CDA439300E20E70 /* OrderModel.swift in Sources */,
 				498E263B1CBBAA7D00DE6EDC /* DKCamera.swift in Sources */,
 				498E26461CBBAA7D00DE6EDC /* DKAssetGroupDetailVC.swift in Sources */,
+				49F580B61CCF56280084EE99 /* UserInfoModel.swift in Sources */,
 				49A15E631CC5D2020028023C /* HandymanOrderDetailViewController.swift in Sources */,
 				498E26441CBBAA7D00DE6EDC /* DKImageResource.swift in Sources */,
+				4970BF0E1CDA387500E20E70 /* GetInitialInfoModel.swift in Sources */,
 				494D6E8A1CB80F19007824F1 /* PopBottomView.swift in Sources */,
 				49F36D241CB79BE8000DF874 /* MallViewController.swift in Sources */,
 				496C5D391CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift in Sources */,
 				4991F3421CB1029A00E1BF85 /* WelcomeViewController.swift in Sources */,
 				49D76BA01CC0C81F005E2213 /* FloatRatingView.swift in Sources */,
+				498196711CD1A4520046B72A /* AlertView.swift in Sources */,
 				49A15E821CC7C6DF0028023C /* LoginProtocol.swift in Sources */,
 				49C380A01CB8F6DB00242B7A /* HeaderItemView.swift in Sources */,
 				4912887A1CB147F3007DD199 /* CustomerDrawerViewController.swift in Sources */,
@@ -969,7 +1031,9 @@
 				49A15E5B1CC51E4B0028023C /* CustomerOrderListTableViewController.swift in Sources */,
 				49A2E9181CB7FD890079C690 /* CheckFeeViewController.swift in Sources */,
 				498E26431CBBAA7D00DE6EDC /* DKImagePickerControllerDefaultCamera.swift in Sources */,
+				49F580BA1CCF64A20084EE99 /* SplashScreenViewController.swift in Sources */,
 				498E26171CBB9C3C00DE6EDC /* SwiftNotice.swift in Sources */,
+				4970BF101CDA3AA600E20E70 /* MaintenanceType.swift in Sources */,
 				49C3809C1CB8F6DB00242B7A /* CFCityCell.swift in Sources */,
 				491288851CB15C22007DD199 /* Constants.swift in Sources */,
 				496C5D4B1CC232FA00CA63AC /* OrderGrabTableViewController.swift in Sources */,
@@ -983,9 +1047,12 @@
 				4979E8961CB4AD5800D03919 /* SMSwipeableTabViewController.swift in Sources */,
 				49C380771CB89D2F00242B7A /* PayPopoverView.swift in Sources */,
 				49A15E8B1CC866740028023C /* SimpleButtonStateChangeValue.swift in Sources */,
+				4970BF161CDAE8E100E20E70 /* UploadImageProtocol.swift in Sources */,
 				49C380981CB8F6DB00242B7A /* CFCityPickerVC+Main.swift in Sources */,
+				49F580B01CCF0DFF0084EE99 /* Part.swift in Sources */,
 				49A15E5A1CC51E4B0028023C /* ChooseLocationTableViewController.swift in Sources */,
 				498E26421CBBAA7D00DE6EDC /* DKImagePickerController.swift in Sources */,
+				4970BF0C1CDA385F00E20E70 /* GetInitialInfoProtocol.swift in Sources */,
 				49A15E881CC866430028023C /* SimpleButton.swift in Sources */,
 				491288841CB15C22007DD199 /* Config.swift in Sources */,
 				49A15E7D1CC7BF280028023C /* HandymanD2DAccountViewController.swift in Sources */,
@@ -998,19 +1065,28 @@
 				49C3809F1CB8F6DB00242B7A /* CitySearchBar.swift in Sources */,
 				498E263E1CBBAA7D00DE6EDC /* DKAsset.swift in Sources */,
 				49C380931CB8F6DB00242B7A /* CFCityPickerVC.swift in Sources */,
+				4970BF181CDAE90400E20E70 /* UploadImageModel.swift in Sources */,
 				498E26471CBBAA7D00DE6EDC /* DKAssetGroupGridLayout.swift in Sources */,
 				49C380991CB8F6DB00242B7A /* CFCityPickerVC+TableView.swift in Sources */,
 				498E26451CBBAA7D00DE6EDC /* DKPopoverViewController.swift in Sources */,
 				49A15E5D1CC51E4B0028023C /* PartsMallViewController.swift in Sources */,
 				49D76B9E1CC0C581005E2213 /* CustomerRatingViewController.swift in Sources */,
+				49F580B21CCF1A190084EE99 /* Payment.swift in Sources */,
 				49A15E5C1CC51E4B0028023C /* CustomerOrderListViewController.swift in Sources */,
+				497E9ABA1CD253A300A7D934 /* ChooseLocationViewController.swift in Sources */,
 				496C5D421CC1E8CA00CA63AC /* CustomerWalletViewController.swift in Sources */,
 				491288901CB2A7F1007DD199 /* MaintenanceTypeViewController.swift in Sources */,
-				49A15E751CC621140028023C /* NotAuditYetAlertView.swift in Sources */,
+				497E9AB81CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift in Sources */,
+				49F580B81CCF56510084EE99 /* UserInfoProtocol.swift in Sources */,
 				49BF678A1CB3653B002257C0 /* OrderPublishConfirmViewController.swift in Sources */,
+				497542491CDDDB1200E23D38 /* Category.swift in Sources */,
+				497E9ABC1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift in Sources */,
 				491288861CB15C22007DD199 /* UtilBox.swift in Sources */,
 				496C5D451CC20EEE00CA63AC /* HandymanHomeViewController.swift in Sources */,
+				497E9AC21CD45F6100A7D934 /* CustomerChangePasswordViewController.swift in Sources */,
+				4970BF141CDA43A000E20E70 /* OrderProtocol.swift in Sources */,
 				498E263D1CBBAA7D00DE6EDC /* DKGroupDataManager.swift in Sources */,
+				497E9ABE1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift in Sources */,
 				49C380951CB8F6DB00242B7A /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

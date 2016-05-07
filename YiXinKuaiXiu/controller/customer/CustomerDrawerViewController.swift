@@ -11,24 +11,39 @@ import UIKit
 class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var delegate: CustomerDrawerDelegate?
-    
+
     @IBOutlet var tableView: UITableView!
     @IBOutlet var logoutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.tableFooterView = UIView()
+        initView()
         
+        tableView.tableFooterView = UIView()
+    }
+    
+    func initView() {
         logoutButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
     }
     
+    var alert: OYSimpleAlertController?
     @IBAction func logout(sender: UIButton) {
-        UtilBox.funcAlert(self, message: "确认退出？",
-                    okAction: UIAlertAction(title: "退出", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) in
-                        print("logout")
-                      }),
-                    cancelAction: UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
+        alert = OYSimpleAlertController()
+        UtilBox.showAlertView(self, alertViewController: alert!, message: "确认退出？", cancelButtonTitle: "取消", cancelButtonAction: #selector(CustomerDrawerViewController.cancel), confirmButtonTitle: "退出", confirmButtonAction: #selector(CustomerDrawerViewController.doLogout))
+    }
+    
+    // 点击退出按钮
+    func doLogout() {
+        alert?.dismissViewControllerAnimated(true, completion: nil)
+        
+        delegate?.didLogout()
+    }
+    
+    // 点击取消
+    func cancel() {
+        alert?.dismissViewControllerAnimated(true, completion: nil)
+        alert = nil
     }
     
     // MARK: - Table view data source
@@ -37,6 +52,12 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("drawerHeader", forIndexPath: indexPath)
+            
+            let telephoneLabel = cell.viewWithTag(Constants.Tag.CustomerDrawerTelephone) as! UILabel
+            let nameLabel = cell.viewWithTag(Constants.Tag.CustomerDrawerName) as! UILabel
+            
+            telephoneLabel.text = Config.TelephoneNum == nil ? "手机号" : Config.TelephoneNum
+            nameLabel.text = Config.Name == nil ? "姓名" : Config.Name
             
             return cell
         } else {
@@ -89,4 +110,5 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
 
 protocol CustomerDrawerDelegate{
     func didSelected(index: Int)
+    func didLogout()
 }

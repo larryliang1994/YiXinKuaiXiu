@@ -10,15 +10,34 @@ import UIKit
 
 class HandymanOrderDetailViewController: UITableViewController {
     
+    @IBOutlet var portraitImageView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var orderCountLabel: UILabel!
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var contactButton: UIButton!
     @IBOutlet var descLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var serviceRating: FloatRatingView!
     @IBOutlet var ratingLabel: UILabel!
+    
+    @IBOutlet var imageCell: UITableViewCell!
+    @IBOutlet var picture2ImageView: UIImageView!
+    @IBOutlet var picture1ImageView: UIImageView!
+    var order: Order?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initView()
+        
+        self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
+        self.tableView.layoutIfNeeded()
+        
+        initNavBar()
+    }
+    
+    func initView() {
         cancelButton.layer.cornerRadius = 3
         cancelButton.layer.borderWidth = 0.5
         cancelButton.layer.borderColor = Constants.Color.Gray.CGColor
@@ -31,10 +50,18 @@ class HandymanOrderDetailViewController: UITableViewController {
         ratingLabel.layer.cornerRadius = 3
         ratingLabel.backgroundColor = Constants.Color.Gray
         
-        self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
-        self.tableView.layoutIfNeeded()
+        descLabel.text = order?.desc
         
-        initNavBar()
+        locationLabel.text = order?.location
+        
+        if order?.image1 == nil {
+            imageCell.hidden = true
+        } else if order?.image2 == nil {
+            picture2ImageView.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
+        } else {
+            picture1ImageView.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
+            picture2ImageView.image = UtilBox.getAssetThumbnail((order?.image2!.originalAsset)!)
+        }
     }
     
     func initNavBar() {
@@ -51,7 +78,7 @@ class HandymanOrderDetailViewController: UITableViewController {
         case 1:
             switch indexPath.row {
             case 0: return descLabel.frame.size.height + 24
-            case 1: return 70
+            case 1: return order?.image1 == nil ? 0 : 70
             case 2: return locationLabel.frame.size.height + 24
             case 3: return 44
             default:    return 44
@@ -75,8 +102,7 @@ class HandymanOrderDetailViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
-            //performSegueWithIdentifier(Constants.SegueID.ShowHandymanInfoSugue, sender: self)
+            performSegueWithIdentifier(Constants.SegueID.ShowHandymanInfoSugue, sender: self)
         }
     }
-
 }
