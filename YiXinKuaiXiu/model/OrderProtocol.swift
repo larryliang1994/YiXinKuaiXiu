@@ -8,12 +8,13 @@
 
 import Foundation
 
-enum PullOrderListType {
-    case Refresh
-    case LoadMore
+enum PullOrderListType: Int {
+    case OnGoing = 0
+    case Done
+    case All
 }
 
 protocol OrderProtocol {
     func publishOrder(order: Order)
-    func pullOrderList(requestTime: String, type: PullOrderListType)
+    func pullOrderList(requestTime: String, pullType: PullOrderListType)
 }

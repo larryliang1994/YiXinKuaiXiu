@@ -94,6 +94,8 @@ public class OYSimpleAlertController: UIViewController,UIViewControllerTransitio
     
     private let animater = LunchAnimation()
     
+    public var contentOffset: CGFloat = 0
+    
     func initView(contentView: UIView) {
         self.contentView = contentView
         
@@ -125,7 +127,7 @@ public class OYSimpleAlertController: UIViewController,UIViewControllerTransitio
         
         contentView!.backgroundColor = UIColor.whiteColor()
         contentView!.layer.cornerRadius = cornerRadius
-        contentView!.center = self.view.center
+        contentView!.center = CGPoint(x: self.view.center.x, y: self.view.center.y + contentOffset)
         
         self.view.addSubview(contentView!)
     }

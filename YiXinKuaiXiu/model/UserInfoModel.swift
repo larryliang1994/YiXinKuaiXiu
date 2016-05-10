@@ -74,6 +74,7 @@ class UserInfoModel: UserInfoProtocol {
         Config.BankNum = json["yhh"].stringValue == "" ? nil : json["yhh"].stringValue
         Config.TotalStar = json["fen"].stringValue == "" ? nil : json["fen"].stringValue
         Config.MaintenanceNum = json["cnt"].stringValue == "" ? nil : json["cnt"].stringValue
+        Config.Audited = json["lck"].intValue
         
         if !(Config.Money?.containsString("."))! {
             Config.Money?.appendContentsOf(".00")

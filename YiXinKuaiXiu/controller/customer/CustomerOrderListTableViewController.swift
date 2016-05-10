@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CustomerOrderListTableViewController: UITableViewController {
+class CustomerOrderListTableViewController: UITableViewController, OrderDelegate {
     
-    let orders = [
+    var orders = [
         Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .ToBeBilled, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [Payment(name: "上门检查费", price: 10, paid: false)]),
         Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .OnGoing, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
         Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .BeingCancelled, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
@@ -20,13 +20,36 @@ class CustomerOrderListTableViewController: UITableViewController {
         Order(type: .Reservation, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: nil, image1: nil, image2: nil, status: .ToBeGrabbed, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [])
     ]
     
+    var tableType: Int?
     var segueOrder: Order?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //tableView.estimatedRowHeight = tableView.rowHeight
-        //tableView.rowHeight = UITableViewAutomaticDimension
+        
+        refresh()
+    }
+    
+    func refresh() {
+        refreshControl?.beginRefreshing()
+        
+        if tableType == 0 {
+            OrderModel(orderDelegate: self).pullOrderList("", pullType: .OnGoing)
+        } else {
+            OrderModel(orderDelegate: self).pullOrderList("", pullType: .Done)
+        }
+    }
+    
+    @IBAction func refresh(sender: UIRefreshControl) {
+        refresh()
+    }
+    
+    func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {
+        if result {
+            orders = orderList
+            tableView.reloadData()
+        }
+        
+        refreshControl?.endRefreshing()
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -34,28 +57,16 @@ class CustomerOrderListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2 + orders[section].payments!.count
+        if let payment = orders[section].payments {
+            return 2 + payment.count
+        } else {
+            return 2
+        }
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
-    
-//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let header = UIView()
-//        header.frame.size = CGSizeMake(UIScreen.mainScreen().bounds.width, 1)
-//        header.backgroundColor = UIColor.blackColor()
-//        
-//        return header
-//    }
-//    
-//    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let footer = UIView()
-//        footer.frame.size = CGSizeMake(UIScreen.mainScreen().bounds.width, 1)
-//        footer.backgroundColor = UIColor.redColor()
-//        
-//        return footer
-//    }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
@@ -114,7 +125,7 @@ class CustomerOrderListTableViewController: UITableViewController {
                 typeLabel.text = "预约"
             }
             
-            mainTypeLabel.text = order.mType
+            mainTypeLabel.text = order.mType! + "维修"
             
             statusLabel.text = Constants.Status[(order.status?.rawValue)!]
             
@@ -222,5 +233,9 @@ class CustomerOrderListTableViewController: UITableViewController {
     
     func rightButtonAction() {
         performSegueWithIdentifier(Constants.SegueID.ShowCustomerRatingSegue, sender: self)
+    }
+    
+    func onPublishOrderResult(result: Bool, info: String) {
+        
     }
 }

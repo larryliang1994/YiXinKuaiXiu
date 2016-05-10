@@ -26,7 +26,11 @@ class MaintenanceTypeViewController: UITableViewController, UISearchBarDelegate,
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        delegate?.didSelectedMaintenanceType((cell?.textLabel?.text)!, id: "")
+        
+        let name = (cell?.textLabel?.text)!.stringByReplacingOccurrencesOfString("维修", withString: "")
+        let id = UtilBox.findMTypeIDByName(name)!
+        
+        delegate?.didSelectedMaintenanceType(name, id: id)
         self.navigationController?.popViewControllerAnimated(true)
     }
     

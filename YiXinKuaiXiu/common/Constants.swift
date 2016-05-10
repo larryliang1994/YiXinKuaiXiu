@@ -80,6 +80,8 @@ class Constants {
         
         static let HandymanChooseMaintenanceTypeCellTitle = 46
         static let HandymanChooseMaintenanceTypeCellCheck = 47
+        
+        static let CustomerChooseFeeCellButton = 50
     }
     
     struct SegueID {
@@ -122,6 +124,10 @@ class Constants {
         
         static let ShowCustomerD2DAccountSegue = "showCustomerD2DAccountSegue"
         static let ShowCustomerChangePasswordSegue = "showCustomerChangePasswordSegue"
+        static let ShowCustomerWithDrawSegue = "showCustomerWithDrawSegue"
+        static let ShowCustomerRechargeSegue = "showCustomerRechargeSegue"
+        
+        static let ChooseFeeSegue = "chooseFeeSegue"
     }
     
     struct Color {

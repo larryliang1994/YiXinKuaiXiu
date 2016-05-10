@@ -194,7 +194,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             
             shoppingCartPayPopoverView.closeButton.addTarget(self, action: #selector(PartsMallViewController.close), forControlEvents: .TouchUpInside)
             shoppingCartPayPopoverView.doPayButton.addTarget(self, action: #selector(PartsMallViewController.goPay), forControlEvents: .TouchUpInside)
-            shoppingCartPayPopoverView.priceLabel.text = String(totalPrice)
+            shoppingCartPayPopoverView.priceLabel.text = "￥" + String(totalPrice)
             
             var desc = ""
             for var part in parts {
@@ -223,7 +223,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func viewHeight() -> CGFloat {
-        return popoverName == "ShoppingCartPayPopoverView" ? 315 : 226
+        return popoverName == "ShoppingCartPayPopoverView" ? 357 : 226
     }
     
     func isEffectView() -> Bool {

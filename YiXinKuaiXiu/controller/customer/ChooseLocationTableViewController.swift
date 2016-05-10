@@ -81,8 +81,9 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        delegate?.didSelectedLocation((cell?.textLabel?.text)!, locationInfo: CLLocation())
+        let address = addressList[indexPath.row]
+        delegate?.didSelectedLocation(address.name, locationInfo: CLLocation(latitude: address.pt.latitude, longitude: address.pt.longitude))
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     

@@ -26,6 +26,7 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
     var locationInfo: CLLocation?
     
     var order: Order?
+    var fee: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,7 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
     
     func initNavBar() {
         let back = UIBarButtonItem()
-        back.title = "主页"
+        back.title = "返回"
         self.navigationItem.backBarButtonItem = back
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
@@ -151,7 +152,7 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
         } else {
             type = .Reservation
         }
-        order = Order(type: type, desc: descTextView.text, mType: maintenanceTypeLabel.text!, mTypeID: mTypeID!, location: locationLabel.text!, locationInfo: locationInfo!, fee: feeLabel.text!, image1: image1, image2: image2)
+        order = Order(type: type, desc: descTextView.text, mType: maintenanceTypeLabel.text!, mTypeID: mTypeID!, location: locationLabel.text!, locationInfo: locationInfo!, fee: self.fee, image1: image1, image2: image2)
     }
     
     @IBAction func publish(sender: UIBarButtonItem) {
@@ -208,7 +209,11 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
             if indexPath.row == 2 {
-                performSegueWithIdentifier(Constants.SegueID.EditPriceSegue, sender: self)
+                if title == Constants.Types[0] {
+                    performSegueWithIdentifier(Constants.SegueID.ChooseFeeSegue, sender: self)
+                } else {
+                    performSegueWithIdentifier(Constants.SegueID.EditPriceSegue, sender: self)
+                }
             } else if indexPath.row == 0 {
                 performSegueWithIdentifier(Constants.SegueID.ChooseMaintenanceTyeSegue, sender: self)
             } else if indexPath.row == 1 {
@@ -235,6 +240,8 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
             cfvc.delegate = self
         } else if let opcvc = destination as? OrderPublishConfirmViewController {
             opcvc.order = order
+        } else if let cfvc = destination as? ChooseFeeViewController {
+            cfvc.delegate = self
         }
     }
     
@@ -280,12 +287,14 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1))
         cell?.detailTextLabel?.text = "￥ " + fee
         
+        self.fee = fee
+        
         if maintenanceTypeLabel.text != "点击选择" && locationLabel.text != "点击选择" && descTextView.text != nil {
             publishButtonItem.enabled = true
         }
     }
     
-    func onPullOrderListResult(result: Bool, info: String) {}
+    func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {}
     
 }
 

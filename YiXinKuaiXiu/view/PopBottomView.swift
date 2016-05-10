@@ -47,7 +47,7 @@ import UIKit
     /**
      页面消失的时候
      */
-    optional func viewWillDisappear()
+    func viewWillDisappear()
 }
 
 
@@ -138,7 +138,7 @@ class PopBottomView: UIView {
         }
         
         if isDel {
-            self.delegate?.viewWillDisappear!()
+            self.delegate?.viewWillDisappear()
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 btn.alpha = 0
                 var frame = view.frame

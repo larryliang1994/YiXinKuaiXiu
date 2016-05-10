@@ -165,4 +165,40 @@ class UtilBox {
         
         parentController.presentViewController(alertViewController, animated: true, completion: nil)
     }
+    
+    // 弹出输入密码对话框
+    static func showPwdAlertView(parentController: UIViewController, alertViewController: OYSimpleAlertController, cancelButtonTitle: String, cancelButtonAction: Selector, confirmButtonTitle: String, confirmButtonAction: Selector) {
+        
+        let alertView = UIView.loadFromNibNamed("EnterPasswordAlertView") as! EnterPasswordAlertView
+        
+        alertView.cancelButton.setTitle(cancelButtonTitle, forState: .Normal)
+        alertView.cancelButton.addTarget(parentController, action: cancelButtonAction, forControlEvents: UIControlEvents.TouchUpInside)
+        
+        alertView.confirmButton.setTitle(confirmButtonTitle, forState: .Normal)
+        alertView.confirmButton.addTarget(parentController, action: confirmButtonAction, forControlEvents: UIControlEvents.TouchUpInside)
+        
+        alertViewController.initView(alertView)
+        
+        parentController.presentViewController(alertViewController, animated: true, completion: nil)
+    }
+    
+    static func findMTypeNameByID(id: String) -> String? {
+        for var mType in Config.MTypes! {
+            if mType.id == id {
+                return mType.name
+            }
+        }
+        
+        return nil
+    }
+    
+    static func findMTypeIDByName(name: String) -> String? {
+        for var mType in Config.MTypes! {
+            if mType.name == name {
+                return mType.id
+            }
+        }
+        
+        return nil
+    }
 }

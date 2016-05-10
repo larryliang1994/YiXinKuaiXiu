@@ -13,6 +13,7 @@ class CustomerWalletViewController: UITableViewController {
     @IBOutlet var withdrawButton: UIButton!
     @IBOutlet var buttonBackgroundView: UIView!
     @IBOutlet var moneyLabel: UILabel!
+    @IBOutlet var rechargeButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,11 @@ class CustomerWalletViewController: UITableViewController {
     
     func intiView() {
         withdrawButton.layer.cornerRadius = 3
-        withdrawButton.backgroundColor = Constants.Color.Primary
+        withdrawButton.layer.borderWidth = 1
+        withdrawButton.layer.borderColor = Constants.Color.Primary.CGColor
+        
+        rechargeButton.layer.cornerRadius = 3
+        rechargeButton.backgroundColor = Constants.Color.Primary
         
         moneyLabel.text = Config.Money == nil ? "0.00" : Config.Money
     }
@@ -37,7 +42,14 @@ class CustomerWalletViewController: UITableViewController {
         self.navigationItem.backBarButtonItem = back
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
-
+    
+    @IBAction func recharge(sender: UIButton) {
+        performSegueWithIdentifier(Constants.SegueID.ShowCustomerRechargeSegue, sender: self)
+    }
+    
+    @IBAction func goWithDraw(sender: UIButton) {
+        performSegueWithIdentifier(Constants.SegueID.ShowCustomerWithDrawSegue, sender: self)
+    }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1

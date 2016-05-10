@@ -102,7 +102,7 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         payPopoverView.closeButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.doPayButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.doPayButton.addTarget(self, action: #selector(OrderPublishConfirmViewController.goPay), forControlEvents: UIControlEvents.TouchUpInside)
-        payPopoverView.feeLabel.text = String(order?.fee)
+        payPopoverView.feeLabel.text = "￥" + String(order?.fee)
         return payPopoverView
     }
     
@@ -117,6 +117,10 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
     
     func isEffectView() -> Bool {
         return false
+    }
+    
+    func viewWillDisappear() {
+        
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

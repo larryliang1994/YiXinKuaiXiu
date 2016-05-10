@@ -82,7 +82,7 @@ class Order {
         self.payments = payments
     }
     
-    init(id: String, date: String, senderID: String, senderName: String, senderNum: String, graberID: String, type: Type, image1Url: String?, image2Url: String?, desc: String, mTypeID: String, location: String, locationInfo: CLLocation, fee: String, status: Status, ratingStar: Int?, ratingDesc: String?) {
+    init(id: String, date: String, senderID: String, senderName: String, senderNum: String, graberID: String, type: Type, image1Url: String?, image2Url: String?, desc: String, mTypeID: String, mType: String,location: String, locationInfo: CLLocation, fee: String, status: Status, ratingStar: Int?, ratingDesc: String?) {
         self.id = id
         self.date = date
         self.senderID = senderID
@@ -94,6 +94,7 @@ class Order {
         self.image2Url = image2Url
         self.desc = desc
         self.mTypeID = mTypeID
+        self.mType = mType
         self.location = location
         self.locationInfo = locationInfo
         self.fee = fee

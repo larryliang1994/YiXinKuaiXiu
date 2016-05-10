@@ -24,6 +24,7 @@ class Config {
     static var BankNum: String?
     static var TotalStar: String?
     static var MaintenanceNum: String?
+    static var Audited: Int?
     
     static var MTypes: [MaintenanceType]?
     static var MTypeNames: [String]?

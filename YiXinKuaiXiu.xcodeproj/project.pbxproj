@@ -30,6 +30,13 @@
 		4912888C1CB25634007DD199 /* BRPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4912888B1CB25634007DD199 /* BRPlaceholderTextView.m */; };
 		4912888E1CB256D0007DD199 /* OrderPublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912888D1CB256D0007DD199 /* OrderPublishViewController.swift */; };
 		491288901CB2A7F1007DD199 /* MaintenanceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912888F1CB2A7F1007DD199 /* MaintenanceTypeViewController.swift */; };
+		491B6ED31CE01D770039B70E /* CustomerWithDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6ED21CE01D770039B70E /* CustomerWithDrawViewController.swift */; };
+		491B6ED71CE021970039B70E /* EnterPasswordAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6ED61CE021970039B70E /* EnterPasswordAlertView.swift */; };
+		491B6ED91CE021C50039B70E /* EnterPasswordAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491B6ED81CE021C50039B70E /* EnterPasswordAlertView.xib */; };
+		491B6EDB1CE02B810039B70E /* WithDrawProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6EDA1CE02B810039B70E /* WithDrawProtocol.swift */; };
+		491B6EDD1CE02BBC0039B70E /* WithDrawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6EDC1CE02BBC0039B70E /* WithDrawModel.swift */; };
+		491B6EDF1CE172320039B70E /* ChooseFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */; };
+		491B6EE11CE18AF40039B70E /* RechargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6EE01CE18AF40039B70E /* RechargeViewController.swift */; };
 		494D6E8A1CB80F19007824F1 /* PopBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494D6E891CB80F19007824F1 /* PopBottomView.swift */; };
 		496C5D371CC13D0300CA63AC /* ShoppingCartPopoverViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 496C5D361CC13D0300CA63AC /* ShoppingCartPopoverViewCell.xib */; };
 		496C5D391CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D381CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift */; };
@@ -193,6 +200,13 @@
 		491288941CB2B099007DD199 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Main.strings; sourceTree = "<group>"; };
 		491288951CB2B0DD007DD199 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		491288961CB2B0DD007DD199 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		491B6ED21CE01D770039B70E /* CustomerWithDrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerWithDrawViewController.swift; path = controller/customer/CustomerWithDrawViewController.swift; sourceTree = "<group>"; };
+		491B6ED61CE021970039B70E /* EnterPasswordAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterPasswordAlertView.swift; path = view/EnterPasswordAlertView/EnterPasswordAlertView.swift; sourceTree = "<group>"; };
+		491B6ED81CE021C50039B70E /* EnterPasswordAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnterPasswordAlertView.xib; path = view/EnterPasswordAlertView/EnterPasswordAlertView.xib; sourceTree = "<group>"; };
+		491B6EDA1CE02B810039B70E /* WithDrawProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WithDrawProtocol.swift; path = model/WithDrawProtocol.swift; sourceTree = "<group>"; };
+		491B6EDC1CE02BBC0039B70E /* WithDrawModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WithDrawModel.swift; path = model/WithDrawModel.swift; sourceTree = "<group>"; };
+		491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseFeeViewController.swift; path = controller/customer/ChooseFeeViewController.swift; sourceTree = "<group>"; };
+		491B6EE01CE18AF40039B70E /* RechargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RechargeViewController.swift; path = controller/customer/RechargeViewController.swift; sourceTree = "<group>"; };
 		494D6E891CB80F19007824F1 /* PopBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopBottomView.swift; path = view/PopBottomView.swift; sourceTree = "<group>"; };
 		496C5D361CC13D0300CA63AC /* ShoppingCartPopoverViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoppingCartPopoverViewCell.xib; path = controller/customer/ShoppingPopoverView/ShoppingCartPopoverViewCell.xib; sourceTree = "<group>"; };
 		496C5D381CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoppingCartPopoverViewCell.swift; path = controller/customer/ShoppingPopoverView/ShoppingCartPopoverViewCell.swift; sourceTree = "<group>"; };
@@ -355,6 +369,7 @@
 		4912885E1CB13AA6007DD199 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				491B6ED51CE0215B0039B70E /* EnterPwdAlertView */,
 				4981966D1CD1A4080046B72A /* AlertView */,
 				49A15E851CC866420028023C /* SimpleButton */,
 				498E26251CBBAA6900DE6EDC /* DKImagePicker */,
@@ -383,6 +398,7 @@
 				4912888D1CB256D0007DD199 /* OrderPublishViewController.swift */,
 				4912888F1CB2A7F1007DD199 /* MaintenanceTypeViewController.swift */,
 				49A15E561CC51E4B0028023C /* ChooseLocationTableViewController.swift */,
+				491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */,
 				49A2E9171CB7FD890079C690 /* CheckFeeViewController.swift */,
 				49BF67891CB3653B002257C0 /* OrderPublishConfirmViewController.swift */,
 				49A15E581CC51E4B0028023C /* CustomerOrderListViewController.swift */,
@@ -397,6 +413,8 @@
 				496C5D411CC1E8CA00CA63AC /* CustomerWalletViewController.swift */,
 				497E9ABF1CD45B1300A7D934 /* CustomerD2DAccountViewController.swift */,
 				497E9AC11CD45F6100A7D934 /* CustomerChangePasswordViewController.swift */,
+				491B6ED21CE01D770039B70E /* CustomerWithDrawViewController.swift */,
+				491B6EE01CE18AF40039B70E /* RechargeViewController.swift */,
 			);
 			name = customer;
 			sourceTree = "<group>";
@@ -420,6 +438,15 @@
 				4912888B1CB25634007DD199 /* BRPlaceholderTextView.m */,
 			);
 			name = PlaceholderTextView;
+			sourceTree = "<group>";
+		};
+		491B6ED51CE0215B0039B70E /* EnterPwdAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				491B6ED61CE021970039B70E /* EnterPasswordAlertView.swift */,
+				491B6ED81CE021C50039B70E /* EnterPasswordAlertView.xib */,
+			);
+			name = EnterPwdAlertView;
 			sourceTree = "<group>";
 		};
 		496C5D3A1CC1D64800CA63AC /* ShoppingCartPayPopoverViewController */ = {
@@ -629,6 +656,8 @@
 				4970BF151CDAE8E100E20E70 /* UploadImageProtocol.swift */,
 				4970BF171CDAE90400E20E70 /* UploadImageModel.swift */,
 				4970BF191CDCC8D000E20E70 /* PartProtocol.swift */,
+				491B6EDA1CE02B810039B70E /* WithDrawProtocol.swift */,
+				491B6EDC1CE02BBC0039B70E /* WithDrawModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -916,6 +945,7 @@
 				49C380A11CB8F6DB00242B7A /* HeaderItemView.xib in Resources */,
 				49C3809B1CB8F6DB00242B7A /* img.bundle in Resources */,
 				498E263C1CBBAA7D00DE6EDC /* DKCameraResource.bundle in Resources */,
+				491B6ED91CE021C50039B70E /* EnterPasswordAlertView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1005,6 +1035,7 @@
 				49C3809E1CB8F6DB00242B7A /* CityMaskView.swift in Sources */,
 				49A15E601CC5225C0028023C /* HandymanOrderListTableViewController.swift in Sources */,
 				498E26401CBBAA7D00DE6EDC /* DKImageManager.swift in Sources */,
+				491B6EDF1CE172320039B70E /* ChooseFeeViewController.swift in Sources */,
 				498E26211CBBA45B00DE6EDC /* AlamofireUtil.swift in Sources */,
 				4970BF121CDA439300E20E70 /* OrderModel.swift in Sources */,
 				498E263B1CBBAA7D00DE6EDC /* DKCamera.swift in Sources */,
@@ -1015,14 +1046,18 @@
 				4970BF0E1CDA387500E20E70 /* GetInitialInfoModel.swift in Sources */,
 				494D6E8A1CB80F19007824F1 /* PopBottomView.swift in Sources */,
 				49F36D241CB79BE8000DF874 /* MallViewController.swift in Sources */,
+				491B6ED71CE021970039B70E /* EnterPasswordAlertView.swift in Sources */,
 				496C5D391CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift in Sources */,
 				4991F3421CB1029A00E1BF85 /* WelcomeViewController.swift in Sources */,
 				49D76BA01CC0C81F005E2213 /* FloatRatingView.swift in Sources */,
 				498196711CD1A4520046B72A /* AlertView.swift in Sources */,
 				49A15E821CC7C6DF0028023C /* LoginProtocol.swift in Sources */,
+				491B6EDD1CE02BBC0039B70E /* WithDrawModel.swift in Sources */,
 				49C380A01CB8F6DB00242B7A /* HeaderItemView.swift in Sources */,
+				491B6EDB1CE02B810039B70E /* WithDrawProtocol.swift in Sources */,
 				4912887A1CB147F3007DD199 /* CustomerDrawerViewController.swift in Sources */,
 				49A15E891CC866430028023C /* SimpleButtonControlState.swift in Sources */,
+				491B6EE11CE18AF40039B70E /* RechargeViewController.swift in Sources */,
 				49A15E791CC675430028023C /* ProjectBidingViewController.swift in Sources */,
 				491288881CB16AC3007DD199 /* OrderTypeViewController.swift in Sources */,
 				498E263F1CBBAA7D00DE6EDC /* DKAssetGroup.swift in Sources */,
@@ -1081,6 +1116,7 @@
 				49BF678A1CB3653B002257C0 /* OrderPublishConfirmViewController.swift in Sources */,
 				497542491CDDDB1200E23D38 /* Category.swift in Sources */,
 				497E9ABC1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift in Sources */,
+				491B6ED31CE01D770039B70E /* CustomerWithDrawViewController.swift in Sources */,
 				491288861CB15C22007DD199 /* UtilBox.swift in Sources */,
 				496C5D451CC20EEE00CA63AC /* HandymanHomeViewController.swift in Sources */,
 				497E9AC21CD45F6100A7D934 /* CustomerChangePasswordViewController.swift in Sources */,
