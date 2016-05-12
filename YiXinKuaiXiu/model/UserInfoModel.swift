@@ -60,6 +60,32 @@ class UserInfoModel: UserInfoProtocol {
         }
     }
     
+    func doUpdateLocationInfo(parameters: [String]) {
+        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "lot": parameters[0], "lat": parameters[1]]
+        
+        print(paramters)
+        
+        AlamofireUtil.doRequest(Urls.UpdateLocationInfo, parameters: paramters) { (result, response) in
+            if result {
+                print(response)
+                
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"].intValue
+                
+                if ret == 0 {
+                    self.userInfoDelegate.onUpdateLocationInfoResult(true, info: "")
+                } else if ret == 1 {
+                    self.userInfoDelegate.onUpdateLocationInfoResult(false, info: "认证失败")
+                } else if ret == 2 {
+                    self.userInfoDelegate.onUpdateLocationInfoResult(false, info: "失败")
+                }
+            } else {
+                self.userInfoDelegate.onUpdateLocationInfoResult(false, info: "设置失败")
+            }
+        }
+    }
+    
     func handleUserInfo(json: JSON) {
         Config.Name = json["nme"].stringValue == "" ? nil : json["nme"].stringValue
         Config.Location = json["adr"].stringValue == "" ? nil : json["adr"].stringValue
@@ -85,4 +111,5 @@ class UserInfoModel: UserInfoProtocol {
 protocol UserInfoDelegate {
     func onGetUserInfoResult(result: Bool, info: String)
     func onModifyUserInfoResult(result: Bool, info: String)
+    func onUpdateLocationInfoResult(result: Bool, info: String)
 }

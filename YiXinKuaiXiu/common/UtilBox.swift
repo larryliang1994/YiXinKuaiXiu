@@ -95,6 +95,16 @@ class UtilBox {
         return outputFormatter.dateFromString(date)!.timeIntervalSince1970
     }
     
+    static func stringToWeek(date: String) -> String {
+        let weekday = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+        
+        let newDate = NSDate(timeIntervalSince1970: Double(date)!)
+        let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        let components = calendar?.component(NSCalendarUnit.Weekday, fromDate: newDate)
+        
+        return weekday[components! - 1]
+    }
+    
     // 压缩图片
     static func compressImage(image: UIImage!, maxSize: Int) -> NSData {
         var compression: CGFloat = 1.0

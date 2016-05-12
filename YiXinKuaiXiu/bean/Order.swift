@@ -25,6 +25,16 @@ public enum Status: Int {
     case Done
 }
 
+public enum State: Int {
+    case NotPayFee = 0  // 未支付上门费
+    case PaidFee        // 已支付上门费
+    case HasBeenGrabbed // 已被抢单
+    case PaidMFee       // 已支付维修费
+    case PaidPartFee    // 已支付配件费
+    case PaidAll        // 已支付全部费用
+    case HasBeenRated   // 已评价
+}
+
 class Order {
     var type: Type?
     var desc: String?
@@ -37,6 +47,7 @@ class Order {
     var image2: DKAsset?
     
     var status: Status?
+    var state: State?
     var ratingStar: Int?
     var ratingDesc: String?
     
@@ -82,7 +93,7 @@ class Order {
         self.payments = payments
     }
     
-    init(id: String, date: String, senderID: String, senderName: String, senderNum: String, graberID: String, type: Type, image1Url: String?, image2Url: String?, desc: String, mTypeID: String, mType: String,location: String, locationInfo: CLLocation, fee: String, status: Status, ratingStar: Int?, ratingDesc: String?) {
+    init(id: String, date: String, senderID: String, senderName: String, senderNum: String, graberID: String, type: Type, image1Url: String?, image2Url: String?, desc: String, mTypeID: String, mType: String,location: String, locationInfo: CLLocation, fee: String, status: Status, state: State, ratingStar: Int?, ratingDesc: String?) {
         self.id = id
         self.date = date
         self.senderID = senderID
@@ -99,6 +110,7 @@ class Order {
         self.locationInfo = locationInfo
         self.fee = fee
         self.status = status
+        self.state = state
         self.ratingStar = ratingStar
         self.ratingDesc = ratingDesc
     }

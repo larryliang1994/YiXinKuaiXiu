@@ -72,6 +72,8 @@ class CustomerPersonInfoModifyViewController: UITableViewController, UITextField
     
     func onGetUserInfoResult(result: Bool, info: String){}
     
+    func onUpdateLocationInfoResult(result: Bool, info: String) {}
+    
     func onModifyUserInfoResult(result: Bool, info: String){
         if result {
             if title == "姓名" {

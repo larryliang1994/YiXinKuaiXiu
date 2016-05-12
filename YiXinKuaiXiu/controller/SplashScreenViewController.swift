@@ -13,6 +13,9 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
 
     var window: UIWindow?
     
+    let requestNum = 4
+    var initRequestNum = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +23,12 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         
         if Config.Aid != "" && Config.VerifyCode != "" {
             UserInfoModel(userInfoDelegate: self).doGetUserInfo()
+            
+            let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
+            getInitialInfoModel.getMaintenanceType()
+            getInitialInfoModel.getFees()
+            getInitialInfoModel.getMessage()
+            
         } else {
             showMainScreen()
         }
@@ -39,7 +48,12 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     
     func onGetUserInfoResult(result: Bool, info: String) {
         if result {
-            GetInitialInfoModel(getInitialInfoDelegate: self).getMaintenanceType()
+            initRequestNum += 1
+            
+            if initRequestNum == requestNum {
+                showMainScreen()
+            }
+            
         } else {
             UtilBox.alert(self, message: info)
         }
@@ -47,13 +61,43 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     
     func onGetMaintenanceTypeResult(result: Bool, info: String) {
         if result {
-            showMainScreen()
+            initRequestNum += 1
+            
+            if initRequestNum == requestNum {
+                showMainScreen()
+            }
+        } else {
+            UtilBox.alert(self, message: info)
+        }
+    }
+    
+    func onGetFeeResult(result: Bool, info: String) {
+        if result {
+            initRequestNum += 1
+            
+            if initRequestNum == requestNum {
+                showMainScreen()
+            }
+        } else {
+            UtilBox.alert(self, message: info)
+        }
+    }
+    
+    func onGetMessageResult(result: Bool, info: String) {
+        if result {
+            initRequestNum += 1
+            
+            if initRequestNum == requestNum {
+                showMainScreen()
+            }
         } else {
             UtilBox.alert(self, message: info)
         }
     }
     
     func onModifyUserInfoResult(result: Bool, info: String) {}
+    
+    func onUpdateLocationInfoResult(result: Bool, info: String) {}
     
     func getStarted() {
         // 初始化百度地图

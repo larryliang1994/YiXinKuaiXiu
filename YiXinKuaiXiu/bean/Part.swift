@@ -14,6 +14,7 @@ class Part {
     var num: Int?
     var price: Float?
     var paid = false
+    var categoryID: Int?
     var categoryIndex: Int?
     
     init() {
@@ -27,12 +28,12 @@ class Part {
         paid = false
     }
     
-    init(id: Int, name: String, num: Int, price: Float, categoryIndex: Int) {
+    init(id: Int, name: String, num: Int, price: Float, categoryID: Int) {
         self.id = id
         self.name = name
         self.num = num
         self.price = price
-        self.categoryIndex = categoryIndex
+        self.categoryID = categoryID
         paid = false
     }
 }

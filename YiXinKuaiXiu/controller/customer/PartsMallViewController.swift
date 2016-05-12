@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PartsMallViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopBottomViewDataSource,PopBottomViewDelegate, PartsMallDelegate {
+class PartsMallViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopBottomViewDataSource,PopBottomViewDelegate, PartsMallDelegate, GetPartsInfoDelegate {
 
     @IBOutlet var containerView: UIView!
     @IBOutlet var bottomSeperator: UIView!
@@ -20,43 +20,43 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var totalPriceLabel: UILabel!
     @IBOutlet var bottomSeperatorHeight: NSLayoutConstraint!
     
-    let category = [
-        Category(id: 0, name: "金属配件", partIndex: 0),
-        Category(id: 1, name: "塑料配件", partIndex: 4),
-        Category(id: 2, name: "冷却剂", partIndex: 7),
-        Category(id: 3, name: "油漆", partIndex: 12),
-        Category(id: 4, name: "锁具", partIndex: 14),
-        Category(id: 5, name: "其他", partIndex: 18)
-    ]
-    
-    var parts = [
-        Part(id: 0, name: "0十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 0),
-        Part(id: 1, name: "0一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 0),
-        Part(id: 2, name: "0一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 0),
-        Part(id: 3, name: "0六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 0),
-        
-        Part(id: 4, name: "1十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 1),
-        Part(id: 5, name: "1一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 1),
-        Part(id: 6, name: "1一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 1),
-        
-        Part(id: 7, name: "2十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 2),
-        Part(id: 8, name: "2一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 2),
-        Part(id: 9, name: "2一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 2),
-        Part(id: 10, name: "2六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 2),
-        Part(id: 11, name: "2六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 2),
-        
-        Part(id: 12, name: "3十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 3),
-        Part(id: 13, name: "3一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 3),
-        
-        Part(id: 14, name: "4十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 4),
-        Part(id: 15, name: "4一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 4),
-        Part(id: 16, name: "4一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 4),
-        Part(id: 17, name: "4六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 4),
-        
-        Part(id: 18, name: "5十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 5),
-        Part(id: 19, name: "5一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 5),
-        Part(id: 20, name: "5一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 5)
-    ]
+//    var category = [
+//        Category(id: 0, name: "金属配件", partIndex: 0),
+//        Category(id: 1, name: "塑料配件", partIndex: 4),
+//        Category(id: 2, name: "冷却剂", partIndex: 7),
+//        Category(id: 3, name: "油漆", partIndex: 12),
+//        Category(id: 4, name: "锁具", partIndex: 14),
+//        Category(id: 5, name: "其他", partIndex: 18)
+//    ]
+//    
+//    var parts = [
+//        Part(id: 0, name: "0十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 0),
+//        Part(id: 1, name: "0一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 0),
+//        Part(id: 2, name: "0一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 0),
+//        Part(id: 3, name: "0六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 0),
+//        
+//        Part(id: 4, name: "1十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 1),
+//        Part(id: 5, name: "1一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 1),
+//        Part(id: 6, name: "1一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 1),
+//        
+//        Part(id: 7, name: "2十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 2),
+//        Part(id: 8, name: "2一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 2),
+//        Part(id: 9, name: "2一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 2),
+//        Part(id: 10, name: "2六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 2),
+//        Part(id: 11, name: "2六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 2),
+//        
+//        Part(id: 12, name: "3十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 3),
+//        Part(id: 13, name: "3一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 3),
+//        
+//        Part(id: 14, name: "4十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 4),
+//        Part(id: 15, name: "4一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 4),
+//        Part(id: 16, name: "4一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 4),
+//        Part(id: 17, name: "4六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 4),
+//        
+//        Part(id: 18, name: "5十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 5),
+//        Part(id: 19, name: "5一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 5),
+//        Part(id: 20, name: "5一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 5)
+//    ]
 
     var totalNum = 0
     var totalPrice: Float = 0.0
@@ -76,6 +76,8 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         rightTableView.delegate = self
         
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        GetPartsInfoModel(getPartsInfoDelegate: self).doGetPartsInfo()
     }
     
     func initView() {
@@ -97,6 +99,43 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         self.view.setNeedsLayout()
     }
     
+    func onGetPartsInfoResult(result: Bool, info: String) {
+        if result {
+            GetPartsInfoModel(getPartsInfoDelegate: self).doGetCategoryInfo()
+        }
+    }
+    
+    func onGetCategoryInfoResult(result: Bool, info: String) {
+        if result {
+            initCPIndex()
+            
+            leftTableView.reloadData()
+            rightTableView.reloadData()
+        }
+    }
+    
+    func initCPIndex() {
+        // 初始化类别的Index
+        for var category in Config.Categorys {
+            for var index in 0...Config.Parts.count {
+                if Config.Parts[index].categoryID == category.id {
+                    category.partIndex = index
+                    break
+                }
+            }
+        }
+        
+        // 初始化配件的Index
+        for var part in Config.Parts {
+            for var index in 0...Config.Categorys.count {
+                if part.categoryID == Config.Categorys[index].id {
+                    part.categoryIndex = index
+                    break
+                }
+            }
+        }
+    }
+    
     func didChangeData(num: Int, price: Float) {
         totalNum += num
         totalPrice += price
@@ -107,7 +146,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     func didClear() {
         hide(containerView)
         
-        for var part in parts {
+        for var part in Config.Parts {
             part.num = 0
         }
         
@@ -185,7 +224,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         if popoverName == "ShoppingCartPopoverView" {
             let shoppingCartPopoverView = UIView.loadFromNibNamed(popoverName) as! ShoppingCartPopoverView
             
-            shoppingCartPopoverView.parts = parts
+            shoppingCartPopoverView.parts = Config.Parts
             shoppingCartPopoverView.delegate = self
             
             return shoppingCartPopoverView
@@ -197,7 +236,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             shoppingCartPayPopoverView.priceLabel.text = "￥" + String(totalPrice)
             
             var desc = ""
-            for var part in parts {
+            for var part in Config.Parts {
                 if part.num != 0 {
                     desc += part.name! + " x " + (part.num?.toString())! + "; "
                 }
@@ -240,7 +279,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if tableView.tag == Constants.Tag.PartsMallLeftTableView {
-            return indexPath.row == category.count ? leftTableView.bounds.height - CGFloat(category.count * 40) + 1: 40
+            return indexPath.row == Config.Categorys.count ? leftTableView.bounds.height - CGFloat(Config.Categorys.count * 40) + 1: 40
         } else {
             return 65
         }
@@ -251,16 +290,16 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView.tag == Constants.Tag.PartsMallLeftTableView ? category.count + 1 : parts.count
+        return tableView.tag == Constants.Tag.PartsMallLeftTableView ? Config.Categorys.count + 1 : Config.Parts.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView.tag == Constants.Tag.PartsMallLeftTableView {
-            if indexPath.row != category.count {
+            if indexPath.row != Config.Categorys.count {
                 let cell = tableView.dequeueReusableCellWithIdentifier("leftTableViewCell")
         
                 let title = cell?.viewWithTag(Constants.Tag.PartsMallLeftCellLabel) as! UILabel
-                title.text = category[indexPath.row].name
+                title.text = Config.Categorys[indexPath.row].name
         
                 let seperator = cell?.viewWithTag(Constants.Tag.PartsMallLeftCellSeperator) as UIView!
                 
@@ -284,10 +323,10 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             let cell = tableView.dequeueReusableCellWithIdentifier("rightTableViewCell")
             
             let titleLabel = cell?.viewWithTag(Constants.Tag.PartsMallRightTitle) as! UILabel
-            titleLabel.text = parts[indexPath.row].name
+            titleLabel.text = Config.Parts[indexPath.row].name
             
             let priceLabel = cell?.viewWithTag(Constants.Tag.PartsMallRightPrice) as! UILabel
-            priceLabel.text = "￥" + String(parts[indexPath.row].price!)
+            priceLabel.text = "￥" + String(Config.Parts[indexPath.row].price!)
             priceLabel.textColor = Constants.Color.Orange
             
             let addButton = cell?.viewWithTag(Constants.Tag.PartsMallRightAdd) as! UIButton
@@ -301,7 +340,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             reduceButton.layer.borderWidth = 0.5
             reduceButton.addTarget(self, action: #selector(PartsMallViewController.reduce), forControlEvents: UIControlEvents.TouchUpInside)
             
-            let num = parts[indexPath.row].num
+            let num = Config.Parts[indexPath.row].num
             let numLabel = cell?.viewWithTag(Constants.Tag.PartsMallRightNum) as! UILabel
             
             if num == 0 {
@@ -310,7 +349,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             } else {
                 reduceButton.hidden = false
                 numLabel.hidden = false
-                numLabel.text = parts[indexPath.row].num!.toString()
+                numLabel.text = Config.Parts[indexPath.row].num!.toString()
             }
             
             return cell!
@@ -321,14 +360,14 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = sender.superview?.superview as! UITableViewCell
         let indexPath = rightTableView.indexPathForCell(cell)!
         
-        if parts[indexPath.row].num != 99 {
-            parts[indexPath.row].num! += 1
+        if Config.Parts[indexPath.row].num != 99 {
+            Config.Parts[indexPath.row].num! += 1
             
             rightTableView.reloadData()
             
             totalNum += 1
             
-            totalPrice += Float(parts[indexPath.row].price!)
+            totalPrice += Float(Config.Parts[indexPath.row].price!)
             
             updateBottonView()
         }
@@ -338,14 +377,14 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = sender.superview?.superview as! UITableViewCell
         let indexPath = rightTableView.indexPathForCell(cell)!
         
-        if parts[indexPath.row].num != 0 {
-            parts[indexPath.row].num! -= 1
+        if Config.Parts[indexPath.row].num != 0 {
+            Config.Parts[indexPath.row].num! -= 1
         
             rightTableView.reloadData()
             
             totalNum -= 1
             
-            totalPrice -= Float(parts[indexPath.row].price!)
+            totalPrice -= Config.Parts[indexPath.row].price!
             
             updateBottonView()
         }
@@ -358,14 +397,18 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if tableView.tag == Constants.Tag.PartsMallLeftTableView {
             
+            rightTableView.delegate = nil
+            
             updateLeftTableView(indexPath)
             
             if categoryIndex != indexPath.row {
                 categoryIndex = indexPath.row
             
-                let index = NSIndexPath(forRow: category[categoryIndex].partIndex!, inSection: 0)
+                let index = NSIndexPath(forRow: Config.Categorys[categoryIndex].partIndex!, inSection: 0)
             
                 rightTableView.selectRowAtIndexPath(index, animated: false, scrollPosition: .Top)
+                
+                rightTableView.delegate = self
             }
         }
     }
@@ -393,7 +436,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         if let tableView = scrollView as? UITableView {
             if tableView.tag == Constants.Tag.PartsMallRightTableView {
                 let row = rightTableView.indexPathForCell(tableView.visibleCells[0])?.row
-                let cIndex = parts[row!].categoryIndex
+                let cIndex = Config.Parts[row!].categoryIndex
                 
                 if cIndex != categoryIndex {
                     categoryIndex = row!

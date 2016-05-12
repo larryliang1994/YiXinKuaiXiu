@@ -45,11 +45,77 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
         }
     }
     
+    func getFees() {
+        AlamofireUtil.doRequest(Urls.GetFeeList, parameters: [:]) { (result, response) in
+            if result {
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"]
+                
+                if ret != nil {
+                    
+                    Config.Fees = []
+                    for index in 0 ... ret.count - 1 {
+                        Config.Fees!.append(ret[index]["nme"].intValue)
+                    }
+                }
+                
+                self.getInitialInfoDelegate?.onGetFeeResult(true, info: "")
+            } else {
+                self.getInitialInfoDelegate?.onGetFeeResult(false, info: "获取默认价格失败")
+            }
+        }
+    }
+    
+    func getMessage() {
+        AlamofireUtil.doRequest(Urls.GetMessage, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
+            if result {
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"]
+                
+                if ret != nil {
+                    
+                    Config.Messages = []
+                    for index in 0 ... ret.count - 1 {
+                        let message = Message(id: ret[index]["id"].intValue, title: ret[index]["tit"].stringValue, desc: ret[index]["cmt"].stringValue, date: ret[index]["dte"].stringValue)
+                        Config.Messages.append(message)
+                    }
+                }
+                
+                self.getInitialInfoDelegate?.onGetFeeResult(true, info: "")
+            } else {
+                self.getInitialInfoDelegate?.onGetFeeResult(false, info: "获取默认价格失败")
+            }
+        }
+    }
+    
     func getAds() {
-        
+        AlamofireUtil.doRequest(Urls.GetAds, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
+            if result {
+                print(response)
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"]
+                
+                if ret != nil {
+                    
+                    //                    Config.Fees = []
+                    //                    for index in 0 ... ret.count - 1 {
+                    //                        Config.Fees!.append(ret[index]["nme"].intValue)
+                    //                    }
+                }
+                
+                self.getInitialInfoDelegate?.onGetFeeResult(true, info: "")
+            } else {
+                self.getInitialInfoDelegate?.onGetFeeResult(false, info: "获取默认价格失败")
+            }
+        }
     }
 }
 
 protocol GetInitialInfoDelegate {
     func onGetMaintenanceTypeResult(result: Bool, info: String)
+    func onGetFeeResult(result: Bool, info: String)
+    func onGetMessageResult(result: Bool, info: String)
 }

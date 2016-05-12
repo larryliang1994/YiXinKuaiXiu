@@ -82,6 +82,16 @@ class Constants {
         static let HandymanChooseMaintenanceTypeCellCheck = 47
         
         static let CustomerChooseFeeCellButton = 50
+        
+        static let CustomerMessageCenterCellTitle = 51
+        static let CustomerMessageCenterCellDate = 52
+        static let CustomerMessageCenterCellDesc = 53
+        
+        static let CustomerD2DAccountCellWeek = 54
+        static let CustomerD2DAccountCellDate = 55
+        static let CustomerD2DAccountCellFee = 56
+        static let CustomerD2DAccountCellType = 57
+        static let CustomerD2DAccountCellStatus = 58
     }
     
     struct SegueID {
@@ -152,6 +162,7 @@ class Constants {
     struct DateFormat {
         static let YMD = "YYYY年MM月dd日"
         static let MDHm = "MM/dd HH:mm"
+        static let MD = "MM-dd"
         static let Full = "YYYY/MM/dd HH:mm"
     }
     

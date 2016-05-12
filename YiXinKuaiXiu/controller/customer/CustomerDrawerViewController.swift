@@ -77,8 +77,13 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
             } else if indexPath.row == 2 {
                 label.text = "消息中心"
                 image.image = UIImage(named: "messageCenter")
-                badge.badgeColor = Constants.Color.Primary
-                badge.text = "11"
+                
+                if Config.Messages.count != 0 {
+                    badge.badgeColor = Constants.Color.Primary
+                    badge.text = Config.Messages.count.toString()
+                } else {
+                    badge.hidden = true
+                }
             } else if indexPath.row == 3 {
                 label.text = "壹心商城"
                 image.image = UIImage(named: "mall")

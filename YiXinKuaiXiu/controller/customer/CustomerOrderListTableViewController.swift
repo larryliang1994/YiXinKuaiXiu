@@ -10,15 +10,7 @@ import UIKit
 
 class CustomerOrderListTableViewController: UITableViewController, OrderDelegate {
     
-    var orders = [
-        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .ToBeBilled, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [Payment(name: "上门检查费", price: 10, paid: false)]),
-        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .OnGoing, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
-        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .BeingCancelled, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
-        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .Cancelling, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
-        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .ToBeRating, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true), Payment(name: "维修费", price: 200, paid: true)]),
-        Order(type: .Pack, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .ToBeBilled, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [Payment(name: "打包维修费", price: 200, paid: false)]),
-        Order(type: .Reservation, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: nil, image1: nil, image2: nil, status: .ToBeGrabbed, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [])
-    ]
+    var orders: [Order] = []
     
     var tableType: Int?
     var segueOrder: Order?
@@ -232,7 +224,8 @@ class CustomerOrderListTableViewController: UITableViewController, OrderDelegate
     }
     
     func rightButtonAction() {
-        performSegueWithIdentifier(Constants.SegueID.ShowCustomerRatingSegue, sender: self)
+        //performSegueWithIdentifier(Constants.SegueID.ShowCustomerRatingSegue, sender: self)
+        performSegueWithIdentifier(Constants.SegueID.ShowPartsMallSegue, sender: self)
     }
     
     func onPublishOrderResult(result: Bool, info: String) {

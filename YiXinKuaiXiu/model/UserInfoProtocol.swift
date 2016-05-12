@@ -9,4 +9,5 @@
 protocol UserInfoProtocol {
     func doGetUserInfo()
     func doModifyUserInfo(parameters: [String: String])
+    func doUpdateLocationInfo(parameters: [String])
 }

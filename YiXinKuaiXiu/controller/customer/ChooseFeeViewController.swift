@@ -11,7 +11,6 @@ import UIKit
 
 class ChooseFeeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    let fees = ["5", "10", "15", "20", "30"]
     var delegate: OrderPublishDelegate?
 
     override func viewDidLoad() {
@@ -27,12 +26,12 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fees.count
+        return Config.Fees!.count
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = (UIScreen.mainScreen().bounds.width - 10) / 3;
-        return CGSizeMake(width, 60);
+        let width = (UIScreen.mainScreen().bounds.width - 10) / 3
+        return CGSizeMake(width, 60)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -44,7 +43,7 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        delegate?.didSelectedFee(fees[indexPath.row])
+        delegate?.didSelectedFee(Config.Fees![indexPath.row].toString())
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -53,7 +52,7 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
         
         let button = cell.viewWithTag(Constants.Tag.CustomerChooseFeeCellButton) as! UIButton
         
-        button.setTitle(fees[indexPath.row] + "元", forState: .Normal)
+        button.setTitle(Config.Fees![indexPath.row].toString() + "元", forState: .Normal)
         button.layer.borderColor = Constants.Color.Primary.CGColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3

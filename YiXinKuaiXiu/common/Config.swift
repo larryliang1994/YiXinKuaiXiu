@@ -28,4 +28,11 @@ class Config {
     
     static var MTypes: [MaintenanceType]?
     static var MTypeNames: [String]?
+    
+    static var Fees: [Int]?
+    
+    static var Categorys: [Category] = []
+    static var Parts: [Part] = []
+    
+    static var Messages: [Message] = []
 }

@@ -87,17 +87,41 @@ class CustomerPersonInfoLocationViewController: UIViewController, UITableViewDel
         
         cityName = (cell?.textLabel?.text)!
         
+        let address = addressList[indexPath.row]
         UserInfoModel(userInfoDelegate: self).doModifyUserInfo(["key": "adr", "value": cityName])
+        UserInfoModel(userInfoDelegate: self).doUpdateLocationInfo([address.pt.longitude.description, address.pt.latitude.description])
+        
         self.pleaseWait()
         
         delegate?.didChooseLocation((cell?.textLabel?.text)!, location: CLLocation())
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    let totalRequestNum = 2
+    var requestNum = 0
+    func onUpdateLocationInfoResult(result: Bool, info: String) {
+        if result {
+            requestNum += 1
+            
+            if requestNum == totalRequestNum {
+                delegate?.didChooseLocation(cityName, location: CLLocation())
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        } else {
+            UtilBox.alert(self, message: info)
+        }
+        
+        self.clearAllNotice()
+    }
+    
     func onModifyUserInfoResult(result: Bool, info: String) {
         if result {
-            delegate?.didChooseLocation(cityName, location: CLLocation())
-            self.navigationController?.popViewControllerAnimated(true)
+            requestNum += 1
+            
+            if requestNum == totalRequestNum {
+                delegate?.didChooseLocation(cityName, location: CLLocation())
+                self.navigationController?.popViewControllerAnimated(true)
+            }
         } else {
             UtilBox.alert(self, message: info)
         }

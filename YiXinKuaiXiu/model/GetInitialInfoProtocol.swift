@@ -8,5 +8,6 @@
 
 protocol GetInitialInfoProtocol {
     func getMaintenanceType()
-
+    func getFees()
+    func getMessage()
 }

@@ -8,10 +8,20 @@
 
 import UIKit
 
-class CustomerD2DAccountViewController: UITableViewController {
+class CustomerD2DAccountViewController: UITableViewController, WalletDelegate {
+    var accountList: [D2DAccount] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        WalletModel(walletDelegate: self).doGetD2DAccount()
+    }
+    
+    func onGetD2DAccountResult(result: Bool, info: String, accountList: [D2DAccount]) {
+        if result {
+            self.accountList = accountList
+            tableView.reloadData()
+        }
     }
     
     // MARK: - Table view data source
@@ -21,7 +31,7 @@ class CustomerD2DAccountViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return accountList.count
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -35,6 +45,21 @@ class CustomerD2DAccountViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("customerD2DAccountCell", forIndexPath: indexPath)
         
+        let weekLabel = cell.viewWithTag(Constants.Tag.CustomerD2DAccountCellWeek) as! UILabel
+        let dateLabel = cell.viewWithTag(Constants.Tag.CustomerD2DAccountCellDate) as! UILabel
+        let feeLabel = cell.viewWithTag(Constants.Tag.CustomerD2DAccountCellFee) as! UILabel
+        let typeLabel = cell.viewWithTag(Constants.Tag.CustomerD2DAccountCellType) as! UILabel
+        let statusLabel = cell.viewWithTag(Constants.Tag.CustomerD2DAccountCellStatus) as! UILabel
+        
+        let account = accountList[indexPath.row]
+        weekLabel.text = account.week
+        dateLabel.text = UtilBox.getDateFromString(account.date!, format: Constants.DateFormat.MD)
+        feeLabel.text = account.fee
+        typeLabel.text = account.type
+        statusLabel.text = account.status == 0 ? "审核中" : ""
+        
         return cell
     }
+    
+    func onWithDrawResult(result: Bool, info: String) {}
 }

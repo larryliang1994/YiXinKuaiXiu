@@ -67,6 +67,8 @@ class CustomerChangePasswordViewController: UITableViewController, UITextFieldDe
     
     func onGetUserInfoResult(result: Bool, info: String) {}
     
+    func onUpdateLocationInfoResult(result: Bool, info: String) {}
+    
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1

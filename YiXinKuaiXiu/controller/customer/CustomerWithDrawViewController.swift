@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerWithDrawViewController: UITableViewController, UITextFieldDelegate, WithDrawDelegate {
+class CustomerWithDrawViewController: UITableViewController, UITextFieldDelegate, WalletDelegate {
     @IBOutlet var doneButton: UIBarButtonItem!
     @IBOutlet var moneyTextField: UITextField!
 
@@ -47,7 +47,7 @@ class CustomerWithDrawViewController: UITableViewController, UITextFieldDelegate
     func doSubmit() {
         alertView?.pwdTextField.resignFirstResponder()
         
-        WithDrawModel(withDrawDelegate: self).doWithDraw(moneyTextField.text!, pwd: (alertView?.pwdTextField.text)!)
+        WalletModel(walletDelegate: self).doWithDraw(moneyTextField.text!, pwd: (alertView?.pwdTextField.text)!)
         
         self.pleaseWait()
     }
@@ -95,5 +95,5 @@ class CustomerWithDrawViewController: UITableViewController, UITextFieldDelegate
         return section == 0 ? nil : "您有￥20.00余额可供转出"
     }
 
-    
+    func onGetD2DAccountResult(result: Bool, info: String, accountList: [D2DAccount]) {}
 }

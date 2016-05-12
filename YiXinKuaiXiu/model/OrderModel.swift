@@ -57,8 +57,8 @@ class OrderModel: OrderProtocol {
                     for index in 0 ... ret.count - 1 {
                         let orderJson = ret[index]
                         
-                        let status = Status(rawValue: orderJson["ste"].intValue)!
-                        if pullType == .Done && status != .Done {
+                        let state = State(rawValue: orderJson["ste"].intValue)!
+                        if pullType == .Done && state != .HasBeenRated {
                             continue
                         }
                         
@@ -93,7 +93,8 @@ class OrderModel: OrderProtocol {
                             location: orderJson["adr"].stringValue,
                             locationInfo: location,
                             fee: fee,
-                            status: status,
+                            status: Status(rawValue: state.rawValue)!,
+                            state: state,
                             ratingStar: orderJson["fen"].intValue,
                             ratingDesc: orderJson["fem"].stringValue)
                         
