@@ -41,7 +41,6 @@ class CustomerWithDrawViewController: UITableViewController, UITextFieldDelegate
         alert!.initView(alertView!)
         
         presentViewController(alert!, animated: true, completion: nil)
-        
     }
     
     func doSubmit() {

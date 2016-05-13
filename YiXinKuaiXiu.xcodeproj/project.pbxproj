@@ -128,6 +128,10 @@
 		49C380A01CB8F6DB00242B7A /* HeaderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C380911CB8F6DB00242B7A /* HeaderItemView.swift */; };
 		49C380A11CB8F6DB00242B7A /* HeaderItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49C380921CB8F6DB00242B7A /* HeaderItemView.xib */; };
 		49C380A31CB8F6E900242B7A /* City.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49C380A21CB8F6E900242B7A /* City.plist */; };
+		49C8BD081CE5BEE500CBE0F4 /* PayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8BD071CE5BEE500CBE0F4 /* PayProtocol.swift */; };
+		49C8BD0A1CE5BF1800CBE0F4 /* PayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8BD091CE5BF1800CBE0F4 /* PayModel.swift */; };
+		49C8BD0C1CE5D4EC00CBE0F4 /* RatingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8BD0B1CE5D4EC00CBE0F4 /* RatingProtocol.swift */; };
+		49C8BD0E1CE5D52C00CBE0F4 /* RatingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8BD0D1CE5D52C00CBE0F4 /* RatingModel.swift */; };
 		49D48ECF1CE428C900D19FC2 /* GetPartsInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D48ECE1CE428C900D19FC2 /* GetPartsInfoProtocol.swift */; };
 		49D48ED11CE42A4700D19FC2 /* GetPartsInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D48ED01CE42A4700D19FC2 /* GetPartsInfoModel.swift */; };
 		49D48ED31CE4642000D19FC2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D48ED21CE4642000D19FC2 /* Message.swift */; };
@@ -310,6 +314,10 @@
 		49C380911CB8F6DB00242B7A /* HeaderItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderItemView.swift; sourceTree = "<group>"; };
 		49C380921CB8F6DB00242B7A /* HeaderItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderItemView.xib; sourceTree = "<group>"; };
 		49C380A21CB8F6E900242B7A /* City.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = City.plist; sourceTree = "<group>"; };
+		49C8BD071CE5BEE500CBE0F4 /* PayProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayProtocol.swift; path = model/PayProtocol.swift; sourceTree = "<group>"; };
+		49C8BD091CE5BF1800CBE0F4 /* PayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayModel.swift; path = model/PayModel.swift; sourceTree = "<group>"; };
+		49C8BD0B1CE5D4EC00CBE0F4 /* RatingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatingProtocol.swift; path = model/RatingProtocol.swift; sourceTree = "<group>"; };
+		49C8BD0D1CE5D52C00CBE0F4 /* RatingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatingModel.swift; path = model/RatingModel.swift; sourceTree = "<group>"; };
 		49D48ECE1CE428C900D19FC2 /* GetPartsInfoProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetPartsInfoProtocol.swift; path = model/GetPartsInfoProtocol.swift; sourceTree = "<group>"; };
 		49D48ED01CE42A4700D19FC2 /* GetPartsInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetPartsInfoModel.swift; path = model/GetPartsInfoModel.swift; sourceTree = "<group>"; };
 		49D48ED21CE4642000D19FC2 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = bean/Message.swift; sourceTree = "<group>"; };
@@ -668,6 +676,10 @@
 				49D48ED01CE42A4700D19FC2 /* GetPartsInfoModel.swift */,
 				49D48ED41CE4677500D19FC2 /* WalletProtocol.swift */,
 				49D48ED61CE4678F00D19FC2 /* WalletModel.swift */,
+				49C8BD071CE5BEE500CBE0F4 /* PayProtocol.swift */,
+				49C8BD091CE5BF1800CBE0F4 /* PayModel.swift */,
+				49C8BD0B1CE5D4EC00CBE0F4 /* RatingProtocol.swift */,
+				49C8BD0D1CE5D52C00CBE0F4 /* RatingModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1066,6 +1078,8 @@
 				498196711CD1A4520046B72A /* AlertView.swift in Sources */,
 				49A15E821CC7C6DF0028023C /* LoginProtocol.swift in Sources */,
 				49C380A01CB8F6DB00242B7A /* HeaderItemView.swift in Sources */,
+				49C8BD0E1CE5D52C00CBE0F4 /* RatingModel.swift in Sources */,
+				49C8BD0A1CE5BF1800CBE0F4 /* PayModel.swift in Sources */,
 				4912887A1CB147F3007DD199 /* CustomerDrawerViewController.swift in Sources */,
 				49A15E891CC866430028023C /* SimpleButtonControlState.swift in Sources */,
 				491B6EE11CE18AF40039B70E /* RechargeViewController.swift in Sources */,
@@ -1135,9 +1149,11 @@
 				491B6ED31CE01D770039B70E /* CustomerWithDrawViewController.swift in Sources */,
 				491288861CB15C22007DD199 /* UtilBox.swift in Sources */,
 				496C5D451CC20EEE00CA63AC /* HandymanHomeViewController.swift in Sources */,
+				49C8BD0C1CE5D4EC00CBE0F4 /* RatingProtocol.swift in Sources */,
 				497E9AC21CD45F6100A7D934 /* CustomerChangePasswordViewController.swift in Sources */,
 				4970BF141CDA43A000E20E70 /* OrderProtocol.swift in Sources */,
 				498E263D1CBBAA7D00DE6EDC /* DKGroupDataManager.swift in Sources */,
+				49C8BD081CE5BEE500CBE0F4 /* PayProtocol.swift in Sources */,
 				497E9ABE1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift in Sources */,
 				49C380951CB8F6DB00242B7A /* LocationManager.swift in Sources */,
 			);

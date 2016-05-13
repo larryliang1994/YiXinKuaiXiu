@@ -253,6 +253,8 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func goPay() {
         //hide(self.view)
+        
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     

@@ -8,12 +8,12 @@
 
 import UIKit
 
-class CustomerRatingViewController: UITableViewController {
+class CustomerRatingViewController: UITableViewController, RatingDelegate {
 
     @IBOutlet var ratingBar: FloatRatingView!
     @IBOutlet var descTextView: BRPlaceholderTextView!
     
-    
+    var order: Order?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,21 @@ class CustomerRatingViewController: UITableViewController {
     }
     
     func done() {
+        self.pleaseWait()
+        
+        RatingModel(ratingDelegate: self).doRating((order?.date)!, star: Int(ratingBar.rating), desc: descTextView.text!)
+        
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func onRatingResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        if result {
+            self.noticeSuccess("评价成功", autoClear: true, autoClearTime: 2)
+            self.navigationController?.popViewControllerAnimated(true)
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

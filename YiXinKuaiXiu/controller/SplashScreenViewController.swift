@@ -21,7 +21,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         
         getStarted()
         
-        if Config.Aid != "" && Config.VerifyCode != "" {
+        if Config.Aid != nil && Config.Aid != "" && Config.VerifyCode != nil && Config.VerifyCode != "" {
             UserInfoModel(userInfoDelegate: self).doGetUserInfo()
             
             let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
@@ -119,10 +119,10 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let userDefault = NSUserDefaults.standardUserDefaults()
-        Config.Role = userDefault.stringForKey(Constants.UserDefaultKey.Role)!
-        Config.TelephoneNum = userDefault.stringForKey(Constants.UserDefaultKey.TelephoneNum)!
-        Config.VerifyCode = userDefault.stringForKey(Constants.UserDefaultKey.VerifyCode)!
-        Config.Aid = userDefault.stringForKey(Constants.UserDefaultKey.Aid)!
+        Config.Role = userDefault.stringForKey(Constants.UserDefaultKey.Role)
+        Config.TelephoneNum = userDefault.stringForKey(Constants.UserDefaultKey.TelephoneNum)
+        Config.VerifyCode = userDefault.stringForKey(Constants.UserDefaultKey.VerifyCode)
+        Config.Aid = userDefault.stringForKey(Constants.UserDefaultKey.Aid)
         
         var initialViewController: UIViewController?
         if Config.Role != nil && Config.TelephoneNum != nil && Config.VerifyCode != nil && Config.Aid != nil {

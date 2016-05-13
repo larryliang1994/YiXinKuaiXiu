@@ -17,12 +17,25 @@ class WalletModel: WalletProtocol {
     }
     
     func doWithDraw(money: String, pwd: String) {
-        let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
-        dispatch_async(dispatch_get_global_queue(qos, 0)) { () -> Void in
-            sleep(1)
-            dispatch_async(dispatch_get_main_queue(), {
-                self.walletDelegate?.onWithDrawResult(false, info: "密码错误")
-            })
+        AlamofireUtil.doRequest(Urls.WithDraw, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!, "cnt": money, "pwd": pwd]) { (result, response) in
+            if result {
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"].intValue
+                
+                if ret == 0 {
+                    self.walletDelegate?.onWithDrawResult(true, info: "")
+                } else if ret == 1 {
+                    self.walletDelegate?.onWithDrawResult(false, info: "认证失败")
+                } else if ret == 2 {
+                    self.walletDelegate?.onWithDrawResult(false, info: "未设置提现银行信息")
+                } else if ret == 3 {
+                    self.walletDelegate?.onWithDrawResult(false, info: "余额不足")
+                }
+                
+            } else {
+                self.walletDelegate?.onWithDrawResult(false, info: "提现失败")
+            }
         }
     }
     

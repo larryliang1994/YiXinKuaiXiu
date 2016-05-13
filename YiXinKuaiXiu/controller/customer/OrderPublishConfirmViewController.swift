@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDataSource,PopBottomViewDelegate {
+class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDataSource, PopBottomViewDelegate, PayDelegate {
     @IBOutlet var doPayButton: UIButton!
     @IBOutlet var descLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
@@ -102,13 +102,21 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         payPopoverView.closeButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.doPayButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.doPayButton.addTarget(self, action: #selector(OrderPublishConfirmViewController.goPay), forControlEvents: UIControlEvents.TouchUpInside)
-        payPopoverView.feeLabel.text = "￥" + String(order?.fee)
+        payPopoverView.feeLabel.text = "￥" + String(order?.fee!)
         return payPopoverView
     }
     
     func goPay() {
-        self.noticeSuccess("订单发布成功", autoClear: true, autoClearTime: 2)
-        goBack()
+        PayModel(payDelegate: self).goPay((order?.date)!, type: .Fee, fee: order!.fee!)
+    }
+    
+    func onGoPayResult(result: Bool, info: String) {
+        if result {
+            self.noticeSuccess("订单发布成功", autoClear: true, autoClearTime: 2)
+            goBack()
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
     
     func viewHeight() -> CGFloat {

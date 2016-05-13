@@ -8,7 +8,7 @@
 
 class Constants {
     static let Types = ["普通维修 ", "打包维修", "预约维修"]
-    static let Status = ["待发单", "进行中", "对方请求取消", "申请取消中", "待评价", "待抢单", "已完成"]
+    static let Status = ["待发单", "待抢单", "进行中", "待评价", "已完成", "对方请求取消"]
     
     struct ControllerID {
         static let PayPopover = "payPopover"

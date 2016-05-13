@@ -190,7 +190,13 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
     
     func onPublishOrderResult(result: Bool, info: String) {
         if result {
-            performSegueWithIdentifier(Constants.SegueID.ShowOrderPublishConfirmSegue, sender: self)
+            order?.date = info
+            if order?.type == .Reservation {
+                self.noticeSuccess("发布成功", autoClear: true, autoClearTime: 2)
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            } else {
+                performSegueWithIdentifier(Constants.SegueID.ShowOrderPublishConfirmSegue, sender: self)
+            }
         } else {
             UtilBox.alert(self, message: info)
         }
@@ -258,7 +264,7 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
     
     func didSelectedMaintenanceType(type: String, id: String) {
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))
-        cell?.detailTextLabel?.text = type
+        cell?.detailTextLabel?.text = type + "维修"
         
         mTypeID = id
         

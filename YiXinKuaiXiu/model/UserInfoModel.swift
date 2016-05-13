@@ -19,6 +19,7 @@ class UserInfoModel: UserInfoProtocol {
     func doGetUserInfo() {
         AlamofireUtil.doRequest(Urls.GetUserInfo, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
+                print(response)
                 let json = JSON(UtilBox.convertStringToDictionary(response)!)
                 
                 let ret = json["ret"].intValue

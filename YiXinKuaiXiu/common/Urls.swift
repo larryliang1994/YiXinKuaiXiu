@@ -20,10 +20,16 @@ class Urls {
     static let GetFeeList = "22.php?"
     static let GetCategoryList = "23.php?"
     static let GetPartsList = "24.php?"
-    static let GetMessage = "25.php?" // 返回为空
+    static let GetMessage = "25.php?" // 返回为空，badge不知道怎么显示
     static let GetAds = "26.php?" // 未完成
     static let GetD2DAccount = "27.php?"
+    static let WithDraw = "31.php?"
     static let SendOrderImage = "43.php?"
     static let PullOrderList = "51.php?"
     static let PublishOrder = "52.php?"
+    static let GoPay = "53.php?"
+    static let CancelOrder = "54.php?" // 未完成
+    static let PayMFee = "55.php?" // 未完成
+    static let PayParts = "56.php?" // 未完成
+    static let Rating = "57.php?"
 }

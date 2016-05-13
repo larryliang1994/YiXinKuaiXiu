@@ -54,13 +54,12 @@ class CustomerChangePasswordViewController: UITableViewController, UITextFieldDe
     }
     
     func onModifyUserInfoResult(result: Bool, info: String) {
+        self.clearAllNotice()
         if result {
-            self.clearAllNotice()
             Config.Password = newPasswordTextField.text
             self.navigationController?.popViewControllerAnimated(true)
             self.noticeSuccess("修改成功", autoClear: true, autoClearTime: 2)
         } else {
-            
             UtilBox.alert(self, message: info)
         }
     }

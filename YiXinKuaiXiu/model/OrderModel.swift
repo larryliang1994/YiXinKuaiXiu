@@ -26,7 +26,7 @@ class OrderModel: OrderProtocol {
                 let ret = json["ret"].intValue
                 
                 if ret == 0 {
-                    self.orderDelegate?.onPublishOrderResult(true, info: "")
+                    self.orderDelegate?.onPublishOrderResult(true, info: json["dte"].stringValue)
                 } else if ret == 1 {
                     self.orderDelegate?.onPublishOrderResult(false, info: "认证失败")
                 } else if ret == 2 {
@@ -66,15 +66,6 @@ class OrderModel: OrderProtocol {
                             continue
                         }
                         
-                        let type: Type = Type(rawValue: orderJson["tpe"].intValue - 1)!
-                        
-                        var fee = ""
-                        if type == .Normal {
-                            fee = orderJson["fe1"].stringValue
-                        } else if type == .Pack {
-                            fee = orderJson["fe2"].stringValue
-                        }
-                        
                         let location = CLLocation(latitude: CLLocationDegrees(orderJson["lat"].doubleValue), longitude: CLLocationDegrees(orderJson["lot"].doubleValue))
                         
                         let order = Order(
@@ -84,7 +75,7 @@ class OrderModel: OrderProtocol {
                             senderName: orderJson["anm"].stringValue,
                             senderNum: orderJson["aph"].stringValue,
                             graberID: orderJson["bid"].stringValue,
-                            type: type,
+                            type:  Type(rawValue: orderJson["tpe"].intValue - 1)!,
                             image1Url: nil,
                             image2Url: nil,
                             desc: orderJson["cmt"].stringValue,
@@ -92,7 +83,8 @@ class OrderModel: OrderProtocol {
                             mType: UtilBox.findMTypeNameByID(orderJson["wxg"].stringValue)!,
                             location: orderJson["adr"].stringValue,
                             locationInfo: location,
-                            fee: fee,
+                            fee: orderJson["fe1"].stringValue,
+                            mFee: orderJson["fe2"].stringValue,
                             status: Status(rawValue: state.rawValue)!,
                             state: state,
                             ratingStar: orderJson["fen"].intValue,
