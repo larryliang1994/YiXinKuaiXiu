@@ -40,8 +40,11 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate {
     }
     
     @IBAction func doGrab(sender: UIButton) {
-        //showAuditAlertView()
-        performSegueWithIdentifier(Constants.SegueID.ShowGrabListSegue, sender: self)
+        if Config.Audited == 0 {
+            showAuditAlertView()
+        } else {
+            performSegueWithIdentifier(Constants.SegueID.ShowGrabListSegue, sender: self)
+        }
     }
     
     var notAuditYetAlert: OYSimpleAlertController?
@@ -80,36 +83,36 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate {
     func didSelected(index: Int){
         drawerController?.setDrawerState(KYDrawerController.DrawerState.Closed, animated: true)
         
-        var segue: String = ""
         switch index {
         case 0:
-            segue = Constants.SegueID.HandymanDrawerToOrderListSegue
-            break
+            //UserInfo
+            let userInfoVC = UtilBox.getController(Constants.ControllerID.UserInfo) as! UserInfoViewController
+            self.navigationController?.showViewController(userInfoVC, sender: self)
             
         case 1:
-            segue = Constants.SegueID.HandymanDrawerToOrderListSegue
-            break
+            let orderListVC = UtilBox.getController(Constants.ControllerID.OrderList) as! OrderListViewController
+            self.navigationController?.showViewController(orderListVC, sender: self)
             
         case 2:
-            segue = Constants.SegueID.HandymanDrawerToWalletSegue
-            break
+            let walletVC = UtilBox.getController(Constants.ControllerID.Wallet) as! WalletViewController
+            self.navigationController?.showViewController(walletVC, sender: self)
             
         case 3:
-            segue = Constants.SegueID.HandymanDrawerToAuditIDSegue
-            break
+            if Config.Audited == 0 {
+                performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToAuditIDSegue, sender: self)
+            } else {
+                performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToAuditIDSegue, sender: self)
+            }
             
         case 4:
-            segue = Constants.SegueID.HandymanDrawerToMessageCenterSegue
-            break
+            let messageCenterVC = UtilBox.getController(Constants.ControllerID.MessageCenter) as! MessageCenterViewController
+            self.navigationController?.showViewController(messageCenterVC, sender: self)
             
         case 5:
-            segue = Constants.SegueID.HandymanDrawerToProjectBidingSegue
+            performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToProjectBidingSegue, sender: self)
             
-        default:
-            break
+        default:    break
         }
-        
-        performSegueWithIdentifier(segue, sender: self)
     }
     
     override func viewWillAppear(animated: Bool) {

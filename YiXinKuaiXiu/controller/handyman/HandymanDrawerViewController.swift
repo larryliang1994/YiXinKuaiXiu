@@ -55,6 +55,12 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("handymanDrawerTopCell")!
             
+            let telephoneLabel = cell.viewWithTag(Constants.Tag.HandymanDrawerTelephone) as! UILabel
+            let nameLabel = cell.viewWithTag(Constants.Tag.HandymanDrawerName) as! UILabel
+            
+            telephoneLabel.text = Config.TelephoneNum == nil ? "手机号" : Config.TelephoneNum
+            nameLabel.text = Config.Name == nil ? "姓名" : Config.Name
+            
             return cell
         } else if indexPath.row == 1 || indexPath.row == 4 {
             let cell = tableView.dequeueReusableCellWithIdentifier("handymanDrawerBadgeCell")!
@@ -71,8 +77,12 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
             } else {
                 image.image = UIImage(named: "messageCenter")
                 title.text = "消息中心"
-                badge.text = "11"
-                badge.badgeColor = Constants.Color.Primary
+                if Config.Messages.count == 0 {
+                    badge.hidden = true
+                } else {
+                    badge.text = Config.Messages.count.toString()
+                    badge.badgeColor = Constants.Color.Primary
+                }
             }
             
             return cell
@@ -86,12 +96,12 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
             if indexPath.row == 2 {
                 image.image = UIImage(named: "wallet")
                 title.text = "我的钱包"
-                label.text = "¥ 20.00"
+                label.text = "¥ " + Config.Money!
                 label.textColor = Constants.Color.Orange
             } else if indexPath.row == 3 {
                 image.image = UIImage(named: "audit")
                 title.text = "身份认证"
-                label.text = "已认证"
+                label.text = Config.Audited == 0 ? "未认证" : "已认证"
                 label.textColor = Constants.Color.Primary
             } else {
                 image.image = UIImage(named: "mall")

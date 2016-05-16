@@ -29,6 +29,8 @@ class RechargeViewController: UITableViewController, UITextFieldDelegate, PopBot
     }
     
     @IBAction func done(sender: UIBarButtonItem) {
+        feeTextField.resignFirstResponder()
+        
         let v = PopBottomView(frame: self.view.bounds)
         v.dataSource = self
         v.delegate = self

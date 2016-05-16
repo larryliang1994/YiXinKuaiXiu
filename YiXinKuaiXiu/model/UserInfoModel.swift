@@ -26,15 +26,15 @@ class UserInfoModel: UserInfoProtocol {
                 
                 if ret == 0 {
                     self.handleUserInfo(json)
-                    self.userInfoDelegate.onGetUserInfoResult(true, info: "")
+                    self.userInfoDelegate.onGetUserInfoResult!(true, info: "")
                 } else if ret == 1 {
-                    self.userInfoDelegate.onGetUserInfoResult(false, info: "获取用户信息失败")
+                    self.userInfoDelegate.onGetUserInfoResult!(false, info: "获取用户信息失败")
                 } else {
-                    self.userInfoDelegate.onGetUserInfoResult(false, info: "用户被锁定")
+                    self.userInfoDelegate.onGetUserInfoResult!(false, info: "用户被锁定")
                 }
                 
             } else {
-                self.userInfoDelegate.onGetUserInfoResult(false, info: "获取用户信息失败")
+                self.userInfoDelegate.onGetUserInfoResult!(false, info: "获取用户信息失败")
             }
         }
     }
@@ -47,16 +47,16 @@ class UserInfoModel: UserInfoProtocol {
                 let ret = json["ret"].intValue
                 
                 if ret == 0 {
-                    self.userInfoDelegate.onModifyUserInfoResult(true, info: "")
+                    self.userInfoDelegate.onModifyUserInfoResult!(true, info: "")
                 } else if ret == 1 {
-                    self.userInfoDelegate.onModifyUserInfoResult(false, info: "认证失败")
+                    self.userInfoDelegate.onModifyUserInfoResult!(false, info: "认证失败")
                 } else if ret == 2 {
-                    self.userInfoDelegate.onModifyUserInfoResult(false, info: "字段错误")
+                    self.userInfoDelegate.onModifyUserInfoResult!(false, info: "字段错误")
                 } else if ret == 3 {
-                    self.userInfoDelegate.onModifyUserInfoResult(false, info: "失败")
+                    self.userInfoDelegate.onModifyUserInfoResult!(false, info: "失败")
                 }
             } else {
-                self.userInfoDelegate.onModifyUserInfoResult(false, info: "设置失败")
+                self.userInfoDelegate.onModifyUserInfoResult!(false, info: "设置失败")
             }
         }
     }
@@ -64,25 +64,46 @@ class UserInfoModel: UserInfoProtocol {
     func doUpdateLocationInfo(parameters: [String]) {
         let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "lot": parameters[0], "lat": parameters[1]]
         
-        print(paramters)
-        
         AlamofireUtil.doRequest(Urls.UpdateLocationInfo, parameters: paramters) { (result, response) in
             if result {
-                print(response)
-                
                 let json = JSON(UtilBox.convertStringToDictionary(response)!)
                 
                 let ret = json["ret"].intValue
                 
                 if ret == 0 {
-                    self.userInfoDelegate.onUpdateLocationInfoResult(true, info: "")
+                    self.userInfoDelegate.onUpdateLocationInfoResult!(true, info: "")
                 } else if ret == 1 {
-                    self.userInfoDelegate.onUpdateLocationInfoResult(false, info: "认证失败")
+                    self.userInfoDelegate.onUpdateLocationInfoResult!(false, info: "认证失败")
                 } else if ret == 2 {
-                    self.userInfoDelegate.onUpdateLocationInfoResult(false, info: "失败")
+                    self.userInfoDelegate.onUpdateLocationInfoResult!(false, info: "失败")
                 }
             } else {
-                self.userInfoDelegate.onUpdateLocationInfoResult(false, info: "设置失败")
+                self.userInfoDelegate.onUpdateLocationInfoResult!(false, info: "设置失败")
+            }
+        }
+    }
+    
+    func doGetHandymanInfo(id: String) {
+        AlamofireUtil.doRequest(Urls.GetHandymanInfo, parameters: ["bid": id]) { (result, response) in
+            if result {
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"].intValue
+                
+                if ret == 0 {
+                    self.userInfoDelegate
+                        .onGetHandymanInfoResult!(true, info: "",
+                                                  name: json["nme"].stringValue,
+                                                  telephoneNum: json["cod"].stringValue,
+                                                  sex: json["sex"].intValue,
+                                                  age: json["age"].intValue,
+                                                  star: json["fen"].intValue,
+                                                  mNum: json["cnt"].intValue)
+                } else if ret == 1 {
+                    self.userInfoDelegate.onGetHandymanInfoResult!(false, info: "获取师傅信息失败", name: "", telephoneNum: "", sex: 0, age: 0, star: 0, mNum: 0)
+                }
+            } else {
+                self.userInfoDelegate.onGetHandymanInfoResult!(false, info: "获取师傅信息失败", name: "", telephoneNum: "", sex: 0, age: 0, star: 0, mNum: 0)
             }
         }
     }
@@ -109,8 +130,9 @@ class UserInfoModel: UserInfoProtocol {
     }
 }
 
-protocol UserInfoDelegate {
-    func onGetUserInfoResult(result: Bool, info: String)
-    func onModifyUserInfoResult(result: Bool, info: String)
-    func onUpdateLocationInfoResult(result: Bool, info: String)
+@objc protocol UserInfoDelegate {
+    optional func onGetUserInfoResult(result: Bool, info: String)
+    optional func onModifyUserInfoResult(result: Bool, info: String)
+    optional func onUpdateLocationInfoResult(result: Bool, info: String)
+    optional func onGetHandymanInfoResult(result: Bool, info: String, name: String, telephoneNum: String, sex: Int, age: Int, star: Int, mNum: Int)
 }

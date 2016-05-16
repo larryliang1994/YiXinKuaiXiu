@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerOrderDetailViewController: UITableViewController {
+class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate, OrderDelegate {
     
     @IBOutlet var portraitImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
@@ -26,6 +26,8 @@ class CustomerOrderDetailViewController: UITableViewController {
     @IBOutlet var picture2ImageView: UIImageView!
     @IBOutlet var picture1ImageView: UIImageView!
     var order: Order?
+    
+    var name: String?, telephoneNum: String?, sex: Int?, age: Int?, star: Int?, mNum: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,31 @@ class CustomerOrderDetailViewController: UITableViewController {
         self.tableView.layoutIfNeeded()
         
         initNavBar()
+        
+        self.pleaseWait()
+        UserInfoModel(userInfoDelegate: self).doGetHandymanInfo((order?.graberID)!)
+    }
+    
+    func onGetHandymanInfoResult(result: Bool, info: String, name: String, telephoneNum: String, sex: Int, age: Int, star: Int, mNum: Int) {
+        self.clearAllNotice()
+        if result {
+            self.name = name
+            self.telephoneNum = telephoneNum
+            self.sex = sex
+            self.age = age
+            self.star = star
+            self.mNum = mNum
+            
+            nameLabel.text = name
+            if mNum != 0 {
+                rating.rating = Float(star / mNum)
+            } else {
+                rating.rating = 0
+            }
+            orderCountLabel.text = mNum.toString() + "单"
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
     
     func initView() {
@@ -54,6 +81,8 @@ class CustomerOrderDetailViewController: UITableViewController {
         descLabel.text = order?.desc
         
         locationLabel.text = order?.location
+        
+        dateLabel.text = UtilBox.getDateFromString((order?.date)!, format: Constants.DateFormat.YMD)
     
         if order?.image1 == nil {
             imageCell.hidden = true
@@ -72,6 +101,49 @@ class CustomerOrderDetailViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
     
+    @IBAction func contact(sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        alert.addAction(UIAlertAction(
+            title: "呼叫" + self.telephoneNum!,
+            style: .Default)
+        { (action: UIAlertAction) -> Void in
+            UIApplication.sharedApplication().openURL(NSURL(string :"tel://" + self.telephoneNum!)!)
+        }
+        )
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelOrder(sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        alert.addAction(UIAlertAction(
+            title: "取消订单",
+            style: .Default)
+        { (action: UIAlertAction) -> Void in
+            self.pleaseWait()
+            
+            OrderModel(orderDelegate: self).cancelOrder(self.order!)
+        }
+        )
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func onCancelOrderResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        if result {
+            UtilBox.alert(self, message: "已向对方发出申请，请等待对方确认")
+        } else {
+            UtilBox.alert(self, message: info)
+        }
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
         case 0: return indexPath.row == 0 ? 60 : 40
@@ -87,7 +159,7 @@ class CustomerOrderDetailViewController: UITableViewController {
             
         case 2: return 129
             
-        case 3: return ratingLabel.frame.size.height + 64
+        case 3: return order?.state?.rawValue < State.HasBeenRated.rawValue ? 0 : ratingLabel.frame.size.height + 64
             
         default:    return 44
         }
@@ -106,4 +178,27 @@ class CustomerOrderDetailViewController: UITableViewController {
             performSegueWithIdentifier(Constants.SegueID.ShowHandymanInfoSugue, sender: self)
         }
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as UIViewController
+        
+        if let navCon = destination as? UINavigationController {
+            // 取出最上层的viewController，即FaceView
+            destination = navCon.visibleViewController!
+        }
+        
+        if let hivc = destination as? HandymanInfoViewController {
+            hivc.name = name
+            hivc.age = age
+            hivc.telephone = telephoneNum
+        }
+    }
+    
+    func onGrabOrderResult(result: Bool, info: String) {}
+    
+    func onPublishOrderResult(result: Bool, info: String) {}
+    
+    func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {}
+    
+    func onPullGrabOrderListResult(result: Bool, info: String, orderList: [Order]) {}
 }

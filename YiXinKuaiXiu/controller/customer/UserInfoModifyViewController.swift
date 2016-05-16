@@ -8,13 +8,13 @@
 
 import UIKit
 
-class CustomerPersonInfoModifyViewController: UITableViewController, UITextFieldDelegate, UserInfoDelegate {
+class UserInfoModifyViewController: UITableViewController, UITextFieldDelegate, UserInfoDelegate {
     
     @IBOutlet var contentTextField: UITextField!
     @IBOutlet var doneButton: UIBarButtonItem!
     
     var content: String?
-    var delegate: CustomerPersonInfoDelegate?
+    var delegate: ModifyUserInfoDelegate?
     var indexPath: NSIndexPath?
    
     override func viewDidLoad() {
@@ -69,10 +69,6 @@ class CustomerPersonInfoModifyViewController: UITableViewController, UITextField
         
         return true
     }
-    
-    func onGetUserInfoResult(result: Bool, info: String){}
-    
-    func onUpdateLocationInfoResult(result: Bool, info: String) {}
     
     func onModifyUserInfoResult(result: Bool, info: String){
         if result {
@@ -129,4 +125,8 @@ class CustomerPersonInfoModifyViewController: UITableViewController, UITextField
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
+}
+
+protocol ModifyUserInfoDelegate {
+    func didModify(indexPath: NSIndexPath, value: String)
 }

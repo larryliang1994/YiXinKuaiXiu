@@ -64,11 +64,11 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         
         if order?.type == .Pack {
             feeTitleLabel.text = "打包费"
-            feeLabel.text = order!.fee!
+            feeLabel.text = "￥ " + order!.fee!
         } else if order?.type == .Reservation {
             feeCell.hidden = true
         } else {
-            feeLabel.text = order!.fee!
+            feeLabel.text = "￥ " + order!.fee!
         }
         
         if order?.image1 == nil {
@@ -102,7 +102,7 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         payPopoverView.closeButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.doPayButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.doPayButton.addTarget(self, action: #selector(OrderPublishConfirmViewController.goPay), forControlEvents: UIControlEvents.TouchUpInside)
-        payPopoverView.feeLabel.text = "￥" + String(order?.fee!)
+        payPopoverView.feeLabel.text = "￥" + String(UTF8String: (order?.fee!)!)!
         return payPopoverView
     }
     

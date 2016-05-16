@@ -23,7 +23,7 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                 
                 let ret = json["ret"]
                 
-                if ret != nil {
+                if ret != nil && ret.count != 0 {
                     
                     Config.MTypeNames = []
                     Config.MTypes = []
@@ -38,9 +38,9 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                     
                 }
                 
-                self.getInitialInfoDelegate?.onGetMaintenanceTypeResult(true, info: "")
+                self.getInitialInfoDelegate?.onGetMaintenanceTypeResult!(true, info: "")
             } else {
-                self.getInitialInfoDelegate?.onGetMaintenanceTypeResult(false, info: "获取工种失败")
+                self.getInitialInfoDelegate?.onGetMaintenanceTypeResult!(false, info: "获取工种失败")
             }
         }
     }
@@ -52,17 +52,17 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                 
                 let ret = json["ret"]
                 
-                if ret != nil {
+                if ret != nil && ret.count != 0 {
                     
                     Config.Fees = []
                     for index in 0 ... ret.count - 1 {
-                        Config.Fees!.append(ret[index]["nme"].intValue)
+                        Config.Fees.append(ret[index]["nme"].intValue)
                     }
                 }
                 
-                self.getInitialInfoDelegate?.onGetFeeResult(true, info: "")
+                self.getInitialInfoDelegate?.onGetFeeResult!(true, info: "")
             } else {
-                self.getInitialInfoDelegate?.onGetFeeResult(false, info: "获取默认价格失败")
+                self.getInitialInfoDelegate?.onGetFeeResult!(false, info: "获取默认价格失败")
             }
         }
     }
@@ -74,7 +74,7 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                 
                 let ret = json["ret"]
                 
-                if ret != nil {
+                if ret != nil && ret.count != 0 {
                     
                     Config.Messages = []
                     for index in 0 ... ret.count - 1 {
@@ -83,9 +83,9 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                     }
                 }
                 
-                self.getInitialInfoDelegate?.onGetFeeResult(true, info: "")
+                self.getInitialInfoDelegate?.onGetMessageResult!(true, info: "")
             } else {
-                self.getInitialInfoDelegate?.onGetFeeResult(false, info: "获取默认价格失败")
+                self.getInitialInfoDelegate?.onGetMessageResult!(false, info: "获取默认价格失败")
             }
         }
     }
@@ -98,7 +98,7 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                 
                 let ret = json["ret"]
                 
-                if ret != nil {
+                if ret != nil && ret.count != 0 {
                     
                     //                    Config.Fees = []
                     //                    for index in 0 ... ret.count - 1 {
@@ -106,16 +106,16 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                     //                    }
                 }
                 
-                self.getInitialInfoDelegate?.onGetFeeResult(true, info: "")
+                self.getInitialInfoDelegate?.onGetFeeResult!(true, info: "")
             } else {
-                self.getInitialInfoDelegate?.onGetFeeResult(false, info: "获取默认价格失败")
+                self.getInitialInfoDelegate?.onGetFeeResult!(false, info: "获取默认价格失败")
             }
         }
     }
 }
 
-protocol GetInitialInfoDelegate {
-    func onGetMaintenanceTypeResult(result: Bool, info: String)
-    func onGetFeeResult(result: Bool, info: String)
-    func onGetMessageResult(result: Bool, info: String)
+@objc protocol GetInitialInfoDelegate {
+    optional func onGetMaintenanceTypeResult(result: Bool, info: String)
+    optional func onGetFeeResult(result: Bool, info: String)
+    optional func onGetMessageResult(result: Bool, info: String)
 }

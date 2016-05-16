@@ -9,12 +9,15 @@
 import UIKit
 import KYDrawerController
 
-class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate, UserInfoDelegate, GetInitialInfoDelegate {
 
     @IBOutlet var verifyCodeTextField: UITextField!
     @IBOutlet var telephoneNumTextField: UITextField!
     @IBOutlet var getVerifyCodeButton: UIButton!
     @IBOutlet var loginButton: UIButton!
+    
+    let requestNum = 3
+    var initRequestNum = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,31 +72,74 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate 
     }
     
     func onLoginResult(result: Bool, info: String) {
-        self.clearAllNotice()
         if result {
-            print("here")
+            UserInfoModel(userInfoDelegate: self).doGetUserInfo()
             
-            self.noticeSuccess(info, autoClear: true, autoClearTime: 2)
-//            if Config.Role == Constants.Role.Customer {
-//                performSegueWithIdentifier(Constants.SegueID.CustomerMainSegue, sender: self)
-//            } else {
-//                performSegueWithIdentifier(Constants.SegueID.HandymanMainSegue, sender: self)
-//            }
-            
-            var initialViewController: UIViewController?
-            if Config.Role == Constants.Role.Customer {
-                initialViewController = storyboard!.instantiateViewControllerWithIdentifier("CustomerMainVC") as! KYDrawerController
-            } else {
-                initialViewController = storyboard!.instantiateViewControllerWithIdentifier("HandymanMainVC") as! KYDrawerController
-            }
-            
-            UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
-                UIApplication.sharedApplication().keyWindow?.rootViewController = initialViewController
-                }, completion: nil)
-        
+            let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
+            getInitialInfoModel.getMaintenanceType()
+            getInitialInfoModel.getMessage()
         } else {
+            self.clearAllNotice()
             self.noticeError(info, autoClear: true, autoClearTime: 2)
         }
+    }
+    
+    func onGetMessageResult(result: Bool, info: String) {
+        if result {
+            initRequestNum += 1
+            
+            if initRequestNum == requestNum {
+                self.clearAllNotice()
+                showMainScreen()
+            }
+            
+        } else {
+            self.clearAllNotice()
+            UtilBox.alert(self, message: info)
+        }
+    }
+    
+    func onGetUserInfoResult(result: Bool, info: String) {
+        if result {
+            initRequestNum += 1
+            
+            if initRequestNum == requestNum {
+                self.clearAllNotice()
+                showMainScreen()
+            }
+            
+        } else {
+            self.clearAllNotice()
+            UtilBox.alert(self, message: info)
+        }
+    }
+    
+    func onGetMaintenanceTypeResult(result: Bool, info: String) {
+        if result {
+            initRequestNum += 1
+            
+            if initRequestNum == requestNum {
+                self.clearAllNotice()
+                showMainScreen()
+            }
+            
+        } else {
+            self.clearAllNotice()
+            UtilBox.alert(self, message: info)
+        }
+    }
+    
+    func showMainScreen() {
+        var initialViewController: UIViewController?
+        if Config.Role == Constants.Role.Customer {
+            initialViewController = storyboard!.instantiateViewControllerWithIdentifier("CustomerMainVC") as! KYDrawerController
+        } else {
+            initialViewController = storyboard!.instantiateViewControllerWithIdentifier("HandymanMainVC") as! KYDrawerController
+        }
+        
+        UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
+            UIApplication.sharedApplication().keyWindow?.rootViewController = initialViewController
+            }, completion: nil)
     }
  
     // 控制编辑中的视图样式

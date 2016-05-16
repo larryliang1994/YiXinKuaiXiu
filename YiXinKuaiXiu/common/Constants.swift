@@ -8,10 +8,23 @@
 
 class Constants {
     static let Types = ["普通维修 ", "打包维修", "预约维修"]
-    static let Status = ["待发单", "待抢单", "进行中", "待评价", "已完成", "对方请求取消"]
+    static let Status = ["待发单", "待抢单", "进行中", "待评价", "已完成", "取消中"]
     
     struct ControllerID {
         static let PayPopover = "payPopover"
+        
+        static let Wallet = "walletController"
+        static let ChooseLocation = "chooseLocationController"
+        static let MessageCenter = "messageCenterController"
+        
+        static let CustomerOrderList = "customerOrderListTableViewController"
+        static let HandymanOrderList = "handymanOrderListTableViewController"
+        
+        static let Rating = "ratingController"
+        static let OrderList = "orderListController"
+        
+        static let UserInfo = "userInfoController"
+        static let PartsMall = "partsMallController"
     }
     
     struct UserDefaultKey {
@@ -83,15 +96,18 @@ class Constants {
         
         static let CustomerChooseFeeCellButton = 50
         
-        static let CustomerMessageCenterCellTitle = 51
-        static let CustomerMessageCenterCellDate = 52
-        static let CustomerMessageCenterCellDesc = 53
+        static let MessageCenterCellTitle = 51
+        static let MessageCenterCellDate = 52
+        static let MessageCenterCellDesc = 53
         
         static let CustomerD2DAccountCellWeek = 54
         static let CustomerD2DAccountCellDate = 55
         static let CustomerD2DAccountCellFee = 56
         static let CustomerD2DAccountCellType = 57
         static let CustomerD2DAccountCellStatus = 58
+        
+        static let HandymanDrawerName = 1
+        static let HandymanDrawerTelephone = 2
     }
     
     struct SegueID {
@@ -107,7 +123,7 @@ class Constants {
         static let ShowCustomerRatingSegue = "showCustomerRatingSegue"
         static let ShowCustomerOrderDetail = "showCustomerOrderDetail"
         static let ShowHandymanInfoSugue = "showHandymanInfoSugue"
-        static let ShowCustomerWalletSegue = "showCustomerWalletSegue"
+        //static let ShowCustomerWalletSegue = "showCustomerWalletSegue"
         
         static let ShowOrderPublishConfirmSegue = "showOrderPublishConfirmSegue"
         
@@ -129,13 +145,13 @@ class Constants {
         static let ShowHandymanChooseMaintenanceTypeSegue = "showHandymanChooseMaintenanceTypeSegue"
         static let ShowHandymanChooseLocationSegue = "showHandymanChooseLocationSegue"
         
-        static let CustomerModifyPersonInfoSefue = "customerModifyPersonInfoSefue"
+        static let ModifyUserInfoSefue = "modifyUserInfoSegue"
         static let CustomerChoosePersonInfoLocationSefue = "customerChoosePersonInfoLocationSefue"
         
-        static let ShowCustomerD2DAccountSegue = "showCustomerD2DAccountSegue"
-        static let ShowCustomerChangePasswordSegue = "showCustomerChangePasswordSegue"
-        static let ShowCustomerWithDrawSegue = "showCustomerWithDrawSegue"
-        static let ShowCustomerRechargeSegue = "showCustomerRechargeSegue"
+        static let ShowD2DAccountSegue = "showD2DAccountSegue"
+        static let ShowChangePasswordSegue = "showChangePasswordSegue"
+        static let ShowWithDrawSegue = "showWithDrawSegue"
+        static let ShowRechargeSegue = "showRechargeSegue"
         
         static let ChooseFeeSegue = "chooseFeeSegue"
     }

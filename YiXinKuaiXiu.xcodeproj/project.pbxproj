@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4909EC471CE86F6000C4FD04 /* HandymanOrderListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4909EC461CE86F6000C4FD04 /* HandymanOrderListTableViewController.swift */; };
+		4909EC491CE8710400C4FD04 /* OrderListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4909EC481CE8710400C4FD04 /* OrderListTableViewController.swift */; };
+		4909EC4B1CE966E000C4FD04 /* AuditProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4909EC4A1CE966E000C4FD04 /* AuditProtocol.swift */; };
+		4909EC4D1CE9671B00C4FD04 /* AuditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4909EC4C1CE9671B00C4FD04 /* AuditModel.swift */; };
+		4909EC4F1CE9FE7100C4FD04 /* HandymanInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4909EC4E1CE9FE7100C4FD04 /* HandymanInfoViewController.swift */; };
 		4912884F1CB1395F007DD199 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E8C0141CB1258500B173E0 /* Alamofire.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		491288501CB1395F007DD199 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49E8C0141CB1258500B173E0 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		491288511CB1395F007DD199 /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E8C0151CB1258500B173E0 /* Haneke.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -30,7 +35,7 @@
 		4912888C1CB25634007DD199 /* BRPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4912888B1CB25634007DD199 /* BRPlaceholderTextView.m */; };
 		4912888E1CB256D0007DD199 /* OrderPublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912888D1CB256D0007DD199 /* OrderPublishViewController.swift */; };
 		491288901CB2A7F1007DD199 /* MaintenanceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912888F1CB2A7F1007DD199 /* MaintenanceTypeViewController.swift */; };
-		491B6ED31CE01D770039B70E /* CustomerWithDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6ED21CE01D770039B70E /* CustomerWithDrawViewController.swift */; };
+		491B6ED31CE01D770039B70E /* WithDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6ED21CE01D770039B70E /* WithDrawViewController.swift */; };
 		491B6ED71CE021970039B70E /* EnterPasswordAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6ED61CE021970039B70E /* EnterPasswordAlertView.swift */; };
 		491B6ED91CE021C50039B70E /* EnterPasswordAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491B6ED81CE021C50039B70E /* EnterPasswordAlertView.xib */; };
 		491B6EDF1CE172320039B70E /* ChooseFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */; };
@@ -40,8 +45,8 @@
 		496C5D391CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D381CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift */; };
 		496C5D3D1CC1D64800CA63AC /* ShoppingCartPayPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D3B1CC1D64800CA63AC /* ShoppingCartPayPopoverView.swift */; };
 		496C5D3E1CC1D64800CA63AC /* ShoppingCartPayPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 496C5D3C1CC1D64800CA63AC /* ShoppingCartPayPopoverView.xib */; };
-		496C5D401CC1E79200CA63AC /* CustomerPersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D3F1CC1E79200CA63AC /* CustomerPersonInfoViewController.swift */; };
-		496C5D421CC1E8CA00CA63AC /* CustomerWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D411CC1E8CA00CA63AC /* CustomerWalletViewController.swift */; };
+		496C5D401CC1E79200CA63AC /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D3F1CC1E79200CA63AC /* UserInfoViewController.swift */; };
+		496C5D421CC1E8CA00CA63AC /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D411CC1E8CA00CA63AC /* WalletViewController.swift */; };
 		496C5D451CC20EEE00CA63AC /* HandymanHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D441CC20EEE00CA63AC /* HandymanHomeViewController.swift */; };
 		496C5D471CC20F1C00CA63AC /* HandymanDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D461CC20F1C00CA63AC /* HandymanDrawerViewController.swift */; };
 		496C5D491CC2323A00CA63AC /* OrderGrabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D481CC2323A00CA63AC /* OrderGrabViewController.swift */; };
@@ -56,11 +61,9 @@
 		497542491CDDDB1200E23D38 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497542481CDDDB1200E23D38 /* Category.swift */; };
 		4979E8961CB4AD5800D03919 /* SMSwipeableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979E8951CB4AD5800D03919 /* SMSwipeableTabViewController.swift */; };
 		497E9AB81CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */; };
-		497E9ABA1CD253A300A7D934 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9AB91CD253A300A7D934 /* ChooseLocationViewController.swift */; };
-		497E9ABC1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9ABB1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift */; };
-		497E9ABE1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9ABD1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift */; };
-		497E9AC01CD45B1300A7D934 /* CustomerD2DAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9ABF1CD45B1300A7D934 /* CustomerD2DAccountViewController.swift */; };
-		497E9AC21CD45F6100A7D934 /* CustomerChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9AC11CD45F6100A7D934 /* CustomerChangePasswordViewController.swift */; };
+		497E9ABC1CD3412300A7D934 /* UserInfoModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9ABB1CD3412300A7D934 /* UserInfoModifyViewController.swift */; };
+		497E9AC01CD45B1300A7D934 /* D2DAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9ABF1CD45B1300A7D934 /* D2DAccountViewController.swift */; };
+		497E9AC21CD45F6100A7D934 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9AC11CD45F6100A7D934 /* ChangePasswordViewController.swift */; };
 		4981966F1CD1A43E0046B72A /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4981966E1CD1A43E0046B72A /* AlertView.xib */; };
 		498196711CD1A4520046B72A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498196701CD1A4520046B72A /* AlertView.swift */; };
 		498E26171CBB9C3C00DE6EDC /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E26161CBB9C3C00DE6EDC /* SwiftNotice.swift */; };
@@ -91,16 +94,12 @@
 		49A15E551CC515330028023C /* OrderGrabDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E541CC515330028023C /* OrderGrabDetailViewController.swift */; };
 		49A15E5A1CC51E4B0028023C /* ChooseLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E561CC51E4B0028023C /* ChooseLocationTableViewController.swift */; };
 		49A15E5B1CC51E4B0028023C /* CustomerOrderListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E571CC51E4B0028023C /* CustomerOrderListTableViewController.swift */; };
-		49A15E5C1CC51E4B0028023C /* CustomerOrderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E581CC51E4B0028023C /* CustomerOrderListViewController.swift */; };
+		49A15E5C1CC51E4B0028023C /* OrderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E581CC51E4B0028023C /* OrderListViewController.swift */; };
 		49A15E5D1CC51E4B0028023C /* PartsMallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E591CC51E4B0028023C /* PartsMallViewController.swift */; };
-		49A15E601CC5225C0028023C /* HandymanOrderListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E5E1CC5225C0028023C /* HandymanOrderListTableViewController.swift */; };
-		49A15E611CC5225C0028023C /* HandymanOrderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E5F1CC5225C0028023C /* HandymanOrderListViewController.swift */; };
 		49A15E631CC5D2020028023C /* HandymanOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E621CC5D2020028023C /* HandymanOrderDetailViewController.swift */; };
-		49A15E651CC5D4E30028023C /* HandymanWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E641CC5D4E30028023C /* HandymanWalletViewController.swift */; };
 		49A15E671CC5DC650028023C /* AuditIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E661CC5DC650028023C /* AuditIDViewController.swift */; };
 		49A15E791CC675430028023C /* ProjectBidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E781CC675430028023C /* ProjectBidingViewController.swift */; };
 		49A15E7B1CC6781F0028023C /* OYSimpleAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E7A1CC6781F0028023C /* OYSimpleAlertController.swift */; };
-		49A15E7D1CC7BF280028023C /* HandymanD2DAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E7C1CC7BF280028023C /* HandymanD2DAccountViewController.swift */; };
 		49A15E811CC7C6DF0028023C /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E7F1CC7C6DF0028023C /* LoginModel.swift */; };
 		49A15E821CC7C6DF0028023C /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E801CC7C6DF0028023C /* LoginProtocol.swift */; };
 		49A15E881CC866430028023C /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E861CC866420028023C /* SimpleButton.swift */; };
@@ -137,11 +136,11 @@
 		49D48ED31CE4642000D19FC2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D48ED21CE4642000D19FC2 /* Message.swift */; };
 		49D48ED51CE4677500D19FC2 /* WalletProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D48ED41CE4677500D19FC2 /* WalletProtocol.swift */; };
 		49D48ED71CE4678F00D19FC2 /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D48ED61CE4678F00D19FC2 /* WalletModel.swift */; };
-		49D48EDB1CE49C2E00D19FC2 /* CustomerMessageCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D48EDA1CE49C2E00D19FC2 /* CustomerMessageCenterViewController.swift */; };
+		49D48EDB1CE49C2E00D19FC2 /* MessageCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D48EDA1CE49C2E00D19FC2 /* MessageCenterViewController.swift */; };
 		49D48EDD1CE4A0D300D19FC2 /* D2DAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D48EDC1CE4A0D300D19FC2 /* D2DAccount.swift */; };
 		49D76B951CBE6D10005E2213 /* OrderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D76B941CBE6D10005E2213 /* OrderListCell.swift */; };
 		49D76B9A1CBF48C4005E2213 /* SwiftBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D76B991CBF48C4005E2213 /* SwiftBadge.swift */; };
-		49D76B9E1CC0C581005E2213 /* CustomerRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D76B9D1CC0C581005E2213 /* CustomerRatingViewController.swift */; };
+		49D76B9E1CC0C581005E2213 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D76B9D1CC0C581005E2213 /* RatingViewController.swift */; };
 		49D76BA01CC0C81F005E2213 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D76B9F1CC0C81F005E2213 /* FloatRatingView.swift */; };
 		49D76BA31CC0CF15005E2213 /* ShoppingCartPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D76BA21CC0CF15005E2213 /* ShoppingCartPopoverView.swift */; };
 		49D76BA51CC0CF5D005E2213 /* ShoppingCartPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D76BA41CC0CF5D005E2213 /* ShoppingCartPopoverView.xib */; };
@@ -193,6 +192,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4909EC461CE86F6000C4FD04 /* HandymanOrderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandymanOrderListTableViewController.swift; sourceTree = "<group>"; };
+		4909EC481CE8710400C4FD04 /* OrderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderListTableViewController.swift; path = controller/OrderListTableViewController.swift; sourceTree = "<group>"; };
+		4909EC4A1CE966E000C4FD04 /* AuditProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuditProtocol.swift; path = model/AuditProtocol.swift; sourceTree = "<group>"; };
+		4909EC4C1CE9671B00C4FD04 /* AuditModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuditModel.swift; path = model/AuditModel.swift; sourceTree = "<group>"; };
+		4909EC4E1CE9FE7100C4FD04 /* HandymanInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanInfoViewController.swift; path = controller/customer/HandymanInfoViewController.swift; sourceTree = "<group>"; };
 		491288791CB147F3007DD199 /* CustomerDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerDrawerViewController.swift; path = controller/customer/CustomerDrawerViewController.swift; sourceTree = "<group>"; };
 		4912887B1CB15189007DD199 /* CustomerHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerHomeViewController.swift; path = controller/customer/CustomerHomeViewController.swift; sourceTree = "<group>"; };
 		4912887D1CB15328007DD199 /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
@@ -208,7 +212,7 @@
 		491288941CB2B099007DD199 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Main.strings; sourceTree = "<group>"; };
 		491288951CB2B0DD007DD199 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		491288961CB2B0DD007DD199 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		491B6ED21CE01D770039B70E /* CustomerWithDrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerWithDrawViewController.swift; path = controller/customer/CustomerWithDrawViewController.swift; sourceTree = "<group>"; };
+		491B6ED21CE01D770039B70E /* WithDrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WithDrawViewController.swift; path = controller/customer/WithDrawViewController.swift; sourceTree = "<group>"; };
 		491B6ED61CE021970039B70E /* EnterPasswordAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterPasswordAlertView.swift; path = view/EnterPasswordAlertView/EnterPasswordAlertView.swift; sourceTree = "<group>"; };
 		491B6ED81CE021C50039B70E /* EnterPasswordAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnterPasswordAlertView.xib; path = view/EnterPasswordAlertView/EnterPasswordAlertView.xib; sourceTree = "<group>"; };
 		491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseFeeViewController.swift; path = controller/customer/ChooseFeeViewController.swift; sourceTree = "<group>"; };
@@ -218,8 +222,8 @@
 		496C5D381CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoppingCartPopoverViewCell.swift; path = controller/customer/ShoppingPopoverView/ShoppingCartPopoverViewCell.swift; sourceTree = "<group>"; };
 		496C5D3B1CC1D64800CA63AC /* ShoppingCartPayPopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartPayPopoverView.swift; sourceTree = "<group>"; };
 		496C5D3C1CC1D64800CA63AC /* ShoppingCartPayPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartPayPopoverView.xib; sourceTree = "<group>"; };
-		496C5D3F1CC1E79200CA63AC /* CustomerPersonInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerPersonInfoViewController.swift; path = controller/customer/CustomerPersonInfoViewController.swift; sourceTree = "<group>"; };
-		496C5D411CC1E8CA00CA63AC /* CustomerWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerWalletViewController.swift; path = controller/customer/CustomerWalletViewController.swift; sourceTree = "<group>"; };
+		496C5D3F1CC1E79200CA63AC /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoViewController.swift; path = controller/customer/UserInfoViewController.swift; sourceTree = "<group>"; };
+		496C5D411CC1E8CA00CA63AC /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletViewController.swift; path = controller/customer/WalletViewController.swift; sourceTree = "<group>"; };
 		496C5D441CC20EEE00CA63AC /* HandymanHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanHomeViewController.swift; path = controller/handyman/HandymanHomeViewController.swift; sourceTree = "<group>"; };
 		496C5D461CC20F1C00CA63AC /* HandymanDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanDrawerViewController.swift; path = controller/handyman/HandymanDrawerViewController.swift; sourceTree = "<group>"; };
 		496C5D481CC2323A00CA63AC /* OrderGrabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderGrabViewController.swift; path = controller/handyman/OrderGrabViewController.swift; sourceTree = "<group>"; };
@@ -234,11 +238,9 @@
 		497542481CDDDB1200E23D38 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = bean/Category.swift; sourceTree = "<group>"; };
 		4979E8951CB4AD5800D03919 /* SMSwipeableTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSwipeableTabViewController.swift; path = view/SMSwipeableTabViewController.swift; sourceTree = "<group>"; };
 		497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseMaintenanceTypeViewController.swift; path = controller/handyman/ChooseMaintenanceTypeViewController.swift; sourceTree = "<group>"; };
-		497E9AB91CD253A300A7D934 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseLocationViewController.swift; path = controller/handyman/ChooseLocationViewController.swift; sourceTree = "<group>"; };
-		497E9ABB1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerPersonInfoModifyViewController.swift; path = controller/customer/CustomerPersonInfoModifyViewController.swift; sourceTree = "<group>"; };
-		497E9ABD1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerPersonInfoLocationViewController.swift; path = controller/customer/CustomerPersonInfoLocationViewController.swift; sourceTree = "<group>"; };
-		497E9ABF1CD45B1300A7D934 /* CustomerD2DAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerD2DAccountViewController.swift; path = controller/customer/CustomerD2DAccountViewController.swift; sourceTree = "<group>"; };
-		497E9AC11CD45F6100A7D934 /* CustomerChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerChangePasswordViewController.swift; path = controller/customer/CustomerChangePasswordViewController.swift; sourceTree = "<group>"; };
+		497E9ABB1CD3412300A7D934 /* UserInfoModifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoModifyViewController.swift; path = controller/customer/UserInfoModifyViewController.swift; sourceTree = "<group>"; };
+		497E9ABF1CD45B1300A7D934 /* D2DAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = D2DAccountViewController.swift; path = controller/customer/D2DAccountViewController.swift; sourceTree = "<group>"; };
+		497E9AC11CD45F6100A7D934 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangePasswordViewController.swift; path = controller/customer/ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		4981966E1CD1A43E0046B72A /* AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertView.xib; path = view/AlertView/AlertView.xib; sourceTree = "<group>"; };
 		498196701CD1A4520046B72A /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = view/AlertView/AlertView.swift; sourceTree = "<group>"; };
 		498E26161CBB9C3C00DE6EDC /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftNotice.swift; path = view/SwiftNotice.swift; sourceTree = "<group>"; };
@@ -277,16 +279,12 @@
 		49A15E541CC515330028023C /* OrderGrabDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderGrabDetailViewController.swift; path = controller/handyman/OrderGrabDetailViewController.swift; sourceTree = "<group>"; };
 		49A15E561CC51E4B0028023C /* ChooseLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseLocationTableViewController.swift; path = controller/customer/ChooseLocationTableViewController.swift; sourceTree = "<group>"; };
 		49A15E571CC51E4B0028023C /* CustomerOrderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerOrderListTableViewController.swift; path = controller/customer/CustomerOrderListTableViewController.swift; sourceTree = "<group>"; };
-		49A15E581CC51E4B0028023C /* CustomerOrderListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerOrderListViewController.swift; path = controller/customer/CustomerOrderListViewController.swift; sourceTree = "<group>"; };
+		49A15E581CC51E4B0028023C /* OrderListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderListViewController.swift; path = controller/customer/OrderListViewController.swift; sourceTree = "<group>"; };
 		49A15E591CC51E4B0028023C /* PartsMallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartsMallViewController.swift; path = controller/customer/PartsMallViewController.swift; sourceTree = "<group>"; };
-		49A15E5E1CC5225C0028023C /* HandymanOrderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanOrderListTableViewController.swift; path = controller/handyman/HandymanOrderListTableViewController.swift; sourceTree = "<group>"; };
-		49A15E5F1CC5225C0028023C /* HandymanOrderListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanOrderListViewController.swift; path = controller/handyman/HandymanOrderListViewController.swift; sourceTree = "<group>"; };
 		49A15E621CC5D2020028023C /* HandymanOrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanOrderDetailViewController.swift; path = controller/handyman/HandymanOrderDetailViewController.swift; sourceTree = "<group>"; };
-		49A15E641CC5D4E30028023C /* HandymanWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanWalletViewController.swift; path = controller/handyman/HandymanWalletViewController.swift; sourceTree = "<group>"; };
 		49A15E661CC5DC650028023C /* AuditIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuditIDViewController.swift; path = controller/handyman/AuditIDViewController.swift; sourceTree = "<group>"; };
 		49A15E781CC675430028023C /* ProjectBidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectBidingViewController.swift; path = controller/handyman/ProjectBidingViewController.swift; sourceTree = "<group>"; };
 		49A15E7A1CC6781F0028023C /* OYSimpleAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OYSimpleAlertController.swift; path = view/OYSimpleAlertController.swift; sourceTree = "<group>"; };
-		49A15E7C1CC7BF280028023C /* HandymanD2DAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandymanD2DAccountViewController.swift; path = controller/handyman/HandymanD2DAccountViewController.swift; sourceTree = "<group>"; };
 		49A15E7F1CC7C6DF0028023C /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginModel.swift; path = model/LoginModel.swift; sourceTree = "<group>"; };
 		49A15E801CC7C6DF0028023C /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginProtocol.swift; path = model/LoginProtocol.swift; sourceTree = "<group>"; };
 		49A15E861CC866420028023C /* SimpleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
@@ -323,11 +321,11 @@
 		49D48ED21CE4642000D19FC2 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = bean/Message.swift; sourceTree = "<group>"; };
 		49D48ED41CE4677500D19FC2 /* WalletProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletProtocol.swift; path = model/WalletProtocol.swift; sourceTree = "<group>"; };
 		49D48ED61CE4678F00D19FC2 /* WalletModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletModel.swift; path = model/WalletModel.swift; sourceTree = "<group>"; };
-		49D48EDA1CE49C2E00D19FC2 /* CustomerMessageCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerMessageCenterViewController.swift; path = controller/customer/CustomerMessageCenterViewController.swift; sourceTree = "<group>"; };
+		49D48EDA1CE49C2E00D19FC2 /* MessageCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageCenterViewController.swift; path = controller/customer/MessageCenterViewController.swift; sourceTree = "<group>"; };
 		49D48EDC1CE4A0D300D19FC2 /* D2DAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = D2DAccount.swift; path = bean/D2DAccount.swift; sourceTree = "<group>"; };
 		49D76B941CBE6D10005E2213 /* OrderListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderListCell.swift; path = cell/OrderListCell.swift; sourceTree = "<group>"; };
 		49D76B991CBF48C4005E2213 /* SwiftBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftBadge.swift; path = view/SwiftBadge.swift; sourceTree = "<group>"; };
-		49D76B9D1CC0C581005E2213 /* CustomerRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerRatingViewController.swift; path = controller/customer/CustomerRatingViewController.swift; sourceTree = "<group>"; };
+		49D76B9D1CC0C581005E2213 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatingViewController.swift; path = controller/customer/RatingViewController.swift; sourceTree = "<group>"; };
 		49D76B9F1CC0C81F005E2213 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = view/FloatRatingView.swift; sourceTree = "<group>"; };
 		49D76BA21CC0CF15005E2213 /* ShoppingCartPopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoppingCartPopoverView.swift; path = controller/customer/ShoppingPopoverView/ShoppingCartPopoverView.swift; sourceTree = "<group>"; };
 		49D76BA41CC0CF5D005E2213 /* ShoppingCartPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoppingCartPopoverView.xib; path = controller/customer/ShoppingPopoverView/ShoppingCartPopoverView.xib; sourceTree = "<group>"; };
@@ -405,33 +403,21 @@
 		491288781CB147CB007DD199 /* customer */ = {
 			isa = PBXGroup;
 			children = (
-				49C380741CB89D1600242B7A /* PayPopoverViewController */,
 				49D76BA11CC0CE00005E2213 /* ShoppingCartPopoverView */,
 				496C5D3A1CC1D64800CA63AC /* ShoppingCartPayPopoverViewController */,
-				491288791CB147F3007DD199 /* CustomerDrawerViewController.swift */,
 				4912887B1CB15189007DD199 /* CustomerHomeViewController.swift */,
+				491288791CB147F3007DD199 /* CustomerDrawerViewController.swift */,
 				491288871CB16AC3007DD199 /* OrderTypeViewController.swift */,
 				4912888D1CB256D0007DD199 /* OrderPublishViewController.swift */,
 				4912888F1CB2A7F1007DD199 /* MaintenanceTypeViewController.swift */,
-				49A15E561CC51E4B0028023C /* ChooseLocationTableViewController.swift */,
 				491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */,
 				49A2E9171CB7FD890079C690 /* CheckFeeViewController.swift */,
 				49BF67891CB3653B002257C0 /* OrderPublishConfirmViewController.swift */,
-				49A15E581CC51E4B0028023C /* CustomerOrderListViewController.swift */,
 				49A15E571CC51E4B0028023C /* CustomerOrderListTableViewController.swift */,
-				49A15E591CC51E4B0028023C /* PartsMallViewController.swift */,
-				49D76B9D1CC0C581005E2213 /* CustomerRatingViewController.swift */,
-				49F36D231CB79BE8000DF874 /* MallViewController.swift */,
 				49D76BA71CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift */,
-				496C5D3F1CC1E79200CA63AC /* CustomerPersonInfoViewController.swift */,
-				497E9ABB1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift */,
-				497E9ABD1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift */,
-				496C5D411CC1E8CA00CA63AC /* CustomerWalletViewController.swift */,
-				497E9AC11CD45F6100A7D934 /* CustomerChangePasswordViewController.swift */,
-				491B6ED21CE01D770039B70E /* CustomerWithDrawViewController.swift */,
-				497E9ABF1CD45B1300A7D934 /* CustomerD2DAccountViewController.swift */,
-				491B6EE01CE18AF40039B70E /* RechargeViewController.swift */,
-				49D48EDA1CE49C2E00D19FC2 /* CustomerMessageCenterViewController.swift */,
+				4909EC4E1CE9FE7100C4FD04 /* HandymanInfoViewController.swift */,
+				49A15E591CC51E4B0028023C /* PartsMallViewController.swift */,
+				49F36D231CB79BE8000DF874 /* MallViewController.swift */,
 			);
 			name = customer;
 			sourceTree = "<group>";
@@ -484,14 +470,10 @@
 				496C5D481CC2323A00CA63AC /* OrderGrabViewController.swift */,
 				496C5D4A1CC232FA00CA63AC /* OrderGrabTableViewController.swift */,
 				49A15E541CC515330028023C /* OrderGrabDetailViewController.swift */,
-				49A15E5F1CC5225C0028023C /* HandymanOrderListViewController.swift */,
-				49A15E5E1CC5225C0028023C /* HandymanOrderListTableViewController.swift */,
+				4909EC461CE86F6000C4FD04 /* HandymanOrderListTableViewController.swift */,
 				49A15E621CC5D2020028023C /* HandymanOrderDetailViewController.swift */,
-				49A15E641CC5D4E30028023C /* HandymanWalletViewController.swift */,
-				49A15E7C1CC7BF280028023C /* HandymanD2DAccountViewController.swift */,
 				49A15E661CC5DC650028023C /* AuditIDViewController.swift */,
 				497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */,
-				497E9AB91CD253A300A7D934 /* ChooseLocationViewController.swift */,
 				49A15E781CC675430028023C /* ProjectBidingViewController.swift */,
 			);
 			name = handyman;
@@ -638,8 +620,21 @@
 		4991F33D1CB0FCDE00E1BF85 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				49C380741CB89D1600242B7A /* PayPopoverViewController */,
 				496C5D431CC20E9800CA63AC /* handyman */,
 				491288781CB147CB007DD199 /* customer */,
+				49D48EDA1CE49C2E00D19FC2 /* MessageCenterViewController.swift */,
+				496C5D3F1CC1E79200CA63AC /* UserInfoViewController.swift */,
+				497E9ABB1CD3412300A7D934 /* UserInfoModifyViewController.swift */,
+				49A15E581CC51E4B0028023C /* OrderListViewController.swift */,
+				4909EC481CE8710400C4FD04 /* OrderListTableViewController.swift */,
+				49D76B9D1CC0C581005E2213 /* RatingViewController.swift */,
+				49A15E561CC51E4B0028023C /* ChooseLocationTableViewController.swift */,
+				496C5D411CC1E8CA00CA63AC /* WalletViewController.swift */,
+				497E9AC11CD45F6100A7D934 /* ChangePasswordViewController.swift */,
+				491B6EE01CE18AF40039B70E /* RechargeViewController.swift */,
+				491B6ED21CE01D770039B70E /* WithDrawViewController.swift */,
+				497E9ABF1CD45B1300A7D934 /* D2DAccountViewController.swift */,
 				4991F3411CB1029A00E1BF85 /* WelcomeViewController.swift */,
 				4991F3431CB113A100E1BF85 /* LoginViewController.swift */,
 				49F580B91CCF64A20084EE99 /* SplashScreenViewController.swift */,
@@ -680,6 +675,8 @@
 				49C8BD091CE5BF1800CBE0F4 /* PayModel.swift */,
 				49C8BD0B1CE5D4EC00CBE0F4 /* RatingProtocol.swift */,
 				49C8BD0D1CE5D52C00CBE0F4 /* RatingModel.swift */,
+				4909EC4A1CE966E000C4FD04 /* AuditProtocol.swift */,
+				4909EC4C1CE9671B00C4FD04 /* AuditModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1042,22 +1039,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4909EC491CE8710400C4FD04 /* OrderListTableViewController.swift in Sources */,
 				498E26491CBBAA7D00DE6EDC /* DKPermissionView.swift in Sources */,
-				497E9AC01CD45B1300A7D934 /* CustomerD2DAccountViewController.swift in Sources */,
+				497E9AC01CD45B1300A7D934 /* D2DAccountViewController.swift in Sources */,
 				4991F3441CB113A100E1BF85 /* LoginViewController.swift in Sources */,
 				49A15E551CC515330028023C /* OrderGrabDetailViewController.swift in Sources */,
 				49C380941CB8F6DB00242B7A /* CFCityPickerVCCommon.swift in Sources */,
-				49A15E611CC5225C0028023C /* HandymanOrderListViewController.swift in Sources */,
 				49A15E7B1CC6781F0028023C /* OYSimpleAlertController.swift in Sources */,
 				49C380961CB8F6DB00242B7A /* CitySearchResultVC.swift in Sources */,
 				496C5D471CC20F1C00CA63AC /* HandymanDrawerViewController.swift in Sources */,
 				4991F3101CB0FCD600E1BF85 /* AppDelegate.swift in Sources */,
-				49D48EDB1CE49C2E00D19FC2 /* CustomerMessageCenterViewController.swift in Sources */,
+				49D48EDB1CE49C2E00D19FC2 /* MessageCenterViewController.swift in Sources */,
 				49A15E811CC7C6DF0028023C /* LoginModel.swift in Sources */,
 				498E26481CBBAA7D00DE6EDC /* DKAssetGroupListVC.swift in Sources */,
 				49A15E911CCA23BE0028023C /* Order.swift in Sources */,
 				49C3809E1CB8F6DB00242B7A /* CityMaskView.swift in Sources */,
-				49A15E601CC5225C0028023C /* HandymanOrderListTableViewController.swift in Sources */,
 				498E26401CBBAA7D00DE6EDC /* DKImageManager.swift in Sources */,
 				491B6EDF1CE172320039B70E /* ChooseFeeViewController.swift in Sources */,
 				498E26211CBBA45B00DE6EDC /* AlamofireUtil.swift in Sources */,
@@ -1078,6 +1074,7 @@
 				498196711CD1A4520046B72A /* AlertView.swift in Sources */,
 				49A15E821CC7C6DF0028023C /* LoginProtocol.swift in Sources */,
 				49C380A01CB8F6DB00242B7A /* HeaderItemView.swift in Sources */,
+				4909EC4D1CE9671B00C4FD04 /* AuditModel.swift in Sources */,
 				49C8BD0E1CE5D52C00CBE0F4 /* RatingModel.swift in Sources */,
 				49C8BD0A1CE5BF1800CBE0F4 /* PayModel.swift in Sources */,
 				4912887A1CB147F3007DD199 /* CustomerDrawerViewController.swift in Sources */,
@@ -1088,7 +1085,6 @@
 				491288881CB16AC3007DD199 /* OrderTypeViewController.swift in Sources */,
 				498E263F1CBBAA7D00DE6EDC /* DKAssetGroup.swift in Sources */,
 				496C5D3D1CC1D64800CA63AC /* ShoppingCartPayPopoverView.swift in Sources */,
-				49A15E651CC5D4E30028023C /* HandymanWalletViewController.swift in Sources */,
 				49D48ED11CE42A4700D19FC2 /* GetPartsInfoModel.swift in Sources */,
 				49A15E5B1CC51E4B0028023C /* CustomerOrderListTableViewController.swift in Sources */,
 				49A2E9181CB7FD890079C690 /* CheckFeeViewController.swift in Sources */,
@@ -1105,7 +1101,7 @@
 				4912888C1CB25634007DD199 /* BRPlaceholderTextView.m in Sources */,
 				49D76B9A1CBF48C4005E2213 /* SwiftBadge.swift in Sources */,
 				49D76BA81CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift in Sources */,
-				496C5D401CC1E79200CA63AC /* CustomerPersonInfoViewController.swift in Sources */,
+				496C5D401CC1E79200CA63AC /* UserInfoViewController.swift in Sources */,
 				4979E8961CB4AD5800D03919 /* SMSwipeableTabViewController.swift in Sources */,
 				49C380771CB89D2F00242B7A /* PayPopoverView.swift in Sources */,
 				49A15E8B1CC866740028023C /* SimpleButtonStateChangeValue.swift in Sources */,
@@ -1117,44 +1113,44 @@
 				4970BF0C1CDA385F00E20E70 /* GetInitialInfoProtocol.swift in Sources */,
 				49A15E881CC866430028023C /* SimpleButton.swift in Sources */,
 				491288841CB15C22007DD199 /* Config.swift in Sources */,
-				49A15E7D1CC7BF280028023C /* HandymanD2DAccountViewController.swift in Sources */,
+				4909EC471CE86F6000C4FD04 /* HandymanOrderListTableViewController.swift in Sources */,
 				49C3809A1CB8F6DB00242B7A /* CityModel.swift in Sources */,
 				49D76BA31CC0CF15005E2213 /* ShoppingCartPopoverView.swift in Sources */,
 				49A15E8E1CC9FD200028023C /* Urls.swift in Sources */,
+				4909EC4B1CE966E000C4FD04 /* AuditProtocol.swift in Sources */,
 				49F36D221CB79575000DF874 /* SearchTextField.m in Sources */,
 				496C5D491CC2323A00CA63AC /* OrderGrabViewController.swift in Sources */,
 				49A15E671CC5DC650028023C /* AuditIDViewController.swift in Sources */,
 				49D48EDD1CE4A0D300D19FC2 /* D2DAccount.swift in Sources */,
 				49C3809F1CB8F6DB00242B7A /* CitySearchBar.swift in Sources */,
 				498E263E1CBBAA7D00DE6EDC /* DKAsset.swift in Sources */,
+				4909EC4F1CE9FE7100C4FD04 /* HandymanInfoViewController.swift in Sources */,
 				49C380931CB8F6DB00242B7A /* CFCityPickerVC.swift in Sources */,
 				4970BF181CDAE90400E20E70 /* UploadImageModel.swift in Sources */,
 				498E26471CBBAA7D00DE6EDC /* DKAssetGroupGridLayout.swift in Sources */,
 				49C380991CB8F6DB00242B7A /* CFCityPickerVC+TableView.swift in Sources */,
 				498E26451CBBAA7D00DE6EDC /* DKPopoverViewController.swift in Sources */,
 				49A15E5D1CC51E4B0028023C /* PartsMallViewController.swift in Sources */,
-				49D76B9E1CC0C581005E2213 /* CustomerRatingViewController.swift in Sources */,
+				49D76B9E1CC0C581005E2213 /* RatingViewController.swift in Sources */,
 				49D48ED51CE4677500D19FC2 /* WalletProtocol.swift in Sources */,
 				49F580B21CCF1A190084EE99 /* Payment.swift in Sources */,
-				49A15E5C1CC51E4B0028023C /* CustomerOrderListViewController.swift in Sources */,
-				497E9ABA1CD253A300A7D934 /* ChooseLocationViewController.swift in Sources */,
-				496C5D421CC1E8CA00CA63AC /* CustomerWalletViewController.swift in Sources */,
+				49A15E5C1CC51E4B0028023C /* OrderListViewController.swift in Sources */,
+				496C5D421CC1E8CA00CA63AC /* WalletViewController.swift in Sources */,
 				491288901CB2A7F1007DD199 /* MaintenanceTypeViewController.swift in Sources */,
 				49D48ECF1CE428C900D19FC2 /* GetPartsInfoProtocol.swift in Sources */,
 				497E9AB81CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift in Sources */,
 				49F580B81CCF56510084EE99 /* UserInfoProtocol.swift in Sources */,
 				49BF678A1CB3653B002257C0 /* OrderPublishConfirmViewController.swift in Sources */,
 				497542491CDDDB1200E23D38 /* Category.swift in Sources */,
-				497E9ABC1CD3412300A7D934 /* CustomerPersonInfoModifyViewController.swift in Sources */,
-				491B6ED31CE01D770039B70E /* CustomerWithDrawViewController.swift in Sources */,
+				497E9ABC1CD3412300A7D934 /* UserInfoModifyViewController.swift in Sources */,
+				491B6ED31CE01D770039B70E /* WithDrawViewController.swift in Sources */,
 				491288861CB15C22007DD199 /* UtilBox.swift in Sources */,
 				496C5D451CC20EEE00CA63AC /* HandymanHomeViewController.swift in Sources */,
 				49C8BD0C1CE5D4EC00CBE0F4 /* RatingProtocol.swift in Sources */,
-				497E9AC21CD45F6100A7D934 /* CustomerChangePasswordViewController.swift in Sources */,
+				497E9AC21CD45F6100A7D934 /* ChangePasswordViewController.swift in Sources */,
 				4970BF141CDA43A000E20E70 /* OrderProtocol.swift in Sources */,
 				498E263D1CBBAA7D00DE6EDC /* DKGroupDataManager.swift in Sources */,
 				49C8BD081CE5BEE500CBE0F4 /* PayProtocol.swift in Sources */,
-				497E9ABE1CD44A5D00A7D934 /* CustomerPersonInfoLocationViewController.swift in Sources */,
 				49C380951CB8F6DB00242B7A /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

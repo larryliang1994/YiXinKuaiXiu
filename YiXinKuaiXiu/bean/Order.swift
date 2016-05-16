@@ -32,7 +32,7 @@ public enum Status: Int {
     case ToBeGrabbed    // 待抢单
     case OnGoing        // 进行中
     case ToBeRating     // 待评价
-    case Done = 6       // 已完成
+    case Done           // 已完成
     case Cancelling     // 申请取消中
 }
 
@@ -107,7 +107,8 @@ class Order {
         self.payments = payments
     }
     
-    init(id: String, date: String, senderID: String, senderName: String, senderNum: String, graberID: String, type: Type, image1Url: String?, image2Url: String?, desc: String, mTypeID: String, mType: String,location: String, locationInfo: CLLocation, fee: String, mFee: String, status: Status, state: State, ratingStar: Int?, ratingDesc: String?) {
+    // 订单列表构造
+    init(id: String, date: String, senderID: String, senderName: String, senderNum: String, graberID: String, type: Type, image1Url: String?, image2Url: String?, desc: String, mTypeID: String, mType: String, location: String, locationInfo: CLLocation, fee: String, mFee: String, status: Status, state: State, ratingStar: Int?, ratingDesc: String?) {
         self.id = id
         self.date = date
         self.senderID = senderID
@@ -128,5 +129,21 @@ class Order {
         self.state = state
         self.ratingStar = ratingStar
         self.ratingDesc = ratingDesc
+    }
+    
+    // 抢单列表构造
+    init(date: String, senderID: String, senderName: String, senderNum: String, type: Type, imageUrl: String, desc: String, mTypeID: String, mType: String, location: String, locationInfo: CLLocation, fee: String) {
+        self.date = date
+        self.senderID = senderID
+        self.senderName = senderName
+        self.senderNum = senderNum
+        self.type = type
+        self.image1Url = imageUrl
+        self.desc = desc
+        self.mTypeID = mTypeID
+        self.mType = mType
+        self.location = location
+        self.locationInfo = locationInfo
+        self.fee = fee
     }
 }

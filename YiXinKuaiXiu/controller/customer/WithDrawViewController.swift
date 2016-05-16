@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerWithDrawViewController: UITableViewController, UITextFieldDelegate, WalletDelegate {
+class WithDrawViewController: UITableViewController, UITextFieldDelegate, WalletDelegate {
     @IBOutlet var doneButton: UIBarButtonItem!
     @IBOutlet var moneyTextField: UITextField!
 
@@ -32,9 +32,9 @@ class CustomerWithDrawViewController: UITableViewController, UITextFieldDelegate
         
         alertView = UIView.loadFromNibNamed("EnterPasswordAlertView") as? EnterPasswordAlertView
         
-        alertView!.cancelButton.addTarget(self, action: #selector(CustomerWithDrawViewController.cancel), forControlEvents: UIControlEvents.TouchUpInside)
+        alertView!.cancelButton.addTarget(self, action: #selector(WithDrawViewController.cancel), forControlEvents: UIControlEvents.TouchUpInside)
         
-        alertView!.confirmButton.addTarget(self, action: #selector(CustomerWithDrawViewController.doSubmit), forControlEvents: UIControlEvents.TouchUpInside)
+        alertView!.confirmButton.addTarget(self, action: #selector(WithDrawViewController.doSubmit), forControlEvents: UIControlEvents.TouchUpInside)
         
         alertView?.pwdTextField.becomeFirstResponder()
         

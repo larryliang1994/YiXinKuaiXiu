@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderGrabDetailViewController: UIViewController {
+class OrderGrabDetailViewController: UIViewController, OrderDelegate {
 
     @IBOutlet var mapView: BMKMapView!
     @IBOutlet var descLabel: UILabel!
@@ -24,6 +24,8 @@ class OrderGrabDetailViewController: UIViewController {
     @IBOutlet var button: UIButton!
     
     var order: Order?
+    
+    var delegate: GrabOrderDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,14 +61,33 @@ class OrderGrabDetailViewController: UIViewController {
         picture1ImageView.image = UIImage(named: "close")
         picture2ImageView.image = UIImage(named: "close")
         
-        maintenanceTypeLabel.text = order?.mType
+        maintenanceTypeLabel.text = (order?.mType)! + "维修"
         
         distanceLabel.text = "距离您3公里"
         
-        timeLabel.text = "3月29日 18:30"
+        timeLabel.text = UtilBox.getDateFromString(order!.date!, format: Constants.DateFormat.MDHm)
         
         button.layer.cornerRadius = 3
         button.backgroundColor = Constants.Color.Primary
+    }
+    
+    @IBAction func grab(sender: UIButton) {
+        self.pleaseWait()
+        OrderModel(orderDelegate: self).grabOrder(order!)
+    }
+    
+    func onGrabOrderResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        
+        if result {
+            self.noticeSuccess("抢单成功", autoClear: true, autoClearTime: 2)
+        } else {
+            self.noticeError(info, autoClear: true, autoClearTime: 2)
+        }
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+        delegate?.didGrabOrder()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -80,4 +101,16 @@ class OrderGrabDetailViewController: UIViewController {
         mapView.viewWillDisappear()
         //mapView.delegate = nil // 不用时，置nil
     }
+    
+    func onPublishOrderResult(result: Bool, info: String) {}
+    
+    func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {}
+    
+    func onPullGrabOrderListResult(result: Bool, info: String, orderList: [Order]) {}
+    
+    func onCancelOrderResult(result: Bool, info: String) {}
+}
+
+protocol GrabOrderDelegate{
+    func didGrabOrder()
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerWalletViewController: UITableViewController {
+class WalletViewController: UITableViewController {
     
     @IBOutlet var withdrawButton: UIButton!
     @IBOutlet var buttonBackgroundView: UIView!
@@ -44,11 +44,11 @@ class CustomerWalletViewController: UITableViewController {
     }
     
     @IBAction func recharge(sender: UIButton) {
-        performSegueWithIdentifier(Constants.SegueID.ShowCustomerRechargeSegue, sender: self)
+        performSegueWithIdentifier(Constants.SegueID.ShowRechargeSegue, sender: self)
     }
     
     @IBAction func goWithDraw(sender: UIButton) {
-        performSegueWithIdentifier(Constants.SegueID.ShowCustomerWithDrawSegue, sender: self)
+        performSegueWithIdentifier(Constants.SegueID.ShowWithDrawSegue, sender: self)
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -65,9 +65,9 @@ class CustomerWalletViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {
-            performSegueWithIdentifier(Constants.SegueID.ShowCustomerD2DAccountSegue, sender: self)
+            performSegueWithIdentifier(Constants.SegueID.ShowD2DAccountSegue, sender: self)
         } else if indexPath.row == 1 {
-            performSegueWithIdentifier(Constants.SegueID.ShowCustomerChangePasswordSegue, sender: self)
+            performSegueWithIdentifier(Constants.SegueID.ShowChangePasswordSegue, sender: self)
         }
     }
 }

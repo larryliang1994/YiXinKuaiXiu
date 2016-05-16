@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerMessageCenterViewController: UITableViewController {
+class MessageCenterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +35,11 @@ class CustomerMessageCenterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("customerMessageCenterCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("messageCenterCell", forIndexPath: indexPath)
         
-        let titleLabel = cell.viewWithTag(Constants.Tag.CustomerMessageCenterCellTitle) as! UILabel
-        let dateLabel = cell.viewWithTag(Constants.Tag.CustomerMessageCenterCellDate) as! UILabel
-        let descLabel = cell.viewWithTag(Constants.Tag.CustomerMessageCenterCellDesc) as! UILabel
+        let titleLabel = cell.viewWithTag(Constants.Tag.MessageCenterCellTitle) as! UILabel
+        let dateLabel = cell.viewWithTag(Constants.Tag.MessageCenterCellDate) as! UILabel
+        let descLabel = cell.viewWithTag(Constants.Tag.MessageCenterCellDesc) as! UILabel
         
         let message = Config.Messages[indexPath.section]
         titleLabel.text = message.title

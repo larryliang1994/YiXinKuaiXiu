@@ -22,7 +22,7 @@ class GetPartsInfoModel: GetPartsInfoProtocol {
                 let json = JSON(UtilBox.convertStringToDictionary(response)!)
                 
                 let ret = json["ret"]
-                if ret != nil {
+                if ret != nil && ret.count != 0 {
                 
                     Config.Categorys = []
                     for index in 0 ... ret.count - 1 {
@@ -45,7 +45,7 @@ class GetPartsInfoModel: GetPartsInfoProtocol {
                 let json = JSON(UtilBox.convertStringToDictionary(response)!)
                 
                 let ret = json["ret"]
-                if ret != nil {
+                if ret != nil && ret.count != 0 {
                     
                     Config.Parts = []
                     for index in 0 ... ret.count - 1 {

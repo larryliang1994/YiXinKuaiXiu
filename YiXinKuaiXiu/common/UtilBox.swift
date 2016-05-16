@@ -59,6 +59,24 @@ class UtilBox {
             userDefault.removeObjectForKey(key)
             userDefault.synchronize()
         }
+        
+        Config.Role = nil
+        Config.Aid = nil
+        Config.TelephoneNum = nil
+        Config.VerifyCode = nil
+        Config.Location = nil
+        Config.Company = nil
+        Config.Money = nil
+        Config.Sex = nil
+        Config.IDNum = nil
+        Config.MType = nil
+        Config.Password = nil
+        Config.BankName = nil
+        Config.BankNum = nil
+        Config.TotalStar = nil
+        Config.MaintenanceNum = nil
+        Config.Audited = nil
+        Config.Messages = []
     }
     
     // PHAsset转UIImage
@@ -192,6 +210,7 @@ class UtilBox {
         parentController.presentViewController(alertViewController, animated: true, completion: nil)
     }
     
+    // 通过ID查找维修类别名
     static func findMTypeNameByID(id: String) -> String? {
         for var mType in Config.MTypes! {
             if mType.id == id {
@@ -202,6 +221,7 @@ class UtilBox {
         return nil
     }
     
+    // 通过维修类别名查找ID
     static func findMTypeIDByName(name: String) -> String? {
         for var mType in Config.MTypes! {
             if mType.name == name {
@@ -210,5 +230,11 @@ class UtilBox {
         }
         
         return nil
+    }
+    
+    // 通过ID获取vc
+    static func getController(identifier: String) -> UIViewController {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
+        return storyboard.instantiateViewControllerWithIdentifier(identifier)
     }
 }

@@ -8,8 +8,8 @@
 
 import UIKit
 
-class CustomerOrderListTableViewController: OrderListTableViewController, PopBottomViewDataSource, PopBottomViewDelegate, PayDelegate {
-    
+class HandymanOrderListTableViewController: OrderListTableViewController {
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let order = orders[indexPath.section]
         
@@ -75,18 +75,11 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             case .PaidPartFee: fallthrough
             case .PaidAll: fallthrough
             case .HasBeenGrabbed:
-                if order.type == .Pack {
-                    leftButton.hidden = true
-                    
-                    rightButton.setTitle("去支付", forState: .Normal)
-                    rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
-                } else {
-                    leftButton.setTitle("购买配件", forState: .Normal)
-                    leftButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.showPartsMallAction), forControlEvents: UIControlEvents.TouchUpInside)
+                leftButton.setTitle("购买配件", forState: .Normal)
+                leftButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.showPartsMallAction), forControlEvents: UIControlEvents.TouchUpInside)
                 
-                    rightButton.setTitle("付维修费", forState: .Normal)
-                    rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
-                }
+                rightButton.setTitle("付维修费", forState: .Normal)
+                rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
                 
             case .PaidMFee:
                 leftButton.setTitle("补购配件", forState: .Normal)
@@ -153,76 +146,13 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         if indexPath.row == 0 {
             return 66
         } else if indexPath.row == (orders[indexPath.section].payments?.count)! + 1 {
-            let state = orders[indexPath.section].state
-            if state == .PaidFee {
-                return 8
-            } else {
+            if orders[indexPath.section].state == .Cancelling {
                 return 52
+            } else {
+                return 8
             }
         } else {
             return 30
-        }
-    }
-    
-    func hide(){
-        for v in self.view.subviews {
-            if let vv = v as? PopBottomView{
-                vv.hide()
-            }
-        }
-    }
-    
-    //MARK : - PopBottomViewDataSource
-    func viewPop() -> UIView {
-        let payPopoverView = UIView.loadFromNibNamed("PayPopoverView") as! PayPopoverView
-        payPopoverView.closeButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
-        payPopoverView.doPayButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
-        payPopoverView.doPayButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPay), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        let order = orders[(selectedIndexPath?.section)!]
-        payPopoverView.feeLabel.text = "￥" + String(UTF8String: (order.state == .NotPayFee ? order.fee : order.mFee)!)!
-        
-        return payPopoverView
-    }
-    
-    func goPay() {
-        let order = orders[(selectedIndexPath?.section)!]
-        
-        if order.state == .NotPayFee {
-            PayModel(payDelegate: self).goPay(order.date!, type: .Fee, fee: order.fee!)
-        } else {
-            PayModel(payDelegate: self).goPay(order.date!, type: .MFee, fee: order.mFee!)
-        }
-    }
-    
-    func viewHeight() -> CGFloat {
-        return 295
-    }
-    
-    func isEffectView() -> Bool {
-        return false
-    }
-    
-    func viewWillDisappear() {
-        
-    }
-    
-    func goPayAction(sender: UIButton) {
-        let cell = sender.superview?.superview as! UITableViewCell
-        selectedIndexPath = tableView.indexPathForCell(cell)!
-        
-        let v = PopBottomView(frame: self.view.bounds)
-        v.dataSource = self
-        v.delegate = self
-        v.showInView(self.view)
-    }
-    
-    func onGoPayResult(result: Bool, info: String) {
-        if result {
-            self.noticeSuccess("支付成功", autoClear: true, autoClearTime: 2)
-            refresh()
-        } else {
-            UtilBox.alert(self, message: info)
         }
     }
     
@@ -231,12 +161,11 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         self.navigationController?.showViewController(ratingVC, sender: self)
     }
     
-    func showPartsMallAction(sender: UIButton) {
-        let cell = sender.superview?.superview as! UITableViewCell
-        selectedIndexPath = tableView.indexPathForCell(cell)!
-        
-        let partsMallVC = UtilBox.getController(Constants.ControllerID.PartsMall) as! PartsMallViewController
-        partsMallVC.order = orders[(selectedIndexPath?.section)!]
-        self.navigationController?.showViewController(partsMallVC, sender: self)
+    func leftButtonAction() {
+        //performSegueWithIdentifier(Constants.SegueID.ShowPartsMallSegue, sender: self)
+    }
+    
+    func rightButtonAction() {
+        //performSegueWithIdentifier(Constants.SegueID.ShowCustomerRatingSegue, sender: self)
     }
 }

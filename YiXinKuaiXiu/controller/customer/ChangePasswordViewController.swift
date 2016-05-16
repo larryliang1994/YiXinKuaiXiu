@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerChangePasswordViewController: UITableViewController, UITextFieldDelegate, UserInfoDelegate {
+class ChangePasswordViewController: UITableViewController, UITextFieldDelegate, UserInfoDelegate {
     @IBOutlet var oldPasswordTextField: UITextField!
     @IBOutlet var newPasswordTextField: UITextField!
     @IBOutlet var newPassword2TextField: UITextField!

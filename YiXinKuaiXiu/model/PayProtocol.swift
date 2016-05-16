@@ -8,4 +8,5 @@
 
 protocol PayProtocol {
     func goPay(date: String, type: PayType, fee: String)
+    func goPayParts(date: String, detail: String, fee: String)
 }

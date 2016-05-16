@@ -47,7 +47,7 @@ class WalletModel: WalletProtocol {
                 let ret = json["ret"]
                 var accountList: [D2DAccount] = []
                 
-                if ret != nil {
+                if ret != nil && ret.count != 0 {
                     
                     for index in 0 ... ret.count - 1 {
                         let account = D2DAccount(id: ret[index]["id"].intValue, week: UtilBox.stringToWeek(ret[index]["dte"].stringValue), date: ret[index]["dte"].stringValue, fee: ret[index]["num"].stringValue + ".00", type: ret[index]["cmt"].stringValue, status: ret[index]["ste"].intValue)

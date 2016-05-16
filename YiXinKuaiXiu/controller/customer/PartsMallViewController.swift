@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PartsMallViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopBottomViewDataSource,PopBottomViewDelegate, PartsMallDelegate, GetPartsInfoDelegate {
+class PartsMallViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopBottomViewDataSource,PopBottomViewDelegate, PartsMallDelegate, GetPartsInfoDelegate, PayDelegate {
 
     @IBOutlet var containerView: UIView!
     @IBOutlet var bottomSeperator: UIView!
@@ -19,50 +19,14 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var showShoppingCartButton: UIButton!
     @IBOutlet var totalPriceLabel: UILabel!
     @IBOutlet var bottomSeperatorHeight: NSLayoutConstraint!
-    
-//    var category = [
-//        Category(id: 0, name: "金属配件", partIndex: 0),
-//        Category(id: 1, name: "塑料配件", partIndex: 4),
-//        Category(id: 2, name: "冷却剂", partIndex: 7),
-//        Category(id: 3, name: "油漆", partIndex: 12),
-//        Category(id: 4, name: "锁具", partIndex: 14),
-//        Category(id: 5, name: "其他", partIndex: 18)
-//    ]
-//    
-//    var parts = [
-//        Part(id: 0, name: "0十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 0),
-//        Part(id: 1, name: "0一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 0),
-//        Part(id: 2, name: "0一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 0),
-//        Part(id: 3, name: "0六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 0),
-//        
-//        Part(id: 4, name: "1十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 1),
-//        Part(id: 5, name: "1一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 1),
-//        Part(id: 6, name: "1一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 1),
-//        
-//        Part(id: 7, name: "2十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 2),
-//        Part(id: 8, name: "2一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 2),
-//        Part(id: 9, name: "2一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 2),
-//        Part(id: 10, name: "2六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 2),
-//        Part(id: 11, name: "2六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 2),
-//        
-//        Part(id: 12, name: "3十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 3),
-//        Part(id: 13, name: "3一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 3),
-//        
-//        Part(id: 14, name: "4十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 4),
-//        Part(id: 15, name: "4一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 4),
-//        Part(id: 16, name: "4一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 4),
-//        Part(id: 17, name: "4六角螺母2.5*3mm", num: 0, price: 0.5, categoryIndex: 4),
-//        
-//        Part(id: 18, name: "5十字钉2.5*3mm", num: 0, price: 0.5, categoryIndex: 5),
-//        Part(id: 19, name: "5一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 5),
-//        Part(id: 20, name: "5一字钉3*12mm", num: 0, price: 0.5, categoryIndex: 5)
-//    ]
 
     var totalNum = 0
     var totalPrice: Float = 0.0
     var categoryIndex = 0
     
     var popoverName = ""
+    
+    var order: Order?
     
     var lastPick = NSIndexPath(forRow: 0, inSection: 0)
     
@@ -253,9 +217,19 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func goPay() {
         //hide(self.view)
+        self.pleaseWait()
         
-        
-        self.navigationController?.popViewControllerAnimated(true)
+        PayModel(payDelegate: self).goPayParts(order!.date!, detail: "", fee: String(totalPrice))
+    }
+    
+    func onGoPayPartsResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        if result {
+            self.noticeSuccess("支付成功", autoClear: true, autoClearTime: 2)
+            self.navigationController?.popViewControllerAnimated(true)
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
     
     func viewWillDisappear() {

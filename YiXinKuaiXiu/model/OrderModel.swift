@@ -46,13 +46,13 @@ class OrderModel: OrderProtocol {
     func pullOrderList(requestTime: String, pullType: PullOrderListType) {
         let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "ste": pullType.rawValue.toString(), "dts": "", "dte": "", "stt": "", "cnt": ""]
         
-        AlamofireUtil.doRequest(Urls.PullOrderList, parameters: paramters) { (result, response) in
+        AlamofireUtil.doRequest(Config.Role == Constants.Role.Customer ? Urls.PullCustomerOrderList : Urls.PullHandymanOrderList, parameters: paramters) { (result, response) in
             if result {
                 let json = JSON(UtilBox.convertStringToDictionary(response)!)
                 
                 let ret = json["ret"]
                 
-                if ret != nil {
+                if ret != nil && ret.count != 0 {
                     var orderList: [Order] = []
                     for index in 0 ... ret.count - 1 {
                         let orderJson = ret[index]
@@ -85,7 +85,7 @@ class OrderModel: OrderProtocol {
                             locationInfo: location,
                             fee: orderJson["fe1"].stringValue,
                             mFee: orderJson["fe2"].stringValue,
-                            status: Status(rawValue: state.rawValue)!,
+                            status: Status(rawValue: (state.rawValue + 6) % 6)!,
                             state: state,
                             ratingStar: orderJson["fen"].intValue,
                             ratingDesc: orderJson["fem"].stringValue)
@@ -103,9 +103,111 @@ class OrderModel: OrderProtocol {
             }
         }
     }
+    
+    func pullGrabOrderList(requestTime: String, distance: Int?) {
+        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dis": (distance == nil ? "" : distance!.toString()), "dts": "", "dte": "", "stt": "", "cnt": ""]
+        
+        AlamofireUtil.doRequest(Urls.PullGrabOrderList, parameters: paramters) { (result, response) in
+            if result {
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"]
+                
+                if ret != nil && ret.count != 0 {
+                    var orderList: [Order] = []
+                    for index in 0 ... ret.count - 1 {
+                        let orderJson = ret[index]
+                        
+                        if orderJson["wxg"].stringValue == "0" {
+                            continue
+                        }
+                        
+                        let location = CLLocation(latitude: CLLocationDegrees(orderJson["lat"].doubleValue), longitude: CLLocationDegrees(orderJson["lot"].doubleValue))
+                        
+                        let order = Order(
+                            date: orderJson["dte"].stringValue,
+                            senderID: orderJson["aid"].stringValue,
+                            senderName: orderJson["anm"].stringValue,
+                            senderNum: orderJson["aph"].stringValue,
+                            type: Type(rawValue: orderJson["tpe"].intValue - 1)!,
+                            imageUrl: orderJson["pic"].stringValue,
+                            desc: orderJson["cmt"].stringValue,
+                            mTypeID: orderJson["wxg"].stringValue,
+                            mType: UtilBox.findMTypeNameByID(orderJson["wxg"].stringValue)!,
+                            location: orderJson["adr"].stringValue,
+                            locationInfo: location,
+                            fee: orderJson["fe1"].stringValue)
+                        
+                        orderList.append(order)
+                    }
+                    
+                    self.orderDelegate?.onPullGrabOrderListResult(true, info: "", orderList: orderList)
+                } else {
+                    self.orderDelegate?.onPullGrabOrderListResult(true, info: "", orderList: [])
+                }
+            } else {
+                self.orderDelegate?.onPullGrabOrderListResult(false, info: "获取订单列表失败", orderList: [])
+            }
+        }
+    }
+    
+    func grabOrder(order: Order) {
+        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": order.date!, "aid": order.senderID!]
+        
+        AlamofireUtil.doRequest(Urls.GrabOrder, parameters: parameters) { (result, response) in
+            if result {
+                print(response)
+                
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"].intValue
+                
+                if ret == 0 {
+                    self.orderDelegate?.onGrabOrderResult(true, info: "")
+                } else if ret == 1 {
+                    self.orderDelegate?.onGrabOrderResult(false, info: "认证失败")
+                } else if ret == 2 {
+                    self.orderDelegate?.onGrabOrderResult(false, info: "抢单失败")
+                }
+            } else {
+                self.orderDelegate?.onGrabOrderResult(false, info: "抢单失败")
+            }
+        }
+    }
+    
+    func cancelOrder(order: Order) {
+        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": order.date!]
+        
+        AlamofireUtil.doRequest(Urls.CancelOrder, parameters: parameters) { (result, response) in
+            if result {
+                print(response)
+                
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"].intValue
+                
+                if ret == 0 {
+                    self.orderDelegate?.onCancelOrderResult(true, info: "")
+                } else if ret == 1 {
+                    self.orderDelegate?.onCancelOrderResult(false, info: "认证失败")
+                } else if ret == 2 {
+                    self.orderDelegate?.onCancelOrderResult(false, info: "订单不存在")
+                } else if ret == 3 {
+                    self.orderDelegate?.onCancelOrderResult(false, info: "订单已完成")
+                } else if ret == 4 {
+                    self.orderDelegate?.onCancelOrderResult(false, info: "失败")
+                }
+            } else {
+                self.orderDelegate?.onCancelOrderResult(false, info: "取消失败")
+            }
+        }
+    }
 }
 
 protocol OrderDelegate {
     func onPublishOrderResult(result: Bool, info: String)
     func onPullOrderListResult(result: Bool, info: String, orderList: [Order])
+    func onPullGrabOrderListResult(result: Bool, info: String, orderList: [Order])
+    func onGrabOrderResult(result: Bool, info: String)
+    func onCancelOrderResult(result: Bool, info: String)
 }

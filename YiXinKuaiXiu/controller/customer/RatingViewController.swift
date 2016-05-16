@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerRatingViewController: UITableViewController, RatingDelegate {
+class RatingViewController: UITableViewController, RatingDelegate {
 
     @IBOutlet var ratingBar: FloatRatingView!
     @IBOutlet var descTextView: BRPlaceholderTextView!
@@ -29,7 +29,7 @@ class CustomerRatingViewController: UITableViewController, RatingDelegate {
     }
     
     func initNVBar() {
-        let confirmBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(CustomerRatingViewController.done))
+        let confirmBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(RatingViewController.done))
         
         self.navigationItem.rightBarButtonItem = confirmBtn
     }

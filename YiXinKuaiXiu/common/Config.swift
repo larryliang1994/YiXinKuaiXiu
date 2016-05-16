@@ -26,10 +26,13 @@ class Config {
     static var MaintenanceNum: String?
     static var Audited: Int?
     
+    static var ContactName: String?
+    static var ContactTelephone: String?
+    
     static var MTypes: [MaintenanceType]?
     static var MTypeNames: [String]?
     
-    static var Fees: [Int]?
+    static var Fees: [Int] = []
     
     static var Categorys: [Category] = []
     static var Parts: [Part] = []

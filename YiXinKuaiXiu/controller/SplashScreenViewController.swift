@@ -13,7 +13,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
 
     var window: UIWindow?
     
-    let requestNum = 4
+    let requestNum = 3
     var initRequestNum = 0
     
     override func viewDidLoad() {
@@ -26,9 +26,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
             
             let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
             getInitialInfoModel.getMaintenanceType()
-            getInitialInfoModel.getFees()
             getInitialInfoModel.getMessage()
-            
         } else {
             showMainScreen()
         }
@@ -71,18 +69,6 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         }
     }
     
-    func onGetFeeResult(result: Bool, info: String) {
-        if result {
-            initRequestNum += 1
-            
-            if initRequestNum == requestNum {
-                showMainScreen()
-            }
-        } else {
-            UtilBox.alert(self, message: info)
-        }
-    }
-    
     func onGetMessageResult(result: Bool, info: String) {
         if result {
             initRequestNum += 1
@@ -94,10 +80,6 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
             UtilBox.alert(self, message: info)
         }
     }
-    
-    func onModifyUserInfoResult(result: Bool, info: String) {}
-    
-    func onUpdateLocationInfoResult(result: Bool, info: String) {}
     
     func getStarted() {
         // 初始化百度地图

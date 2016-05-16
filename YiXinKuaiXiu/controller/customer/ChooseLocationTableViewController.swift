@@ -16,7 +16,7 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
     
     var addressList = [BMKPoiInfo]()
     
-    var delegate: OrderPublishDelegate?
+    var delegate: ChooseLocationDelegate?
     
     let poiSearch = BMKPoiSearch()
     let locationService = BMKLocationService()
@@ -82,7 +82,7 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let address = addressList[indexPath.row]
-        delegate?.didSelectedLocation(address.name, locationInfo: CLLocation(latitude: address.pt.latitude, longitude: address.pt.longitude))
+        delegate?.didChooseLocation(address.name, locationInfo: CLLocation(latitude: address.pt.latitude, longitude: address.pt.longitude))
         
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -133,4 +133,8 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
         tableView.reloadData()
     }
     
+}
+
+protocol ChooseLocationDelegate {
+    func didChooseLocation(name: String, locationInfo: CLLocation)
 }

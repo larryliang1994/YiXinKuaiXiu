@@ -8,19 +8,13 @@
 
 import UIKit
 
-class OrderGrabTableViewController: UITableViewController {
+class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOrderDelegate {
     
-    let orders = [
-        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .ToBeBilled, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [Payment(name: "上门检查费", price: 10, paid: false)]),
-        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .OnGoing, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
-        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .Cancelling, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
-        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .Cancelling, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]),
-        Order(type: .Normal, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .ToBeRating, ratingStar: nil, ratingDesc: nil, parts: [Part(name: "六角螺母2.5*3mm", num: 6, price: "10")], payments: [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true), Payment(name: "维修费", price: 200, paid: true)]),
-        Order(type: .Pack, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: "10.00", image1: nil, image2: nil, status: .ToBeBilled, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [Payment(name: "打包维修费", price: 200, paid: false)]),
-        Order(type: .Reservation, desc: "水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了水管漏了", mType: "水维修", mTypeID: "", location: "南航", locationInfo: CLLocation(), fee: nil, image1: nil, image2: nil, status: .ToBeGrabbed, ratingStar: nil, ratingDesc: nil, parts: nil, payments: [])
-    ]
+    var orders: [Order] = []
     
     var segueOrder: Order?
+    
+    var distance: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +22,28 @@ class OrderGrabTableViewController: UITableViewController {
         let footer = UIView()
         footer.backgroundColor = UIColor.groupTableViewBackgroundColor()
         tableView.tableFooterView = footer
+        
+        refresh()
+    }
+    
+    func refresh() {
+        refreshControl?.beginRefreshing()
+        
+        OrderModel(orderDelegate: self).pullGrabOrderList("", distance: distance)
+    }
+    
+    @IBAction func refresh(sender: UIRefreshControl) {
+        refresh()
+    }
+    
+    func onPullGrabOrderListResult(result: Bool, info: String, orderList: [Order]) {
+        refreshControl?.endRefreshing()
+        if result {
+            orders = orderList
+            tableView.reloadData()
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
 
     // MARK: - Table view data source
@@ -86,11 +102,11 @@ class OrderGrabTableViewController: UITableViewController {
         
         descLabel.text = order.desc
         
-        maintenanceTypeLabel.text = order.mType
+        maintenanceTypeLabel.text = order.mType! + "维修"
         
         distanceLabel.text = "距离您3公里"
         
-        timeLabel.text = "3月29日 18:30"
+        timeLabel.text = UtilBox.getDateFromString(order.date!, format: Constants.DateFormat.MDHm)
         
         button.layer.cornerRadius = 21
         button.layer.borderWidth = 2
@@ -104,6 +120,10 @@ class OrderGrabTableViewController: UITableViewController {
         performSegueWithIdentifier(Constants.SegueID.ShowOrderGrabDetailSegue, sender: self)
     }
     
+    func didGrabOrder() {
+        refresh()
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destination = segue.destinationViewController as UIViewController
         
@@ -114,6 +134,15 @@ class OrderGrabTableViewController: UITableViewController {
         
         if let ogdvc = destination as? OrderGrabDetailViewController {
             ogdvc.order = segueOrder
+            ogdvc.delegate = self
         }
     }
+    
+    func onPublishOrderResult(result: Bool, info: String) {}
+    
+    func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {}
+    
+    func onGrabOrderResult(result: Bool, info: String) {}
+    
+    func onCancelOrderResult(result: Bool, info: String) {}
 }

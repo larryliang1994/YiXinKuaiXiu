@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class OrderPublishViewController: UITableViewController, UITextViewDelegate, OrderPublishDelegate, UploadImageDelegate,OrderDelegate {
+class OrderPublishViewController: UITableViewController, UITextViewDelegate, OrderPublishDelegate, UploadImageDelegate,OrderDelegate, ChooseLocationDelegate {
     @IBOutlet var publishButtonItem: UIBarButtonItem!
     @IBOutlet var picture1ImageView: UIImageView!
     @IBOutlet var picture2ImageView: UIImageView!
@@ -223,7 +223,9 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
             } else if indexPath.row == 0 {
                 performSegueWithIdentifier(Constants.SegueID.ChooseMaintenanceTyeSegue, sender: self)
             } else if indexPath.row == 1 {
-                performSegueWithIdentifier(Constants.SegueID.ChooseLocationSegue, sender: self)
+                let chooseLocationVC = UtilBox.getController(Constants.ControllerID.ChooseLocation) as! ChooseLocationTableViewController
+                chooseLocationVC.delegate = self
+                self.navigationController?.showViewController(chooseLocationVC, sender: self)
             }
             
             descTextView.resignFirstResponder()
@@ -240,8 +242,6 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
         
         if let mtvc = destination as? MaintenanceTypeViewController {
             mtvc.delegate = self
-        } else if let cltc = destination as? ChooseLocationTableViewController {
-            cltc.delegate = self
         } else if let cfvc = destination as? CheckFeeViewController {
             cfvc.delegate = self
         } else if let opcvc = destination as? OrderPublishConfirmViewController {
@@ -276,7 +276,7 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
         }
     }
     
-    func didSelectedLocation(name: String, locationInfo: CLLocation) {
+    func didChooseLocation(name: String, locationInfo: CLLocation) {
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1))
         cell?.detailTextLabel?.text = name
         self.locationInfo = locationInfo
@@ -302,10 +302,14 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
     
     func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {}
     
+    func onPullGrabOrderListResult(result: Bool, info: String, orderList: [Order]) {}
+    
+    func onGrabOrderResult(result: Bool, info: String) {}
+    
+    func onCancelOrderResult(result: Bool, info: String) {}
 }
 
 protocol OrderPublishDelegate {
     func didSelectedMaintenanceType(type: String, id: String)
-    func didSelectedLocation(name: String, locationInfo: CLLocation)
     func didSelectedFee(fee: String)
 }

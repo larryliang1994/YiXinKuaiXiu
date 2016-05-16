@@ -10,10 +10,9 @@ import UIKit
 
 class ChooseMaintenanceTypeViewController: UITableViewController {
 
-    let titles = ["门窗修理", "空调、冰箱修理", "彩电修理", "电路修理"]
-    var checked = [false, false, false, false]
+    var checked = Array(count: Config.MTypes!.count, repeatedValue: false)
     
-    var delegate: AuditIDDelegate?
+    var delegate: ChooseMTypeDelegete?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +21,24 @@ class ChooseMaintenanceTypeViewController: UITableViewController {
     }
     
     @IBAction func done(sender: UIBarButtonItem) {
-        var string = ""
+        var nameString = ""
+        var idString = ""
         for i in 0...checked.count - 1 {
-            string += checked[i] ? titles[i] + "，" : ""
+            if checked[i] {
+                nameString += Config.MTypeNames![i] + "，"
+                idString += "[" + (Config.MTypes![i].id)! + "],"
+            }
         }
         
-        if string.characters.last == "，" {
-            string = string.substringToIndex(string.endIndex.advancedBy(-1))
+        if nameString.characters.last == "，" {
+            nameString = nameString.substringToIndex(nameString.endIndex.advancedBy(-1))
         }
         
-        delegate?.didSelectedMaintenanceType(string, checked: checked)
+        if idString.characters.last == "," {
+            idString = idString.substringToIndex(idString.endIndex.advancedBy(-1))
+        }
+        
+        delegate?.didSelectedMaintenanceType(nameString, idString: idString, checked: checked)
         
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -45,7 +52,7 @@ class ChooseMaintenanceTypeViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        return Config.MTypeNames!.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -54,7 +61,7 @@ class ChooseMaintenanceTypeViewController: UITableViewController {
         let titleLabel = cell.viewWithTag(Constants.Tag.HandymanChooseMaintenanceTypeCellTitle) as! UILabel
         let checkImage = cell.viewWithTag(Constants.Tag.HandymanChooseMaintenanceTypeCellCheck) as! UIImageView
         
-        titleLabel.text = titles[indexPath.row]
+        titleLabel.text = Config.MTypeNames![indexPath.row]
         
         if checked[indexPath.row] {
             checkImage.image = UIImage(named: "checked")
@@ -69,4 +76,8 @@ class ChooseMaintenanceTypeViewController: UITableViewController {
         checked[indexPath.row] = !checked[indexPath.row]
         tableView.reloadData()
     }
+}
+
+protocol ChooseMTypeDelegete {
+    func didSelectedMaintenanceType(nameString: String, idString: String, checked: [Bool])
 }

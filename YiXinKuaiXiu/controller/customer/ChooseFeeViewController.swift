@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ChooseFeeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class ChooseFeeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, GetInitialInfoDelegate {
     
     var delegate: OrderPublishDelegate?
 
@@ -19,6 +19,20 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
         collectionView?.delegate = self
         
         collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        
+        if Config.Fees == [] {
+            self.pleaseWait()
+            GetInitialInfoModel(getInitialInfoDelegate: self).getFees()
+        }
+    }
+    
+    func onGetFeeResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        if result {
+            collectionView?.reloadData()
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -26,7 +40,7 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Config.Fees!.count
+        return Config.Fees.count
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -43,7 +57,7 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        delegate?.didSelectedFee(Config.Fees![indexPath.row].toString())
+        delegate?.didSelectedFee(Config.Fees[indexPath.row].toString())
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -52,7 +66,7 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
         
         let button = cell.viewWithTag(Constants.Tag.CustomerChooseFeeCellButton) as! UIButton
         
-        button.setTitle(Config.Fees![indexPath.row].toString() + "元", forState: .Normal)
+        button.setTitle(Config.Fees[indexPath.row].toString() + "元", forState: .Normal)
         button.layer.borderColor = Constants.Color.Primary.CGColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3

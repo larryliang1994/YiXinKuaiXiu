@@ -8,11 +8,13 @@
 
 import UIKit
 
-class CustomerOrderListViewController: UIViewController, SMSwipeableTabViewControllerDelegate {
+class OrderListViewController: UIViewController, SMSwipeableTabViewControllerDelegate {
 
     let titleBarDataSource = ["进行中", "已完成"]
     
-    var onGoingTableView, doneTableView: CustomerOrderListTableViewController?
+    var cOnGoingTableView, cDoneTableView: CustomerOrderListTableViewController?
+    
+    var hOnGoingTableView, hDoneTableView: HandymanOrderListTableViewController?
     
     var swipeableView :SMSwipeableTabViewController?
     
@@ -25,13 +27,19 @@ class CustomerOrderListViewController: UIViewController, SMSwipeableTabViewContr
     }
     
     func initView() {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        if Config.Role == Constants.Role.Customer {
+            cOnGoingTableView = UtilBox.getController(Constants.ControllerID.CustomerOrderList) as? CustomerOrderListTableViewController
+            cOnGoingTableView?.tableType = 0
         
-        onGoingTableView = storyboard.instantiateViewControllerWithIdentifier("CustomerOrderListTableViewController") as? CustomerOrderListTableViewController
-        onGoingTableView!.tableType = 0
-        
-        doneTableView = storyboard.instantiateViewControllerWithIdentifier("CustomerOrderListTableViewController") as? CustomerOrderListTableViewController
-        doneTableView!.tableType = 1
+            cDoneTableView = UtilBox.getController(Constants.ControllerID.CustomerOrderList) as? CustomerOrderListTableViewController
+            cDoneTableView?.tableType = 1
+        } else {
+            hOnGoingTableView = UtilBox.getController(Constants.ControllerID.HandymanOrderList) as? HandymanOrderListTableViewController
+            hOnGoingTableView?.tableType = 0
+            
+            hDoneTableView = UtilBox.getController(Constants.ControllerID.HandymanOrderList) as? HandymanOrderListTableViewController
+            hDoneTableView?.tableType = 1
+        }
         
         swipeableView = SMSwipeableTabViewController()
         
@@ -61,8 +69,6 @@ class CustomerOrderListViewController: UIViewController, SMSwipeableTabViewContr
         self.addChildViewController(swipeableView!)
         self.view.addSubview(swipeableView!.view)
         swipeableView!.didMoveToParentViewController(self)
-        
-        
     }
     
     func initNavBar() {
@@ -74,7 +80,11 @@ class CustomerOrderListViewController: UIViewController, SMSwipeableTabViewContr
     
     //MARK: SMSwipeableTabViewController Delegate CallBack
     func didLoadViewControllerAtIndex(index: Int) -> UIViewController {
-        return index == 0 ? onGoingTableView! : doneTableView!
+        if Config.Role == Constants.Role.Customer {
+            return index == 0 ? cOnGoingTableView! : cDoneTableView!
+        } else {
+            return index == 0 ? hOnGoingTableView! : hDoneTableView!
+        }
     }
 }
 

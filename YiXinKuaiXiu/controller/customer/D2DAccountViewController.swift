@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerD2DAccountViewController: UITableViewController, WalletDelegate {
+class D2DAccountViewController: UITableViewController, WalletDelegate {
     var accountList: [D2DAccount] = []
     
     override func viewDidLoad() {

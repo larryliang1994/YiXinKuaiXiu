@@ -9,7 +9,7 @@
 import UIKit
 import KYDrawerController
 
-class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, CustomerPersonInfoDelgate {
+class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, ModifyUserInfoDelegate {
 
     @IBOutlet var publishButton: UIButton!
     @IBOutlet var mapView: BMKMapView!
@@ -89,12 +89,12 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Cust
             destination = navCon.visibleViewController!
         }
         
-        if let cpivc = destination as? CustomerPersonInfoViewController {
+        if let cpivc = destination as? UserInfoViewController {
             cpivc.delegate = self
         }
     }
     
-    func didModify() {
+    func didModify(indexPath: NSIndexPath, value: String) {
         (drawerController?.drawerViewController as! CustomerDrawerViewController).tableView.reloadData()
     }
     
@@ -109,8 +109,4 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Cust
         mapView.viewWillDisappear()
        //mapView.delegate = nil // 不用时，置nil
     }
-}
-
-protocol CustomerPersonInfoDelgate {
-    func didModify()
 }
