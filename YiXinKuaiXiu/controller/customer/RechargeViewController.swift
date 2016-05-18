@@ -11,6 +11,8 @@ import UIKit
 class RechargeViewController: UITableViewController, UITextFieldDelegate, PopBottomViewDataSource,PopBottomViewDelegate {
     @IBOutlet var feeTextField: UITextField!
     @IBOutlet var doneButton: UIBarButtonItem!
+    
+    var delegate: WalletChangeDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +64,8 @@ class RechargeViewController: UITableViewController, UITextFieldDelegate, PopBot
     
     func goPay() {
         self.noticeSuccess("充值成功", autoClear: true, autoClearTime: 2)
+        Config.Money = String(Float(Config.Money!)! + Float(feeTextField.text!)!)
+        delegate?.didChange()
         self.navigationController?.popViewControllerAnimated(true)
     }
     

@@ -109,6 +109,8 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate {
     func onPullGrabOrderListResult(result: Bool, info: String, orderList: [Order]) {}
     
     func onCancelOrderResult(result: Bool, info: String) {}
+    
+    func onCancelOrderConfirmResult(result: Bool, info: String) {}
 }
 
 protocol GrabOrderDelegate{

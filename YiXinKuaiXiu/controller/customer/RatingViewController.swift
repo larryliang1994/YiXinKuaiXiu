@@ -13,6 +13,8 @@ class RatingViewController: UITableViewController, RatingDelegate {
     @IBOutlet var ratingBar: FloatRatingView!
     @IBOutlet var descTextView: BRPlaceholderTextView!
     
+    var delegate: OrderListChangeDelegate?
+    
     var order: Order?
     
     override func viewDidLoad() {
@@ -20,7 +22,7 @@ class RatingViewController: UITableViewController, RatingDelegate {
 
         initView()
         
-        initNVBar()
+        initNavBar()
     }
     
     func initView() {
@@ -28,7 +30,7 @@ class RatingViewController: UITableViewController, RatingDelegate {
         descTextView.setPlaceholderFont(UIFont(name: (descTextView.font?.fontName)!, size: 15))
     }
     
-    func initNVBar() {
+    func initNavBar() {
         let confirmBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(RatingViewController.done))
         
         self.navigationItem.rightBarButtonItem = confirmBtn
@@ -46,6 +48,7 @@ class RatingViewController: UITableViewController, RatingDelegate {
         self.clearAllNotice()
         if result {
             self.noticeSuccess("评价成功", autoClear: true, autoClearTime: 2)
+            delegate?.didChange()
             self.navigationController?.popViewControllerAnimated(true)
         } else {
             UtilBox.alert(self, message: info)

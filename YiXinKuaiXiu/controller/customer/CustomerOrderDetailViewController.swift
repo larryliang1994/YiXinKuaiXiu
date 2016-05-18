@@ -22,9 +22,17 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     @IBOutlet var serviceRating: FloatRatingView!
     @IBOutlet var ratingLabel: UILabel!
     
+    @IBOutlet var totalFeeLabel: UILabel!
+    @IBOutlet var feeLabel: UILabel!
+    @IBOutlet var mFeeLabel: UILabel!
+    @IBOutlet var partFeeLabel: UILabel!
+    
     @IBOutlet var imageCell: UITableViewCell!
     @IBOutlet var picture2ImageView: UIImageView!
     @IBOutlet var picture1ImageView: UIImageView!
+    
+    var delegate: OrderListChangeDelegate?
+    
     var order: Order?
     
     var name: String?, telephoneNum: String?, sex: Int?, age: Int?, star: Int?, mNum: Int?
@@ -39,8 +47,10 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         
         initNavBar()
         
-        self.pleaseWait()
-        UserInfoModel(userInfoDelegate: self).doGetHandymanInfo((order?.graberID)!)
+        if order?.state != .NotPayFee && order?.state != .PaidFee {
+            self.pleaseWait()
+            UserInfoModel(userInfoDelegate: self).doGetHandymanInfo((order?.graberID)!)
+        }
     }
     
     func onGetHandymanInfoResult(result: Bool, info: String, name: String, telephoneNum: String, sex: Int, age: Int, star: Int, mNum: Int) {
@@ -77,12 +87,27 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         ratingLabel.clipsToBounds = true
         ratingLabel.layer.cornerRadius = 3
         ratingLabel.backgroundColor = Constants.Color.Gray
+        ratingLabel.text = order?.ratingDesc!
         
         descLabel.text = order?.desc
         
         locationLabel.text = order?.location
         
         dateLabel.text = UtilBox.getDateFromString((order?.date)!, format: Constants.DateFormat.YMD)
+        
+        serviceRating.rating = Float((order?.ratingStar)!)
+        
+        if order?.type == .Pack {
+            feeLabel.text = "无"
+            mFeeLabel.text = "无"
+            partFeeLabel.text = "无"
+            totalFeeLabel.text = "￥" + (order?.fee)!
+        } else if order?.type == .Normal {
+            feeLabel.text = "￥" + (order?.fee)!
+            mFeeLabel.text = "￥" + (order?.mFee)!
+            partFeeLabel.text = "无"
+            totalFeeLabel.text = "￥" + String(Float((order?.fee)!)! + Float((order?.mFee)!)!)
+        }
     
         if order?.image1 == nil {
             imageCell.hidden = true
@@ -139,6 +164,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         self.clearAllNotice()
         if result {
             UtilBox.alert(self, message: "已向对方发出申请，请等待对方确认")
+            delegate?.didChange()
         } else {
             UtilBox.alert(self, message: info)
         }
@@ -146,7 +172,12 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
-        case 0: return indexPath.row == 0 ? 60 : 40
+        case 0:
+            if order?.state == .NotPayFee || order?.state == .PaidFee {
+                return 0
+            } else {
+                return indexPath.row == 0 ? 60 : 40
+            }
             
         case 1:
             switch indexPath.row {
@@ -157,7 +188,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             default:    return 44
             }
             
-        case 2: return 129
+        case 2: return order?.type == .Reservation ? 0 : 129
             
         case 3: return order?.state?.rawValue < State.HasBeenRated.rawValue ? 0 : ratingLabel.frame.size.height + 64
             
@@ -201,4 +232,6 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {}
     
     func onPullGrabOrderListResult(result: Bool, info: String, orderList: [Order]) {}
+    
+    func onCancelOrderConfirmResult(result: Bool, info: String) {}
 }

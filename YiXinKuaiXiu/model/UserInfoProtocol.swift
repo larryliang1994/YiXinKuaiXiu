@@ -11,4 +11,5 @@ protocol UserInfoProtocol {
     func doModifyUserInfo(parameters: [String: String])
     func doUpdateLocationInfo(parameters: [String])
     func doGetHandymanInfo(id: String)
+    func doChangePassword(old: String, new: String)
 }

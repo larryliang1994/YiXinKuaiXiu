@@ -43,30 +43,24 @@ class ChangePasswordViewController: UITableViewController, UITextFieldDelegate, 
     }
     
     @IBAction func done(sender: UIBarButtonItem) {
-        if Config.Password != nil && Config.Password != oldPasswordTextField.text {
-            UtilBox.alert(self, message: "原密码错误")
-        } else if newPasswordTextField.text != newPassword2TextField.text {
+        if newPasswordTextField.text != newPassword2TextField.text {
             UtilBox.alert(self, message: "两次密码填写不一致")
         } else {
-            UserInfoModel(userInfoDelegate: self).doModifyUserInfo(["key": "pwd", "value": newPasswordTextField.text!])
             self.pleaseWait()
+            UserInfoModel(userInfoDelegate: self).doChangePassword(oldPasswordTextField.text!, new: newPasswordTextField.text!)
         }
     }
     
-    func onModifyUserInfoResult(result: Bool, info: String) {
+    func onChangePassword(result: Bool, info: String) {
         self.clearAllNotice()
         if result {
+            self.noticeSuccess("修改成功", autoClear: true, autoClearTime: 2)
             Config.Password = newPasswordTextField.text
             self.navigationController?.popViewControllerAnimated(true)
-            self.noticeSuccess("修改成功", autoClear: true, autoClearTime: 2)
         } else {
             UtilBox.alert(self, message: info)
         }
     }
-    
-    func onGetUserInfoResult(result: Bool, info: String) {}
-    
-    func onUpdateLocationInfoResult(result: Bool, info: String) {}
     
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

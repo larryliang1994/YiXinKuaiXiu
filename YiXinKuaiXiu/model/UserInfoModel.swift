@@ -86,6 +86,8 @@ class UserInfoModel: UserInfoProtocol {
     func doGetHandymanInfo(id: String) {
         AlamofireUtil.doRequest(Urls.GetHandymanInfo, parameters: ["bid": id]) { (result, response) in
             if result {
+                
+                print(response)
                 let json = JSON(UtilBox.convertStringToDictionary(response)!)
                 
                 let ret = json["ret"].intValue
@@ -108,6 +110,30 @@ class UserInfoModel: UserInfoProtocol {
         }
     }
     
+    func doChangePassword(old: String, new: String) {
+        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "old": old, "new": new]
+        
+        AlamofireUtil.doRequest(Urls.ChangePassword, parameters: paramters) { (result, response) in
+            if result {
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"].intValue
+                
+                if ret == 0 {
+                    self.userInfoDelegate.onChangePassword!(true, info: "")
+                } else if ret == 1 {
+                    self.userInfoDelegate.onChangePassword!(false, info: "认证失败")
+                } else if ret == 2 {
+                    self.userInfoDelegate.onChangePassword!(false, info: "原密码错误")
+                } else if ret == 3 {
+                    self.userInfoDelegate.onChangePassword!(false, info: "失败")
+                }
+            } else {
+                self.userInfoDelegate.onChangePassword!(false, info: "修改失败")
+            }
+        }
+    }
+    
     func handleUserInfo(json: JSON) {
         Config.Name = json["nme"].stringValue == "" ? nil : json["nme"].stringValue
         Config.Location = json["adr"].stringValue == "" ? nil : json["adr"].stringValue
@@ -123,6 +149,8 @@ class UserInfoModel: UserInfoProtocol {
         Config.TotalStar = json["fen"].stringValue == "" ? nil : json["fen"].stringValue
         Config.MaintenanceNum = json["cnt"].stringValue == "" ? nil : json["cnt"].stringValue
         Config.Audited = json["lck"].intValue
+        Config.MTypeIDString = json["lxs"].stringValue
+        Config.ContactTelephone = json["phe"].stringValue
         
         if !(Config.Money?.containsString("."))! {
             Config.Money?.appendContentsOf(".00")
@@ -135,4 +163,5 @@ class UserInfoModel: UserInfoProtocol {
     optional func onModifyUserInfoResult(result: Bool, info: String)
     optional func onUpdateLocationInfoResult(result: Bool, info: String)
     optional func onGetHandymanInfoResult(result: Bool, info: String, name: String, telephoneNum: String, sex: Int, age: Int, star: Int, mNum: Int)
+    optional func onChangePassword(result: Bool, info: String)
 }

@@ -101,7 +101,7 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate {
             if Config.Audited == 0 {
                 performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToAuditIDSegue, sender: self)
             } else {
-                performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToAuditIDSegue, sender: self)
+                performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToAuditedSegue, sender: self)
             }
             
         case 4:

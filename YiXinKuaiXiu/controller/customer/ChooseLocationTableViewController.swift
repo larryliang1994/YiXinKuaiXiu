@@ -30,8 +30,9 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
         initView()
         
         poiSearch.delegate = self
-        //locationService.delegate = self
-        //locationService.startUserLocationService()
+        
+        locationService.delegate = self
+        locationService.startUserLocationService()
     }
     
     func initView() {
@@ -45,6 +46,7 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
     }
     
     func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
+        print("waht")
 //        let localLatitude=userLocation.location.coordinate.latitude
 //        let localLongitude=userLocation.location.coordinate.longitude
 //        

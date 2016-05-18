@@ -41,6 +41,7 @@
 		491B6EDF1CE172320039B70E /* ChooseFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */; };
 		491B6EE11CE18AF40039B70E /* RechargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6EE01CE18AF40039B70E /* RechargeViewController.swift */; };
 		494D6E8A1CB80F19007824F1 /* PopBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494D6E891CB80F19007824F1 /* PopBottomView.swift */; };
+		49517E5F1CEB643000A20361 /* AuditedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517E5E1CEB643000A20361 /* AuditedViewController.swift */; };
 		496C5D371CC13D0300CA63AC /* ShoppingCartPopoverViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 496C5D361CC13D0300CA63AC /* ShoppingCartPopoverViewCell.xib */; };
 		496C5D391CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D381CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift */; };
 		496C5D3D1CC1D64800CA63AC /* ShoppingCartPayPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C5D3B1CC1D64800CA63AC /* ShoppingCartPayPopoverView.swift */; };
@@ -218,6 +219,7 @@
 		491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseFeeViewController.swift; path = controller/customer/ChooseFeeViewController.swift; sourceTree = "<group>"; };
 		491B6EE01CE18AF40039B70E /* RechargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RechargeViewController.swift; path = controller/customer/RechargeViewController.swift; sourceTree = "<group>"; };
 		494D6E891CB80F19007824F1 /* PopBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopBottomView.swift; path = view/PopBottomView.swift; sourceTree = "<group>"; };
+		49517E5E1CEB643000A20361 /* AuditedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuditedViewController.swift; path = controller/handyman/AuditedViewController.swift; sourceTree = "<group>"; };
 		496C5D361CC13D0300CA63AC /* ShoppingCartPopoverViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoppingCartPopoverViewCell.xib; path = controller/customer/ShoppingPopoverView/ShoppingCartPopoverViewCell.xib; sourceTree = "<group>"; };
 		496C5D381CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoppingCartPopoverViewCell.swift; path = controller/customer/ShoppingPopoverView/ShoppingCartPopoverViewCell.swift; sourceTree = "<group>"; };
 		496C5D3B1CC1D64800CA63AC /* ShoppingCartPayPopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartPayPopoverView.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				4909EC461CE86F6000C4FD04 /* HandymanOrderListTableViewController.swift */,
 				49A15E621CC5D2020028023C /* HandymanOrderDetailViewController.swift */,
 				49A15E661CC5DC650028023C /* AuditIDViewController.swift */,
+				49517E5E1CEB643000A20361 /* AuditedViewController.swift */,
 				497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */,
 				49A15E781CC675430028023C /* ProjectBidingViewController.swift */,
 			);
@@ -1048,6 +1051,7 @@
 				49A15E7B1CC6781F0028023C /* OYSimpleAlertController.swift in Sources */,
 				49C380961CB8F6DB00242B7A /* CitySearchResultVC.swift in Sources */,
 				496C5D471CC20F1C00CA63AC /* HandymanDrawerViewController.swift in Sources */,
+				49517E5F1CEB643000A20361 /* AuditedViewController.swift in Sources */,
 				4991F3101CB0FCD600E1BF85 /* AppDelegate.swift in Sources */,
 				49D48EDB1CE49C2E00D19FC2 /* MessageCenterViewController.swift in Sources */,
 				49A15E811CC7C6DF0028023C /* LoginModel.swift in Sources */,

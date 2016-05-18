@@ -68,6 +68,8 @@ class OrderModel: OrderProtocol {
                         
                         let location = CLLocation(latitude: CLLocationDegrees(orderJson["lat"].doubleValue), longitude: CLLocationDegrees(orderJson["lot"].doubleValue))
                         
+                        let desc = orderJson["cmt"].stringValue
+                        
                         let order = Order(
                             id: orderJson["id"].stringValue,
                             date: orderJson["dte"].stringValue,
@@ -78,7 +80,7 @@ class OrderModel: OrderProtocol {
                             type:  Type(rawValue: orderJson["tpe"].intValue - 1)!,
                             image1Url: nil,
                             image2Url: nil,
-                            desc: orderJson["cmt"].stringValue,
+                            desc: desc == "" ? "无" : desc,
                             mTypeID: orderJson["wxg"].stringValue,
                             mType: UtilBox.findMTypeNameByID(orderJson["wxg"].stringValue)!,
                             location: orderJson["adr"].stringValue,
@@ -124,6 +126,8 @@ class OrderModel: OrderProtocol {
                         
                         let location = CLLocation(latitude: CLLocationDegrees(orderJson["lat"].doubleValue), longitude: CLLocationDegrees(orderJson["lot"].doubleValue))
                         
+                        let desc = orderJson["cmt"].stringValue
+                        
                         let order = Order(
                             date: orderJson["dte"].stringValue,
                             senderID: orderJson["aid"].stringValue,
@@ -131,7 +135,7 @@ class OrderModel: OrderProtocol {
                             senderNum: orderJson["aph"].stringValue,
                             type: Type(rawValue: orderJson["tpe"].intValue - 1)!,
                             imageUrl: orderJson["pic"].stringValue,
-                            desc: orderJson["cmt"].stringValue,
+                            desc: desc == "" ? "无" : desc,
                             mTypeID: orderJson["wxg"].stringValue,
                             mType: UtilBox.findMTypeNameByID(orderJson["wxg"].stringValue)!,
                             location: orderJson["adr"].stringValue,
@@ -156,8 +160,6 @@ class OrderModel: OrderProtocol {
         
         AlamofireUtil.doRequest(Urls.GrabOrder, parameters: parameters) { (result, response) in
             if result {
-                print(response)
-                
                 let json = JSON(UtilBox.convertStringToDictionary(response)!)
                 
                 let ret = json["ret"].intValue
@@ -180,8 +182,6 @@ class OrderModel: OrderProtocol {
         
         AlamofireUtil.doRequest(Urls.CancelOrder, parameters: parameters) { (result, response) in
             if result {
-                print(response)
-                
                 let json = JSON(UtilBox.convertStringToDictionary(response)!)
                 
                 let ret = json["ret"].intValue
@@ -202,6 +202,32 @@ class OrderModel: OrderProtocol {
             }
         }
     }
+    
+    func cancelOrderConfirm(order: Order, confirm: Bool) {
+        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": order.date!, "cmd": confirm ? "0" : "1"]
+        
+        AlamofireUtil.doRequest(Urls.CancelOrderConfirm, parameters: parameters) { (result, response) in
+            if result {
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"].intValue
+                
+                if ret == 0 {
+                    self.orderDelegate?.onCancelOrderConfirmResult(true, info: "")
+                } else if ret == 1 {
+                    self.orderDelegate?.onCancelOrderConfirmResult(false, info: "认证失败")
+                } else if ret == 2 {
+                    self.orderDelegate?.onCancelOrderConfirmResult(false, info: "订单不存在")
+                } else if ret == 3 {
+                    self.orderDelegate?.onCancelOrderConfirmResult(false, info: "订单已完成")
+                } else if ret == 4 {
+                    self.orderDelegate?.onCancelOrderConfirmResult(false, info: "失败")
+                }
+            } else {
+                self.orderDelegate?.onCancelOrderConfirmResult(false, info: "失败")
+            }
+        }
+    }
 }
 
 protocol OrderDelegate {
@@ -210,4 +236,5 @@ protocol OrderDelegate {
     func onPullGrabOrderListResult(result: Bool, info: String, orderList: [Order])
     func onGrabOrderResult(result: Bool, info: String)
     func onCancelOrderResult(result: Bool, info: String)
+    func onCancelOrderConfirmResult(result: Bool, info: String)
 }

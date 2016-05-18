@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WalletViewController: UITableViewController {
+class WalletViewController: UITableViewController, WalletChangeDelegate {
     
     @IBOutlet var withdrawButton: UIButton!
     @IBOutlet var buttonBackgroundView: UIView!
@@ -70,4 +70,27 @@ class WalletViewController: UITableViewController {
             performSegueWithIdentifier(Constants.SegueID.ShowChangePasswordSegue, sender: self)
         }
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as UIViewController
+        
+        if let navCon = destination as? UINavigationController {
+            // 取出最上层的viewController，即FaceView
+            destination = navCon.visibleViewController!
+        }
+        
+        if let rvc = destination as? RechargeViewController {
+            rvc.delegate = self
+        } else if let wdvc = destination as? WithDrawViewController {
+            wdvc.delegate = self
+        }
+    }
+    
+    func didChange() {
+        moneyLabel.text = Config.Money == nil ? "0.00" : Config.Money
+    }
+}
+
+protocol WalletChangeDelegate {
+    func didChange()
 }

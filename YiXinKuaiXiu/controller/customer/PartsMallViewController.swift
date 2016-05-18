@@ -219,7 +219,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         //hide(self.view)
         self.pleaseWait()
         
-        PayModel(payDelegate: self).goPayParts(order!.date!, detail: "", fee: String(totalPrice))
+        PayModel(payDelegate: self).goPayParts(order!.date!, detail: "111", fee: String(totalPrice))
     }
     
     func onGoPayPartsResult(result: Bool, info: String) {

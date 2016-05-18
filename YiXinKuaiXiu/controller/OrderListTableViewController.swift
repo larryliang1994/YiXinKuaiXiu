@@ -72,7 +72,7 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
         if Config.Role == Constants.Role.Customer {
             performSegueWithIdentifier(Constants.SegueID.ShowCustomerOrderDetail, sender: self)
         } else {
-            performSegueWithIdentifier(Constants.SegueID.ShowCustomerOrderDetail, sender: self)
+            performSegueWithIdentifier(Constants.SegueID.ShowHandymanOrderDetailSegue, sender: self)
         }
     }
     
@@ -89,8 +89,8 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
                 codvc.order = segueOrder
             }
         } else {
-            if let codvc = destination as? CustomerOrderDetailViewController {
-                codvc.order = segueOrder
+            if let hodvc = destination as? HandymanOrderDetailViewController {
+                hodvc.order = segueOrder
             }
         }
     }
@@ -102,4 +102,6 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
     func onGrabOrderResult(result: Bool, info: String) {}
     
     func onCancelOrderResult(result: Bool, info: String) {}
+    
+    func onCancelOrderConfirmResult(result: Bool, info: String) {}
 }

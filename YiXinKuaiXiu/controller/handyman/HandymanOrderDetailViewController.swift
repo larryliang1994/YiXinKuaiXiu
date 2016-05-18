@@ -12,8 +12,8 @@ class HandymanOrderDetailViewController: UITableViewController {
     
     @IBOutlet var portraitImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var rating: FloatRatingView!
     @IBOutlet var orderCountLabel: UILabel!
-    @IBOutlet var cancelButton: UIButton!
     @IBOutlet var contactButton: UIButton!
     @IBOutlet var descLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
@@ -21,9 +21,15 @@ class HandymanOrderDetailViewController: UITableViewController {
     @IBOutlet var serviceRating: FloatRatingView!
     @IBOutlet var ratingLabel: UILabel!
     
+    @IBOutlet var totalFeeLabel: UILabel!
+    @IBOutlet var feeLabel: UILabel!
+    @IBOutlet var mFeeLabel: UILabel!
+    @IBOutlet var partFeeLabel: UILabel!
+    
     @IBOutlet var imageCell: UITableViewCell!
     @IBOutlet var picture2ImageView: UIImageView!
     @IBOutlet var picture1ImageView: UIImageView!
+    
     var order: Order?
     
     override func viewDidLoad() {
@@ -38,9 +44,7 @@ class HandymanOrderDetailViewController: UITableViewController {
     }
     
     func initView() {
-        cancelButton.layer.cornerRadius = 3
-        cancelButton.layer.borderWidth = 0.5
-        cancelButton.layer.borderColor = Constants.Color.Gray.CGColor
+        nameLabel.text = order?.senderName!
         
         contactButton.layer.cornerRadius = 3
         contactButton.layer.borderWidth = 0.5
@@ -49,10 +53,27 @@ class HandymanOrderDetailViewController: UITableViewController {
         ratingLabel.clipsToBounds = true
         ratingLabel.layer.cornerRadius = 3
         ratingLabel.backgroundColor = Constants.Color.Gray
+        ratingLabel.text = order?.ratingDesc!
         
         descLabel.text = order?.desc
         
         locationLabel.text = order?.location
+        
+        dateLabel.text = UtilBox.getDateFromString((order?.date)!, format: Constants.DateFormat.YMD)
+        
+        serviceRating.rating = Float((order?.ratingStar)!)
+        
+        if order?.type == .Pack {
+            feeLabel.text = "无"
+            mFeeLabel.text = "无"
+            partFeeLabel.text = "无"
+            totalFeeLabel.text = "￥" + (order?.fee)!
+        } else if order?.type == .Normal {
+            feeLabel.text = "￥" + (order?.fee)!
+            mFeeLabel.text = "￥" + (order?.mFee)!
+            partFeeLabel.text = "无"
+            totalFeeLabel.text = "￥" + String(Float((order?.fee)!)! + Float((order?.mFee)!)!)
+        }
         
         if order?.image1 == nil {
             imageCell.hidden = true
@@ -71,9 +92,26 @@ class HandymanOrderDetailViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
     
+    @IBAction func contact(sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        alert.addAction(UIAlertAction(
+            title: "呼叫" + order!.senderNum!,
+            style: .Default)
+        { (action: UIAlertAction) -> Void in
+            UIApplication.sharedApplication().openURL(NSURL(string :"tel://" + self.order!.senderNum!)!)
+            }
+        )
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
-        case 0: return indexPath.row == 0 ? 60 : 40
+        case 0:
+            return indexPath.row == 0 ? 60 : 40
             
         case 1:
             switch indexPath.row {
@@ -84,9 +122,9 @@ class HandymanOrderDetailViewController: UITableViewController {
             default:    return 44
             }
             
-        case 2: return 129
+        case 2: return order?.type == .Reservation ? 0 : 129
             
-        case 3: return ratingLabel.frame.size.height + 64
+        case 3: return order?.state?.rawValue < State.HasBeenRated.rawValue ? 0 : ratingLabel.frame.size.height + 64
             
         default:    return 44
         }
@@ -98,11 +136,5 @@ class HandymanOrderDetailViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 9
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 {
-            performSegueWithIdentifier(Constants.SegueID.ShowHandymanInfoSugue, sender: self)
-        }
     }
 }

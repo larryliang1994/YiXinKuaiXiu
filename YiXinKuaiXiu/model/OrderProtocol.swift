@@ -20,4 +20,5 @@ protocol OrderProtocol {
     func pullGrabOrderList(requestTime: String, distance: Int?)
     func grabOrder(order: Order)
     func cancelOrder(order: Order)
+    func cancelOrderConfirm(order: Order, confirm: Bool)
 }

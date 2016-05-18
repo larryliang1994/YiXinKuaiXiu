@@ -123,7 +123,6 @@ class Constants {
         static let ShowCustomerRatingSegue = "showCustomerRatingSegue"
         static let ShowCustomerOrderDetail = "showCustomerOrderDetail"
         static let ShowHandymanInfoSugue = "showHandymanInfoSugue"
-        //static let ShowCustomerWalletSegue = "showCustomerWalletSegue"
         
         static let ShowOrderPublishConfirmSegue = "showOrderPublishConfirmSegue"
         
@@ -138,6 +137,7 @@ class Constants {
         static let HandymanDrawerToAuditIDSegue = "handymanDrawerToAuditIDSegue"
         static let HandymanDrawerToMessageCenterSegue = "handymanDrawerToMessageCenterSegue"
         static let HandymanDrawerToProjectBidingSegue = "handymanDrawerToProjectBidingSegue"
+        static let HandymanDrawerToAuditedSegue = "handymanDrawerToAuditedSegue"
         
         static let ShowHandymanOrderDetailSegue = "showHandymanOrderDetailSegue"
         static let ShowHandymanD2DAccountSegue = "showHandymanD2DAccountSegue"

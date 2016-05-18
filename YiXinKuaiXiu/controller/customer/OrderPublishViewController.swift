@@ -307,6 +307,8 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
     func onGrabOrderResult(result: Bool, info: String) {}
     
     func onCancelOrderResult(result: Bool, info: String) {}
+    
+    func onCancelOrderConfirmResult(result: Bool, info: String) {}
 }
 
 protocol OrderPublishDelegate {

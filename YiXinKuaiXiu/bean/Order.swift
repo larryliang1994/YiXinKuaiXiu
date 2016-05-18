@@ -42,10 +42,7 @@ public enum State: Int {
     case PaidFee        // 已支付上门费
     case HasBeenGrabbed // 已被抢单
     case PaidMFee       // 已支付维修费
-    case PaidPartFee    // 已支付配件费
-    case PaidAll        // 已支付全部费用
     case HasBeenRated   // 已评价
-    
 }
 
 class Order {

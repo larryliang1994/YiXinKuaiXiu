@@ -145,4 +145,6 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
     func onGrabOrderResult(result: Bool, info: String) {}
     
     func onCancelOrderResult(result: Bool, info: String) {}
+    
+    func onCancelOrderConfirmResult(result: Bool, info: String) {}
 }

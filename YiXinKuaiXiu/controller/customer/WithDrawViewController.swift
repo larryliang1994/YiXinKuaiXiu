@@ -11,6 +11,8 @@ import UIKit
 class WithDrawViewController: UITableViewController, UITextFieldDelegate, WalletDelegate {
     @IBOutlet var doneButton: UIBarButtonItem!
     @IBOutlet var moneyTextField: UITextField!
+    
+    var delegate: WalletChangeDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +58,9 @@ class WithDrawViewController: UITableViewController, UITextFieldDelegate, Wallet
         
         if result {
             self.noticeSuccess("申请成功", autoClear: true, autoClearTime: 2)
+            
+            Config.Money = String(Float(Config.Money!)! - Float(moneyTextField.text!)!)
+            delegate?.didChange()
             
             alert?.dismissViewControllerAnimated(true, completion: nil)
             alert = nil

@@ -25,7 +25,6 @@ class PayModel: PayProtocol, PayDelegate {
     func goPay(date: String, type: PayType, fee: String) {
         AlamofireUtil.doRequest(Urls.GoPay, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "tpe": type.rawValue.toString(), "fee": fee]) { (result, response) in
             if result {
-                print(response)
                 let json = JSON(UtilBox.convertStringToDictionary(response)!)
                 
                 let ret = json["ret"].intValue
@@ -55,13 +54,12 @@ class PayModel: PayProtocol, PayDelegate {
         let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "con": detail, "fee": fee]
         AlamofireUtil.doRequest(Urls.PayParts, parameters: parameters) { (result, response) in
             if result {
-                print(response)
                 let json = JSON(UtilBox.convertStringToDictionary(response)!)
                 
                 let ret = json["ret"].intValue
                 
                 if ret == 0 {
-                    PayModel(payDelegate: self).goPay(date, type: .Part, fee: fee)
+                    self.payDelegate?.onGoPayPartsResult!(true, info: "")
                 } else if ret == 1 {
                     self.payDelegate?.onGoPayPartsResult!(false, info: "认证失败")
                 } else if ret == 2 {
@@ -70,6 +68,8 @@ class PayModel: PayProtocol, PayDelegate {
                     self.payDelegate?.onGoPayPartsResult!(false, info: "无法修改")
                 } else if ret == 4 {
                     self.payDelegate?.onGoPayPartsResult!(false, info: "失败")
+                } else if ret == 5 {
+                    self.payDelegate?.onGoPayPartsResult!(false, info: "余额不足")
                 }
             } else {
                 self.payDelegate?.onGoPayPartsResult!(false, info: "支付失败")
@@ -77,11 +77,36 @@ class PayModel: PayProtocol, PayDelegate {
         }
     }
     
+    func goPayMFee(date: String, fee: String) {
+        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "fee": fee]
+        AlamofireUtil.doRequest(Urls.PayMFee, parameters: parameters) { (result, response) in
+            if result {
+                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let ret = json["ret"].intValue
+                
+                if ret == 0 {
+                    PayModel(payDelegate: self).goPay(date, type: .MFee, fee: fee)
+                } else if ret == 1 {
+                    self.payDelegate?.onGoPayMFeeResult!(false, info: "认证失败")
+                } else if ret == 2 {
+                    self.payDelegate?.onGoPayMFeeResult!(false, info: "订单不存在")
+                } else if ret == 3 {
+                    self.payDelegate?.onGoPayMFeeResult!(false, info: "无法修改")
+                } else if ret == 4 {
+                    self.payDelegate?.onGoPayMFeeResult!(false, info: "失败")
+                }
+            } else {
+                self.payDelegate?.onGoPayMFeeResult!(false, info: "支付失败")
+            }
+        }
+    }
+    
     @objc func onGoPayResult(result: Bool, info: String) {
         if result {
-            self.payDelegate?.onGoPayPartsResult!(true, info: "")
+            self.payDelegate?.onGoPayMFeeResult?(true, info: "")
         } else {
-            self.payDelegate?.onGoPayPartsResult!(false, info: info)
+            self.payDelegate?.onGoPayMFeeResult?(false, info: info)
         }
     }
 }
@@ -89,4 +114,5 @@ class PayModel: PayProtocol, PayDelegate {
 @objc protocol PayDelegate {
     optional func onGoPayResult(result: Bool, info: String)
     optional func onGoPayPartsResult(result: Bool, info: String)
+    optional func onGoPayMFeeResult(result: Bool, info: String)
 }

@@ -62,40 +62,16 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
             reminderLabel.hidden = true
             
             switch order.state! {
-            case .NotPayFee:
-                leftButton.hidden = true
-                
-                rightButton.setTitle("去支付", forState: .Normal)
-                rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
-                
-            case .PaidFee:
-                leftButton.hidden = true
-                rightButton.hidden = true
-                
-            case .PaidPartFee: fallthrough
-            case .PaidAll: fallthrough
-            case .HasBeenGrabbed:
-                leftButton.setTitle("购买配件", forState: .Normal)
-                leftButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.showPartsMallAction), forControlEvents: UIControlEvents.TouchUpInside)
-                
-                rightButton.setTitle("付维修费", forState: .Normal)
-                rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
-                
-            case .PaidMFee:
-                leftButton.setTitle("补购配件", forState: .Normal)
-                leftButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.showPartsMallAction), forControlEvents: UIControlEvents.TouchUpInside)
-                
-                rightButton.setTitle("去评价", forState: .Normal)
-                rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goRatingAction), forControlEvents: UIControlEvents.TouchUpInside)
-                
             case .Cancelling:
                 leftButton.setTitle("同意", forState: .Normal)
+                leftButton.addTarget(self, action: #selector(HandymanOrderListTableViewController.agreeCancelOrderConfirm), forControlEvents: .TouchUpInside)
                 
                 rightButton.setTitle("不同意", forState: .Normal)
                 rightButton.backgroundColor = UIColor.whiteColor()
                 rightButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
                 rightButton.layer.borderWidth = 0.5
                 rightButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+                rightButton.addTarget(self, action: #selector(HandymanOrderListTableViewController.disagreeCancelOrderConfirm), forControlEvents: .TouchUpInside)
                 
                 reminderLabel.hidden = false
                 
@@ -156,16 +132,55 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
         }
     }
     
-    func goRatingAction(sender: UIButton) {
-        let ratingVC = UtilBox.getController(Constants.ControllerID.Rating)
-        self.navigationController?.showViewController(ratingVC, sender: self)
+    func agreeCancelOrderConfirm(sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        alert.addAction(UIAlertAction(
+            title: "同意取消订单",
+            style: .Default)
+        { (action: UIAlertAction) -> Void in
+            self.pleaseWait()
+            
+            let cell = sender.superview?.superview as! UITableViewCell
+            let selectedIndexPath = self.tableView.indexPathForCell(cell)!
+            
+            OrderModel(orderDelegate: self).cancelOrderConfirm(self.orders[(selectedIndexPath.section)], confirm: true)
+            }
+        )
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        
+        presentViewController(alert, animated: true, completion: nil)
     }
     
-    func leftButtonAction() {
-        //performSegueWithIdentifier(Constants.SegueID.ShowPartsMallSegue, sender: self)
+    func disagreeCancelOrderConfirm(sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        alert.addAction(UIAlertAction(
+            title: "不同意取消订单",
+            style: .Default)
+        { (action: UIAlertAction) -> Void in
+            self.pleaseWait()
+            
+            let cell = sender.superview?.superview as! UITableViewCell
+            let selectedIndexPath = self.tableView.indexPathForCell(cell)!
+            
+            OrderModel(orderDelegate: self).cancelOrderConfirm(self.orders[(selectedIndexPath.section)], confirm: false)
+            }
+        )
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        
+        presentViewController(alert, animated: true, completion: nil)
     }
     
-    func rightButtonAction() {
-        //performSegueWithIdentifier(Constants.SegueID.ShowCustomerRatingSegue, sender: self)
+    override func onCancelOrderConfirmResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        if result {
+            self.noticeSuccess("已发送", autoClear: true, autoClearTime: 2)
+            refresh()
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
 }

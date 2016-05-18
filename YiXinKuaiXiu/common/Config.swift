@@ -29,6 +29,8 @@ class Config {
     static var ContactName: String?
     static var ContactTelephone: String?
     
+    static var MTypeIDString: String?
+    
     static var MTypes: [MaintenanceType]?
     static var MTypeNames: [String]?
     
