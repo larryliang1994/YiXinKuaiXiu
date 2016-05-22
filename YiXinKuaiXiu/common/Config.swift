@@ -22,9 +22,11 @@ class Config {
     static var Password: String?
     static var BankName: String?
     static var BankNum: String?
+    static var BankOwner: String?
     static var TotalStar: String?
     static var MaintenanceNum: String?
     static var Audited: Int?
+    static var PortraitUrl: String?
     
     static var ContactName: String?
     static var ContactTelephone: String?

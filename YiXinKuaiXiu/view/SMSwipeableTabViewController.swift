@@ -184,8 +184,8 @@ public class SMSwipeableTabViewController: UIViewController, UIPageViewControlle
         self.view.addSubview(segmentBarView)
         setupSelectionBar()
         
-        let line = UIView(frame: CGRectMake(0, segementBarHeight - 1, UIScreen.mainScreen().bounds.width, 1))
-        line.backgroundColor = Constants.Color.Gray
+        let line = UIView(frame: CGRectMake(0, segementBarHeight-0.5, UIScreen.mainScreen().bounds.width, 0.5))
+        line.backgroundColor = UIColor.lightGrayColor()
         segmentBarView.addSubview(line)
     }
     

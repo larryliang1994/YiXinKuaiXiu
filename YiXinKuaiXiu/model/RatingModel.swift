@@ -19,8 +19,14 @@ class RatingModel: RatingProtocol {
     func doRating(date: String, star: Int, desc: String) {
         AlamofireUtil.doRequest(Urls.Rating, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "fen": star.toString(), "fem": desc]) { (result, response) in
             if result {
-                print(response)
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.ratingDelegate?.onRatingResult(false, info: "评价失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 

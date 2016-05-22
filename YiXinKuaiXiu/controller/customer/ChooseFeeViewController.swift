@@ -64,12 +64,9 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("chooseFeeCell", forIndexPath: indexPath)
         
-        let button = cell.viewWithTag(Constants.Tag.CustomerChooseFeeCellButton) as! UIButton
+        let button = cell.viewWithTag(Constants.Tag.CustomerChooseFeeCellButton) as! HollowButton
         
         button.setTitle(Config.Fees[indexPath.row].toString() + "元", forState: .Normal)
-        button.layer.borderColor = Constants.Color.Primary.CGColor
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 3
         button.enabled = false
         
         return cell

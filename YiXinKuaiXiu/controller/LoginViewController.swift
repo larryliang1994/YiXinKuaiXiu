@@ -26,12 +26,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
     }
     
     func initView() {
-        getVerifyCodeButton.backgroundColor = UIColor.lightGrayColor()
-        getVerifyCodeButton.layer.cornerRadius = 3
         getVerifyCodeButton.enabled = false
+        getVerifyCodeButton.backgroundColor = UIColor.lightGrayColor()
         
         loginButton.backgroundColor = UIColor.lightGrayColor()
-        loginButton.layer.cornerRadius = 3
         loginButton.enabled = false
         loginButtonEnabled = false
     }

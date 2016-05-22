@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
@@ -12,20 +11,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cf1-mk-q5G">
-                    <rect key="frame" x="0.0" y="-4" width="230" height="105"/>
+                    <rect key="frame" x="0.0" y="-4" width="230" height="130"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-Eh-fKc">
-                            <rect key="frame" x="123" y="61" width="76" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="Fxc-9a-4cp"/>
-                                <constraint firstAttribute="width" constant="76" id="jfz-FR-OPi"/>
-                            </constraints>
-                            <state key="normal" title="退出">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9XP-CJ-Ii5">
-                            <rect key="frame" x="90" y="45" width="50" height="16"/>
+                            <rect key="frame" x="90" y="57" width="50" height="16"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="QtC-AE-kLa"/>
@@ -39,15 +28,15 @@
                             </variation>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R8v-hi-XG2">
-                            <rect key="frame" x="107" y="61" width="16" height="10"/>
+                            <rect key="frame" x="107" y="73" width="16" height="10"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10" id="Gfu-WV-5vm"/>
                                 <constraint firstAttribute="width" constant="16" id="cXh-XP-cM4"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phK-Nt-tfC">
-                            <rect key="frame" x="31" y="61" width="76" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phK-Nt-tfC" customClass="HollowButton" customModule="YiXinKuaiXiu" customModuleProvider="target">
+                            <rect key="frame" x="31" y="73" width="76" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="MRO-cE-cje"/>
                                 <constraint firstAttribute="height" constant="30" id="Qf6-Z7-I3f"/>
@@ -63,11 +52,21 @@
                             </variation>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认退出？" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhT-Ly-4bx">
-                            <rect key="frame" x="73" y="24" width="85" height="21"/>
+                            <rect key="frame" x="73" y="36" width="85" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-Eh-fKc" customClass="PrimaryButton" customModule="YiXinKuaiXiu" customModuleProvider="target">
+                            <rect key="frame" x="123" y="73" width="76" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Fxc-9a-4cp"/>
+                                <constraint firstAttribute="width" constant="76" id="jfz-FR-OPi"/>
+                            </constraints>
+                            <state key="normal" title="退出">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -75,7 +74,7 @@
                         <constraint firstItem="9XP-CJ-Ii5" firstAttribute="centerY" secondItem="cf1-mk-q5G" secondAttribute="centerY" id="5NW-zU-2Jn"/>
                         <constraint firstItem="AhT-Ly-4bx" firstAttribute="centerX" secondItem="cf1-mk-q5G" secondAttribute="centerX" id="7Wn-nc-jlZ"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="111" id="81A-NW-S7W"/>
-                        <constraint firstAttribute="height" constant="105" id="97U-g9-eVE"/>
+                        <constraint firstAttribute="height" constant="130" id="97U-g9-eVE"/>
                         <constraint firstItem="phK-Nt-tfC" firstAttribute="height" secondItem="ffj-Eh-fKc" secondAttribute="height" id="B6x-X4-XLh"/>
                         <constraint firstItem="phK-Nt-tfC" firstAttribute="width" secondItem="ffj-Eh-fKc" secondAttribute="width" id="H5f-C4-AuU"/>
                         <constraint firstAttribute="width" constant="230" id="P2Z-17-dB8"/>

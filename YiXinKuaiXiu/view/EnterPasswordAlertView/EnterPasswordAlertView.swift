@@ -16,15 +16,8 @@ class EnterPasswordAlertView: UIView {
     @IBOutlet var pwdTextField: UITextField!
     
     override func awakeFromNib() {
-        self.frame.size = CGSizeMake(240, 170)
+        self.frame.size = CGSizeMake(240, 175)
         
         backgroundView.layer.cornerRadius = 5
-        
-        cancelButton.layer.cornerRadius = 3
-        cancelButton.layer.borderWidth = 1
-        cancelButton.layer.borderColor = Constants.Color.Gray.CGColor
-        
-        confirmButton.layer.cornerRadius = 3
-        confirmButton.backgroundColor = Constants.Color.Primary
     }
 }

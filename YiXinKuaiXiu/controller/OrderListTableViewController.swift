@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderListTableViewController: UITableViewController, OrderDelegate {
+class OrderListTableViewController: UITableViewController, OrderDelegate, LoadMoreTableFooterViewDelegate {
     var orders: [Order] = []
     
     var tableType: Int?
@@ -16,10 +16,25 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
     
     var selectedIndexPath: NSIndexPath?
     
+    var loadMoreFooterView: LoadMoreTableFooterView?
+    var loadingMore: Bool = false
+    var loadingMoreShowing: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initView()
+        
         refresh()
+    }
+    
+    func initView() {
+        if loadMoreFooterView == nil {
+            loadMoreFooterView = LoadMoreTableFooterView(frame: CGRectMake(0, tableView.contentSize.height, tableView.frame.size.width, tableView.frame.size.height))
+            loadMoreFooterView!.delegate = self
+            loadMoreFooterView!.backgroundColor = UIColor.clearColor()
+            tableView.addSubview(loadMoreFooterView!)
+        }
     }
     
     func refresh() {
@@ -32,6 +47,10 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
         }
     }
     
+    func loadMore() {
+        loadingMore = true
+    }
+    
     @IBAction func refresh(sender: UIRefreshControl) {
         refresh()
     }
@@ -39,6 +58,10 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
     func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {
         if result {
             orders = orderList
+            
+            loadingMore = false
+            loadMoreFooterView?.loadMoreScrollViewDataSourceDidFinishedLoading(tableView)
+            
             tableView.reloadData()
         } else {
             UtilBox.alert(self, message: info)
@@ -76,22 +99,26 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var destination = segue.destinationViewController as UIViewController
-        
-        if let navCon = destination as? UINavigationController {
-            // 取出最上层的viewController，即FaceView
-            destination = navCon.visibleViewController!
+    // LoadMoreTableFooterViewDelegate
+    func loadMoreTableFooterDidTriggerRefresh(view: LoadMoreTableFooterView) {
+        loadMore()
+    }
+    
+    func loadMoreTableFooterDataSourceIsLoading(view: LoadMoreTableFooterView) -> Bool {
+        return loadingMore
+    }
+    
+    // UIScrollViewDelegate
+    override func scrollViewDidScroll(scrollView: UIScrollView)
+    {
+        if (loadingMoreShowing) {
+            loadMoreFooterView!.loadMoreScrollViewDidScroll(scrollView)
         }
-        
-        if Config.Role == Constants.Role.Customer {
-            if let codvc = destination as? CustomerOrderDetailViewController {
-                codvc.order = segueOrder
-            }
-        } else {
-            if let hodvc = destination as? HandymanOrderDetailViewController {
-                hodvc.order = segueOrder
-            }
+    }
+    
+    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if (loadingMoreShowing) {
+            loadMoreFooterView!.loadMoreScrollViewDidEndDragging(scrollView)
         }
     }
     

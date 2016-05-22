@@ -16,7 +16,7 @@ class AlamofireUtil {
         var requestUrl = Urls.ServerUrl + url
         
         for (key, value) in parameters {
-             requestUrl += key + "=" + value + "&"
+            requestUrl += key + "=" + value + "&"
         }
         
         requestUrl = requestUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())!

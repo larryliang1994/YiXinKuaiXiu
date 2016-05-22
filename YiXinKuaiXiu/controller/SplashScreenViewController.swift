@@ -13,6 +13,8 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
 
     var window: UIWindow?
     
+    var alert: OYSimpleAlertController?
+    
     let requestNum = 3
     var initRequestNum = 0
     
@@ -20,6 +22,32 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         super.viewDidLoad()
         
         getStarted()
+        
+        getInitialInfo()
+    }
+    
+    func getStarted() {
+        // 初始化百度地图
+        initBMK()
+        
+        // 初始化BeeCloud
+        initBeeCloud()
+        
+        // 初始化Bugly
+        Bugly.startWithAppId(Constants.Key.BuglyAppID)
+        
+        // 初始化数据统计服务
+        MobClick.startWithAppkey(Constants.Key.UMAppKey, reportPolicy: BATCH, channelId: "developer")
+        
+        setInitialViewController()
+    }
+    
+    func getInitialInfo() {
+        if alert != nil {
+            alert?.dismissViewControllerAnimated(true, completion: nil)
+            alert = nil
+            self.pleaseWait()
+        }
         
         if Config.Aid != nil && Config.Aid != "" && Config.VerifyCode != nil && Config.VerifyCode != "" {
             UserInfoModel(userInfoDelegate: self).doGetUserInfo()
@@ -37,6 +65,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         dispatch_async(dispatch_get_global_queue(qos, 0)) { () -> Void in
             sleep(1)
             dispatch_async(dispatch_get_main_queue(), {
+                self.clearAllNotice()
                 UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
                     self.window?.makeKeyAndVisible()
                     }, completion: nil)
@@ -53,7 +82,15 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
             }
             
         } else {
-            UtilBox.alert(self, message: info)
+            // 强制要求登录
+            if info == "1" {
+                UtilBox.alert(self, message: "登录信息已过期，请重新登录")
+                UtilBox.clearUserDefaults()
+                
+                self.window?.rootViewController = storyboard!.instantiateViewControllerWithIdentifier("WelcomeVCNavigation")
+            } else if alert == nil {
+                alert(info)
+            }
         }
     }
     
@@ -65,7 +102,9 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
                 showMainScreen()
             }
         } else {
-            UtilBox.alert(self, message: info)
+            if alert == nil {
+                alert(info)
+            }
         }
     }
     
@@ -77,22 +116,24 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
                 showMainScreen()
             }
         } else {
-            UtilBox.alert(self, message: info)
+            if alert == nil {
+                alert(info)
+            }
         }
     }
     
-    func getStarted() {
-        // 初始化百度地图
-        initBMK()
+    func alert(info: String) {
+        self.clearAllNotice()
+        initRequestNum = 0
         
-        // 初始化Bugly
-        Bugly.startWithAppId(Constants.Key.BuglyAppID)
-        
-        // 初始化数据统计服务
-        MobClick.startWithAppkey(Constants.Key.UMAppKey, reportPolicy: BATCH,
-                                 channelId: "developer")
-        
-        setInitialViewController()
+        alert = OYSimpleAlertController()
+        UtilBox.showAlertView(self, alertViewController: alert!, message: info, cancelButtonTitle: "关闭", cancelButtonAction: #selector(SplashScreenViewController.close), confirmButtonTitle: "重试", confirmButtonAction: #selector(SplashScreenViewController.getInitialInfo))
+    }
+    
+    func close() {
+        alert?.dismissViewControllerAnimated(true, completion: nil)
+        alert = nil
+        exit(0)
     }
 
     func setInitialViewController() {
@@ -127,6 +168,12 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         if ret == false {
             NSLog("manager start failed!")
         }
+        
+    }
+    
+    func initBeeCloud() {
+        BeeCloud.initWithAppID(Constants.Key.BeeCloudAppID, andAppSecret: Constants.Key.BeeCloudAppSecret, sandbox: false)
+        BeeCloud.initWeChatPay(Constants.Key.WechatAppID)
     }
 }
 

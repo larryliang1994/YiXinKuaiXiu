@@ -9,27 +9,31 @@
 import UIKit
 import KYDrawerController
 
-class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate {
+class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate {
     
     @IBOutlet var mapView: BMKMapView!
-    @IBOutlet var grabButton: UIButton!
-
+    
     var drawerController: KYDrawerController?
+    
+    let locationService = BMKLocationService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        grabButton.backgroundColor = Constants.Color.Primary
+        initView()
         
-        grabButton.layer.cornerRadius = 3
-        grabButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 24)
-        
+        initNavBar()
+    }
+    
+    func initView() {
         drawerController = self.navigationController?.parentViewController as? KYDrawerController
         
         drawerController?.drawerWidth = UIScreen.mainScreen().bounds.width * 0.75
         (drawerController?.drawerViewController as! HandymanDrawerViewController).delegate = self
         
-        initNavBar()
+        mapView.zoomLevel = 18
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = BMKUserTrackingModeFollow
     }
 
     func initNavBar() {
@@ -37,6 +41,14 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate {
         back.title = "主页"
         self.navigationItem.backBarButtonItem = back
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+    }
+    
+    func mapView(mapView: BMKMapView!, viewForAnnotation annotation: BMKAnnotation!) -> BMKAnnotationView! {
+        let view =  BMKPinAnnotationView(annotation: annotation, reuseIdentifier: "aaa")
+        view.animatesDrop = true
+        view.image = UIImage(named: "customerLocation")
+        
+        return view
     }
     
     @IBAction func doGrab(sender: UIButton) {

@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class OrderPublishViewController: UITableViewController, UITextViewDelegate, OrderPublishDelegate, UploadImageDelegate,OrderDelegate, ChooseLocationDelegate {
+class OrderPublishViewController: UITableViewController, OrderPublishDelegate, UploadImageDelegate,OrderDelegate, ChooseLocationDelegate {
     @IBOutlet var publishButtonItem: UIBarButtonItem!
     @IBOutlet var picture1ImageView: UIImageView!
     @IBOutlet var picture2ImageView: UIImageView!
@@ -26,7 +26,7 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
     var locationInfo: CLLocation?
     
     var order: Order?
-    var fee: String?
+    var fee: String = "0"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +45,6 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
     func initView() {
         descTextView.placeholder = "在这儿输入问题详情"
         descTextView.setPlaceholderFont(UIFont(name: (descTextView.font?.fontName)!, size: 16))
-        
-        publishButtonItem.enabled = false
     }
     
     func initNavBar() {
@@ -158,18 +156,25 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
     @IBAction func publish(sender: UIBarButtonItem) {
         descTextView.resignFirstResponder()
         
-        generateOrder()
+        if maintenanceTypeLabel.text == "点击选择" {
+            UtilBox.alert(self, message: "请选择分类")
+        } else if locationLabel.text == "点击选择" {
+            UtilBox.alert(self, message: "请选择地址")
+        } else if self.title != Constants.Types[2] && feeLabel.text == "点击选择" {
+            UtilBox.alert(self, message: "请选择费用")
+        } else {
+            self.pleaseWait()
+            generateOrder()
         
-        OrderModel(orderDelegate: self).publishOrder(order!)
+            //OrderModel(orderDelegate: self).publishOrder(order!)
         
+            if order?.image1 != nil {
+                UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail((order?.image1?.originalAsset)!))
+            } else {
+                OrderModel(orderDelegate: self).publishOrder(order!)
+            }
         
-//        if order?.image1 != nil {
-//            UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail((order?.image1?.originalAsset)!))
-//        } else {
-//            OrderModel(orderDelegate: self).publishOrder(order!)
-//        }
-        
-        self.pleaseWait()
+        }
     }
     
     var uploadedCount = 0
@@ -183,25 +188,25 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
                 OrderModel(orderDelegate: self).publishOrder(order!)
             }
         } else {
-            UtilBox.alert(self, message: info)
             self.clearAllNotice()
+            UtilBox.alert(self, message: info)
         }
     }
     
     func onPublishOrderResult(result: Bool, info: String) {
+        self.clearAllNotice()
         if result {
             order?.date = info
-            if order?.type == .Reservation {
-                self.noticeSuccess("发布成功", autoClear: true, autoClearTime: 2)
-                self.navigationController?.popToRootViewControllerAnimated(true)
-            } else {
+            if order?.type == .Normal {
                 performSegueWithIdentifier(Constants.SegueID.ShowOrderPublishConfirmSegue, sender: self)
+            } else {
+                self.noticeSuccess("发布成功", autoClear: true, autoClearTime: 2)
+                
+                self.navigationController?.popToRootViewControllerAnimated(true)
             }
         } else {
             UtilBox.alert(self, message: info)
         }
-        
-        self.clearAllNotice()
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -251,42 +256,17 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
         }
     }
     
-    func textViewDidChange(textView: UITextView) {
-        if textView.text?.characters.count != 0 && maintenanceTypeLabel.text != "点击选择" && locationLabel.text != "点击选择" {
-            if title != Constants.Types[2] && feeLabel.text == "点击选择" {
-                return
-            }
-            publishButtonItem.enabled = true
-        } else {
-            publishButtonItem.enabled = false
-        }
-    }
-    
     func didSelectedMaintenanceType(type: String, id: String) {
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))
         cell?.detailTextLabel?.text = type + "维修"
         
         mTypeID = id
-        
-        if locationLabel.text != "点击选择" && descTextView.text != nil {
-            if title != Constants.Types[2] && feeLabel.text == "点击选择" {
-                return
-            }
-            publishButtonItem.enabled = true
-        }
     }
     
     func didChooseLocation(name: String, locationInfo: CLLocation) {
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1))
         cell?.detailTextLabel?.text = name
         self.locationInfo = locationInfo
-        
-        if maintenanceTypeLabel.text != "点击选择" && descTextView.text != nil {
-            if title != Constants.Types[2] && feeLabel.text == "点击选择" {
-                return
-            }
-            publishButtonItem.enabled = true
-        }
     }
     
     func didSelectedFee(fee: String) {
@@ -294,10 +274,6 @@ class OrderPublishViewController: UITableViewController, UITextViewDelegate, Ord
         cell?.detailTextLabel?.text = "￥ " + fee
         
         self.fee = fee
-        
-        if maintenanceTypeLabel.text != "点击选择" && locationLabel.text != "点击选择" && descTextView.text != nil {
-            publishButtonItem.enabled = true
-        }
     }
     
     func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {}

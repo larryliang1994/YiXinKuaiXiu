@@ -9,9 +9,9 @@
 import Foundation
 
 enum PullOrderListType: Int {
-    case OnGoing = 0
+    case All = 0
+    case OnGoing
     case Done
-    case All
 }
 
 protocol OrderProtocol {

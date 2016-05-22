@@ -11,8 +11,7 @@ import SwiftyJSON
 
 public enum PayType: Int {
     case Fee = 1
-    case MFee = 3
-    case Part = 4
+    case MPFee = 3
 }
 
 class PayModel: PayProtocol, PayDelegate {
@@ -25,7 +24,14 @@ class PayModel: PayProtocol, PayDelegate {
     func goPay(date: String, type: PayType, fee: String) {
         AlamofireUtil.doRequest(Urls.GoPay, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "tpe": type.rawValue.toString(), "fee": fee]) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.payDelegate?.onGoPayResult!(false, info: "支付失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 
@@ -54,7 +60,14 @@ class PayModel: PayProtocol, PayDelegate {
         let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "con": detail, "fee": fee]
         AlamofireUtil.doRequest(Urls.PayParts, parameters: parameters) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.payDelegate?.onGoPayPartsResult!(false, info: "支付失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 
@@ -81,12 +94,19 @@ class PayModel: PayProtocol, PayDelegate {
         let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "fee": fee]
         AlamofireUtil.doRequest(Urls.PayMFee, parameters: parameters) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.payDelegate?.onGoPayMFeeResult!(false, info: "支付失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 
                 if ret == 0 {
-                    PayModel(payDelegate: self).goPay(date, type: .MFee, fee: fee)
+                    PayModel(payDelegate: self).goPay(date, type: .MPFee, fee: fee)
                 } else if ret == 1 {
                     self.payDelegate?.onGoPayMFeeResult!(false, info: "认证失败")
                 } else if ret == 2 {

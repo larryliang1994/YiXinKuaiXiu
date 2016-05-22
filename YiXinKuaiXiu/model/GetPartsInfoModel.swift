@@ -19,7 +19,14 @@ class GetPartsInfoModel: GetPartsInfoProtocol {
     func doGetCategoryInfo() {
         AlamofireUtil.doRequest(Urls.GetCategoryList, parameters: [:]) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.getPartsInfoDelegate?.onGetCategoryInfoResult(false, info: "获取商品类别失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
                 if ret != nil && ret.count != 0 {
@@ -42,7 +49,14 @@ class GetPartsInfoModel: GetPartsInfoProtocol {
     func doGetPartsInfo() {
         AlamofireUtil.doRequest(Urls.GetPartsList, parameters: ["pid": "0"]) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.getPartsInfoDelegate?.onGetPartsInfoResult(false, info: "获取商品信息失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
                 if ret != nil && ret.count != 0 {

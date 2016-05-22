@@ -46,17 +46,19 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
     }
     
     func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
-        print("waht")
-//        let localLatitude=userLocation.location.coordinate.latitude
-//        let localLongitude=userLocation.location.coordinate.longitude
-//        
-//        let geocoder = CLGeocoder()
-//        geocoder.reverseGeocodeLocation(CLLocation(latitude: localLatitude, longitude: localLongitude)) { (place, error) in
-//            for placeMark in place! {
-//                let cityName = placeMark.locality
-//                print(cityName)
-//            }
-//        }
+        let localLatitude=userLocation.location.coordinate.latitude
+        let localLongitude=userLocation.location.coordinate.longitude
+        
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(CLLocation(latitude: localLatitude, longitude: localLongitude)) { (place, error) in
+            if let placeData = place {
+                for placeMark in placeData {
+                    let cityName = placeMark.locality
+                    print(cityName)
+                    self.chooseCityButton.setTitle(cityName?.stringByReplacingOccurrencesOfString("市", withString: ""), forState: .Normal)
+                }
+            }
+        }
     }
     
     @IBAction func chooseCity(sender: UIButton) {

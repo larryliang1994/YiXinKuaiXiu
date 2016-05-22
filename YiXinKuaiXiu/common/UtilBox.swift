@@ -73,9 +73,13 @@ class UtilBox {
         Config.Password = nil
         Config.BankName = nil
         Config.BankNum = nil
+        Config.BankOwner = nil
         Config.TotalStar = nil
         Config.MaintenanceNum = nil
         Config.Audited = nil
+        Config.PortraitUrl = nil
+        Config.ContactName = nil
+        Config.ContactTelephone = nil
         Config.Messages = []
     }
     

@@ -28,7 +28,7 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
                 typeLabel.backgroundColor = Constants.Color.Orange
                 typeLabel.text = "普通"
             } else if order.type == .Pack {
-                typeLabel.backgroundColor = Constants.Color.Primary
+                typeLabel.backgroundColor = Constants.Color.Green
                 typeLabel.text = "打包"
             } else {
                 typeLabel.backgroundColor = Constants.Color.Blue
@@ -45,31 +45,27 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("customerOrderListBottomCell", forIndexPath: indexPath)
             
             let leftButton = cell.viewWithTag(Constants.Tag.CustomerOrderListCellLeftButton) as! UIButton
-            leftButton.layer.borderWidth = 0.5
-            leftButton.layer.borderColor = UIColor.lightGrayColor().CGColor
-            leftButton.layer.cornerRadius = 3
-            leftButton.hidden = false
             
             let rightButton = cell.viewWithTag(Constants.Tag.CustomerOrderListCellRightButton) as! UIButton
-            rightButton.hidden = false
-            rightButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            rightButton.backgroundColor = Constants.Color.Primary
-            rightButton.layer.cornerRadius = 3
-            rightButton.layer.borderWidth = 0
-            
             
             let reminderLabel = cell.viewWithTag(Constants.Tag.CustomerOrderListCellReminder) as! UILabel
             reminderLabel.hidden = true
             
             switch order.state! {
             case .Cancelling:
+                leftButton.hidden = false
+                leftButton.layer.borderWidth = 1
+                leftButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+                leftButton.layer.cornerRadius = 3
                 leftButton.setTitle("同意", forState: .Normal)
                 leftButton.addTarget(self, action: #selector(HandymanOrderListTableViewController.agreeCancelOrderConfirm), forControlEvents: .TouchUpInside)
                 
+                rightButton.hidden = false
                 rightButton.setTitle("不同意", forState: .Normal)
                 rightButton.backgroundColor = UIColor.whiteColor()
                 rightButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-                rightButton.layer.borderWidth = 0.5
+                rightButton.layer.cornerRadius = 3
+                rightButton.layer.borderWidth = 1
                 rightButton.layer.borderColor = UIColor.lightGrayColor().CGColor
                 rightButton.addTarget(self, action: #selector(HandymanOrderListTableViewController.disagreeCancelOrderConfirm), forControlEvents: .TouchUpInside)
                 
@@ -123,12 +119,16 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
             return 66
         } else if indexPath.row == (orders[indexPath.section].payments?.count)! + 1 {
             if orders[indexPath.section].state == .Cancelling {
-                return 52
+                return 60
             } else {
                 return 8
             }
         } else {
-            return 30
+            if indexPath.row == 1 || indexPath.row == orders[indexPath.section].payments?.count {
+                return 30
+            } else {
+                return 20
+            }
         }
     }
     
@@ -182,5 +182,19 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
         } else {
             UtilBox.alert(self, message: info)
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as UIViewController
+        
+        if let navCon = destination as? UINavigationController {
+            // 取出最上层的viewController，即FaceView
+            destination = navCon.visibleViewController!
+        }
+        
+        if let hodvc = destination as? HandymanOrderDetailViewController {
+            hodvc.order = segueOrder
+        }
+        
     }
 }

@@ -90,7 +90,7 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
             typeLabel.text = "普通"
             feeLabel.text = "检查费" + " ￥" + String(order.fee!)
         } else if order.type == .Pack {
-            typeLabel.backgroundColor = Constants.Color.Primary
+            typeLabel.backgroundColor = Constants.Color.Green
             typeLabel.text = "打包"
             feeLabel.text = "打包费" + " ￥" + String(order.fee!)
         } else {
@@ -111,6 +111,7 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
         button.layer.cornerRadius = 21
         button.layer.borderWidth = 2
         button.layer.borderColor = Constants.Color.Primary.CGColor
+        button.enabled = false
 
         return cell
     }

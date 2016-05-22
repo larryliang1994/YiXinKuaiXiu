@@ -9,8 +9,7 @@
 import UIKit
 import Photos
 
-class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDataSource, PopBottomViewDelegate, PayDelegate {
-    @IBOutlet var doPayButton: UIButton!
+class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDataSource, PopBottomViewDelegate, PopoverPayDelegate {
     @IBOutlet var descLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
@@ -53,9 +52,6 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
     }
     
     func initView() {
-        doPayButton.layer.cornerRadius = 3
-        doPayButton.backgroundColor = Constants.Color.Primary
-        
         descLabel.text = order?.desc
         
         locationLabel.text = order?.location
@@ -101,16 +97,18 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         let payPopoverView = UIView.loadFromNibNamed("PayPopoverView") as! PayPopoverView
         payPopoverView.closeButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.doPayButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
-        payPopoverView.doPayButton.addTarget(self, action: #selector(OrderPublishConfirmViewController.goPay), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.feeLabel.text = "￥" + String(UTF8String: (order?.fee!)!)!
+        payPopoverView.fee = order!.fee!
+        payPopoverView.date = order?.date
+        payPopoverView.type = .Fee
+        payPopoverView.delegate = self
+        payPopoverView.viewController = self
+        
         return payPopoverView
     }
     
-    func goPay() {
-        PayModel(payDelegate: self).goPay((order?.date)!, type: .Fee, fee: order!.fee!)
-    }
-    
-    func onGoPayResult(result: Bool, info: String) {
+    func onPayResult(result: Bool, info: String) {
+        self.clearAllNotice()
         if result {
             self.noticeSuccess("订单发布成功", autoClear: true, autoClearTime: 2)
             goBack()
@@ -127,6 +125,10 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         return false
     }
     
+    func viewWillAppear() {
+        
+    }
+    
     func viewWillDisappear() {
         
     }
@@ -134,7 +136,7 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 120
+            return 130
         case 1:
             if indexPath.row == 0 {
                 return descLabel.frame.size.height + 28

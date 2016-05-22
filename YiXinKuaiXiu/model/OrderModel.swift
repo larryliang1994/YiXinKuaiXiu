@@ -21,7 +21,14 @@ class OrderModel: OrderProtocol {
         
         AlamofireUtil.doRequest(Urls.PublishOrder, parameters: paramters) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.orderDelegate?.onPublishOrderResult(false, info: "订单发布失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 
@@ -48,7 +55,15 @@ class OrderModel: OrderProtocol {
         
         AlamofireUtil.doRequest(Config.Role == Constants.Role.Customer ? Urls.PullCustomerOrderList : Urls.PullHandymanOrderList, parameters: paramters) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                print(response)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.orderDelegate?.onPullOrderListResult(false, info: "获取订单列表失败", orderList: [])
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
                 
@@ -59,10 +74,6 @@ class OrderModel: OrderProtocol {
                         
                         let state = State(rawValue: orderJson["ste"].intValue)!
                         if pullType == .Done && state != .HasBeenRated {
-                            continue
-                        }
-                        
-                        if orderJson["wxg"].stringValue == "0" {
                             continue
                         }
                         
@@ -78,8 +89,8 @@ class OrderModel: OrderProtocol {
                             senderNum: orderJson["aph"].stringValue,
                             graberID: orderJson["bid"].stringValue,
                             type:  Type(rawValue: orderJson["tpe"].intValue - 1)!,
-                            image1Url: nil,
-                            image2Url: nil,
+                            image1Url: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
+                            image2Url: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
                             desc: desc == "" ? "无" : desc,
                             mTypeID: orderJson["wxg"].stringValue,
                             mType: UtilBox.findMTypeNameByID(orderJson["wxg"].stringValue)!,
@@ -92,7 +103,21 @@ class OrderModel: OrderProtocol {
                             ratingStar: orderJson["fen"].intValue,
                             ratingDesc: orderJson["fem"].stringValue)
                         
-                        order.payments = [Payment(name: "上门检查费", price: 10, paid: true), Payment(name: "六角螺母2.5*3mm x6", price: 10, paid: true)]
+                        order.partFee = orderJson["fe3"].stringValue
+                        
+                        order.payments = []
+                        if order.type == .Normal {
+                            order.payments?.append(Payment(name: "上门检查费", price: Float(order.fee!)!, paid: order.state != .NotPayFee))
+                        }
+                        if order.mFee != nil && order.mFee != "" && order.mFee != "0" {
+                            order.payments?.append(Payment(name: "维修费", price: Float(order.mFee!)!, paid: true))
+                        }
+                        if order.type == .Pack {
+                            order.payments?.append(Payment(name: "打包维修费", price: Float(order.fee!)!, paid: order.state == .PaidMFee))
+                        }
+                        if order.partFee != nil && order.partFee != "" && order.partFee != "0" {
+                            order.payments?.append(Payment(name: "配件费", price: Float(order.partFee!)!, paid: true))
+                        }
                         
                         orderList.append(order)
                     }
@@ -111,7 +136,14 @@ class OrderModel: OrderProtocol {
         
         AlamofireUtil.doRequest(Urls.PullGrabOrderList, parameters: paramters) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.orderDelegate?.onPullGrabOrderListResult(false, info: "获取订单列表失败", orderList: [])
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
                 
@@ -119,10 +151,6 @@ class OrderModel: OrderProtocol {
                     var orderList: [Order] = []
                     for index in 0 ... ret.count - 1 {
                         let orderJson = ret[index]
-                        
-                        if orderJson["wxg"].stringValue == "0" {
-                            continue
-                        }
                         
                         let location = CLLocation(latitude: CLLocationDegrees(orderJson["lat"].doubleValue), longitude: CLLocationDegrees(orderJson["lot"].doubleValue))
                         
@@ -134,7 +162,8 @@ class OrderModel: OrderProtocol {
                             senderName: orderJson["anm"].stringValue,
                             senderNum: orderJson["aph"].stringValue,
                             type: Type(rawValue: orderJson["tpe"].intValue - 1)!,
-                            imageUrl: orderJson["pic"].stringValue,
+                            image1Url: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
+                            image2Url: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
                             desc: desc == "" ? "无" : desc,
                             mTypeID: orderJson["wxg"].stringValue,
                             mType: UtilBox.findMTypeNameByID(orderJson["wxg"].stringValue)!,
@@ -160,7 +189,14 @@ class OrderModel: OrderProtocol {
         
         AlamofireUtil.doRequest(Urls.GrabOrder, parameters: parameters) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.orderDelegate?.onGrabOrderResult(false, info: "抢单失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 
@@ -182,7 +218,14 @@ class OrderModel: OrderProtocol {
         
         AlamofireUtil.doRequest(Urls.CancelOrder, parameters: parameters) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.orderDelegate?.onCancelOrderResult(false, info: "取消失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 

@@ -42,7 +42,7 @@ import UIKit
     /**
      页面弹出来的时候
      */
-    optional func viewWillAppear()
+    func viewWillAppear()
     
     /**
      页面消失的时候
@@ -66,10 +66,12 @@ class PopBottomView: UIView {
     }
     
     private func setupViews(){
-        delegate?.viewWillAppear?()
+        //delegate?.viewWillAppear()
     }
     
     func showInView(view:UIView){
+        self.delegate?.viewWillAppear()
+        
         var effectView:UIVisualEffectView?
         var bgButton:UIButton?
         if let isEffectView = dataSource.isEffectView?() where isEffectView == true{

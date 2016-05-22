@@ -14,14 +14,14 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var rating: FloatRatingView!
     @IBOutlet var orderCountLabel: UILabel!
-    @IBOutlet var cancelButton: UIButton!
-    @IBOutlet var contactButton: UIButton!
     @IBOutlet var descLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var serviceRating: FloatRatingView!
     @IBOutlet var ratingLabel: UILabel!
-    
+    @IBOutlet var contactButton: PrimaryButton!
+    @IBOutlet var contactButtonWidth: NSLayoutConstraint!
+    @IBOutlet var contactButtonLeading: NSLayoutConstraint!
     @IBOutlet var totalFeeLabel: UILabel!
     @IBOutlet var feeLabel: UILabel!
     @IBOutlet var mFeeLabel: UILabel!
@@ -35,7 +35,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     
     var order: Order?
     
-    var name: String?, telephoneNum: String?, sex: Int?, age: Int?, star: Int?, mNum: Int?
+    var name: String?, telephoneNum: String?, sex: Int?, age: Int?, star: Int?, mNum: Int?, portraitUrl: String? ,starList: [Int]?, descList: [String]?, dateList: [String]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +50,17 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         if order?.state != .NotPayFee && order?.state != .PaidFee {
             self.pleaseWait()
             UserInfoModel(userInfoDelegate: self).doGetHandymanInfo((order?.graberID)!)
+        } else {
+            nameLabel.text = "待抢单"
+            rating.rating = 0
+            orderCountLabel.hidden = true
+            contactButton.hidden = true
+            contactButtonWidth.constant = 0
+            contactButtonLeading.constant = 0
         }
     }
     
-    func onGetHandymanInfoResult(result: Bool, info: String, name: String, telephoneNum: String, sex: Int, age: Int, star: Int, mNum: Int) {
+    func onGetHandymanInfoResult(result: Bool, info: String, name: String, telephoneNum: String, sex: Int, age: Int, star: Int, mNum: Int, portraitUrl: String, starList: [Int], descList: [String], dateList: [String]) {
         self.clearAllNotice()
         if result {
             self.name = name
@@ -62,6 +69,12 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             self.age = age
             self.star = star
             self.mNum = mNum
+            self.portraitUrl = portraitUrl
+            self.starList = starList
+            self.descList = descList
+            self.dateList = dateList
+            
+            portraitImageView.hnk_setImageFromURL(NSURL(string: portraitUrl)!)
             
             nameLabel.text = name
             if mNum != 0 {
@@ -76,17 +89,6 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     }
     
     func initView() {
-        cancelButton.layer.cornerRadius = 3
-        cancelButton.layer.borderWidth = 0.5
-        cancelButton.layer.borderColor = Constants.Color.Gray.CGColor
-        
-        contactButton.layer.cornerRadius = 3
-        contactButton.layer.borderWidth = 0.5
-        contactButton.layer.borderColor = Constants.Color.Primary.CGColor
-        
-        ratingLabel.clipsToBounds = true
-        ratingLabel.layer.cornerRadius = 3
-        ratingLabel.backgroundColor = Constants.Color.Gray
         ratingLabel.text = order?.ratingDesc!
         
         descLabel.text = order?.desc
@@ -105,17 +107,17 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         } else if order?.type == .Normal {
             feeLabel.text = "￥" + (order?.fee)!
             mFeeLabel.text = "￥" + (order?.mFee)!
-            partFeeLabel.text = "无"
-            totalFeeLabel.text = "￥" + String(Float((order?.fee)!)! + Float((order?.mFee)!)!)
+            partFeeLabel.text = (order?.partFee)! == "0" ? "无" : "￥" + (order?.partFee)!
+            totalFeeLabel.text = "￥" + String(Float((order?.fee)!)! + Float((order?.mFee)!)! + Float((order?.partFee)!)!)
         }
-    
-        if order?.image1 == nil {
+        
+        if order?.image1Url == nil {
             imageCell.hidden = true
-        } else if order?.image2 == nil {
-            picture2ImageView.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
+        } else if order?.image2Url == nil {
+            picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
         } else {
-            picture1ImageView.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
-            picture2ImageView.image = UtilBox.getAssetThumbnail((order?.image2!.originalAsset)!)
+            picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
+            picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image2Url)!)!)
         }
     }
     
@@ -127,6 +129,10 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     }
     
     @IBAction func contact(sender: UIButton) {
+        if self.telephoneNum == nil {
+            return
+        }
+        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         alert.addAction(UIAlertAction(
@@ -163,8 +169,14 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     func onCancelOrderResult(result: Bool, info: String) {
         self.clearAllNotice()
         if result {
-            UtilBox.alert(self, message: "已向对方发出申请，请等待对方确认")
+            if order?.state != .NotPayFee && order?.state != .PaidFee {
+                UtilBox.alert(self, message: "已向对方发出申请，请等待对方确认")
+            } else {
+                self.noticeSuccess("取消成功", autoClear: true, autoClearTime: 2)
+            }
             delegate?.didChange()
+            self.navigationController?.popViewControllerAnimated(true)
+            
         } else {
             UtilBox.alert(self, message: info)
         }
@@ -173,16 +185,12 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            if order?.state == .NotPayFee || order?.state == .PaidFee {
-                return 0
-            } else {
-                return indexPath.row == 0 ? 60 : 40
-            }
+            return indexPath.row == 0 ? 60 : 49
             
         case 1:
             switch indexPath.row {
             case 0: return descLabel.frame.size.height + 24
-            case 1: return order?.image1 == nil ? 0 : 70
+            case 1: return order?.image1Url == nil ? 0 : 70
             case 2: return locationLabel.frame.size.height + 24
             case 3: return 44
             default:    return 44
@@ -206,7 +214,9 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
-            performSegueWithIdentifier(Constants.SegueID.ShowHandymanInfoSugue, sender: self)
+            if (order?.state?.rawValue)! >= (State.HasBeenGrabbed.rawValue) {
+                performSegueWithIdentifier(Constants.SegueID.ShowHandymanInfoSugue, sender: self)
+            }
         }
     }
     
@@ -222,6 +232,10 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             hivc.name = name
             hivc.age = age
             hivc.telephone = telephoneNum
+            hivc.imageUrl = portraitUrl
+            hivc.starList = starList
+            hivc.descList = descList
+            hivc.dateList = dateList
         }
     }
     

@@ -14,18 +14,15 @@ class HandymanOrderDetailViewController: UITableViewController {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var rating: FloatRatingView!
     @IBOutlet var orderCountLabel: UILabel!
-    @IBOutlet var contactButton: UIButton!
     @IBOutlet var descLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var serviceRating: FloatRatingView!
     @IBOutlet var ratingLabel: UILabel!
-    
     @IBOutlet var totalFeeLabel: UILabel!
     @IBOutlet var feeLabel: UILabel!
     @IBOutlet var mFeeLabel: UILabel!
     @IBOutlet var partFeeLabel: UILabel!
-    
     @IBOutlet var imageCell: UITableViewCell!
     @IBOutlet var picture2ImageView: UIImageView!
     @IBOutlet var picture1ImageView: UIImageView!
@@ -46,13 +43,6 @@ class HandymanOrderDetailViewController: UITableViewController {
     func initView() {
         nameLabel.text = order?.senderName!
         
-        contactButton.layer.cornerRadius = 3
-        contactButton.layer.borderWidth = 0.5
-        contactButton.layer.borderColor = Constants.Color.Primary.CGColor
-        
-        ratingLabel.clipsToBounds = true
-        ratingLabel.layer.cornerRadius = 3
-        ratingLabel.backgroundColor = Constants.Color.Gray
         ratingLabel.text = order?.ratingDesc!
         
         descLabel.text = order?.desc
@@ -71,17 +61,17 @@ class HandymanOrderDetailViewController: UITableViewController {
         } else if order?.type == .Normal {
             feeLabel.text = "￥" + (order?.fee)!
             mFeeLabel.text = "￥" + (order?.mFee)!
-            partFeeLabel.text = "无"
+            partFeeLabel.text = (order?.partFee)! == "0" ? "无" : "￥" + (order?.partFee)!
             totalFeeLabel.text = "￥" + String(Float((order?.fee)!)! + Float((order?.mFee)!)!)
         }
         
-        if order?.image1 == nil {
+        if order?.image1Url == nil {
             imageCell.hidden = true
-        } else if order?.image2 == nil {
-            picture2ImageView.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
+        } else if order?.image2Url == nil {
+            picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
         } else {
-            picture1ImageView.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
-            picture2ImageView.image = UtilBox.getAssetThumbnail((order?.image2!.originalAsset)!)
+            picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
+            picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image2Url)!)!)
         }
     }
     
@@ -111,12 +101,12 @@ class HandymanOrderDetailViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return indexPath.row == 0 ? 60 : 40
+            return indexPath.row == 0 ? 60 : 49
             
         case 1:
             switch indexPath.row {
             case 0: return descLabel.frame.size.height + 24
-            case 1: return order?.image1 == nil ? 0 : 70
+            case 1: return order?.image1Url == nil ? 0 : 70
             case 2: return locationLabel.frame.size.height + 24
             case 3: return 44
             default:    return 44

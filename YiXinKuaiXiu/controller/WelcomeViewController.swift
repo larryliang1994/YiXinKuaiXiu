@@ -12,8 +12,6 @@ class WelcomeViewController: UIViewController {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descLabel: UILabel!
-    @IBOutlet var handymanButton: UIButton!
-    @IBOutlet var customerButton: UIButton!
     @IBOutlet var mainImageView: UIImageView!
     
     override func viewDidLoad() {
@@ -27,13 +25,6 @@ class WelcomeViewController: UIViewController {
     }
     
     func initView() {
-        handymanButton.layer.borderWidth = 1
-        handymanButton.layer.cornerRadius = 3
-        handymanButton.layer.borderColor = Constants.Color.Primary.CGColor
-        
-        customerButton.backgroundColor = Constants.Color.Primary
-        customerButton.layer.cornerRadius = 3
-        
         titleLabel.text = "壹 心 快 修"
         descLabel.text = "您 的 居 家 维 修 助 手"
     }

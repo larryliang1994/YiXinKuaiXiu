@@ -19,10 +19,17 @@ class AuditModel: AuditProtocol {
     func doAudit(mTypeIDString: String, location: String, locationInfo: CLLocation, IDNum: String, picture: String, contactsName: String, contactNum: String) {
         let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "fld0": "lxs", "val0": mTypeIDString, "fld1": "sfz", "val1": IDNum, "fld2": "phe", "val2": contactNum, "fld3": "adr", "val3": location]
         
-        AlamofireUtil.doRequest(Urls.Audit, parameters: parameters) { (result, response) in
+        AlamofireUtil.doRequest(Urls.MultiModify, parameters: parameters) { (result, response) in
             print(response)
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.auditDelegate?.onAuditResult(false, info: "申请失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 

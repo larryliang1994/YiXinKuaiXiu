@@ -64,6 +64,8 @@ class Order {
     
     var parts: [Part]?
     
+    var partFee: String?
+    
     var payments: [Payment]?
     
     var id: String?
@@ -129,13 +131,14 @@ class Order {
     }
     
     // 抢单列表构造
-    init(date: String, senderID: String, senderName: String, senderNum: String, type: Type, imageUrl: String, desc: String, mTypeID: String, mType: String, location: String, locationInfo: CLLocation, fee: String) {
+    init(date: String, senderID: String, senderName: String, senderNum: String, type: Type, image1Url: String?, image2Url: String?, desc: String, mTypeID: String, mType: String, location: String, locationInfo: CLLocation, fee: String) {
         self.date = date
         self.senderID = senderID
         self.senderName = senderName
         self.senderNum = senderNum
         self.type = type
-        self.image1Url = imageUrl
+        self.image1Url = image1Url
+        self.image2Url = image2Url
         self.desc = desc
         self.mTypeID = mTypeID
         self.mType = mType

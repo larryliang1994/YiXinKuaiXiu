@@ -10,10 +10,8 @@ import UIKit
 
 class WalletViewController: UITableViewController, WalletChangeDelegate {
     
-    @IBOutlet var withdrawButton: UIButton!
     @IBOutlet var buttonBackgroundView: UIView!
     @IBOutlet var moneyLabel: UILabel!
-    @IBOutlet var rechargeButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +24,6 @@ class WalletViewController: UITableViewController, WalletChangeDelegate {
     }
     
     func intiView() {
-        withdrawButton.layer.cornerRadius = 3
-        withdrawButton.layer.borderWidth = 1
-        withdrawButton.layer.borderColor = Constants.Color.Primary.CGColor
-        
-        rechargeButton.layer.cornerRadius = 3
-        rechargeButton.backgroundColor = Constants.Color.Primary
-        
         moneyLabel.text = Config.Money == nil ? "0.00" : Config.Money
     }
     
@@ -44,11 +35,11 @@ class WalletViewController: UITableViewController, WalletChangeDelegate {
     }
     
     @IBAction func recharge(sender: UIButton) {
-        performSegueWithIdentifier(Constants.SegueID.ShowRechargeSegue, sender: self)
+       performSegueWithIdentifier(Constants.SegueID.ShowRechargeSegue, sender: self)
     }
     
     @IBAction func goWithDraw(sender: UIButton) {
-        performSegueWithIdentifier(Constants.SegueID.ShowWithDrawSegue, sender: self)
+       performSegueWithIdentifier(Constants.SegueID.ShowWithDrawSegue, sender: self)
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -64,10 +55,18 @@ class WalletViewController: UITableViewController, WalletChangeDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
-            performSegueWithIdentifier(Constants.SegueID.ShowD2DAccountSegue, sender: self)
-        } else if indexPath.row == 1 {
-            performSegueWithIdentifier(Constants.SegueID.ShowChangePasswordSegue, sender: self)
+        if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                performSegueWithIdentifier(Constants.SegueID.ShowD2DAccountSegue, sender: self)
+            } else if indexPath.row == 1 {
+                performSegueWithIdentifier(Constants.SegueID.ShowChangePasswordSegue, sender: self)
+            } else if indexPath.row == 2 {
+                if Config.BankName == nil {
+                    performSegueWithIdentifier(Constants.SegueID.ShowBindBankCardSegue, sender: self)
+                } else {
+                    performSegueWithIdentifier(Constants.SegueID.ShowBoundBankCardSegue, sender: self)
+                }
+            }
         }
     }
     

@@ -10,15 +10,12 @@ import UIKit
 
 class HandymanInfoViewController: UITableViewController {
     
-    var name: String?, age: Int?, telephone: String?
+    var name: String?, age: Int?, telephone: String?, imageUrl: String?, starList: [Int]?, descList: [String]?, dateList: [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
-        
-        //tableView.estimatedRowHeight = tableView.rowHeight
-        //tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -41,6 +38,9 @@ class HandymanInfoViewController: UITableViewController {
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("handymanInfoImgCell", forIndexPath: indexPath)
                 
+                let imageView = cell.viewWithTag(1) as! UIImageView
+                imageView.hnk_setImageFromURL(NSURL(string: imageUrl!)!)
+                
                 return cell
             }
         } else {
@@ -53,9 +53,9 @@ class HandymanInfoViewController: UITableViewController {
                 let dateLabel = cell.viewWithTag(2) as! UILabel
                 let descLabel = cell.viewWithTag(3) as! UILabel
                 
-                ratingView.rating = 3
-                dateLabel.text = "2016年5月18日"
-                descLabel.text = "评价内容"
+                ratingView.rating = Float(starList![indexPath.row - 1])
+                dateLabel.text = UtilBox.getDateFromString(dateList![indexPath.row - 1], format: Constants.DateFormat.YMD)
+                descLabel.text = descList![indexPath.row - 1]
                 
                 return cell
             }
@@ -83,6 +83,6 @@ class HandymanInfoViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 4 : 3
+        return section == 0 ? 4 : (starList?.count)! == 0 ? 0 : (starList?.count)! + 1
     }
 }

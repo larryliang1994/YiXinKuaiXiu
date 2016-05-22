@@ -35,6 +35,7 @@ class AuditedViewController: UITableViewController {
         idNumLabel.text = Config.IDNum
         contactNumLabel.text = Config.ContactName
         contactNumLabel.text = Config.ContactTelephone
+        idImageView.hnk_setImageFromURL(NSURL(string: Config.PortraitUrl!)!)
     }
     
     // MARK: - Table view data source

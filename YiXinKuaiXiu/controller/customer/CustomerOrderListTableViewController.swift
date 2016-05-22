@@ -8,9 +8,11 @@
 
 import UIKit
 
-class CustomerOrderListTableViewController: OrderListTableViewController, PopBottomViewDataSource, PopBottomViewDelegate, PayDelegate, OrderListChangeDelegate {
+class CustomerOrderListTableViewController: OrderListTableViewController, PopBottomViewDataSource, PopBottomViewDelegate, OrderListChangeDelegate, PopoverPayDelegate {
     
     var mFee: String?
+    
+    var reloadIndexPath: NSIndexPath?
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let order = orders[indexPath.section]
@@ -30,7 +32,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
                 typeLabel.backgroundColor = Constants.Color.Orange
                 typeLabel.text = "普通"
             } else if order.type == .Pack {
-                typeLabel.backgroundColor = Constants.Color.Primary
+                typeLabel.backgroundColor = Constants.Color.Green
                 typeLabel.text = "打包"
             } else {
                 typeLabel.backgroundColor = Constants.Color.Blue
@@ -47,18 +49,12 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             let cell = tableView.dequeueReusableCellWithIdentifier("customerOrderListBottomCell", forIndexPath: indexPath)
             
             let leftButton = cell.viewWithTag(Constants.Tag.CustomerOrderListCellLeftButton) as! UIButton
-            leftButton.layer.borderWidth = 0.5
-            leftButton.layer.borderColor = UIColor.lightGrayColor().CGColor
-            leftButton.layer.cornerRadius = 3
+            leftButton.removeTarget(self, action: nil, forControlEvents: .TouchUpInside)
             leftButton.hidden = false
             
             let rightButton = cell.viewWithTag(Constants.Tag.CustomerOrderListCellRightButton) as! UIButton
+            rightButton.removeTarget(self, action: nil, forControlEvents: .TouchUpInside)
             rightButton.hidden = false
-            rightButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            rightButton.backgroundColor = Constants.Color.Primary
-            rightButton.layer.cornerRadius = 3
-            rightButton.layer.borderWidth = 0
-            
             
             let reminderLabel = cell.viewWithTag(Constants.Tag.CustomerOrderListCellReminder) as! UILabel
             reminderLabel.hidden = true
@@ -67,7 +63,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             case .NotPayFee:
                 leftButton.hidden = true
                 
-                rightButton.setTitle("去支付", forState: .Normal)
+                rightButton.setTitle("付上门费", forState: .Normal)
                 rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
                 
             case .PaidFee:
@@ -78,7 +74,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
                 if order.type == .Pack {
                     leftButton.hidden = true
                     
-                    rightButton.setTitle("去支付", forState: .Normal)
+                    rightButton.setTitle("付打包费", forState: .Normal)
                     rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
                 } else {
                     leftButton.setTitle("购买配件", forState: .Normal)
@@ -89,10 +85,14 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
                 }
                 
             case .PaidMFee:
-                leftButton.setTitle("补购配件", forState: .Normal)
-                leftButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.showPartsMallAction), forControlEvents: UIControlEvents.TouchUpInside)
+                if order.type != .Pack {
+                    leftButton.setTitle("补购配件", forState: .Normal)
+                    leftButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.showPartsMallAction), forControlEvents: UIControlEvents.TouchUpInside)
+                } else {
+                    leftButton.hidden = true
+                }
                 
-                rightButton.setTitle("去评价", forState: .Normal)
+                rightButton.setTitle("立即评价", forState: .Normal)
                 rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goRatingAction), forControlEvents: UIControlEvents.TouchUpInside)
                 
             case .Cancelling:
@@ -151,10 +151,14 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             if state == .PaidFee || state == .HasBeenRated {
                 return 8
             } else {
-                return 52
+                return 60
             }
         } else {
-            return 30
+            if indexPath.row == 1 || indexPath.row == orders[indexPath.section].payments?.count {
+                return 30
+            } else {
+                return 20
+            }
         }
     }
     
@@ -171,21 +175,38 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         let payPopoverView = UIView.loadFromNibNamed("PayPopoverView") as! PayPopoverView
         payPopoverView.closeButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
         payPopoverView.doPayButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
-        payPopoverView.doPayButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPay), forControlEvents: UIControlEvents.TouchUpInside)
+        payPopoverView.delegate = self
+        payPopoverView.viewController = self
         
         let order = orders[(selectedIndexPath?.section)!]
-        payPopoverView.feeLabel.text = "￥" + String(UTF8String: (order.state == .NotPayFee ? order.fee : mFee)!)!
+        
+        if order.type == .Pack { // 付打包费
+            payPopoverView.feeLabel.text = "￥" + order.fee!
+            payPopoverView.fee = order.fee!
+            payPopoverView.type = .PackFee
+            payPopoverView.date = order.date!
+        } else if order.state == .NotPayFee { // 付上门费
+            payPopoverView.feeLabel.text = "￥" + order.fee!
+            payPopoverView.fee = order.fee!
+            payPopoverView.type = .Fee
+            payPopoverView.date = order.date!
+        } else { // 付维修费
+            payPopoverView.feeLabel.text = "￥" + mFee!
+            payPopoverView.fee = mFee
+            payPopoverView.type = .MFee
+            payPopoverView.date = order.date!
+        }
         
         return payPopoverView
     }
     
-    func goPay() {
-        let order = orders[(selectedIndexPath?.section)!]
-        
-        if order.state == .NotPayFee {
-            PayModel(payDelegate: self).goPay(order.date!, type: .Fee, fee: order.fee!)
+    func onPayResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        if result {
+            self.noticeSuccess("支付成功", autoClear: true, autoClearTime: 2)
+            didChange()
         } else {
-            PayModel(payDelegate: self).goPayMFee(order.date!, fee: mFee!)
+            UtilBox.alert(self, message: info)
         }
     }
     
@@ -197,8 +218,12 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         return false
     }
     
+    func viewWillAppear() {
+        tableView.scrollEnabled = false
+    }
+    
     func viewWillDisappear() {
-        
+        tableView.scrollEnabled = true
     }
     
     func goPayAction(sender: UIButton) {
@@ -207,12 +232,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         
         let order = orders[(selectedIndexPath?.section)!]
         
-        if order.state == .NotPayFee {
-            let v = PopBottomView(frame: self.view.bounds)
-            v.dataSource = self
-            v.delegate = self
-            v.showInView(self.view)
-        } else {
+        if order.type == .Normal && order.state != .NotPayFee {
             let alert = UIAlertController(
                 title: "请输入维修费",
                 message: nil,
@@ -245,24 +265,11 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             }
             
             presentViewController(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func onGoPayResult(result: Bool, info: String) {
-        if result {
-            self.noticeSuccess("支付成功", autoClear: true, autoClearTime: 2)
-            refresh()
         } else {
-            UtilBox.alert(self, message: info)
-        }
-    }
-    
-    func onGoPayMFeeResult(result: Bool, info: String) {
-        if result {
-            self.noticeSuccess("支付成功", autoClear: true, autoClearTime: 2)
-            refresh()
-        } else {
-            UtilBox.alert(self, message: info)
+            let v = PopBottomView(frame: self.view.bounds)
+            v.dataSource = self
+            v.delegate = self
+            v.showInView(self.view)
         }
     }
     
@@ -283,6 +290,21 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         let partsMallVC = UtilBox.getController(Constants.ControllerID.PartsMall) as! PartsMallViewController
         partsMallVC.order = orders[(selectedIndexPath?.section)!]
         self.navigationController?.showViewController(partsMallVC, sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as UIViewController
+        
+        if let navCon = destination as? UINavigationController {
+            // 取出最上层的viewController，即FaceView
+            destination = navCon.visibleViewController!
+        }
+        
+        if let codvc = destination as? CustomerOrderDetailViewController {
+            codvc.order = segueOrder
+            codvc.delegate = self
+        }
+        
     }
     
     func didChange() {

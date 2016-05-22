@@ -24,11 +24,11 @@ class ShoppingCartPopoverViewCell: UITableViewCell {
     }
     
     func initView() {
-        addButton.layer.cornerRadius = 20 / 2
+        addButton.layer.cornerRadius = 22 / 2
         addButton.backgroundColor = Constants.Color.Primary
         addButton.addTarget(self, action: #selector(ShoppingCartPopoverViewCell.add), forControlEvents: .TouchUpInside)
         
-        reduceButton.layer.cornerRadius = 20 / 2
+        reduceButton.layer.cornerRadius = 22 / 2
         reduceButton.layer.borderColor = Constants.Color.Gray.CGColor
         reduceButton.layer.borderWidth = 0.5
         reduceButton.addTarget(self, action: #selector(ShoppingCartPopoverViewCell.reduce), forControlEvents: .TouchUpInside)

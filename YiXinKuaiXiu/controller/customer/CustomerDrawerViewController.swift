@@ -79,7 +79,7 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
                 image.image = UIImage(named: "messageCenter")
                 
                 if Config.Messages.count != 0 {
-                    badge.badgeColor = Constants.Color.Primary
+                    badge.badgeColor = Constants.Color.Green
                     badge.text = Config.Messages.count.toString()
                 } else {
                     badge.hidden = true

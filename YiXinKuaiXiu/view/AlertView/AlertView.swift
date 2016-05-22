@@ -19,11 +19,5 @@ class AlertView: UIView {
         
         backgroundView.layer.cornerRadius = 5
         
-        cancelButton.layer.cornerRadius = 3
-        cancelButton.layer.borderWidth = 1
-        cancelButton.layer.borderColor = Constants.Color.Gray.CGColor
-        
-        confirmButton.layer.cornerRadius = 3
-        confirmButton.backgroundColor = Constants.Color.Primary
     }
 }

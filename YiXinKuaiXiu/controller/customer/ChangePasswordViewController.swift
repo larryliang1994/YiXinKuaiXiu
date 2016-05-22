@@ -51,7 +51,7 @@ class ChangePasswordViewController: UITableViewController, UITextFieldDelegate, 
         }
     }
     
-    func onChangePassword(result: Bool, info: String) {
+    func onChangePasswordResult(result: Bool, info: String) {
         self.clearAllNotice()
         if result {
             self.noticeSuccess("修改成功", autoClear: true, autoClearTime: 2)

@@ -9,27 +9,73 @@
 import UIKit
 import KYDrawerController
 
-class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, ModifyUserInfoDelegate {
+class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, ModifyUserInfoDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, GetNearbyDelegate {
 
-    @IBOutlet var publishButton: UIButton!
     @IBOutlet var mapView: BMKMapView!
     
+    var handymanList: [Handyman]?
+    
     var drawerController: KYDrawerController?
+    
+    let locationService = BMKLocationService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        publishButton.backgroundColor = Constants.Color.Primary
-        publishButton.layer.cornerRadius = 3
-        publishButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 24)
+        initView()
         
+        initNavBar()
+        
+        //GetNearbyModel(getNearbyDelegate: self).doGetNearby("31.9444170195652", longitude: "118.79602497754", distance: 100)
+    }
+    
+    func initView() {
         drawerController = self.navigationController?.parentViewController as? KYDrawerController
         
         drawerController?.drawerWidth = UIScreen.mainScreen().bounds.width * 0.75
         
         (drawerController?.drawerViewController as! CustomerDrawerViewController).delegate = self
         
-        initNavBar()
+        mapView.zoomLevel = 18
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = BMKUserTrackingModeFollow
+    }
+    
+    func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
+        mapView.updateLocationData(userLocation)
+        
+        let localLatitude=userLocation.location.coordinate.latitude
+        let localLongitude=userLocation.location.coordinate.longitude
+        
+        if handymanList == nil {
+            GetNearbyModel(getNearbyDelegate: self).doGetNearby(localLatitude.description, longitude: localLongitude.description, distance: 30)
+        }
+    }
+    
+    func onGetNearbyResult(result: Bool, info: String, handymanList: [Handyman]) {
+        if result {
+            self.handymanList = handymanList
+            
+            for var handyman in handymanList {
+                let annotation = BMKPointAnnotation()
+                let lat = CLLocationDegrees(handyman.latitude!)
+                let lot = CLLocationDegrees(handyman.longitude!)
+                
+                annotation.coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: lot!)
+                
+                mapView.addAnnotation(annotation)
+            }
+        } else {
+            UtilBox.alert(self, message: info)
+        }
+    }
+    
+    func mapView(mapView: BMKMapView!, viewForAnnotation annotation: BMKAnnotation!) -> BMKAnnotationView! {
+        let view =  BMKPinAnnotationView(annotation: annotation, reuseIdentifier: "aaa")
+        view.animatesDrop = true
+        view.image = UIImage(named: "handymanLocation")
+        
+        return view
     }
     
     // 初始化NavigationBar
@@ -100,13 +146,21 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         mapView.viewWillAppear()
-        //mapView.delegate = self // 此处记得不用的时候需要置nil，否则影响内存的释放
+        mapView.delegate = self // 此处记得不用的时候需要置nil，否则影响内存的释放
+        
+        locationService.delegate = self
+        locationService.startUserLocationService()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        
         mapView.viewWillDisappear()
-       //mapView.delegate = nil // 不用时，置nil
+        mapView.delegate = nil // 不用时，置nil
+        
+        locationService.delegate = nil
+        locationService.stopUserLocationService()
     }
 }

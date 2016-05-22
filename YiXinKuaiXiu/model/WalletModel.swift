@@ -19,7 +19,14 @@ class WalletModel: WalletProtocol {
     func doWithDraw(money: String, pwd: String) {
         AlamofireUtil.doRequest(Urls.WithDraw, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!, "cnt": money, "pwd": pwd]) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.walletDelegate?.onWithDrawResult(false, info: "提现失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 
@@ -42,7 +49,14 @@ class WalletModel: WalletProtocol {
     func doGetD2DAccount() {
         AlamofireUtil.doRequest(Urls.GetD2DAccount, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.walletDelegate?.onGetD2DAccountResult(false, info: "获取消息列表失败", accountList: [])
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
                 var accountList: [D2DAccount] = []

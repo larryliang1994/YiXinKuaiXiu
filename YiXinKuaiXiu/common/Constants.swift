@@ -152,13 +152,19 @@ class Constants {
         static let ShowChangePasswordSegue = "showChangePasswordSegue"
         static let ShowWithDrawSegue = "showWithDrawSegue"
         static let ShowRechargeSegue = "showRechargeSegue"
+        static let ShowBindBankCardSegue = "showBindBankCardSegue"
+        static let ShowBoundBankCardSegue = "showBoundBankCardSegue"
+        
+        static let WithDrawToBindBankCardSegue = "withDrawToBindBankCardSegue"
+        static let WithDrawToBoundBankCardSegue = "withDrawToBoundBankCardSegue"
         
         static let ChooseFeeSegue = "chooseFeeSegue"
     }
     
     struct Color {
-        static let Primary = UIColor(red: 46/255, green: 204/255, blue: 139/255, alpha: 1.0)
+        static let Primary = UIColor(red: 211/255, green: 68/255, blue: 68/255, alpha: 1.0)
         static let Orange = UIColor(red: 253/255, green: 114/255, blue: 0/255, alpha: 1.0)
+        static let Green = UIColor(red: 46/255, green: 204/255, blue: 139/255, alpha: 1.0)
         static let Gray = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
         static let Blue = UIColor(red: 38/255, green: 135/255, blue: 253/255, alpha: 1.0)
     }
@@ -168,6 +174,9 @@ class Constants {
         static let UMAppKey = "56fc95ec67e58eb5ca0009f4"
         static let BuglyAppKey = "FQxNsqd5EzvoM5ct"
         static let BuglyAppID = "900024596"
+        static let WechatAppID = "wx95e732c9d17a5f96"
+        static let BeeCloudAppID = "5c4004ab-46ca-44b1-b4dc-5bc9dcc75415"
+        static let BeeCloudAppSecret = "8db42bff-1892-45c7-81ea-b3209a923dec"
     }
     
     struct Role {
@@ -177,9 +186,9 @@ class Constants {
     
     struct DateFormat {
         static let YMD = "YYYY年MM月dd日"
-        static let MDHm = "MM/dd HH:mm"
+        static let MDHm = "MM-dd HH:mm"
         static let MD = "MM-dd"
-        static let Full = "YYYY/MM/dd HH:mm"
+        static let Full = "YYYY-MM-dd HH:mm"
     }
     
     struct ImageSize {

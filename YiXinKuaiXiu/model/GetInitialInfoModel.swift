@@ -19,7 +19,14 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     func getMaintenanceType() {
         AlamofireUtil.doRequest(Urls.GetMaintenanceType, parameters: [:]) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.getInitialInfoDelegate?.onGetMaintenanceTypeResult!(false, info: "获取工种失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
                 
@@ -48,7 +55,14 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     func getFees() {
         AlamofireUtil.doRequest(Urls.GetFeeList, parameters: [:]) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.getInitialInfoDelegate?.onGetFeeResult!(false, info: "获取默认价格失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
                 
@@ -70,7 +84,14 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     func getMessage() {
         AlamofireUtil.doRequest(Urls.GetMessage, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.getInitialInfoDelegate?.onGetMessageResult!(false, info: "获取默认价格失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
                 
@@ -94,7 +115,14 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
         AlamofireUtil.doRequest(Urls.GetAds, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
                 print(response)
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.getInitialInfoDelegate?.onGetFeeResult!(false, info: "获取默认价格失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
                 

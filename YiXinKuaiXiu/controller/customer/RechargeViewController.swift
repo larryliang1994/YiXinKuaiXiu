@@ -69,8 +69,12 @@ class RechargeViewController: UITableViewController, UITextFieldDelegate, PopBot
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    func viewWillAppear() {
+        tableView.scrollEnabled = false
+    }
+    
     func viewWillDisappear() {
-        
+        tableView.scrollEnabled = true
     }
     
     func viewHeight() -> CGFloat {

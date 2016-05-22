@@ -26,4 +26,6 @@
 #import "BRPlaceholderTextView.h"
 #import <Bugly/Bugly.h>
 
+#import "BeeCloud.h"
+
 #endif

@@ -148,6 +148,64 @@
 		49D76BA81CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D76BA71CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift */; };
 		49F36D221CB79575000DF874 /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F36D211CB79575000DF874 /* SearchTextField.m */; };
 		49F36D241CB79BE8000DF874 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F36D231CB79BE8000DF874 /* MallViewController.swift */; };
+		49F5221B1CED97590066E72A /* BeeCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521AD1CED97590066E72A /* BeeCloud.m */; };
+		49F5221C1CED97590066E72A /* BCBaseReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521B11CED97590066E72A /* BCBaseReq.m */; };
+		49F5221D1CED97590066E72A /* BCBaseResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521B31CED97590066E72A /* BCBaseResp.m */; };
+		49F5221E1CED97590066E72A /* BCPayReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521B61CED97590066E72A /* BCPayReq.m */; };
+		49F5221F1CED97590066E72A /* BCPayResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521B81CED97590066E72A /* BCPayResp.m */; };
+		49F522201CED97590066E72A /* BCPayPalReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521BB1CED97590066E72A /* BCPayPalReq.m */; };
+		49F522211CED97590066E72A /* BCPayPalVerifyReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521BD1CED97590066E72A /* BCPayPalVerifyReq.m */; };
+		49F522221CED97590066E72A /* BCQueryBillByIdReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521C01CED97590066E72A /* BCQueryBillByIdReq.m */; };
+		49F522231CED97590066E72A /* BCQueryBillByIdResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521C21CED97590066E72A /* BCQueryBillByIdResp.m */; };
+		49F522241CED97590066E72A /* BCQueryBillsReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521C51CED97590066E72A /* BCQueryBillsReq.m */; };
+		49F522251CED97590066E72A /* BCQueryBillsResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521C71CED97590066E72A /* BCQueryBillsResp.m */; };
+		49F522261CED97590066E72A /* BCQueryBillsCountReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521CA1CED97590066E72A /* BCQueryBillsCountReq.m */; };
+		49F522271CED97590066E72A /* BCQueryBillsCountResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521CC1CED97590066E72A /* BCQueryBillsCountResp.m */; };
+		49F522281CED97590066E72A /* BCQueryRefundByIdReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521CF1CED97590066E72A /* BCQueryRefundByIdReq.m */; };
+		49F522291CED97590066E72A /* BCQueryRefundByIdResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521D11CED97590066E72A /* BCQueryRefundByIdResp.m */; };
+		49F5222A1CED97590066E72A /* BCQueryRefundsReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521D41CED97590066E72A /* BCQueryRefundsReq.m */; };
+		49F5222B1CED97590066E72A /* BCQueryRefundsResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521D61CED97590066E72A /* BCQueryRefundsResp.m */; };
+		49F5222C1CED97590066E72A /* BCQueryRefundsCountReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521D91CED97590066E72A /* BCQueryRefundsCountReq.m */; };
+		49F5222D1CED97590066E72A /* BCQueryRefundsCountResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521DB1CED97590066E72A /* BCQueryRefundsCountResp.m */; };
+		49F5222E1CED97590066E72A /* BCRefundStatusReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521DE1CED97590066E72A /* BCRefundStatusReq.m */; };
+		49F5222F1CED97590066E72A /* BCRefundStatusResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521E01CED97590066E72A /* BCRefundStatusResp.m */; };
+		49F522301CED97590066E72A /* BCBaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521E31CED97590066E72A /* BCBaseResult.m */; };
+		49F522311CED97590066E72A /* BCQueryBillResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521E51CED97590066E72A /* BCQueryBillResult.m */; };
+		49F522321CED97590066E72A /* BCQueryRefundResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521E71CED97590066E72A /* BCQueryRefundResult.m */; };
+		49F522331CED97590066E72A /* BCHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521EC1CED97590066E72A /* BCHTTPSessionManager.m */; };
+		49F522341CED97590066E72A /* BCNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521EF1CED97590066E72A /* BCNetworkReachabilityManager.m */; };
+		49F522351CED97590066E72A /* BCSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521F11CED97590066E72A /* BCSecurityPolicy.m */; };
+		49F522361CED97590066E72A /* BCURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521F31CED97590066E72A /* BCURLRequestSerialization.m */; };
+		49F522371CED97590066E72A /* BCURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521F51CED97590066E72A /* BCURLResponseSerialization.m */; };
+		49F522381CED97590066E72A /* BCURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521F71CED97590066E72A /* BCURLSessionManager.m */; };
+		49F522391CED97590066E72A /* BCPayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521F91CED97590066E72A /* BCPayCache.m */; };
+		49F5223A1CED97590066E72A /* BCPayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521FC1CED97590066E72A /* BCPayUtil.m */; };
+		49F5223B1CED97590066E72A /* BeeCloud+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521FE1CED97590066E72A /* BeeCloud+Utils.m */; };
+		49F5223C1CED97590066E72A /* NSDictionary+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F522001CED97590066E72A /* NSDictionary+Utils.m */; };
+		49F5223D1CED97590066E72A /* NSString+IsValid.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F522021CED97590066E72A /* NSString+IsValid.m */; };
+		49F5223E1CED97590066E72A /* BeeCloudAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F522051CED97590066E72A /* BeeCloudAdapter.m */; };
+		49F5223F1CED97590066E72A /* BCSandBoxAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5220A1CED97590066E72A /* BCSandBoxAdapter.m */; };
+		49F522401CED97590066E72A /* BeeCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 49F5220B1CED97590066E72A /* BeeCloud.bundle */; };
+		49F522411CED97590066E72A /* PaySandBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5220D1CED97590066E72A /* PaySandBoxViewController.m */; };
+		49F522421CED97590066E72A /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F522101CED97590066E72A /* AlipaySDK.framework */; };
+		49F522431CED97590066E72A /* BCAliPayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F522131CED97590066E72A /* BCAliPayAdapter.m */; };
+		49F522441CED97590066E72A /* BCWXPayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F522171CED97590066E72A /* BCWXPayAdapter.m */; };
+		49F522451CED97590066E72A /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F522181CED97590066E72A /* libWeChatSDK.a */; };
+		49F522471CED97D00066E72A /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F522461CED97D00066E72A /* libz.1.2.5.tbd */; };
+		49F522491CED97E00066E72A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F522481CED97E00066E72A /* libc++.tbd */; };
+		49F5224B1CED97F00066E72A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F5224A1CED97F00066E72A /* libsqlite3.tbd */; };
+		49F5224C1CED98380066E72A /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F522101CED97590066E72A /* AlipaySDK.framework */; };
+		49F5224D1CED98380066E72A /* AlipaySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49F522101CED97590066E72A /* AlipaySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49F522531CEE96AF0066E72A /* GetNearbyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F522521CEE96AF0066E72A /* GetNearbyModel.swift */; };
+		49F522551CEE987B0066E72A /* GetNearbyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F522541CEE987B0066E72A /* GetNearbyProtocol.swift */; };
+		49F522571CEE9BCC0066E72A /* Handyman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F522561CEE9BCC0066E72A /* Handyman.swift */; };
+		49F522591CEF44760066E72A /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F522581CEF44760066E72A /* ZFRippleButton.swift */; };
+		49F5225B1CEF4BE30066E72A /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5225A1CEF4BE30066E72A /* PrimaryButton.swift */; };
+		49F5225D1CEF51910066E72A /* HollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5225C1CEF51910066E72A /* HollowButton.swift */; };
+		49F5225F1CEF5C1F0066E72A /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5225E1CEF5C1F0066E72A /* Rating.swift */; };
+		49F522611CF036980066E72A /* BindBankCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F522601CF036980066E72A /* BindBankCardViewController.swift */; };
+		49F522631CF03BE20066E72A /* BoundBankCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F522621CF03BE20066E72A /* BoundBankCardViewController.swift */; };
+		49F522651CF047C10066E72A /* LoadMoreTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F522641CF047C10066E72A /* LoadMoreTableFooterView.swift */; };
 		49F580B01CCF0DFF0084EE99 /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580AF1CCF0DFF0084EE99 /* Part.swift */; };
 		49F580B21CCF1A190084EE99 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580B11CCF1A190084EE99 /* Payment.swift */; };
 		49F580B61CCF56280084EE99 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580B51CCF56280084EE99 /* UserInfoModel.swift */; };
@@ -180,6 +238,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				491288771CB14224007DD199 /* KYDrawerController.framework in Embed Frameworks */,
+				49F5224D1CED98380066E72A /* AlipaySDK.framework in Embed Frameworks */,
 				491288561CB1395F007DD199 /* SwiftyJSON.framework in Embed Frameworks */,
 				491288541CB1395F007DD199 /* ReachabilitySwift.framework in Embed Frameworks */,
 				491288521CB1395F007DD199 /* Haneke.framework in Embed Frameworks */,
@@ -340,6 +399,109 @@
 		49F36D201CB7951A000DF874 /* SearchTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SearchTextField.h; path = view/SearchTextField/SearchTextField.h; sourceTree = "<group>"; };
 		49F36D211CB79575000DF874 /* SearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTextField.m; path = view/SearchTextField/SearchTextField.m; sourceTree = "<group>"; };
 		49F36D231CB79BE8000DF874 /* MallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MallViewController.swift; path = controller/customer/MallViewController.swift; sourceTree = "<group>"; };
+		49F521AB1CED97590066E72A /* BCPayObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayObjects.h; sourceTree = "<group>"; };
+		49F521AC1CED97590066E72A /* BeeCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCloud.h; sourceTree = "<group>"; };
+		49F521AD1CED97590066E72A /* BeeCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeCloud.m; sourceTree = "<group>"; };
+		49F521B01CED97590066E72A /* BCBaseReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCBaseReq.h; sourceTree = "<group>"; };
+		49F521B11CED97590066E72A /* BCBaseReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCBaseReq.m; sourceTree = "<group>"; };
+		49F521B21CED97590066E72A /* BCBaseResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCBaseResp.h; sourceTree = "<group>"; };
+		49F521B31CED97590066E72A /* BCBaseResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCBaseResp.m; sourceTree = "<group>"; };
+		49F521B51CED97590066E72A /* BCPayReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayReq.h; sourceTree = "<group>"; };
+		49F521B61CED97590066E72A /* BCPayReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayReq.m; sourceTree = "<group>"; };
+		49F521B71CED97590066E72A /* BCPayResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayResp.h; sourceTree = "<group>"; };
+		49F521B81CED97590066E72A /* BCPayResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayResp.m; sourceTree = "<group>"; };
+		49F521BA1CED97590066E72A /* BCPayPalReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayPalReq.h; sourceTree = "<group>"; };
+		49F521BB1CED97590066E72A /* BCPayPalReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayPalReq.m; sourceTree = "<group>"; };
+		49F521BC1CED97590066E72A /* BCPayPalVerifyReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayPalVerifyReq.h; sourceTree = "<group>"; };
+		49F521BD1CED97590066E72A /* BCPayPalVerifyReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayPalVerifyReq.m; sourceTree = "<group>"; };
+		49F521BF1CED97590066E72A /* BCQueryBillByIdReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillByIdReq.h; sourceTree = "<group>"; };
+		49F521C01CED97590066E72A /* BCQueryBillByIdReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillByIdReq.m; sourceTree = "<group>"; };
+		49F521C11CED97590066E72A /* BCQueryBillByIdResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillByIdResp.h; sourceTree = "<group>"; };
+		49F521C21CED97590066E72A /* BCQueryBillByIdResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillByIdResp.m; sourceTree = "<group>"; };
+		49F521C41CED97590066E72A /* BCQueryBillsReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillsReq.h; sourceTree = "<group>"; };
+		49F521C51CED97590066E72A /* BCQueryBillsReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillsReq.m; sourceTree = "<group>"; };
+		49F521C61CED97590066E72A /* BCQueryBillsResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillsResp.h; sourceTree = "<group>"; };
+		49F521C71CED97590066E72A /* BCQueryBillsResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillsResp.m; sourceTree = "<group>"; };
+		49F521C91CED97590066E72A /* BCQueryBillsCountReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillsCountReq.h; sourceTree = "<group>"; };
+		49F521CA1CED97590066E72A /* BCQueryBillsCountReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillsCountReq.m; sourceTree = "<group>"; };
+		49F521CB1CED97590066E72A /* BCQueryBillsCountResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillsCountResp.h; sourceTree = "<group>"; };
+		49F521CC1CED97590066E72A /* BCQueryBillsCountResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillsCountResp.m; sourceTree = "<group>"; };
+		49F521CE1CED97590066E72A /* BCQueryRefundByIdReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundByIdReq.h; sourceTree = "<group>"; };
+		49F521CF1CED97590066E72A /* BCQueryRefundByIdReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundByIdReq.m; sourceTree = "<group>"; };
+		49F521D01CED97590066E72A /* BCQueryRefundByIdResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundByIdResp.h; sourceTree = "<group>"; };
+		49F521D11CED97590066E72A /* BCQueryRefundByIdResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundByIdResp.m; sourceTree = "<group>"; };
+		49F521D31CED97590066E72A /* BCQueryRefundsReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundsReq.h; sourceTree = "<group>"; };
+		49F521D41CED97590066E72A /* BCQueryRefundsReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundsReq.m; sourceTree = "<group>"; };
+		49F521D51CED97590066E72A /* BCQueryRefundsResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundsResp.h; sourceTree = "<group>"; };
+		49F521D61CED97590066E72A /* BCQueryRefundsResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundsResp.m; sourceTree = "<group>"; };
+		49F521D81CED97590066E72A /* BCQueryRefundsCountReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundsCountReq.h; sourceTree = "<group>"; };
+		49F521D91CED97590066E72A /* BCQueryRefundsCountReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundsCountReq.m; sourceTree = "<group>"; };
+		49F521DA1CED97590066E72A /* BCQueryRefundsCountResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundsCountResp.h; sourceTree = "<group>"; };
+		49F521DB1CED97590066E72A /* BCQueryRefundsCountResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundsCountResp.m; sourceTree = "<group>"; };
+		49F521DD1CED97590066E72A /* BCRefundStatusReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCRefundStatusReq.h; sourceTree = "<group>"; };
+		49F521DE1CED97590066E72A /* BCRefundStatusReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCRefundStatusReq.m; sourceTree = "<group>"; };
+		49F521DF1CED97590066E72A /* BCRefundStatusResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCRefundStatusResp.h; sourceTree = "<group>"; };
+		49F521E01CED97590066E72A /* BCRefundStatusResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCRefundStatusResp.m; sourceTree = "<group>"; };
+		49F521E21CED97590066E72A /* BCBaseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCBaseResult.h; sourceTree = "<group>"; };
+		49F521E31CED97590066E72A /* BCBaseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCBaseResult.m; sourceTree = "<group>"; };
+		49F521E41CED97590066E72A /* BCQueryBillResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillResult.h; sourceTree = "<group>"; };
+		49F521E51CED97590066E72A /* BCQueryBillResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillResult.m; sourceTree = "<group>"; };
+		49F521E61CED97590066E72A /* BCQueryRefundResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundResult.h; sourceTree = "<group>"; };
+		49F521E71CED97590066E72A /* BCQueryRefundResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundResult.m; sourceTree = "<group>"; };
+		49F521E91CED97590066E72A /* BCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCCategory.h; sourceTree = "<group>"; };
+		49F521EB1CED97590066E72A /* BCHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCHTTPSessionManager.h; sourceTree = "<group>"; };
+		49F521EC1CED97590066E72A /* BCHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCHTTPSessionManager.m; sourceTree = "<group>"; };
+		49F521ED1CED97590066E72A /* BCNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNetworking.h; sourceTree = "<group>"; };
+		49F521EE1CED97590066E72A /* BCNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		49F521EF1CED97590066E72A /* BCNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		49F521F01CED97590066E72A /* BCSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCSecurityPolicy.h; sourceTree = "<group>"; };
+		49F521F11CED97590066E72A /* BCSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCSecurityPolicy.m; sourceTree = "<group>"; };
+		49F521F21CED97590066E72A /* BCURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCURLRequestSerialization.h; sourceTree = "<group>"; };
+		49F521F31CED97590066E72A /* BCURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCURLRequestSerialization.m; sourceTree = "<group>"; };
+		49F521F41CED97590066E72A /* BCURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCURLResponseSerialization.h; sourceTree = "<group>"; };
+		49F521F51CED97590066E72A /* BCURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCURLResponseSerialization.m; sourceTree = "<group>"; };
+		49F521F61CED97590066E72A /* BCURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCURLSessionManager.h; sourceTree = "<group>"; };
+		49F521F71CED97590066E72A /* BCURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCURLSessionManager.m; sourceTree = "<group>"; };
+		49F521F81CED97590066E72A /* BCPayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayCache.h; sourceTree = "<group>"; };
+		49F521F91CED97590066E72A /* BCPayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayCache.m; sourceTree = "<group>"; };
+		49F521FA1CED97590066E72A /* BCPayConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayConstant.h; sourceTree = "<group>"; };
+		49F521FB1CED97590066E72A /* BCPayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayUtil.h; sourceTree = "<group>"; };
+		49F521FC1CED97590066E72A /* BCPayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayUtil.m; sourceTree = "<group>"; };
+		49F521FD1CED97590066E72A /* BeeCloud+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BeeCloud+Utils.h"; sourceTree = "<group>"; };
+		49F521FE1CED97590066E72A /* BeeCloud+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BeeCloud+Utils.m"; sourceTree = "<group>"; };
+		49F521FF1CED97590066E72A /* NSDictionary+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Utils.h"; sourceTree = "<group>"; };
+		49F522001CED97590066E72A /* NSDictionary+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utils.m"; sourceTree = "<group>"; };
+		49F522011CED97590066E72A /* NSString+IsValid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IsValid.h"; sourceTree = "<group>"; };
+		49F522021CED97590066E72A /* NSString+IsValid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IsValid.m"; sourceTree = "<group>"; };
+		49F522041CED97590066E72A /* BeeCloudAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCloudAdapter.h; sourceTree = "<group>"; };
+		49F522051CED97590066E72A /* BeeCloudAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeCloudAdapter.m; sourceTree = "<group>"; };
+		49F522061CED97590066E72A /* BeeCloudAdapterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCloudAdapterProtocol.h; sourceTree = "<group>"; };
+		49F522091CED97590066E72A /* BCSandBoxAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCSandBoxAdapter.h; sourceTree = "<group>"; };
+		49F5220A1CED97590066E72A /* BCSandBoxAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCSandBoxAdapter.m; sourceTree = "<group>"; };
+		49F5220B1CED97590066E72A /* BeeCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BeeCloud.bundle; sourceTree = "<group>"; };
+		49F5220C1CED97590066E72A /* PaySandBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaySandBoxViewController.h; sourceTree = "<group>"; };
+		49F5220D1CED97590066E72A /* PaySandBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaySandBoxViewController.m; sourceTree = "<group>"; };
+		49F522101CED97590066E72A /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		49F522121CED97590066E72A /* BCAliPayAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCAliPayAdapter.h; sourceTree = "<group>"; };
+		49F522131CED97590066E72A /* BCAliPayAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCAliPayAdapter.m; sourceTree = "<group>"; };
+		49F522161CED97590066E72A /* BCWXPayAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCWXPayAdapter.h; sourceTree = "<group>"; };
+		49F522171CED97590066E72A /* BCWXPayAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCWXPayAdapter.m; sourceTree = "<group>"; };
+		49F522181CED97590066E72A /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		49F522191CED97590066E72A /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		49F5221A1CED97590066E72A /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		49F522461CED97D00066E72A /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		49F522481CED97E00066E72A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		49F5224A1CED97F00066E72A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		49F522521CEE96AF0066E72A /* GetNearbyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetNearbyModel.swift; path = model/GetNearbyModel.swift; sourceTree = "<group>"; };
+		49F522541CEE987B0066E72A /* GetNearbyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetNearbyProtocol.swift; path = model/GetNearbyProtocol.swift; sourceTree = "<group>"; };
+		49F522561CEE9BCC0066E72A /* Handyman.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Handyman.swift; path = bean/Handyman.swift; sourceTree = "<group>"; };
+		49F522581CEF44760066E72A /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFRippleButton.swift; sourceTree = "<group>"; };
+		49F5225A1CEF4BE30066E72A /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrimaryButton.swift; path = view/PrimaryButton.swift; sourceTree = "<group>"; };
+		49F5225C1CEF51910066E72A /* HollowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HollowButton.swift; path = view/HollowButton.swift; sourceTree = "<group>"; };
+		49F5225E1CEF5C1F0066E72A /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = bean/Rating.swift; sourceTree = "<group>"; };
+		49F522601CF036980066E72A /* BindBankCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BindBankCardViewController.swift; path = controller/BindBankCardViewController.swift; sourceTree = "<group>"; };
+		49F522621CF03BE20066E72A /* BoundBankCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoundBankCardViewController.swift; path = controller/BoundBankCardViewController.swift; sourceTree = "<group>"; };
+		49F522641CF047C10066E72A /* LoadMoreTableFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreTableFooterView.swift; sourceTree = "<group>"; };
 		49F580AF1CCF0DFF0084EE99 /* Part.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Part.swift; path = bean/Part.swift; sourceTree = "<group>"; };
 		49F580B11CCF1A190084EE99 /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Payment.swift; path = bean/Payment.swift; sourceTree = "<group>"; };
 		49F580B51CCF56280084EE99 /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoModel.swift; path = model/UserInfoModel.swift; sourceTree = "<group>"; };
@@ -355,11 +517,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49F5224B1CED97F00066E72A /* libsqlite3.tbd in Frameworks */,
+				49F522491CED97E00066E72A /* libc++.tbd in Frameworks */,
+				49F522471CED97D00066E72A /* libz.1.2.5.tbd in Frameworks */,
 				491288761CB14224007DD199 /* KYDrawerController.framework in Frameworks */,
+				49F522421CED97590066E72A /* AlipaySDK.framework in Frameworks */,
+				49F522451CED97590066E72A /* libWeChatSDK.a in Frameworks */,
 				491288551CB1395F007DD199 /* SwiftyJSON.framework in Frameworks */,
 				491288531CB1395F007DD199 /* ReachabilitySwift.framework in Frameworks */,
 				491288511CB1395F007DD199 /* Haneke.framework in Frameworks */,
 				4912884F1CB1395F007DD199 /* Alamofire.framework in Frameworks */,
+				49F5224C1CED98380066E72A /* AlipaySDK.framework in Frameworks */,
 				491288571CB1395F007DD199 /* SWXMLHash.framework in Frameworks */,
 				4912885B1CB1395F007DD199 /* Pods_YiXinKuaiXiu.framework in Frameworks */,
 			);
@@ -396,8 +564,12 @@
 				49D76B9F1CC0C81F005E2213 /* FloatRatingView.swift */,
 				49D76B991CBF48C4005E2213 /* SwiftBadge.swift */,
 				498E26161CBB9C3C00DE6EDC /* SwiftNotice.swift */,
+				49F522581CEF44760066E72A /* ZFRippleButton.swift */,
 				494D6E891CB80F19007824F1 /* PopBottomView.swift */,
 				49A15E7A1CC6781F0028023C /* OYSimpleAlertController.swift */,
+				49F522641CF047C10066E72A /* LoadMoreTableFooterView.swift */,
+				49F5225A1CEF4BE30066E72A /* PrimaryButton.swift */,
+				49F5225C1CEF51910066E72A /* HollowButton.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -567,6 +739,7 @@
 		4991F3031CB0FCD600E1BF85 = {
 			isa = PBXGroup;
 			children = (
+				49F521A91CED97590066E72A /* BCPaySDK */,
 				4991F30E1CB0FCD600E1BF85 /* YiXinKuaiXiu */,
 				4991F3231CB0FCD600E1BF85 /* YiXinKuaiXiuTests */,
 				4991F32E1CB0FCD600E1BF85 /* YiXinKuaiXiuUITests */,
@@ -638,6 +811,8 @@
 				491B6EE01CE18AF40039B70E /* RechargeViewController.swift */,
 				491B6ED21CE01D770039B70E /* WithDrawViewController.swift */,
 				497E9ABF1CD45B1300A7D934 /* D2DAccountViewController.swift */,
+				49F522601CF036980066E72A /* BindBankCardViewController.swift */,
+				49F522621CF03BE20066E72A /* BoundBankCardViewController.swift */,
 				4991F3411CB1029A00E1BF85 /* WelcomeViewController.swift */,
 				4991F3431CB113A100E1BF85 /* LoginViewController.swift */,
 				49F580B91CCF64A20084EE99 /* SplashScreenViewController.swift */,
@@ -680,6 +855,8 @@
 				49C8BD0D1CE5D52C00CBE0F4 /* RatingModel.swift */,
 				4909EC4A1CE966E000C4FD04 /* AuditProtocol.swift */,
 				4909EC4C1CE9671B00C4FD04 /* AuditModel.swift */,
+				49F522541CEE987B0066E72A /* GetNearbyProtocol.swift */,
+				49F522521CEE96AF0066E72A /* GetNearbyModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -705,6 +882,8 @@
 				497542481CDDDB1200E23D38 /* Category.swift */,
 				49D48ED21CE4642000D19FC2 /* Message.swift */,
 				49D48EDC1CE4A0D300D19FC2 /* D2DAccount.swift */,
+				49F522561CEE9BCC0066E72A /* Handyman.swift */,
+				49F5225E1CEF5C1F0066E72A /* Rating.swift */,
 			);
 			name = bean;
 			sourceTree = "<group>";
@@ -822,6 +1001,287 @@
 			name = searchTextField;
 			sourceTree = "<group>";
 		};
+		49F521A91CED97590066E72A /* BCPaySDK */ = {
+			isa = PBXGroup;
+			children = (
+				49F521AA1CED97590066E72A /* BeeCloud */,
+				49F5220E1CED97590066E72A /* Channel */,
+			);
+			path = BCPaySDK;
+			sourceTree = "<group>";
+		};
+		49F521AA1CED97590066E72A /* BeeCloud */ = {
+			isa = PBXGroup;
+			children = (
+				49F521AB1CED97590066E72A /* BCPayObjects.h */,
+				49F521AC1CED97590066E72A /* BeeCloud.h */,
+				49F521AD1CED97590066E72A /* BeeCloud.m */,
+				49F521AE1CED97590066E72A /* Classes */,
+				49F521E81CED97590066E72A /* Internal */,
+				49F522031CED97590066E72A /* Protocol */,
+				49F522071CED97590066E72A /* SandBox */,
+			);
+			path = BeeCloud;
+			sourceTree = "<group>";
+		};
+		49F521AE1CED97590066E72A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				49F521AF1CED97590066E72A /* BCBase */,
+				49F521B41CED97590066E72A /* BCPay */,
+				49F521B91CED97590066E72A /* BCPayPal */,
+				49F521BE1CED97590066E72A /* BCQueryBillById */,
+				49F521C31CED97590066E72A /* BCQueryBills */,
+				49F521C81CED97590066E72A /* BCQueryBillsCount */,
+				49F521CD1CED97590066E72A /* BCQueryRefundById */,
+				49F521D21CED97590066E72A /* BCQueryRefunds */,
+				49F521D71CED97590066E72A /* BCQueryRefundsCount */,
+				49F521DC1CED97590066E72A /* BCQueryRefundStatus */,
+				49F521E11CED97590066E72A /* BCResults */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		49F521AF1CED97590066E72A /* BCBase */ = {
+			isa = PBXGroup;
+			children = (
+				49F521B01CED97590066E72A /* BCBaseReq.h */,
+				49F521B11CED97590066E72A /* BCBaseReq.m */,
+				49F521B21CED97590066E72A /* BCBaseResp.h */,
+				49F521B31CED97590066E72A /* BCBaseResp.m */,
+			);
+			path = BCBase;
+			sourceTree = "<group>";
+		};
+		49F521B41CED97590066E72A /* BCPay */ = {
+			isa = PBXGroup;
+			children = (
+				49F521B51CED97590066E72A /* BCPayReq.h */,
+				49F521B61CED97590066E72A /* BCPayReq.m */,
+				49F521B71CED97590066E72A /* BCPayResp.h */,
+				49F521B81CED97590066E72A /* BCPayResp.m */,
+			);
+			path = BCPay;
+			sourceTree = "<group>";
+		};
+		49F521B91CED97590066E72A /* BCPayPal */ = {
+			isa = PBXGroup;
+			children = (
+				49F521BA1CED97590066E72A /* BCPayPalReq.h */,
+				49F521BB1CED97590066E72A /* BCPayPalReq.m */,
+				49F521BC1CED97590066E72A /* BCPayPalVerifyReq.h */,
+				49F521BD1CED97590066E72A /* BCPayPalVerifyReq.m */,
+			);
+			path = BCPayPal;
+			sourceTree = "<group>";
+		};
+		49F521BE1CED97590066E72A /* BCQueryBillById */ = {
+			isa = PBXGroup;
+			children = (
+				49F521BF1CED97590066E72A /* BCQueryBillByIdReq.h */,
+				49F521C01CED97590066E72A /* BCQueryBillByIdReq.m */,
+				49F521C11CED97590066E72A /* BCQueryBillByIdResp.h */,
+				49F521C21CED97590066E72A /* BCQueryBillByIdResp.m */,
+			);
+			path = BCQueryBillById;
+			sourceTree = "<group>";
+		};
+		49F521C31CED97590066E72A /* BCQueryBills */ = {
+			isa = PBXGroup;
+			children = (
+				49F521C41CED97590066E72A /* BCQueryBillsReq.h */,
+				49F521C51CED97590066E72A /* BCQueryBillsReq.m */,
+				49F521C61CED97590066E72A /* BCQueryBillsResp.h */,
+				49F521C71CED97590066E72A /* BCQueryBillsResp.m */,
+			);
+			path = BCQueryBills;
+			sourceTree = "<group>";
+		};
+		49F521C81CED97590066E72A /* BCQueryBillsCount */ = {
+			isa = PBXGroup;
+			children = (
+				49F521C91CED97590066E72A /* BCQueryBillsCountReq.h */,
+				49F521CA1CED97590066E72A /* BCQueryBillsCountReq.m */,
+				49F521CB1CED97590066E72A /* BCQueryBillsCountResp.h */,
+				49F521CC1CED97590066E72A /* BCQueryBillsCountResp.m */,
+			);
+			path = BCQueryBillsCount;
+			sourceTree = "<group>";
+		};
+		49F521CD1CED97590066E72A /* BCQueryRefundById */ = {
+			isa = PBXGroup;
+			children = (
+				49F521CE1CED97590066E72A /* BCQueryRefundByIdReq.h */,
+				49F521CF1CED97590066E72A /* BCQueryRefundByIdReq.m */,
+				49F521D01CED97590066E72A /* BCQueryRefundByIdResp.h */,
+				49F521D11CED97590066E72A /* BCQueryRefundByIdResp.m */,
+			);
+			path = BCQueryRefundById;
+			sourceTree = "<group>";
+		};
+		49F521D21CED97590066E72A /* BCQueryRefunds */ = {
+			isa = PBXGroup;
+			children = (
+				49F521D31CED97590066E72A /* BCQueryRefundsReq.h */,
+				49F521D41CED97590066E72A /* BCQueryRefundsReq.m */,
+				49F521D51CED97590066E72A /* BCQueryRefundsResp.h */,
+				49F521D61CED97590066E72A /* BCQueryRefundsResp.m */,
+			);
+			path = BCQueryRefunds;
+			sourceTree = "<group>";
+		};
+		49F521D71CED97590066E72A /* BCQueryRefundsCount */ = {
+			isa = PBXGroup;
+			children = (
+				49F521D81CED97590066E72A /* BCQueryRefundsCountReq.h */,
+				49F521D91CED97590066E72A /* BCQueryRefundsCountReq.m */,
+				49F521DA1CED97590066E72A /* BCQueryRefundsCountResp.h */,
+				49F521DB1CED97590066E72A /* BCQueryRefundsCountResp.m */,
+			);
+			path = BCQueryRefundsCount;
+			sourceTree = "<group>";
+		};
+		49F521DC1CED97590066E72A /* BCQueryRefundStatus */ = {
+			isa = PBXGroup;
+			children = (
+				49F521DD1CED97590066E72A /* BCRefundStatusReq.h */,
+				49F521DE1CED97590066E72A /* BCRefundStatusReq.m */,
+				49F521DF1CED97590066E72A /* BCRefundStatusResp.h */,
+				49F521E01CED97590066E72A /* BCRefundStatusResp.m */,
+			);
+			path = BCQueryRefundStatus;
+			sourceTree = "<group>";
+		};
+		49F521E11CED97590066E72A /* BCResults */ = {
+			isa = PBXGroup;
+			children = (
+				49F521E21CED97590066E72A /* BCBaseResult.h */,
+				49F521E31CED97590066E72A /* BCBaseResult.m */,
+				49F521E41CED97590066E72A /* BCQueryBillResult.h */,
+				49F521E51CED97590066E72A /* BCQueryBillResult.m */,
+				49F521E61CED97590066E72A /* BCQueryRefundResult.h */,
+				49F521E71CED97590066E72A /* BCQueryRefundResult.m */,
+			);
+			path = BCResults;
+			sourceTree = "<group>";
+		};
+		49F521E81CED97590066E72A /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				49F521E91CED97590066E72A /* BCCategory.h */,
+				49F521EA1CED97590066E72A /* BCNetworking */,
+				49F521F81CED97590066E72A /* BCPayCache.h */,
+				49F521F91CED97590066E72A /* BCPayCache.m */,
+				49F521FA1CED97590066E72A /* BCPayConstant.h */,
+				49F521FB1CED97590066E72A /* BCPayUtil.h */,
+				49F521FC1CED97590066E72A /* BCPayUtil.m */,
+				49F521FD1CED97590066E72A /* BeeCloud+Utils.h */,
+				49F521FE1CED97590066E72A /* BeeCloud+Utils.m */,
+				49F521FF1CED97590066E72A /* NSDictionary+Utils.h */,
+				49F522001CED97590066E72A /* NSDictionary+Utils.m */,
+				49F522011CED97590066E72A /* NSString+IsValid.h */,
+				49F522021CED97590066E72A /* NSString+IsValid.m */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		49F521EA1CED97590066E72A /* BCNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				49F521EB1CED97590066E72A /* BCHTTPSessionManager.h */,
+				49F521EC1CED97590066E72A /* BCHTTPSessionManager.m */,
+				49F521ED1CED97590066E72A /* BCNetworking.h */,
+				49F521EE1CED97590066E72A /* BCNetworkReachabilityManager.h */,
+				49F521EF1CED97590066E72A /* BCNetworkReachabilityManager.m */,
+				49F521F01CED97590066E72A /* BCSecurityPolicy.h */,
+				49F521F11CED97590066E72A /* BCSecurityPolicy.m */,
+				49F521F21CED97590066E72A /* BCURLRequestSerialization.h */,
+				49F521F31CED97590066E72A /* BCURLRequestSerialization.m */,
+				49F521F41CED97590066E72A /* BCURLResponseSerialization.h */,
+				49F521F51CED97590066E72A /* BCURLResponseSerialization.m */,
+				49F521F61CED97590066E72A /* BCURLSessionManager.h */,
+				49F521F71CED97590066E72A /* BCURLSessionManager.m */,
+			);
+			path = BCNetworking;
+			sourceTree = "<group>";
+		};
+		49F522031CED97590066E72A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				49F522041CED97590066E72A /* BeeCloudAdapter.h */,
+				49F522051CED97590066E72A /* BeeCloudAdapter.m */,
+				49F522061CED97590066E72A /* BeeCloudAdapterProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		49F522071CED97590066E72A /* SandBox */ = {
+			isa = PBXGroup;
+			children = (
+				49F522081CED97590066E72A /* BCSandBoxAdapter */,
+				49F5220B1CED97590066E72A /* BeeCloud.bundle */,
+				49F5220C1CED97590066E72A /* PaySandBoxViewController.h */,
+				49F5220D1CED97590066E72A /* PaySandBoxViewController.m */,
+			);
+			path = SandBox;
+			sourceTree = "<group>";
+		};
+		49F522081CED97590066E72A /* BCSandBoxAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				49F522091CED97590066E72A /* BCSandBoxAdapter.h */,
+				49F5220A1CED97590066E72A /* BCSandBoxAdapter.m */,
+			);
+			path = BCSandBoxAdapter;
+			sourceTree = "<group>";
+		};
+		49F5220E1CED97590066E72A /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				49F5220F1CED97590066E72A /* AliPay */,
+				49F522141CED97590066E72A /* WXPay */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		49F5220F1CED97590066E72A /* AliPay */ = {
+			isa = PBXGroup;
+			children = (
+				49F522101CED97590066E72A /* AlipaySDK.framework */,
+				49F522111CED97590066E72A /* BCAliPayAdapter */,
+			);
+			path = AliPay;
+			sourceTree = "<group>";
+		};
+		49F522111CED97590066E72A /* BCAliPayAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				49F522121CED97590066E72A /* BCAliPayAdapter.h */,
+				49F522131CED97590066E72A /* BCAliPayAdapter.m */,
+			);
+			path = BCAliPayAdapter;
+			sourceTree = "<group>";
+		};
+		49F522141CED97590066E72A /* WXPay */ = {
+			isa = PBXGroup;
+			children = (
+				49F522151CED97590066E72A /* BCWXPayAdapter */,
+				49F522181CED97590066E72A /* libWeChatSDK.a */,
+				49F522191CED97590066E72A /* WXApi.h */,
+				49F5221A1CED97590066E72A /* WXApiObject.h */,
+			);
+			path = WXPay;
+			sourceTree = "<group>";
+		};
+		49F522151CED97590066E72A /* BCWXPayAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				49F522161CED97590066E72A /* BCWXPayAdapter.h */,
+				49F522171CED97590066E72A /* BCWXPayAdapter.m */,
+			);
+			path = BCWXPayAdapter;
+			sourceTree = "<group>";
+		};
 		6C0DD8AC1D3831920B98FB56 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -834,6 +1294,9 @@
 		FD57357E724B506239746FE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49F5224A1CED97F00066E72A /* libsqlite3.tbd */,
+				49F522481CED97E00066E72A /* libc++.tbd */,
+				49F522461CED97D00066E72A /* libz.1.2.5.tbd */,
 				498E26231CBBA75F00DE6EDC /* DKImagePickerController.framework */,
 				49E8C0141CB1258500B173E0 /* Alamofire.framework */,
 				49E8C0151CB1258500B173E0 /* Haneke.framework */,
@@ -918,7 +1381,7 @@
 				TargetAttributes = {
 					4991F30B1CB0FCD600E1BF85 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 62WKJ87YX9;
+						DevelopmentTeam = W8C6FGP93V;
 					};
 					4991F31F1CB0FCD600E1BF85 = {
 						CreatedOnToolsVersion = 7.3;
@@ -960,6 +1423,7 @@
 				4981966F1CD1A43E0046B72A /* AlertView.xib in Resources */,
 				498E26411CBBAA7D00DE6EDC /* DKImagePickerController.bundle in Resources */,
 				49C380A31CB8F6E900242B7A /* City.plist in Resources */,
+				49F522401CED97590066E72A /* BeeCloud.bundle in Resources */,
 				496C5D3E1CC1D64800CA63AC /* ShoppingCartPayPopoverView.xib in Resources */,
 				49C380781CB89D2F00242B7A /* PayPopoverView.xib in Resources */,
 				49C3809D1CB8F6DB00242B7A /* CFCityCell.xib in Resources */,
@@ -1047,16 +1511,24 @@
 				497E9AC01CD45B1300A7D934 /* D2DAccountViewController.swift in Sources */,
 				4991F3441CB113A100E1BF85 /* LoginViewController.swift in Sources */,
 				49A15E551CC515330028023C /* OrderGrabDetailViewController.swift in Sources */,
+				49F522531CEE96AF0066E72A /* GetNearbyModel.swift in Sources */,
 				49C380941CB8F6DB00242B7A /* CFCityPickerVCCommon.swift in Sources */,
 				49A15E7B1CC6781F0028023C /* OYSimpleAlertController.swift in Sources */,
+				49F522311CED97590066E72A /* BCQueryBillResult.m in Sources */,
+				49F5222D1CED97590066E72A /* BCQueryRefundsCountResp.m in Sources */,
+				49F522301CED97590066E72A /* BCBaseResult.m in Sources */,
 				49C380961CB8F6DB00242B7A /* CitySearchResultVC.swift in Sources */,
 				496C5D471CC20F1C00CA63AC /* HandymanDrawerViewController.swift in Sources */,
+				49F522351CED97590066E72A /* BCSecurityPolicy.m in Sources */,
 				49517E5F1CEB643000A20361 /* AuditedViewController.swift in Sources */,
 				4991F3101CB0FCD600E1BF85 /* AppDelegate.swift in Sources */,
+				49F522321CED97590066E72A /* BCQueryRefundResult.m in Sources */,
 				49D48EDB1CE49C2E00D19FC2 /* MessageCenterViewController.swift in Sources */,
 				49A15E811CC7C6DF0028023C /* LoginModel.swift in Sources */,
+				49F522291CED97590066E72A /* BCQueryRefundByIdResp.m in Sources */,
 				498E26481CBBAA7D00DE6EDC /* DKAssetGroupListVC.swift in Sources */,
 				49A15E911CCA23BE0028023C /* Order.swift in Sources */,
+				49F522231CED97590066E72A /* BCQueryBillByIdResp.m in Sources */,
 				49C3809E1CB8F6DB00242B7A /* CityMaskView.swift in Sources */,
 				498E26401CBBAA7D00DE6EDC /* DKImageManager.swift in Sources */,
 				491B6EDF1CE172320039B70E /* ChooseFeeViewController.swift in Sources */,
@@ -1064,51 +1536,72 @@
 				49D48ED71CE4678F00D19FC2 /* WalletModel.swift in Sources */,
 				4970BF121CDA439300E20E70 /* OrderModel.swift in Sources */,
 				498E263B1CBBAA7D00DE6EDC /* DKCamera.swift in Sources */,
+				49F5225B1CEF4BE30066E72A /* PrimaryButton.swift in Sources */,
 				498E26461CBBAA7D00DE6EDC /* DKAssetGroupDetailVC.swift in Sources */,
 				49F580B61CCF56280084EE99 /* UserInfoModel.swift in Sources */,
 				49A15E631CC5D2020028023C /* HandymanOrderDetailViewController.swift in Sources */,
 				498E26441CBBAA7D00DE6EDC /* DKImageResource.swift in Sources */,
+				49F522261CED97590066E72A /* BCQueryBillsCountReq.m in Sources */,
 				4970BF0E1CDA387500E20E70 /* GetInitialInfoModel.swift in Sources */,
 				494D6E8A1CB80F19007824F1 /* PopBottomView.swift in Sources */,
 				49F36D241CB79BE8000DF874 /* MallViewController.swift in Sources */,
 				491B6ED71CE021970039B70E /* EnterPasswordAlertView.swift in Sources */,
 				496C5D391CC13D2F00CA63AC /* ShoppingCartPopoverViewCell.swift in Sources */,
+				49F522371CED97590066E72A /* BCURLResponseSerialization.m in Sources */,
 				4991F3421CB1029A00E1BF85 /* WelcomeViewController.swift in Sources */,
 				49D76BA01CC0C81F005E2213 /* FloatRatingView.swift in Sources */,
 				498196711CD1A4520046B72A /* AlertView.swift in Sources */,
 				49A15E821CC7C6DF0028023C /* LoginProtocol.swift in Sources */,
 				49C380A01CB8F6DB00242B7A /* HeaderItemView.swift in Sources */,
+				49F522241CED97590066E72A /* BCQueryBillsReq.m in Sources */,
 				4909EC4D1CE9671B00C4FD04 /* AuditModel.swift in Sources */,
+				49F522331CED97590066E72A /* BCHTTPSessionManager.m in Sources */,
 				49C8BD0E1CE5D52C00CBE0F4 /* RatingModel.swift in Sources */,
 				49C8BD0A1CE5BF1800CBE0F4 /* PayModel.swift in Sources */,
 				4912887A1CB147F3007DD199 /* CustomerDrawerViewController.swift in Sources */,
 				49A15E891CC866430028023C /* SimpleButtonControlState.swift in Sources */,
 				491B6EE11CE18AF40039B70E /* RechargeViewController.swift in Sources */,
 				49A15E791CC675430028023C /* ProjectBidingViewController.swift in Sources */,
+				49F522441CED97590066E72A /* BCWXPayAdapter.m in Sources */,
 				49D48ED31CE4642000D19FC2 /* Message.swift in Sources */,
 				491288881CB16AC3007DD199 /* OrderTypeViewController.swift in Sources */,
 				498E263F1CBBAA7D00DE6EDC /* DKAssetGroup.swift in Sources */,
 				496C5D3D1CC1D64800CA63AC /* ShoppingCartPayPopoverView.swift in Sources */,
 				49D48ED11CE42A4700D19FC2 /* GetPartsInfoModel.swift in Sources */,
+				49F5225D1CEF51910066E72A /* HollowButton.swift in Sources */,
 				49A15E5B1CC51E4B0028023C /* CustomerOrderListTableViewController.swift in Sources */,
 				49A2E9181CB7FD890079C690 /* CheckFeeViewController.swift in Sources */,
+				49F5221C1CED97590066E72A /* BCBaseReq.m in Sources */,
+				49F522271CED97590066E72A /* BCQueryBillsCountResp.m in Sources */,
 				498E26431CBBAA7D00DE6EDC /* DKImagePickerControllerDefaultCamera.swift in Sources */,
 				49F580BA1CCF64A20084EE99 /* SplashScreenViewController.swift in Sources */,
+				49F5221D1CED97590066E72A /* BCBaseResp.m in Sources */,
 				498E26171CBB9C3C00DE6EDC /* SwiftNotice.swift in Sources */,
 				4970BF101CDA3AA600E20E70 /* MaintenanceType.swift in Sources */,
+				49F5221E1CED97590066E72A /* BCPayReq.m in Sources */,
 				49C3809C1CB8F6DB00242B7A /* CFCityCell.swift in Sources */,
 				491288851CB15C22007DD199 /* Constants.swift in Sources */,
 				496C5D4B1CC232FA00CA63AC /* OrderGrabTableViewController.swift in Sources */,
+				49F522611CF036980066E72A /* BindBankCardViewController.swift in Sources */,
+				49F522281CED97590066E72A /* BCQueryRefundByIdReq.m in Sources */,
 				4912887C1CB15189007DD199 /* CustomerHomeViewController.swift in Sources */,
+				49F5223E1CED97590066E72A /* BeeCloudAdapter.m in Sources */,
 				4912888E1CB256D0007DD199 /* OrderPublishViewController.swift in Sources */,
 				49D76B951CBE6D10005E2213 /* OrderListCell.swift in Sources */,
+				49F522361CED97590066E72A /* BCURLRequestSerialization.m in Sources */,
 				4912888C1CB25634007DD199 /* BRPlaceholderTextView.m in Sources */,
 				49D76B9A1CBF48C4005E2213 /* SwiftBadge.swift in Sources */,
+				49F522341CED97590066E72A /* BCNetworkReachabilityManager.m in Sources */,
 				49D76BA81CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift in Sources */,
 				496C5D401CC1E79200CA63AC /* UserInfoViewController.swift in Sources */,
 				4979E8961CB4AD5800D03919 /* SMSwipeableTabViewController.swift in Sources */,
+				49F522201CED97590066E72A /* BCPayPalReq.m in Sources */,
+				49F522411CED97590066E72A /* PaySandBoxViewController.m in Sources */,
+				49F522221CED97590066E72A /* BCQueryBillByIdReq.m in Sources */,
 				49C380771CB89D2F00242B7A /* PayPopoverView.swift in Sources */,
+				49F5223B1CED97590066E72A /* BeeCloud+Utils.m in Sources */,
 				49A15E8B1CC866740028023C /* SimpleButtonStateChangeValue.swift in Sources */,
+				49F522381CED97590066E72A /* BCURLSessionManager.m in Sources */,
 				4970BF161CDAE8E100E20E70 /* UploadImageProtocol.swift in Sources */,
 				49C380981CB8F6DB00242B7A /* CFCityPickerVC+Main.swift in Sources */,
 				49F580B01CCF0DFF0084EE99 /* Part.swift in Sources */,
@@ -1117,43 +1610,64 @@
 				4970BF0C1CDA385F00E20E70 /* GetInitialInfoProtocol.swift in Sources */,
 				49A15E881CC866430028023C /* SimpleButton.swift in Sources */,
 				491288841CB15C22007DD199 /* Config.swift in Sources */,
+				49F5223D1CED97590066E72A /* NSString+IsValid.m in Sources */,
+				49F522391CED97590066E72A /* BCPayCache.m in Sources */,
+				49F5222C1CED97590066E72A /* BCQueryRefundsCountReq.m in Sources */,
 				4909EC471CE86F6000C4FD04 /* HandymanOrderListTableViewController.swift in Sources */,
 				49C3809A1CB8F6DB00242B7A /* CityModel.swift in Sources */,
 				49D76BA31CC0CF15005E2213 /* ShoppingCartPopoverView.swift in Sources */,
 				49A15E8E1CC9FD200028023C /* Urls.swift in Sources */,
 				4909EC4B1CE966E000C4FD04 /* AuditProtocol.swift in Sources */,
+				49F5225F1CEF5C1F0066E72A /* Rating.swift in Sources */,
+				49F5223A1CED97590066E72A /* BCPayUtil.m in Sources */,
 				49F36D221CB79575000DF874 /* SearchTextField.m in Sources */,
+				49F522571CEE9BCC0066E72A /* Handyman.swift in Sources */,
 				496C5D491CC2323A00CA63AC /* OrderGrabViewController.swift in Sources */,
 				49A15E671CC5DC650028023C /* AuditIDViewController.swift in Sources */,
 				49D48EDD1CE4A0D300D19FC2 /* D2DAccount.swift in Sources */,
+				49F522251CED97590066E72A /* BCQueryBillsResp.m in Sources */,
 				49C3809F1CB8F6DB00242B7A /* CitySearchBar.swift in Sources */,
+				49F522651CF047C10066E72A /* LoadMoreTableFooterView.swift in Sources */,
 				498E263E1CBBAA7D00DE6EDC /* DKAsset.swift in Sources */,
 				4909EC4F1CE9FE7100C4FD04 /* HandymanInfoViewController.swift in Sources */,
 				49C380931CB8F6DB00242B7A /* CFCityPickerVC.swift in Sources */,
+				49F5223C1CED97590066E72A /* NSDictionary+Utils.m in Sources */,
 				4970BF181CDAE90400E20E70 /* UploadImageModel.swift in Sources */,
+				49F5222E1CED97590066E72A /* BCRefundStatusReq.m in Sources */,
+				49F522591CEF44760066E72A /* ZFRippleButton.swift in Sources */,
+				49F5223F1CED97590066E72A /* BCSandBoxAdapter.m in Sources */,
 				498E26471CBBAA7D00DE6EDC /* DKAssetGroupGridLayout.swift in Sources */,
 				49C380991CB8F6DB00242B7A /* CFCityPickerVC+TableView.swift in Sources */,
+				49F522631CF03BE20066E72A /* BoundBankCardViewController.swift in Sources */,
+				49F522551CEE987B0066E72A /* GetNearbyProtocol.swift in Sources */,
 				498E26451CBBAA7D00DE6EDC /* DKPopoverViewController.swift in Sources */,
 				49A15E5D1CC51E4B0028023C /* PartsMallViewController.swift in Sources */,
 				49D76B9E1CC0C581005E2213 /* RatingViewController.swift in Sources */,
+				49F5222A1CED97590066E72A /* BCQueryRefundsReq.m in Sources */,
 				49D48ED51CE4677500D19FC2 /* WalletProtocol.swift in Sources */,
 				49F580B21CCF1A190084EE99 /* Payment.swift in Sources */,
 				49A15E5C1CC51E4B0028023C /* OrderListViewController.swift in Sources */,
 				496C5D421CC1E8CA00CA63AC /* WalletViewController.swift in Sources */,
 				491288901CB2A7F1007DD199 /* MaintenanceTypeViewController.swift in Sources */,
 				49D48ECF1CE428C900D19FC2 /* GetPartsInfoProtocol.swift in Sources */,
+				49F522211CED97590066E72A /* BCPayPalVerifyReq.m in Sources */,
+				49F522431CED97590066E72A /* BCAliPayAdapter.m in Sources */,
 				497E9AB81CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift in Sources */,
 				49F580B81CCF56510084EE99 /* UserInfoProtocol.swift in Sources */,
 				49BF678A1CB3653B002257C0 /* OrderPublishConfirmViewController.swift in Sources */,
 				497542491CDDDB1200E23D38 /* Category.swift in Sources */,
 				497E9ABC1CD3412300A7D934 /* UserInfoModifyViewController.swift in Sources */,
+				49F5221F1CED97590066E72A /* BCPayResp.m in Sources */,
 				491B6ED31CE01D770039B70E /* WithDrawViewController.swift in Sources */,
 				491288861CB15C22007DD199 /* UtilBox.swift in Sources */,
+				49F5221B1CED97590066E72A /* BeeCloud.m in Sources */,
 				496C5D451CC20EEE00CA63AC /* HandymanHomeViewController.swift in Sources */,
+				49F5222B1CED97590066E72A /* BCQueryRefundsResp.m in Sources */,
 				49C8BD0C1CE5D4EC00CBE0F4 /* RatingProtocol.swift in Sources */,
 				497E9AC21CD45F6100A7D934 /* ChangePasswordViewController.swift in Sources */,
 				4970BF141CDA43A000E20E70 /* OrderProtocol.swift in Sources */,
 				498E263D1CBBAA7D00DE6EDC /* DKGroupDataManager.swift in Sources */,
+				49F5222F1CED97590066E72A /* BCRefundStatusResp.m in Sources */,
 				49C8BD081CE5BEE500CBE0F4 /* PayProtocol.swift in Sources */,
 				49C380951CB8F6DB00242B7A /* LocationManager.swift in Sources */,
 			);
@@ -1304,14 +1818,23 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BCPaySDK/Channel/AliPay",
+				);
 				INFOPLIST_FILE = YiXinKuaiXiu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BCPaySDK/Channel/WXPay",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.YiXinKuaiXiu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = YiXinKuaiXiu/Bridge.h;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1322,14 +1845,23 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BCPaySDK/Channel/AliPay",
+				);
 				INFOPLIST_FILE = YiXinKuaiXiu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BCPaySDK/Channel/WXPay",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.YiXinKuaiXiu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = YiXinKuaiXiu/Bridge.h;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

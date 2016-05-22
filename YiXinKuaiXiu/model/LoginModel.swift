@@ -19,13 +19,22 @@ class LoginModel : LoginProtocol{
     func doGetVerifyCode(type: String, telephoneNum: String) {
         AlamofireUtil.doRequest(Urls.GetVerifyCode, parameters: ["tpe": type, "cod": telephoneNum]) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.loginDelegate.onGetVerifyCodeResult(false, info: "短信发送失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 
                 if ret == Constants.Success {
                     print(json["tok"].intValue)
-                    self.loginDelegate.onGetVerifyCodeResult(true, info: "短信已发送")
+                    
+                    //self.loginDelegate.onGetVerifyCodeResult(true, info: "短信已发送")
+                    self.loginDelegate.onGetVerifyCodeResult(true, info: json["tok"].intValue.toString())
                 } else {
                     var info = ""
                     if ret == 1 {
@@ -48,7 +57,14 @@ class LoginModel : LoginProtocol{
     func doLogin(telephoneNum: String, verifyCode: String) {
         AlamofireUtil.doRequest(Urls.Login, parameters: ["cod": telephoneNum, "tok": verifyCode]) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    self.loginDelegate.onLoginResult(false, info: "登录失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 
@@ -72,7 +88,7 @@ class LoginModel : LoginProtocol{
                 }
                 
             } else {
-                self.loginDelegate.onLoginResult(false, info: "短信发送失败")
+                self.loginDelegate.onLoginResult(false, info: "登录失败")
             }
         }
     }

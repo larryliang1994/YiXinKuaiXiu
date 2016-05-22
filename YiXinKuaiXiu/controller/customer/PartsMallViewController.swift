@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class PartsMallViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopBottomViewDataSource,PopBottomViewDelegate, PartsMallDelegate, GetPartsInfoDelegate, PayDelegate {
+class PartsMallViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopBottomViewDataSource,PopBottomViewDelegate, PartsMallDelegate, GetPartsInfoDelegate, PopoverPayDelegate {
 
     @IBOutlet var containerView: UIView!
     @IBOutlet var bottomSeperator: UIView!
@@ -45,9 +46,6 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func initView() {
-        payButton.layer.cornerRadius = 3
-        payButton.backgroundColor = Constants.Color.Orange
-        
         numBadge.badgeColor = Constants.Color.Orange
         numBadge.hidden = true
         
@@ -129,7 +127,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             showShoppingCartButton.setImage(UIImage(named: "shoppingCartEmpty"), forState: .Normal)
             
             payButton.enabled = false
-            payButton.backgroundColor = UIColor.grayColor()
+            payButton.backgroundColor = UIColor.lightGrayColor()
             numBadge.hidden = true
             
             totalPriceLabel.font = UIFont(name: (totalPriceLabel?.font?.fontName)!, size: 15)
@@ -140,7 +138,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             showShoppingCartButton.setImage(UIImage(named: "shoppingCart"), forState: .Normal)
             
             payButton.enabled = true
-            payButton.backgroundColor = Constants.Color.Orange
+            payButton.backgroundColor = Constants.Color.Primary
             numBadge.hidden = false
             numBadge.text = totalNum.toString()
             
@@ -196,8 +194,13 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             let shoppingCartPayPopoverView = UIView.loadFromNibNamed(popoverName) as! ShoppingCartPayPopoverView
             
             shoppingCartPayPopoverView.closeButton.addTarget(self, action: #selector(PartsMallViewController.close), forControlEvents: .TouchUpInside)
-            shoppingCartPayPopoverView.doPayButton.addTarget(self, action: #selector(PartsMallViewController.goPay), forControlEvents: .TouchUpInside)
+            shoppingCartPayPopoverView.doPayButton.addTarget(self, action: #selector(PartsMallViewController.close), forControlEvents: .TouchUpInside)
             shoppingCartPayPopoverView.priceLabel.text = "￥" + String(totalPrice)
+            shoppingCartPayPopoverView.date = order!.date!
+            shoppingCartPayPopoverView.detail = generatePartsDetail()
+            shoppingCartPayPopoverView.fee = String(totalPrice)
+            shoppingCartPayPopoverView.delegate = self
+            shoppingCartPayPopoverView.viewController = self
             
             var desc = ""
             for var part in Config.Parts {
@@ -215,14 +218,36 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         hide(self.view)
     }
     
-    func goPay() {
-        //hide(self.view)
-        self.pleaseWait()
+    func generatePartsDetail() -> String {
+        var jsonString = "{\"val\":["
+        var detailArray: [[String: String]] = []
+        var index = 0
+        for var part in Config.Parts {
+            if part.num != 0 {
+                detailArray.append(["name": part.name!, "price": String(part.price!), "num": (part.num?.toString())!])
+                
+                //jsonString += "{" + String(detailArray[index]).stringByReplacingOccurrencesOfString("[", withString: "").stringByReplacingOccurrencesOfString("]", withString: "") + "},"
+                
+                
+                jsonString +=
+                    "{"
+                    + "\"name\":" + "\"" + part.name! + "\""
+                    + ",\"price\":" + "\"" + String(part.price!) + "\""
+                    + ",\"num\":" + "\"" + (part.num?.toString())! + "\""
+                    + "},"
+                
+                index += 1
+            }
+        }
         
-        PayModel(payDelegate: self).goPayParts(order!.date!, detail: "111", fee: String(totalPrice))
+        jsonString += "]}"
+        
+        let json = JSON(UtilBox.convertStringToDictionary(jsonString)!)
+        
+        return ""
     }
     
-    func onGoPayPartsResult(result: Bool, info: String) {
+    func onPayResult(result: Bool, info: String) {
         self.clearAllNotice()
         if result {
             self.noticeSuccess("支付成功", autoClear: true, autoClearTime: 2)
@@ -230,6 +255,10 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             UtilBox.alert(self, message: info)
         }
+    }
+    
+    func viewWillAppear() {
+        
     }
     
     func viewWillDisappear() {
@@ -306,13 +335,13 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             priceLabel.textColor = Constants.Color.Orange
             
             let addButton = cell?.viewWithTag(Constants.Tag.PartsMallRightAdd) as! UIButton
-            addButton.layer.cornerRadius = 20 / 2
+            addButton.layer.cornerRadius = 22 / 2
             addButton.backgroundColor = Constants.Color.Primary
             addButton.addTarget(self, action: #selector(PartsMallViewController.add), forControlEvents: UIControlEvents.TouchUpInside)
             
             let reduceButton = cell?.viewWithTag(Constants.Tag.PartsMallRightReduce) as! UIButton
-            reduceButton.layer.cornerRadius = 20 / 2
-            reduceButton.layer.borderColor = Constants.Color.Gray.CGColor
+            reduceButton.layer.cornerRadius = 22 / 2
+            reduceButton.layer.borderColor = UIColor.grayColor().CGColor
             reduceButton.layer.borderWidth = 0.5
             reduceButton.addTarget(self, action: #selector(PartsMallViewController.reduce), forControlEvents: UIControlEvents.TouchUpInside)
             
@@ -389,7 +418,6 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    // 选取最后一个的时候会有问题
     func updateLeftTableView(indexPath: NSIndexPath) {
         let lastCell = leftTableView.cellForRowAtIndexPath(lastPick)
         let lastTitle = lastCell?.viewWithTag(Constants.Tag.PartsMallLeftCellLabel) as! UILabel

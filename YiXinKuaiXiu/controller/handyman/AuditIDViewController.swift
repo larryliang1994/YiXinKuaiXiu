@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseLocationDelegate, AuditDelegate {
+class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseLocationDelegate, AuditDelegate, UploadImageDelegate {
     
     @IBOutlet var maintenanceTypeLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
@@ -60,7 +60,17 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
             UtilBox.alert(self, message: "请输入紧急联系人手机号")
         } else {
             self.pleaseWait()
+            
+            UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail(imageAsset!.originalAsset!))
+        }
+    }
+    
+    func onUploadOrderImageResult(result: Bool, info: String) {
+        if result {
             AuditModel(auditDelegate: self).doAudit(idString!, location: locationLabel.text!, locationInfo: locationInfo!, IDNum: idNumTextField.text!, picture: "", contactsName: contactNameTextField.text!, contactNum: contactTelephoneTextField.text!)
+        } else {
+            self.clearAllNotice()
+            UtilBox.alert(self, message: info)
         }
     }
     

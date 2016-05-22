@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Haneke
 
-class OrderGrabDetailViewController: UIViewController, OrderDelegate {
+class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapViewDelegate {
 
     @IBOutlet var mapView: BMKMapView!
     @IBOutlet var descLabel: UILabel!
@@ -21,7 +22,7 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate {
     @IBOutlet var feeTypeLabel: UILabel!
     @IBOutlet var feeLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
-    @IBOutlet var button: UIButton!
+    @IBOutlet var image1Height: NSLayoutConstraint!
     
     var order: Order?
     
@@ -34,6 +35,16 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate {
     }
     
     func initView() {
+        let annotation = BMKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: (order?.locationInfo?.coordinate.latitude)!, longitude: (order?.locationInfo?.coordinate.longitude)!)
+        annotation.title = order?.location
+        
+        mapView.delegate = self
+        mapView.addAnnotation(annotation)
+        mapView.showsUserLocation = true
+        mapView.centerCoordinate = annotation.coordinate
+        mapView.zoomLevel = 18
+        
         descLabel.text = "        " + order!.desc!
         
         typeLabel.clipsToBounds = true
@@ -45,7 +56,7 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate {
             feeLabel.textColor = Constants.Color.Orange
             feeLabel.text = "￥" + String(order!.fee!)
         } else if order?.type == .Pack {
-            typeLabel.backgroundColor = Constants.Color.Primary
+            typeLabel.backgroundColor = Constants.Color.Green
             typeLabel.text = "打包"
             feeTypeLabel.text = "打包费"
             feeLabel.textColor = Constants.Color.Orange
@@ -58,17 +69,30 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate {
             feeImgImageView.hidden = true
         }
         
-        picture1ImageView.image = UIImage(named: "close")
-        picture2ImageView.image = UIImage(named: "close")
+        if order?.image1Url != nil {
+            picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
+        } else {
+            image1Height.constant = 1
+            picture1ImageView.hidden = true
+            picture2ImageView.hidden = true
+        }
+        if order?.image2Url != nil {
+            picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image2Url)!)!)
+        }
         
         maintenanceTypeLabel.text = (order?.mType)! + "维修"
         
         distanceLabel.text = "距离您3公里"
         
         timeLabel.text = UtilBox.getDateFromString(order!.date!, format: Constants.DateFormat.MDHm)
+    }
+    
+    func mapView(mapView: BMKMapView!, viewForAnnotation annotation: BMKAnnotation!) -> BMKAnnotationView! {
+        let view =  BMKPinAnnotationView(annotation: annotation, reuseIdentifier: "aaa")
+        view.animatesDrop = true
+        view.image = UIImage(named: "customerLocation")
         
-        button.layer.cornerRadius = 3
-        button.backgroundColor = Constants.Color.Primary
+        return view
     }
     
     @IBAction func grab(sender: UIButton) {
@@ -93,13 +117,12 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         mapView.viewWillAppear()
-        //mapView.delegate = self // 此处记得不用的时候需要置nil，否则影响内存的释放
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         mapView.viewWillDisappear()
-        //mapView.delegate = nil // 不用时，置nil
+        mapView.delegate = nil // 不用时，置nil
     }
     
     func onPublishOrderResult(result: Bool, info: String) {}
