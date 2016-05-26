@@ -141,7 +141,7 @@ class UserInfoModel: UserInfoProtocol {
                                                   age: json["age"].intValue,
                                                   star: json["fen"].intValue,
                                                   mNum: json["cnt"].intValue,
-                                                  portraitUrl: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
+                                                  portraitUrl: Urls.PortraitServer + json["id"].stringValue + ".jpg",
                                                   starList: starList,
                                                   descList: descList,
                                                   dateList: dateList)
@@ -220,7 +220,11 @@ class UserInfoModel: UserInfoProtocol {
         Config.Audited = json["lck"].intValue
         Config.MTypeIDString = json["lxs"].stringValue
         Config.ContactTelephone = json["phe"].stringValue
-        Config.PortraitUrl = "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1"
+        Config.LocationInfo = CLLocation(latitude:CLLocationDegrees(json["lat"].doubleValue), longitude: CLLocationDegrees(json["lot"].doubleValue))
+        
+        if Config.Aid != nil {
+            Config.PortraitUrl = Urls.PortraitServer + Config.Aid! + ".jpg"
+        }
         
         if !(Config.Money?.containsString("."))! {
             Config.Money?.appendContentsOf(".00")

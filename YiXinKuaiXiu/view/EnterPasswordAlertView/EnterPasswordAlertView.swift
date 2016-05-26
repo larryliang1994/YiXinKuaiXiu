@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EnterPasswordAlertView: UIView {
+class EnterPasswordAlertView: UIView, UITextFieldDelegate {
 
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var cancelButton: UIButton!
@@ -19,5 +19,15 @@ class EnterPasswordAlertView: UIView {
         self.frame.size = CGSizeMake(240, 175)
         
         backgroundView.layer.cornerRadius = 5
+        
+        pwdTextField.delegate = self
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if !UtilBox.isNum(string, digital: false) {
+            return false
+        }
+        
+        return true
     }
 }

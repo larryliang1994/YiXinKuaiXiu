@@ -31,7 +31,7 @@ class AlamofireUtil {
         }
     }
     
-    static func uploadImage(url: String, parameters: [String: String]!, image: UIImage,
+    static func uploadImage(url: String, parameters: [String: String]!, image: NSData,
                             callback : (result: Bool, response: String) -> Void) {
         var requestUrl = Urls.ServerUrl + url
         
@@ -45,8 +45,7 @@ class AlamofireUtil {
             .POST,
             requestUrl,
             multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(data: UtilBox.compressImage(image, maxSize: Constants.ImageSize.Order)
-                    , name: "dat")
+                multipartFormData.appendBodyPart(data: image, name: "dat")
             },
             encodingCompletion: { encodingResult in
                 switch encodingResult {

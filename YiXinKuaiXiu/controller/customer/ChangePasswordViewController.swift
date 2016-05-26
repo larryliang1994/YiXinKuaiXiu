@@ -21,6 +21,9 @@ class ChangePasswordViewController: UITableViewController, UITextFieldDelegate, 
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if !UtilBox.isNum(string, digital: false) {
+            return false
+        }
         
         if newPasswordTextField.text?.characters.count == 5
             && newPassword2TextField.text?.characters.count == 6 {

@@ -38,6 +38,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
         // 关闭键盘
         telephoneNumTextField.resignFirstResponder()
         
+        if !UtilBox.isTelephoneNum(telephoneNumTextField.text!) {
+            UtilBox.alert(self, message: "请输入11位手机号")
+            return
+        }
+        
         self.pleaseWait()
         
         LoginModel(loginDelegate: self).doGetVerifyCode(Config.Role!, telephoneNum: telephoneNumTextField.text!)
@@ -63,6 +68,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
 
     @IBAction func login(sender: UIButton) {
         verifyCodeTextField.resignFirstResponder()
+        
+        if !UtilBox.isTelephoneNum(telephoneNumTextField.text!) {
+            UtilBox.alert(self, message: "请输入11位手机号")
+            return
+        } else if verifyCodeTextField.text?.characters.count != 5 {
+            UtilBox.alert(self, message: "请输入5位验证码")
+            return
+        }
         
         self.pleaseWait()
         
@@ -143,49 +156,74 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
     // 控制编辑中的视图样式
     var loginButtonEnabled = false
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
         if textField == telephoneNumTextField {
             
             if range.location >= 11 {
                 return false
             }
             
-            let telephoneNum = telephoneNumTextField.text?.characters.count == 10 ?
-                telephoneNumTextField.text! + "1" : telephoneNumTextField.text!
-            
-            if range.location >= 10
-                && textField.text?.characters.count == 10
-                && UtilBox.isTelephoneNum(telephoneNum){
-                
+            if textField.text?.characters.count == 0 && range.location == 0 {
                 if !isCounting {
                     getVerifyCodeButton.backgroundColor = Constants.Color.Primary
                     getVerifyCodeButton.enabled = true
                 }
-                
-                if loginButtonEnabled {
-                    loginButton.backgroundColor = Constants.Color.Primary
-                    loginButton.enabled = true
-                }
-            } else {
+            } else if textField.text?.characters.count == 1 && range.location == 0 {
                 getVerifyCodeButton.enabled = false
                 loginButton.enabled = false
-                //loginButtonEnabled = false
                 getVerifyCodeButton.backgroundColor = UIColor.lightGrayColor()
                 loginButton.backgroundColor = UIColor.lightGrayColor()
             }
+            
+
+//            
+//            let telephoneNum = telephoneNumTextField.text?.characters.count == 10 ?
+//                telephoneNumTextField.text! + "1" : telephoneNumTextField.text!
+//            
+//            if range.location >= 10
+//                && textField.text?.characters.count == 10
+//                && UtilBox.isTelephoneNum(telephoneNum){
+//                
+//                if !isCounting {
+//                    getVerifyCodeButton.backgroundColor = Constants.Color.Primary
+//                    getVerifyCodeButton.enabled = true
+//                }
+//                
+//                if loginButtonEnabled {
+//                    loginButton.backgroundColor = Constants.Color.Primary
+//                    loginButton.enabled = true
+//                }
+//            } else {
+//                getVerifyCodeButton.enabled = false
+//                loginButton.enabled = false
+//                //loginButtonEnabled = false
+//                getVerifyCodeButton.backgroundColor = UIColor.lightGrayColor()
+//                loginButton.backgroundColor = UIColor.lightGrayColor()
+//            }
         } else if textField == verifyCodeTextField {
             if range.location >= 5 {
                 return false
             }
             
-            if range.location >= 4 && textField.text?.characters.count == 4 {
+            if textField.text?.characters.count == 0 && range.location == 0 {
                 loginButton.enabled = true
                 loginButtonEnabled = true
                 loginButton.backgroundColor = Constants.Color.Primary
-            } else {
+            } else if textField.text?.characters.count == 1 && range.location == 0 {
                 loginButton.enabled = false
                 loginButtonEnabled = false
                 loginButton.backgroundColor = UIColor.lightGrayColor()
             }
+            
+//            if range.location >= 4 && textField.text?.characters.count == 4 {
+//                loginButton.enabled = true
+//                loginButtonEnabled = true
+//                loginButton.backgroundColor = Constants.Color.Primary
+//            } else {
+//                loginButton.enabled = false
+//                loginButtonEnabled = false
+//                loginButton.backgroundColor = UIColor.lightGrayColor()
+//            }
         }
         
         return true

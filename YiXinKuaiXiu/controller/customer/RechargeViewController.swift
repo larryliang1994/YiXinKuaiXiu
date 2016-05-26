@@ -21,6 +21,10 @@ class RechargeViewController: UITableViewController, UITextFieldDelegate, PopBot
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if !UtilBox.isNum(string, digital: true) {
+            return false
+        }
+        
         if textField.text?.characters.count == 0 && range.location == 0 {
             doneButton.enabled = true
         } else if textField.text?.characters.count == 1 && range.location == 0 {

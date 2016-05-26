@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseLocationDelegate, AuditDelegate, UploadImageDelegate {
+class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseLocationDelegate, AuditDelegate, UploadImageDelegate, UITextFieldDelegate {
     
     @IBOutlet var maintenanceTypeLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
@@ -35,6 +35,7 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
     }
     
     func initView() {
+        pictureImageView.clipsToBounds = true
         //submitButton.enabled = false
     }
     
@@ -61,13 +62,13 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
         } else {
             self.pleaseWait()
             
-            UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail(imageAsset!.originalAsset!))
+            UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail(imageAsset!.originalAsset!), type: .ID)
         }
     }
     
     func onUploadOrderImageResult(result: Bool, info: String) {
         if result {
-            AuditModel(auditDelegate: self).doAudit(idString!, location: locationLabel.text!, locationInfo: locationInfo!, IDNum: idNumTextField.text!, picture: "", contactsName: contactNameTextField.text!, contactNum: contactTelephoneTextField.text!)
+            AuditModel(auditDelegate: self).doAudit(idString!, location: locationLabel.text!, locationInfo: locationInfo!, IDNum: idNumTextField.text!, picture: info, contactsName: contactNameTextField.text!, contactNum: contactTelephoneTextField.text!)
         } else {
             self.clearAllNotice()
             UtilBox.alert(self, message: info)
@@ -77,6 +78,7 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
     func onAuditResult(result: Bool, info: String) {
         self.clearAllNotice()
         if result {
+            Config.PortraitUrl = Urls.PortraitServer + Config.Aid! + ".jpg"
             self.noticeSuccess("申请成功", autoClear: true, autoClearTime: 2)
             
             self.navigationController?.popViewControllerAnimated(true)
@@ -179,6 +181,14 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
                 cmtvc.checked = self.checked
             }
         }
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if !UtilBox.isNum(string, digital: false) {
+            return false
+        }
+        
+        return true
     }
     
     func didSelectedMaintenanceType(nameString: String, idString: String, checked: [Bool]) {

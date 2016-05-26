@@ -8,13 +8,25 @@
 
 import UIKit
 
-class MessageCenterViewController: UITableViewController {
+class MessageCenterViewController: UITableViewController, GetInitialInfoDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.pleaseWait()
+        GetInitialInfoModel(getInitialInfoDelegate: self).getMessage()
+    }
+    
+    func onGetMessageResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        if result {
+            tableView.reloadData()
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
 
     // MARK: - Table view data source

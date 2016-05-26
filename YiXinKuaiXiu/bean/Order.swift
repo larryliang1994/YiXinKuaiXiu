@@ -77,6 +77,10 @@ class Order {
     var image1Url: String?
     var image2Url: String?
     
+    var distance: Int?
+    
+    var senderTotalNum: Int?
+    
     init(type: Type, desc: String, mType: String, mTypeID: String, location: String, locationInfo: CLLocation, fee: String?, image1: DKAsset?, image2: DKAsset?) {
         self.type = type
         self.desc = desc

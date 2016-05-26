@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HandymanInfoViewController: UITableViewController {
+class HandymanInfoViewController: UITableViewController{
     
     var name: String?, age: Int?, telephone: String?, imageUrl: String?, starList: [Int]?, descList: [String]?, dateList: [String]?
     
@@ -40,6 +40,8 @@ class HandymanInfoViewController: UITableViewController {
                 
                 let imageView = cell.viewWithTag(1) as! UIImageView
                 imageView.hnk_setImageFromURL(NSURL(string: imageUrl!)!)
+                imageView.clipsToBounds = true
+                imageView.setupForImageViewer(Constants.Color.BlackBackground)
                 
                 return cell
             }

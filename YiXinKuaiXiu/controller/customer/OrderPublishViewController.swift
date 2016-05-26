@@ -169,23 +169,31 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
             //OrderModel(orderDelegate: self).publishOrder(order!)
         
             if order?.image1 != nil {
-                UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail((order?.image1?.originalAsset)!))
+                UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail((order?.image1?.originalAsset)!), type: .Order)
             } else {
-                OrderModel(orderDelegate: self).publishOrder(order!)
+                OrderModel(orderDelegate: self).publishOrder(order!, imgString: "")
             }
         
         }
     }
     
     var uploadedCount = 0
+    var imgString = ""
     func onUploadOrderImageResult(result: Bool, info: String) {
         if result {
             uploadedCount += 1;
             
-            if order?.image2 != nil && uploadedCount != 2 {
-                UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail((order?.image2?.originalAsset)!))
+            if uploadedCount == 1 {
+                imgString += info
             } else {
-                OrderModel(orderDelegate: self).publishOrder(order!)
+                imgString += "," + info
+            }
+            
+            if order?.image2 != nil && uploadedCount != 2 {
+                UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail((order?.image2?.originalAsset)!), type: .Order)
+            } else {
+                print(imgString)
+                OrderModel(orderDelegate: self).publishOrder(order!, imgString: imgString)
             }
         } else {
             self.clearAllNotice()
@@ -197,6 +205,7 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
         self.clearAllNotice()
         if result {
             order?.date = info
+            
             if order?.type == .Normal {
                 performSegueWithIdentifier(Constants.SegueID.ShowOrderPublishConfirmSegue, sender: self)
             } else {

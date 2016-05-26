@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WalletViewController: UITableViewController, WalletChangeDelegate {
+class WalletViewController: UITableViewController, WalletChangeDelegate, UserInfoDelegate {
     
     @IBOutlet var buttonBackgroundView: UIView!
     @IBOutlet var moneyLabel: UILabel!
@@ -21,6 +21,8 @@ class WalletViewController: UITableViewController, WalletChangeDelegate {
         initNavBar()
 
         self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
+        
+        refresh()
     }
     
     func intiView() {
@@ -32,6 +34,20 @@ class WalletViewController: UITableViewController, WalletChangeDelegate {
         back.title = "钱包"
         self.navigationItem.backBarButtonItem = back
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+    }
+    
+    func refresh() {
+        self.pleaseWait()
+        UserInfoModel(userInfoDelegate: self).doGetUserInfo()
+    }
+    
+    func onGetUserInfoResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        if result {
+            intiView()
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
     
     @IBAction func recharge(sender: UIButton) {
@@ -86,7 +102,7 @@ class WalletViewController: UITableViewController, WalletChangeDelegate {
     }
     
     func didChange() {
-        moneyLabel.text = Config.Money == nil ? "0.00" : Config.Money
+        refresh()
     }
 }
 

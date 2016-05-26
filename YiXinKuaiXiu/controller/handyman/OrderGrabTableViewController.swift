@@ -14,7 +14,8 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
     
     var segueOrder: Order?
     
-    var distance: Int?
+    var fromDistance: Int?
+    var toDistance: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,7 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
     func refresh() {
         refreshControl?.beginRefreshing()
         
-        OrderModel(orderDelegate: self).pullGrabOrderList("", distance: distance)
+        OrderModel(orderDelegate: self).pullGrabOrderList("", fromDistance: fromDistance, toDistance: toDistance)
     }
     
     @IBAction func refresh(sender: UIRefreshControl) {
@@ -104,7 +105,7 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
         
         maintenanceTypeLabel.text = order.mType! + "维修"
         
-        distanceLabel.text = "距离您3公里"
+        distanceLabel.text = "距离您\(order.distance!)公里"
         
         timeLabel.text = UtilBox.getDateFromString(order.date!, format: Constants.DateFormat.MDHm)
         

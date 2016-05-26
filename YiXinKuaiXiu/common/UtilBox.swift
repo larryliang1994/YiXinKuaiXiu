@@ -29,6 +29,28 @@ class UtilBox {
         }
     }
     
+    // 判断是否为数字
+    static func isNum(input: String, digital: Bool) -> Bool {
+        let regex:NSRegularExpression
+        do {
+            if digital {
+                regex = try NSRegularExpression(pattern: "^[0123456789.]$", options: NSRegularExpressionOptions.CaseInsensitive)
+            } else {
+                regex = try NSRegularExpression(pattern: "^[0123456789]$", options: NSRegularExpressionOptions.CaseInsensitive)
+            }
+            
+            let  matches = regex.matchesInString(input, options: NSMatchingOptions.ReportCompletion , range: NSMakeRange(0, input.characters.count))
+            
+            if matches.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        } catch {
+            return false
+        }
+    }
+    
     // 字符串转Dic
     static func convertStringToDictionary(text: String) -> [String:AnyObject]? {
         if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
@@ -65,6 +87,7 @@ class UtilBox {
         Config.TelephoneNum = nil
         Config.VerifyCode = nil
         Config.Location = nil
+        Config.LocationInfo = nil
         Config.Company = nil
         Config.Money = nil
         Config.Sex = nil
@@ -121,7 +144,7 @@ class UtilBox {
         let weekday = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
         
         let newDate = NSDate(timeIntervalSince1970: Double(date)!)
-        let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let components = calendar?.component(NSCalendarUnit.Weekday, fromDate: newDate)
         
         return weekday[components! - 1]
@@ -141,7 +164,6 @@ class UtilBox {
         
         return imageData!
     }
-    
     // MD5加密
     static func MD5(string: String) -> String {
 //        let data = string.dataUsingEncoding(NSUTF8StringEncoding)!
@@ -240,5 +262,38 @@ class UtilBox {
     static func getController(identifier: String) -> UIViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
         return storyboard.instantiateViewControllerWithIdentifier(identifier)
+    }
+    
+    // 查看大图
+    static func showBigImg(sourceImg: UIImageView, parent: UIViewController, imgUrl: String) {
+//        let imageProvider = SomeImageProvider(image: sourceImg.image!)
+//        let buttonAssets = CloseButtonAssets(normal: UIImage(named:"checked")!, highlighted: UIImage(named: "checked"))
+//        let configuration = ImageViewerConfiguration(imageSize: CGSize(width: 10, height: 10), closeButtonAssets: buttonAssets)
+//        
+//        let imageViewer = ImageViewer(imageProvider: imageProvider, configuration: configuration, displacedView: sourceImg)
+        //parent.presentViewController(imageViewer, animated: false, completion: nil)
+        //parent.presentImageViewer(imageViewer)
+        
+//        let photoUrls: NSArray = [imgUrl]
+//        let photos: NSArray = [sourceImg.image!]
+//        let browser = 
+//        parent.presentViewController(browser, animated: true, completion: nil)
+        
+        print("!!")
+        
+    }
+    
+}
+
+extension Int {
+    func toString() -> String {
+        let myString = String(self)
+        return myString
+    }
+}
+
+extension UIView {
+    class func loadFromNibNamed(nibName:String,bundle : NSBundle? = nil) -> UIView? {
+        return UINib(nibName: nibName, bundle: bundle).instantiateWithOwner(nil, options: nil)[0] as? UIView
     }
 }

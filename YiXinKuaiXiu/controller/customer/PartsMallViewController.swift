@@ -29,6 +29,8 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var order: Order?
     
+    var delegate: OrderListChangeDelegate?
+    
     var lastPick = NSIndexPath(forRow: 0, inSection: 0)
     
     override func viewDidLoad() {
@@ -219,38 +221,44 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func generatePartsDetail() -> String {
-        var jsonString = "{\"val\":["
-        var detailArray: [[String: String]] = []
+        var jsonDic: [String: [JSON]] = ["val": []]
+        
+        // 原本已购买的
         var index = 0
-        for var part in Config.Parts {
+        for var part in order!.parts! {
             if part.num != 0 {
-                detailArray.append(["name": part.name!, "price": String(part.price!), "num": (part.num?.toString())!])
-                
-                //jsonString += "{" + String(detailArray[index]).stringByReplacingOccurrencesOfString("[", withString: "").stringByReplacingOccurrencesOfString("]", withString: "") + "},"
-                
-                
-                jsonString +=
-                    "{"
-                    + "\"name\":" + "\"" + part.name! + "\""
-                    + ",\"price\":" + "\"" + String(part.price!) + "\""
-                    + ",\"num\":" + "\"" + (part.num?.toString())! + "\""
-                    + "},"
+                jsonDic["val"]?.append(JSON(["name": part.name!, "price": String(part.price!), "num": (part.num?.toString())!]))
                 
                 index += 1
             }
         }
         
-        jsonString += "]}"
+        // 后来添加的
+        index = 0
+        for var part in Config.Parts {
+            if part.num != 0 {
+                jsonDic["val"]?.append(JSON(["name": part.name!, "price": String(part.price!), "num": (part.num?.toString())!]))
+                
+                index += 1
+            }
+        }
         
-        let json = JSON(UtilBox.convertStringToDictionary(jsonString)!)
+        var detailString = jsonDic.description
+            .stringByReplacingOccurrencesOfString("\n", withString: "")
+            .stringByReplacingOccurrencesOfString(" ", withString: "")
         
-        return ""
+        detailString = detailString.substringToIndex(detailString.endIndex.predecessor()).substringFromIndex(detailString.startIndex.advancedBy(1))
+        
+        print("{" + detailString + "}")
+        
+        return "{" + detailString + "}"
     }
     
     func onPayResult(result: Bool, info: String) {
         self.clearAllNotice()
         if result {
             self.noticeSuccess("支付成功", autoClear: true, autoClearTime: 2)
+            delegate?.didChange()
             self.navigationController?.popViewControllerAnimated(true)
         } else {
             UtilBox.alert(self, message: info)

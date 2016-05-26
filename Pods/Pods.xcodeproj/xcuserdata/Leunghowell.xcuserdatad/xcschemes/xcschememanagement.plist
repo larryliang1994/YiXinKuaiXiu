@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ImageViewer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>KYDrawerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,22 +52,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0AC9CDCB206D48B40BA4D71B07BC1503</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2C2B1953A91633859BF7AD238FF567A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>42020691A7D55C61EEEEDDCD4DA1F1A5</key>
+		<key>43F633B3903DE39E43C0B694E1C46B06</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>43F633B3903DE39E43C0B694E1C46B06</key>
+		<key>6814D3B36EAB7B9C402A196A758A7E0B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>74FE0CDF8707684A9641F4B7BF80BB19</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +82,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ABE0E10CAA8881A65ED40A091B291406</key>
+		<key>B29CC75EE540A091C56BC3914E0762F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E4847B182991B4D39446B1789A5CA913</key>
+		<key>EFE02977DFF2AEA95C52E228970768B1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FAD6493B9024573F0913508064DB9CF6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

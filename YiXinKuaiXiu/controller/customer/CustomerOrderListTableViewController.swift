@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerOrderListTableViewController: OrderListTableViewController, PopBottomViewDataSource, PopBottomViewDelegate, OrderListChangeDelegate, PopoverPayDelegate {
+class CustomerOrderListTableViewController: OrderListTableViewController, PopBottomViewDataSource, PopBottomViewDelegate, OrderListChangeDelegate, PopoverPayDelegate, UITextFieldDelegate {
     
     var mFee: String?
     
@@ -226,6 +226,14 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         tableView.scrollEnabled = true
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if !UtilBox.isNum(string, digital: true) {
+            return false
+        }
+        
+        return true
+    }
+    
     func goPayAction(sender: UIButton) {
         let cell = sender.superview?.superview as! UITableViewCell
         selectedIndexPath = tableView.indexPathForCell(cell)!
@@ -258,6 +266,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             }
             )
             
+            alert.textFields?.first?.delegate = self
             alert.addTextFieldWithConfigurationHandler { (textField) -> Void in
                 textField.placeholder = "维修费"
                 textField.keyboardType = UIKeyboardType.DecimalPad
@@ -289,6 +298,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         
         let partsMallVC = UtilBox.getController(Constants.ControllerID.PartsMall) as! PartsMallViewController
         partsMallVC.order = orders[(selectedIndexPath?.section)!]
+        partsMallVC.delegate = self
         self.navigationController?.showViewController(partsMallVC, sender: self)
     }
     

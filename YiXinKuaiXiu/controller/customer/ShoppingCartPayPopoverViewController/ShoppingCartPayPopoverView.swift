@@ -40,28 +40,29 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BeeCloudDelegate {
     }
     
     @IBAction func doPay(sender: PrimaryButton) {
-        if payWay == 2 {
-            doneThirdPay()
-        } else {
-            BeeCloud.setBeeCloudDelegate(self)
-            
-            let request = BCPayReq()
-            request.title = "这是标题"
-            request.totalFee = Int(Float(fee!)! * 100).toString()
-            request.billNo = date
-            request.viewController = viewController
-            
-            if payWay == 0 {
-                request.channel = .Ali
-                request.scheme = "alipayurl"
-            } else if payWay == 1 {
-                request.channel = .Wx
-            }
-            
-            print("send" + Int(Float(fee!)! * 100).toString())
-            
-            BeeCloud.sendBCReq(request)
-        }
+        doneThirdPay()
+//        if payWay == 2 {
+//            doneThirdPay()
+//        } else {
+//            BeeCloud.setBeeCloudDelegate(self)
+//            
+//            let request = BCPayReq()
+//            request.title = "这是标题"
+//            request.totalFee = Int(Float(fee!)! * 100).toString()
+//            request.billNo = date
+//            request.viewController = viewController
+//            
+//            if payWay == 0 {
+//                request.channel = .Ali
+//                request.scheme = "alipayurl"
+//            } else if payWay == 1 {
+//                request.channel = .Wx
+//            }
+//            
+//            print("send" + Int(Float(fee!)! * 100).toString())
+//            
+//            BeeCloud.sendBCReq(request)
+//        }
     }
     
     func onBeeCloudResp(resp: BCBaseResp!) {

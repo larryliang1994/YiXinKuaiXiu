@@ -98,6 +98,10 @@ class WithDrawViewController: UITableViewController, UITextFieldDelegate, Wallet
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if !UtilBox.isNum(string, digital: true) {
+            return false
+        }
+        
         if range.location == 0 && textField.text?.characters.count == 0 {
             doneButton.enabled = true
         } else if range.location == 0 && textField.text?.characters.count == 1 {

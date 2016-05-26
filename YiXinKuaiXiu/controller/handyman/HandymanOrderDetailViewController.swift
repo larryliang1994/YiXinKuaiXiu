@@ -8,8 +8,9 @@
 
 import UIKit
 
-class HandymanOrderDetailViewController: UITableViewController {
-    
+class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDelegate, PopBottomViewDataSource {
+   
+    @IBOutlet var showPartDetailButton: UIButton!
     @IBOutlet var portraitImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var rating: FloatRatingView!
@@ -49,6 +50,8 @@ class HandymanOrderDetailViewController: UITableViewController {
         
         locationLabel.text = order?.location
         
+        orderCountLabel.text = order!.senderTotalNum!.toString() + "单"
+        
         dateLabel.text = UtilBox.getDateFromString((order?.date)!, format: Constants.DateFormat.YMD)
         
         serviceRating.rating = Float((order?.ratingStar)!)
@@ -68,11 +71,21 @@ class HandymanOrderDetailViewController: UITableViewController {
         if order?.image1Url == nil {
             imageCell.hidden = true
         } else if order?.image2Url == nil {
-            picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
+            picture1ImageView.image = nil
+            picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
         } else {
             picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
             picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image2Url)!)!)
         }
+        
+        if (order?.partFee)! == "0" {
+            showPartDetailButton.hidden = true
+        }
+        
+        picture1ImageView.clipsToBounds = true
+        picture2ImageView.clipsToBounds = true
+        picture1ImageView.setupForImageViewer(Constants.Color.BlackBackground)
+        picture2ImageView.setupForImageViewer(Constants.Color.BlackBackground)
     }
     
     func initNavBar() {
@@ -80,6 +93,46 @@ class HandymanOrderDetailViewController: UITableViewController {
         back.title = "返回"
         self.navigationItem.backBarButtonItem = back
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+    }
+    
+    @IBAction func doTapImg1(sender: UITapGestureRecognizer) {
+        UtilBox.showBigImg(picture1ImageView, parent: self, imgUrl: (order?.image1Url)!)
+    }
+    
+    @IBAction func doTapImg2(sender: UITapGestureRecognizer) {
+        UtilBox.showBigImg(picture2ImageView, parent: self, imgUrl: (order?.image2Url)!)
+    }
+    
+    @IBAction func showPartDetail(sender: UIButton) {
+        let v = PopBottomView(frame: self.view.bounds)
+        v.dataSource = self
+        v.delegate = self
+        v.showInView(self.view)
+    }
+    
+    //MARK : - PopBottomViewDataSource
+    func viewPop() -> UIView {
+        let partDetailPopover = UIView.loadFromNibNamed("PartDetailPopover") as! PartDetailPopover
+        
+        partDetailPopover.parts = (order?.parts)!
+        
+        return partDetailPopover
+    }
+    
+    func viewHeight() -> CGFloat {
+        return 225
+    }
+    
+    func isEffectView() -> Bool {
+        return false
+    }
+    
+    func viewWillAppear() {
+        tableView.scrollEnabled = false
+    }
+    
+    func viewWillDisappear() {
+        tableView.scrollEnabled = true
     }
     
     @IBAction func contact(sender: UIButton) {

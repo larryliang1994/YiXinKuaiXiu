@@ -8,8 +8,9 @@
 
 import UIKit
 
-class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate, OrderDelegate {
+class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate, OrderDelegate, PopBottomViewDelegate, PopBottomViewDataSource {
     
+    @IBOutlet var feeTitleLabel: UILabel!
     @IBOutlet var portraitImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var rating: FloatRatingView!
@@ -26,6 +27,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     @IBOutlet var feeLabel: UILabel!
     @IBOutlet var mFeeLabel: UILabel!
     @IBOutlet var partFeeLabel: UILabel!
+    @IBOutlet var showPartDetailButton: UIButton!
     
     @IBOutlet var imageCell: UITableViewCell!
     @IBOutlet var picture2ImageView: UIImageView!
@@ -74,6 +76,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             self.descList = descList
             self.dateList = dateList
             
+            portraitImageView.clipsToBounds = true
             portraitImageView.hnk_setImageFromURL(NSURL(string: portraitUrl)!)
             
             nameLabel.text = name
@@ -100,25 +103,37 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         serviceRating.rating = Float((order?.ratingStar)!)
         
         if order?.type == .Pack {
-            feeLabel.text = "无"
+            feeLabel.text = "￥" + (order?.fee)!
             mFeeLabel.text = "无"
             partFeeLabel.text = "无"
             totalFeeLabel.text = "￥" + (order?.fee)!
+            feeTitleLabel.text = "打包费"
+            showPartDetailButton.hidden = true
         } else if order?.type == .Normal {
             feeLabel.text = "￥" + (order?.fee)!
             mFeeLabel.text = "￥" + (order?.mFee)!
             partFeeLabel.text = (order?.partFee)! == "0" ? "无" : "￥" + (order?.partFee)!
             totalFeeLabel.text = "￥" + String(Float((order?.fee)!)! + Float((order?.mFee)!)! + Float((order?.partFee)!)!)
+            
+            if (order?.partFee)! == "0" {
+                showPartDetailButton.hidden = true
+            }
         }
         
         if order?.image1Url == nil {
             imageCell.hidden = true
         } else if order?.image2Url == nil {
-            picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
+            picture1ImageView.image = nil
+            picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
         } else {
             picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
             picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image2Url)!)!)
         }
+        
+        picture1ImageView.clipsToBounds = true
+        picture2ImageView.clipsToBounds = true
+        picture1ImageView.setupForImageViewer(Constants.Color.BlackBackground)
+        picture2ImageView.setupForImageViewer(Constants.Color.BlackBackground)
     }
     
     func initNavBar() {
@@ -126,6 +141,38 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         back.title = "返回"
         self.navigationItem.backBarButtonItem = back
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+    }
+    
+    @IBAction func showPartDetail(sender: UIButton) {
+        let v = PopBottomView(frame: self.view.bounds)
+        v.dataSource = self
+        v.delegate = self
+        v.showInView(self.view)
+    }
+    
+    //MARK : - PopBottomViewDataSource
+    func viewPop() -> UIView {
+        let partDetailPopover = UIView.loadFromNibNamed("PartDetailPopover") as! PartDetailPopover
+        
+        partDetailPopover.parts = (order?.parts)!
+        
+        return partDetailPopover
+    }
+    
+    func viewHeight() -> CGFloat {
+        return 225
+    }
+    
+    func isEffectView() -> Bool {
+        return false
+    }
+    
+    func viewWillAppear() {
+        tableView.scrollEnabled = false
+    }
+    
+    func viewWillDisappear() {
+        tableView.scrollEnabled = true
     }
     
     @IBAction func contact(sender: UIButton) {
@@ -196,7 +243,14 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             default:    return 44
             }
             
-        case 2: return order?.type == .Reservation ? 0 : 129
+        case 2:
+            if order?.type == .Normal {
+                return 129
+            } else if order?.type == .Pack {
+                return 74
+            } else {
+                return 0
+            }
             
         case 3: return order?.state?.rawValue < State.HasBeenRated.rawValue ? 0 : ratingLabel.frame.size.height + 64
             

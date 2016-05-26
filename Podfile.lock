@@ -1,9 +1,10 @@
 PODS:
-  - Alamofire (3.3.1)
+  - Alamofire (3.4.0)
   - BaiduMapKit (2.10.2)
-  - Bugly (2.1)
+  - Bugly (2.2.3)
   - EasyAnimation (1.0.5)
   - HanekeSwift (0.10.1)
+  - ImageViewer (2.0)
   - KYDrawerController (1.1.3)
   - ReachabilitySwift (2.3.3)
   - SwiftyJSON (2.3.2)
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - Bugly
   - EasyAnimation
   - HanekeSwift
+  - ImageViewer
   - KYDrawerController
   - ReachabilitySwift
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
@@ -32,17 +34,18 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   BaiduMapKit: b1706a062597c70ec62a0cca93212cba1d3017e1
-  Bugly: bea72755cea96604658cc480b4efe85576c8aa2c
+  Bugly: db578ea92b2a6b132cc19f79adf3bcd3b0fe6769
   EasyAnimation: 32821f37dd39187e7364369a3d8f65d38405cf1d
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+  ImageViewer: 00eae024d0cb2eebb4b228f4669b6c4872afadb9
   KYDrawerController: 3bb920220cb1d1ff7d86d40c61d5848ed647d385
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SWXMLHash: 795c66e74f4cc9473ad6465c6653c5a6f59f417e
   UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
 
-PODFILE CHECKSUM: e35a370f650660b68618969546062b0258651b14
+PODFILE CHECKSUM: f4048318a09bf635cce43a875f73b6461a96c141
 
 COCOAPODS: 1.0.0.beta.6

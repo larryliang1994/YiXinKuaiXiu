@@ -8,12 +8,6 @@
 
 import UIKit
 
-extension UIView {
-    class func loadFromNibNamed(nibName:String,bundle : NSBundle? = nil) -> UIView? {
-        return UINib(nibName: nibName, bundle: bundle).instantiateWithOwner(nil, options: nil)[0] as? UIView
-    }
-}
-
 enum PopoverPayType: Int {
     case Fee = 0 // 上门费
     case MFee    // 维修费
@@ -50,27 +44,28 @@ class PayPopoverView: UIView, PayDelegate, BeeCloudDelegate {
     }
     
     @IBAction func doPay(sender: PrimaryButton) {
-        if payWay == 2 {
-            doneThirdPay()
-        } else {
-            BeeCloud.setBeeCloudDelegate(self)
-            
-            let request = BCPayReq()
-            request.title = "这是标题"
-            request.totalFee = Int(Float(fee!)! * 100).toString()
-            request.billNo = "12345678"
-            request.billTimeOut = 300
-            request.viewController = viewController
-            
-            if payWay == 0 {
-                request.channel = .Ali
-                request.scheme = "alipayurl"
-            } else if payWay == 1 {
-                request.channel = .Wx
-            }
-            
-            BeeCloud.sendBCReq(request)
-        }
+        doneThirdPay()
+//        if payWay == 2 {
+//            doneThirdPay()
+//        } else {
+//            BeeCloud.setBeeCloudDelegate(self)
+//            
+//            let request = BCPayReq()
+//            request.title = "这是标题"
+//            request.totalFee = Int(Float(fee!)! * 100).toString()
+//            request.billNo = "12345678"
+//            request.billTimeOut = 300
+//            request.viewController = viewController
+//            
+//            if payWay == 0 {
+//                request.channel = .Ali
+//                request.scheme = "alipayurl"
+//            } else if payWay == 1 {
+//                request.channel = .Wx
+//            }
+//            
+//            BeeCloud.sendBCReq(request)
+//        }
         
     }
     

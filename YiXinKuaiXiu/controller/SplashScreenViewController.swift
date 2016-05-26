@@ -10,6 +10,8 @@ import UIKit
 import KYDrawerController
 
 class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitialInfoDelegate {
+    
+    @IBOutlet var imageView: UIImageView!
 
     var window: UIWindow?
     
@@ -20,6 +22,8 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageView.image = UIImage(named: "defaultAd")
         
         getStarted()
         
@@ -39,6 +43,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         // 初始化数据统计服务
         MobClick.startWithAppkey(Constants.Key.UMAppKey, reportPolicy: BATCH, channelId: "developer")
         
+        // 设置起始页面
         setInitialViewController()
     }
     
@@ -54,7 +59,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
             
             let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
             getInitialInfoModel.getMaintenanceType()
-            getInitialInfoModel.getMessage()
+            getInitialInfoModel.getAds()
         } else {
             showMainScreen()
         }
@@ -63,12 +68,15 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     func showMainScreen() {
         let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
         dispatch_async(dispatch_get_global_queue(qos, 0)) { () -> Void in
-            sleep(1)
+            sleep(2)
             dispatch_async(dispatch_get_main_queue(), {
                 self.clearAllNotice()
                 UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
                     self.window?.makeKeyAndVisible()
-                    }, completion: nil)
+                    }, completion: { (Bool) in
+                    self.imageView.image = nil
+                    self.imageView.backgroundColor = UIColor.whiteColor()
+                })
             })
         }
     }
@@ -84,10 +92,18 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         } else {
             // 强制要求登录
             if info == "1" {
-                UtilBox.alert(self, message: "登录信息已过期，请重新登录")
-                UtilBox.clearUserDefaults()
+                let alertController = UIAlertController(title: nil, message: "登录信息已过期，请重新登录", preferredStyle: .Alert)
+                let okAction = UIAlertAction(title: "好的", style: .Default, handler: { (UIAlertAction) in
+                    UtilBox.clearUserDefaults()
+                    
+                    self.window?.rootViewController = self.storyboard!.instantiateViewControllerWithIdentifier("WelcomeVCNavigation")
+                    UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
+                        self.window?.makeKeyAndVisible()
+                        }, completion: nil)
+                })
+                alertController.addAction(okAction)
                 
-                self.window?.rootViewController = storyboard!.instantiateViewControllerWithIdentifier("WelcomeVCNavigation")
+                presentViewController(alertController, animated: true, completion: nil)
             } else if alert == nil {
                 alert(info)
             }
@@ -108,9 +124,11 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         }
     }
     
-    func onGetMessageResult(result: Bool, info: String) {
+    func onGetAdsResult(result: Bool, info: String) {
         if result {
             initRequestNum += 1
+            
+            imageView.hnk_setImageFromURL(NSURL(string: info)!)
             
             if initRequestNum == requestNum {
                 showMainScreen()
@@ -127,7 +145,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         initRequestNum = 0
         
         alert = OYSimpleAlertController()
-        UtilBox.showAlertView(self, alertViewController: alert!, message: info, cancelButtonTitle: "关闭", cancelButtonAction: #selector(SplashScreenViewController.close), confirmButtonTitle: "重试", confirmButtonAction: #selector(SplashScreenViewController.getInitialInfo))
+        UtilBox.showAlertView(self, alertViewController: alert!, message: info, cancelButtonTitle: "退出", cancelButtonAction: #selector(SplashScreenViewController.close), confirmButtonTitle: "重试", confirmButtonAction: #selector(SplashScreenViewController.getInitialInfo))
     }
     
     func close() {
@@ -172,16 +190,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     }
     
     func initBeeCloud() {
-        BeeCloud.initWithAppID(Constants.Key.BeeCloudAppID, andAppSecret: Constants.Key.BeeCloudAppSecret, sandbox: false)
+        BeeCloud.initWithAppID(Constants.Key.BeeCloudAppID, andAppSecret: Constants.Key.BeeCloudAppSecret, sandbox: true)
         BeeCloud.initWeChatPay(Constants.Key.WechatAppID)
-    }
-}
-
-extension Int
-{
-    func toString() -> String
-    {
-        let myString = String(self)
-        return myString
     }
 }

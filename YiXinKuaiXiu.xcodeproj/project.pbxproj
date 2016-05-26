@@ -109,6 +109,8 @@
 		49A15E8E1CC9FD200028023C /* Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E8D1CC9FD200028023C /* Urls.swift */; };
 		49A15E911CCA23BE0028023C /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A15E901CCA23BE0028023C /* Order.swift */; };
 		49A2E9181CB7FD890079C690 /* CheckFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2E9171CB7FD890079C690 /* CheckFeeViewController.swift */; };
+		49BDAC5C1CF6AB58003E7C35 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BDAC5B1CF6AB58003E7C35 /* ImageViewer.swift */; };
+		49BDAC5E1CF6AB5C003E7C35 /* UIImageView+ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BDAC5D1CF6AB5C003E7C35 /* UIImageView+ImageViewer.swift */; };
 		49BF678A1CB3653B002257C0 /* OrderPublishConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF67891CB3653B002257C0 /* OrderPublishConfirmViewController.swift */; };
 		49C380771CB89D2F00242B7A /* PayPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C380751CB89D2F00242B7A /* PayPopoverView.swift */; };
 		49C380781CB89D2F00242B7A /* PayPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49C380761CB89D2F00242B7A /* PayPopoverView.xib */; };
@@ -146,6 +148,10 @@
 		49D76BA31CC0CF15005E2213 /* ShoppingCartPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D76BA21CC0CF15005E2213 /* ShoppingCartPopoverView.swift */; };
 		49D76BA51CC0CF5D005E2213 /* ShoppingCartPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D76BA41CC0CF5D005E2213 /* ShoppingCartPopoverView.xib */; };
 		49D76BA81CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D76BA71CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift */; };
+		49DBB74C1CF34BD400A50CB9 /* PartDetailPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DBB74B1CF34BD400A50CB9 /* PartDetailPopover.swift */; };
+		49DBB74E1CF34BE200A50CB9 /* PartDetailPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49DBB74D1CF34BE200A50CB9 /* PartDetailPopover.xib */; };
+		49DBB7551CF34E0C00A50CB9 /* PartDetailPopoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DBB7531CF34E0C00A50CB9 /* PartDetailPopoverCell.swift */; };
+		49DBB7561CF34E0C00A50CB9 /* PartDetailPopoverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49DBB7541CF34E0C00A50CB9 /* PartDetailPopoverCell.xib */; };
 		49F36D221CB79575000DF874 /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F36D211CB79575000DF874 /* SearchTextField.m */; };
 		49F36D241CB79BE8000DF874 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F36D231CB79BE8000DF874 /* MallViewController.swift */; };
 		49F5221B1CED97590066E72A /* BeeCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F521AD1CED97590066E72A /* BeeCloud.m */; };
@@ -252,6 +258,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4902920F1CF56A6400EA97A9 /* INSPhotoGallery.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = INSPhotoGallery.framework; path = "Pods/../build/Debug-iphoneos/INSPhotoGallery/INSPhotoGallery.framework"; sourceTree = "<group>"; };
+		490292111CF56D7500EA97A9 /* JGProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JGProgressHUD.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/JGProgressHUD/JGProgressHUD.framework"; sourceTree = "<group>"; };
+		490292121CF56D7500EA97A9 /* YYCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YYCache.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/YYCache/YYCache.framework"; sourceTree = "<group>"; };
+		490292131CF56D7500EA97A9 /* YYImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YYImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/YYImage/YYImage.framework"; sourceTree = "<group>"; };
+		490292141CF56D7500EA97A9 /* YYWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YYWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/YYWebImage/YYWebImage.framework"; sourceTree = "<group>"; };
 		4909EC461CE86F6000C4FD04 /* HandymanOrderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandymanOrderListTableViewController.swift; sourceTree = "<group>"; };
 		4909EC481CE8710400C4FD04 /* OrderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderListTableViewController.swift; path = controller/OrderListTableViewController.swift; sourceTree = "<group>"; };
 		4909EC4A1CE966E000C4FD04 /* AuditProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuditProtocol.swift; path = model/AuditProtocol.swift; sourceTree = "<group>"; };
@@ -354,6 +365,8 @@
 		49A15E8D1CC9FD200028023C /* Urls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Urls.swift; path = common/Urls.swift; sourceTree = "<group>"; };
 		49A15E901CCA23BE0028023C /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Order.swift; path = bean/Order.swift; sourceTree = "<group>"; };
 		49A2E9171CB7FD890079C690 /* CheckFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CheckFeeViewController.swift; path = controller/customer/CheckFeeViewController.swift; sourceTree = "<group>"; };
+		49BDAC5B1CF6AB58003E7C35 /* ImageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
+		49BDAC5D1CF6AB5C003E7C35 /* UIImageView+ImageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageViewer.swift"; sourceTree = "<group>"; };
 		49BF67891CB3653B002257C0 /* OrderPublishConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderPublishConfirmViewController.swift; path = controller/customer/OrderPublishConfirmViewController.swift; sourceTree = "<group>"; };
 		49C380751CB89D2F00242B7A /* PayPopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayPopoverView.swift; path = controller/customer/PayPopoverViewController/PayPopoverView.swift; sourceTree = "<group>"; };
 		49C380761CB89D2F00242B7A /* PayPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PayPopoverView.xib; path = controller/customer/PayPopoverViewController/PayPopoverView.xib; sourceTree = "<group>"; };
@@ -391,6 +404,10 @@
 		49D76BA21CC0CF15005E2213 /* ShoppingCartPopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoppingCartPopoverView.swift; path = controller/customer/ShoppingPopoverView/ShoppingCartPopoverView.swift; sourceTree = "<group>"; };
 		49D76BA41CC0CF5D005E2213 /* ShoppingCartPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoppingCartPopoverView.xib; path = controller/customer/ShoppingPopoverView/ShoppingCartPopoverView.xib; sourceTree = "<group>"; };
 		49D76BA71CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerOrderDetailViewController.swift; path = controller/customer/CustomerOrderDetailViewController.swift; sourceTree = "<group>"; };
+		49DBB74B1CF34BD400A50CB9 /* PartDetailPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartDetailPopover.swift; path = controller/PartDetailPopover/PartDetailPopover.swift; sourceTree = "<group>"; };
+		49DBB74D1CF34BE200A50CB9 /* PartDetailPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PartDetailPopover.xib; path = controller/PartDetailPopover/PartDetailPopover.xib; sourceTree = "<group>"; };
+		49DBB7531CF34E0C00A50CB9 /* PartDetailPopoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartDetailPopoverCell.swift; path = controller/PartDetailPopover/PartDetailPopoverCell.swift; sourceTree = "<group>"; };
+		49DBB7541CF34E0C00A50CB9 /* PartDetailPopoverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PartDetailPopoverCell.xib; path = controller/PartDetailPopover/PartDetailPopoverCell.xib; sourceTree = "<group>"; };
 		49E8C0141CB1258500B173E0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		49E8C0151CB1258500B173E0 /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/HanekeSwift/Haneke.framework"; sourceTree = "<group>"; };
 		49E8C0161CB1258500B173E0 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReachabilitySwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/ReachabilitySwift/ReachabilitySwift.framework"; sourceTree = "<group>"; };
@@ -553,6 +570,7 @@
 		4912885E1CB13AA6007DD199 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				49BDAC5A1CF6AB4E003E7C35 /* ImageViewer */,
 				491B6ED51CE0215B0039B70E /* EnterPwdAlertView */,
 				4981966D1CD1A4080046B72A /* AlertView */,
 				49A15E851CC866420028023C /* SimpleButton */,
@@ -796,6 +814,7 @@
 		4991F33D1CB0FCDE00E1BF85 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				49DBB74A1CF34B9700A50CB9 /* PartDetailPopover */,
 				49C380741CB89D1600242B7A /* PayPopoverViewController */,
 				496C5D431CC20E9800CA63AC /* handyman */,
 				491288781CB147CB007DD199 /* customer */,
@@ -886,6 +905,15 @@
 				49F5225E1CEF5C1F0066E72A /* Rating.swift */,
 			);
 			name = bean;
+			sourceTree = "<group>";
+		};
+		49BDAC5A1CF6AB4E003E7C35 /* ImageViewer */ = {
+			isa = PBXGroup;
+			children = (
+				49BDAC5D1CF6AB5C003E7C35 /* UIImageView+ImageViewer.swift */,
+				49BDAC5B1CF6AB58003E7C35 /* ImageViewer.swift */,
+			);
+			name = ImageViewer;
 			sourceTree = "<group>";
 		};
 		49C380741CB89D1600242B7A /* PayPopoverViewController */ = {
@@ -990,6 +1018,17 @@
 				496C5D361CC13D0300CA63AC /* ShoppingCartPopoverViewCell.xib */,
 			);
 			name = ShoppingCartPopoverView;
+			sourceTree = "<group>";
+		};
+		49DBB74A1CF34B9700A50CB9 /* PartDetailPopover */ = {
+			isa = PBXGroup;
+			children = (
+				49DBB74B1CF34BD400A50CB9 /* PartDetailPopover.swift */,
+				49DBB74D1CF34BE200A50CB9 /* PartDetailPopover.xib */,
+				49DBB7531CF34E0C00A50CB9 /* PartDetailPopoverCell.swift */,
+				49DBB7541CF34E0C00A50CB9 /* PartDetailPopoverCell.xib */,
+			);
+			name = PartDetailPopover;
 			sourceTree = "<group>";
 		};
 		49F36D1E1CB794D9000DF874 /* searchTextField */ = {
@@ -1294,6 +1333,11 @@
 		FD57357E724B506239746FE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				490292111CF56D7500EA97A9 /* JGProgressHUD.framework */,
+				490292121CF56D7500EA97A9 /* YYCache.framework */,
+				490292131CF56D7500EA97A9 /* YYImage.framework */,
+				490292141CF56D7500EA97A9 /* YYWebImage.framework */,
+				4902920F1CF56A6400EA97A9 /* INSPhotoGallery.framework */,
 				49F5224A1CED97F00066E72A /* libsqlite3.tbd */,
 				49F522481CED97E00066E72A /* libc++.tbd */,
 				49F522461CED97D00066E72A /* libz.1.2.5.tbd */,
@@ -1423,7 +1467,9 @@
 				4981966F1CD1A43E0046B72A /* AlertView.xib in Resources */,
 				498E26411CBBAA7D00DE6EDC /* DKImagePickerController.bundle in Resources */,
 				49C380A31CB8F6E900242B7A /* City.plist in Resources */,
+				49DBB7561CF34E0C00A50CB9 /* PartDetailPopoverCell.xib in Resources */,
 				49F522401CED97590066E72A /* BeeCloud.bundle in Resources */,
+				49DBB74E1CF34BE200A50CB9 /* PartDetailPopover.xib in Resources */,
 				496C5D3E1CC1D64800CA63AC /* ShoppingCartPayPopoverView.xib in Resources */,
 				49C380781CB89D2F00242B7A /* PayPopoverView.xib in Resources */,
 				49C3809D1CB8F6DB00242B7A /* CFCityCell.xib in Resources */,
@@ -1509,6 +1555,7 @@
 				4909EC491CE8710400C4FD04 /* OrderListTableViewController.swift in Sources */,
 				498E26491CBBAA7D00DE6EDC /* DKPermissionView.swift in Sources */,
 				497E9AC01CD45B1300A7D934 /* D2DAccountViewController.swift in Sources */,
+				49DBB7551CF34E0C00A50CB9 /* PartDetailPopoverCell.swift in Sources */,
 				4991F3441CB113A100E1BF85 /* LoginViewController.swift in Sources */,
 				49A15E551CC515330028023C /* OrderGrabDetailViewController.swift in Sources */,
 				49F522531CEE96AF0066E72A /* GetNearbyModel.swift in Sources */,
@@ -1524,6 +1571,7 @@
 				4991F3101CB0FCD600E1BF85 /* AppDelegate.swift in Sources */,
 				49F522321CED97590066E72A /* BCQueryRefundResult.m in Sources */,
 				49D48EDB1CE49C2E00D19FC2 /* MessageCenterViewController.swift in Sources */,
+				49BDAC5C1CF6AB58003E7C35 /* ImageViewer.swift in Sources */,
 				49A15E811CC7C6DF0028023C /* LoginModel.swift in Sources */,
 				49F522291CED97590066E72A /* BCQueryRefundByIdResp.m in Sources */,
 				498E26481CBBAA7D00DE6EDC /* DKAssetGroupListVC.swift in Sources */,
@@ -1596,6 +1644,7 @@
 				496C5D401CC1E79200CA63AC /* UserInfoViewController.swift in Sources */,
 				4979E8961CB4AD5800D03919 /* SMSwipeableTabViewController.swift in Sources */,
 				49F522201CED97590066E72A /* BCPayPalReq.m in Sources */,
+				49BDAC5E1CF6AB5C003E7C35 /* UIImageView+ImageViewer.swift in Sources */,
 				49F522411CED97590066E72A /* PaySandBoxViewController.m in Sources */,
 				49F522221CED97590066E72A /* BCQueryBillByIdReq.m in Sources */,
 				49C380771CB89D2F00242B7A /* PayPopoverView.swift in Sources */,
@@ -1626,6 +1675,7 @@
 				49A15E671CC5DC650028023C /* AuditIDViewController.swift in Sources */,
 				49D48EDD1CE4A0D300D19FC2 /* D2DAccount.swift in Sources */,
 				49F522251CED97590066E72A /* BCQueryBillsResp.m in Sources */,
+				49DBB74C1CF34BD400A50CB9 /* PartDetailPopover.swift in Sources */,
 				49C3809F1CB8F6DB00242B7A /* CitySearchBar.swift in Sources */,
 				49F522651CF047C10066E72A /* LoadMoreTableFooterView.swift in Sources */,
 				498E263E1CBBAA7D00DE6EDC /* DKAsset.swift in Sources */,
@@ -1765,7 +1815,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1804,7 +1854,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1822,9 +1872,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BCPaySDK/Channel/AliPay",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/INSPhotoGallery",
 				);
 				INFOPLIST_FILE = YiXinKuaiXiu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1849,9 +1900,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BCPaySDK/Channel/AliPay",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/INSPhotoGallery",
 				);
 				INFOPLIST_FILE = YiXinKuaiXiu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

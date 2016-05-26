@@ -16,8 +16,8 @@ class OrderModel: OrderProtocol {
         self.orderDelegate = orderDelegate
     }
     
-    func publishOrder(order: Order) {
-        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "tpe": ((order.type?.rawValue)! + 1).toString(), "pic": "", "cmt": order.desc!, "wxg": order.mTypeID!, "adr": order.location!, "lot": order.locationInfo!.coordinate.longitude.description, "lat": order.locationInfo!.coordinate.latitude.description, "fe1": order.fee!]
+    func publishOrder(order: Order, imgString: String) {
+        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "tpe": ((order.type?.rawValue)! + 1).toString(), "pic": imgString, "cmt": order.desc!, "wxg": order.mTypeID!, "adr": order.location!, "lot": order.locationInfo!.coordinate.longitude.description, "lat": order.locationInfo!.coordinate.latitude.description, "fe1": order.fee!]
         
         AlamofireUtil.doRequest(Urls.PublishOrder, parameters: paramters) { (result, response) in
             if result {
@@ -103,7 +103,27 @@ class OrderModel: OrderProtocol {
                             ratingStar: orderJson["fen"].intValue,
                             ratingDesc: orderJson["fem"].stringValue)
                         
+                        order.parts = []
+                        
                         order.partFee = orderJson["fe3"].stringValue
+                        
+                        order.senderTotalNum = orderJson["cnt"].intValue
+                        
+                        let imgs = orderJson["pic"].stringValue.componentsSeparatedByString(",")
+                        if imgs.count == 1 && imgs[0] != "" {
+                            order.image1Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[0] + ".jpg"
+                            order.image2Url = nil
+                        } else if imgs.count == 2 {
+                            order.image1Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[0] + ".jpg"
+                            order.image2Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[1] + ".jpg"
+                        } else {
+                            order.image1Url = nil
+                            order.image2Url = nil
+                        }
+                        
+                        if order.senderName == "" {
+                            order.senderName = "姓名"
+                        }
                         
                         order.payments = []
                         if order.type == .Normal {
@@ -119,6 +139,29 @@ class OrderModel: OrderProtocol {
                             order.payments?.append(Payment(name: "配件费", price: Float(order.partFee!)!, paid: true))
                         }
                         
+                        let partsString = orderJson["co3"].stringValue.stringByReplacingOccurrencesOfString("&quot;", withString: "\"")
+                        
+                        if partsString != "" {
+                            let partDetailDic = UtilBox.convertStringToDictionary(partsString)
+                            
+                            if partDetailDic == nil {
+                                continue
+                            }
+                            
+                            let partDetailJson = JSON(partDetailDic!)["val"]
+                            
+                            if partDetailJson != "" && partDetailJson.count != 0 {
+                                var parts: [Part] = []
+                                for var index in 0...partDetailJson.count-1 {
+                                    parts.append(Part(
+                                        name: partDetailJson[index]["name"].stringValue,
+                                        num: partDetailJson[index]["num"].intValue,
+                                        price: partDetailJson[index]["price"].stringValue))
+                                }
+                                order.parts = parts
+                            }
+                        }
+                        
                         orderList.append(order)
                     }
                     self.orderDelegate?.onPullOrderListResult(true, info: "", orderList: orderList)
@@ -131,8 +174,8 @@ class OrderModel: OrderProtocol {
         }
     }
     
-    func pullGrabOrderList(requestTime: String, distance: Int?) {
-        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dis": (distance == nil ? "" : distance!.toString()), "dts": "", "dte": "", "stt": "", "cnt": ""]
+    func pullGrabOrderList(requestTime: String, fromDistance: Int?, toDistance: Int?) {
+        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dis": (fromDistance == nil ? "" : fromDistance!.toString()), "dit": (toDistance == nil ? "" : toDistance!.toString()), "dts": "", "dte": "", "stt": "", "cnt": ""]
         
         AlamofireUtil.doRequest(Urls.PullGrabOrderList, parameters: paramters) { (result, response) in
             if result {
@@ -170,6 +213,34 @@ class OrderModel: OrderProtocol {
                             location: orderJson["adr"].stringValue,
                             locationInfo: location,
                             fee: orderJson["fe1"].stringValue)
+                        
+                        let imgs = orderJson["pic"].stringValue.componentsSeparatedByString(",")
+                        if imgs.count == 1 && imgs[0] != "" {
+                            order.image1Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[0] + ".jpg"
+                            order.image2Url = nil
+                        } else if imgs.count == 2 {
+                            order.image1Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[0] + ".jpg"
+                            order.image2Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[1] + ".jpg"
+                        } else {
+                            order.image1Url = nil
+                            order.image2Url = nil
+                        }
+                        
+//                        order.parts = [
+//                            Part(name: "第一种配件", num: 6, price: "1.5"),
+//                            Part(name: "第二种配件", num: 2, price: "2.5"),
+//                            Part(name: "第三种配件", num: 3, price: "1.8"),
+//                            Part(name: "第四种配件", num: 1, price: "3.8"),
+//                            Part(name: "第五种配件", num: 4, price: "1.5"),
+//                            Part(name: "第六种配件", num: 6, price: "1.5")]
+                        
+                        order.parts = []
+                        
+                        let distance = BMKMetersBetweenMapPoints(
+                            BMKMapPointForCoordinate(order.locationInfo!.coordinate),
+                            BMKMapPointForCoordinate(Config.LocationInfo!.coordinate))
+                        
+                        order.distance = Int(distance/1000)
                         
                         orderList.append(order)
                     }

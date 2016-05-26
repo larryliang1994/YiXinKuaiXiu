@@ -10,6 +10,9 @@ import Foundation
 
 class Urls {
     static let ServerUrl = "http://yxkx.carvedge.com/svr/"
+    static let PortraitServer = "http://yxkx.carvedge.com/uld/2/"
+    static let OrderImgServer = "http://yxkx.carvedge.com/uld/3/"
+    static let AdServer = "http://yxkx.carvedge.com/uld/0/"
     
     static let Login = "100.php?"
     static let GetVerifyCode = "11.php?"
@@ -24,9 +27,10 @@ class Urls {
     static let GetCategoryList = "23.php?"
     static let GetPartsList = "24.php?"
     static let GetMessage = "25.php?"
-    static let GetAds = "26.php?" // 未完成
+    static let GetAds = "26.php?"
     static let GetD2DAccount = "27.php?"
     static let WithDraw = "31.php?"
+    static let SendIDImage = "42.php?"
     static let SendOrderImage = "43.php?"
     static let GetNearbyHandyman = "50.php?"
     static let PullCustomerOrderList = "51.php?"
@@ -40,5 +44,5 @@ class Urls {
     static let PullHandymanOrderList = "61.php?"
     static let PullGrabOrderList = "62.php?"
     static let GrabOrder = "63.php?"
-    static let CancelOrderConfirm = "64.php?"
+    static let CancelOrderConfirm = "64.php?" // cnt应该在这里返回
 }

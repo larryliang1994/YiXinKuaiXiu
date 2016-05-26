@@ -82,9 +82,17 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
         
         maintenanceTypeLabel.text = (order?.mType)! + "维修"
         
-        distanceLabel.text = "距离您3公里"
+        distanceLabel.text = "距离您\(order!.distance!)公里"
         
         timeLabel.text = UtilBox.getDateFromString(order!.date!, format: Constants.DateFormat.MDHm)
+    }
+    
+    @IBAction func doTapImg1(sender: UITapGestureRecognizer) {
+        UtilBox.showBigImg(picture1ImageView, parent: self, imgUrl: (order?.image1Url)!)
+    }
+    
+    @IBAction func doTapImg2(sender: UITapGestureRecognizer) {
+        UtilBox.showBigImg(picture2ImageView, parent: self, imgUrl: (order?.image2Url)!)
     }
     
     func mapView(mapView: BMKMapView!, viewForAnnotation annotation: BMKAnnotation!) -> BMKAnnotationView! {

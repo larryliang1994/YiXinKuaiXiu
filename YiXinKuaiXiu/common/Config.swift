@@ -13,6 +13,7 @@ class Config {
     static var VerifyCode: String?
     static var Name: String?
     static var Location: String?
+    static var LocationInfo: CLLocation?
     static var Company: String?
     static var Age: String?
     static var Money: String?

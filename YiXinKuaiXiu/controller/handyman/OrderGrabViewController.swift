@@ -67,28 +67,32 @@ class OrderGrabViewController: UIViewController, SMSwipeableTabViewControllerDel
             if allTableView == nil {
                 allTableView = UtilBox.getController("OrderGrabTableViewController") as? OrderGrabTableViewController
             }
-            allTableView?.distance = nil
+            allTableView?.fromDistance = nil
+            allTableView?.toDistance = nil
             return allTableView!
             
         case 1:
             if in5TableView == nil {
                 in5TableView = UtilBox.getController("OrderGrabTableViewController") as? OrderGrabTableViewController
             }
-            in5TableView?.distance = 5
+            in5TableView?.fromDistance = 0
+            in5TableView?.toDistance = 5
             return in5TableView!
             
         case 2:
             if in10TableView == nil {
                 in10TableView = UtilBox.getController("OrderGrabTableViewController") as? OrderGrabTableViewController
             }
-            in10TableView?.distance = 10
+            in10TableView?.fromDistance = 5
+            in10TableView?.toDistance = 10
             return in10TableView!
             
         case 3:
             if in30TableView == nil {
                 in30TableView = UtilBox.getController("OrderGrabTableViewController") as? OrderGrabTableViewController
             }
-            in30TableView?.distance = 30
+            in30TableView?.fromDistance = 10
+            in30TableView?.toDistance = 30
             return in30TableView!
             
         case 4: fallthrough
@@ -96,7 +100,8 @@ class OrderGrabViewController: UIViewController, SMSwipeableTabViewControllerDel
             if inOverTableView == nil {
                 inOverTableView = UtilBox.getController("OrderGrabTableViewController") as? OrderGrabTableViewController
             }
-            inOverTableView?.distance = nil
+            inOverTableView?.fromDistance = 30
+            inOverTableView?.toDistance = nil
             return inOverTableView!
         }
     }

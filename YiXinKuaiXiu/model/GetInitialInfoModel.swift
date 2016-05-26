@@ -127,16 +127,13 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                 let ret = json["ret"]
                 
                 if ret != nil && ret.count != 0 {
-                    
-                    //                    Config.Fees = []
-                    //                    for index in 0 ... ret.count - 1 {
-                    //                        Config.Fees!.append(ret[index]["nme"].intValue)
-                    //                    }
+                    self.getInitialInfoDelegate?.onGetAdsResult!(true, info: Urls.AdServer + ret[0]["id"].stringValue + ".png")
+                } else {
+                    self.getInitialInfoDelegate?.onGetAdsResult!(true, info: "")
                 }
                 
-                self.getInitialInfoDelegate?.onGetFeeResult!(true, info: "")
             } else {
-                self.getInitialInfoDelegate?.onGetFeeResult!(false, info: "获取默认价格失败")
+                self.getInitialInfoDelegate?.onGetAdsResult!(false, info: "获取广告失败")
             }
         }
     }
@@ -146,4 +143,5 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     optional func onGetMaintenanceTypeResult(result: Bool, info: String)
     optional func onGetFeeResult(result: Bool, info: String)
     optional func onGetMessageResult(result: Bool, info: String)
+    optional func onGetAdsResult(result: Bool, info: String)
 }

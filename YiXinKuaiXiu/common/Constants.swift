@@ -167,6 +167,7 @@ class Constants {
         static let Green = UIColor(red: 46/255, green: 204/255, blue: 139/255, alpha: 1.0)
         static let Gray = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
         static let Blue = UIColor(red: 38/255, green: 135/255, blue: 253/255, alpha: 1.0)
+        static let BlackBackground = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 0.9)
     }
     
     struct Key {
