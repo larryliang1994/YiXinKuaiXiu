@@ -95,14 +95,6 @@ class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDel
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
     
-    @IBAction func doTapImg1(sender: UITapGestureRecognizer) {
-        UtilBox.showBigImg(picture1ImageView, parent: self, imgUrl: (order?.image1Url)!)
-    }
-    
-    @IBAction func doTapImg2(sender: UITapGestureRecognizer) {
-        UtilBox.showBigImg(picture2ImageView, parent: self, imgUrl: (order?.image2Url)!)
-    }
-    
     @IBAction func showPartDetail(sender: UIButton) {
         let v = PopBottomView(frame: self.view.bounds)
         v.dataSource = self

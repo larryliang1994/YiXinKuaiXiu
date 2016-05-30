@@ -227,7 +227,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         var index = 0
         for var part in order!.parts! {
             if part.num != 0 {
-                jsonDic["val"]?.append(JSON(["name": part.name!, "price": String(part.price!), "num": (part.num?.toString())!]))
+                jsonDic["val"]?.append(JSON(["nme": part.name!, "prs": part.price!, "num": part.num!]))
                 
                 index += 1
             }
@@ -237,7 +237,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         index = 0
         for var part in Config.Parts {
             if part.num != 0 {
-                jsonDic["val"]?.append(JSON(["name": part.name!, "price": String(part.price!), "num": (part.num?.toString())!]))
+                jsonDic["val"]?.append(JSON(["nme": part.name!, "prs": part.price!, "num": part.num!]))
                 
                 index += 1
             }

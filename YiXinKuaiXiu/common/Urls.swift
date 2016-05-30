@@ -14,6 +14,8 @@ class Urls {
     static let OrderImgServer = "http://yxkx.carvedge.com/uld/3/"
     static let AdServer = "http://yxkx.carvedge.com/uld/0/"
     
+    static let Recharge = "http://yxkx.carvedge.com/pay/alipay/notify_url.php?"
+    
     static let Login = "100.php?"
     static let GetVerifyCode = "11.php?"
     static let ModifyUserInfo = "12.php?"

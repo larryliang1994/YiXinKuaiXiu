@@ -8,17 +8,13 @@
 
 import UIKit
 
-class OrderListTableViewController: UITableViewController, OrderDelegate, LoadMoreTableFooterViewDelegate {
+class OrderListTableViewController: UITableViewController, OrderDelegate {
     var orders: [Order] = []
     
     var tableType: Int?
     var segueOrder: Order?
     
     var selectedIndexPath: NSIndexPath?
-    
-    var loadMoreFooterView: LoadMoreTableFooterView?
-    var loadingMore: Bool = false
-    var loadingMoreShowing: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +25,7 @@ class OrderListTableViewController: UITableViewController, OrderDelegate, LoadMo
     }
     
     func initView() {
-        if loadMoreFooterView == nil {
-            loadMoreFooterView = LoadMoreTableFooterView(frame: CGRectMake(0, tableView.contentSize.height, tableView.frame.size.width, tableView.frame.size.height))
-            loadMoreFooterView!.delegate = self
-            loadMoreFooterView!.backgroundColor = UIColor.clearColor()
-            tableView.addSubview(loadMoreFooterView!)
-        }
+        
     }
     
     func refresh() {
@@ -46,11 +37,7 @@ class OrderListTableViewController: UITableViewController, OrderDelegate, LoadMo
             OrderModel(orderDelegate: self).pullOrderList("", pullType: .Done)
         }
     }
-    
-    func loadMore() {
-        loadingMore = true
-    }
-    
+
     @IBAction func refresh(sender: UIRefreshControl) {
         refresh()
     }
@@ -58,9 +45,6 @@ class OrderListTableViewController: UITableViewController, OrderDelegate, LoadMo
     func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {
         if result {
             orders = orderList
-            
-            loadingMore = false
-            loadMoreFooterView?.loadMoreScrollViewDataSourceDidFinishedLoading(tableView)
             
             tableView.reloadData()
         } else {
@@ -96,29 +80,6 @@ class OrderListTableViewController: UITableViewController, OrderDelegate, LoadMo
             performSegueWithIdentifier(Constants.SegueID.ShowCustomerOrderDetail, sender: self)
         } else {
             performSegueWithIdentifier(Constants.SegueID.ShowHandymanOrderDetailSegue, sender: self)
-        }
-    }
-    
-    // LoadMoreTableFooterViewDelegate
-    func loadMoreTableFooterDidTriggerRefresh(view: LoadMoreTableFooterView) {
-        loadMore()
-    }
-    
-    func loadMoreTableFooterDataSourceIsLoading(view: LoadMoreTableFooterView) -> Bool {
-        return loadingMore
-    }
-    
-    // UIScrollViewDelegate
-    override func scrollViewDidScroll(scrollView: UIScrollView)
-    {
-        if (loadingMoreShowing) {
-            loadMoreFooterView!.loadMoreScrollViewDidScroll(scrollView)
-        }
-    }
-    
-    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if (loadingMoreShowing) {
-            loadMoreFooterView!.loadMoreScrollViewDidEndDragging(scrollView)
         }
     }
     

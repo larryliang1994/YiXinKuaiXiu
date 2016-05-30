@@ -72,6 +72,7 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
             if indexPath.row == 1 {
                 image.image = UIImage(named: "orderList")
                 title.text = "订单信息"
+                badge.hidden = true
                 badge.text = "3"
                 badge.badgeColor = Constants.Color.Orange
             } else {

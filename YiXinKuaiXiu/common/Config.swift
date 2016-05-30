@@ -28,9 +28,10 @@ class Config {
     static var MaintenanceNum: String?
     static var Audited: Int?
     static var PortraitUrl: String?
-    
     static var ContactName: String?
     static var ContactTelephone: String?
+    
+    static var CurrentLocationInfo: CLLocation?
     
     static var MTypeIDString: String?
     

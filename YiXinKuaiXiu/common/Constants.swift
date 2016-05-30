@@ -25,6 +25,8 @@ class Constants {
         
         static let UserInfo = "userInfoController"
         static let PartsMall = "partsMallController"
+        
+        static let GoPayMFee = "goPayMFeeController"
     }
     
     struct UserDefaultKey {
@@ -159,6 +161,8 @@ class Constants {
         static let WithDrawToBoundBankCardSegue = "withDrawToBoundBankCardSegue"
         
         static let ChooseFeeSegue = "chooseFeeSegue"
+        
+        static let GoPayMFeeSegue = "goPayMFeeSegue"
     }
     
     struct Color {
@@ -178,6 +182,10 @@ class Constants {
         static let WechatAppID = "wx95e732c9d17a5f96"
         static let BeeCloudAppID = "5c4004ab-46ca-44b1-b4dc-5bc9dcc75415"
         static let BeeCloudAppSecret = "8db42bff-1892-45c7-81ea-b3209a923dec"
+//        static let WechatAppID = "wxf1aa465362b4c8f1"
+//        static let BeeCloudAppID = "c5d1cba1-5e3f-4ba0-941d-9b0a371fe719"
+//        static let BeeCloudAppSecret = "39a7a518-9ac8-4a9e-87bc-7885f33cf18c"
+
     }
     
     struct Role {

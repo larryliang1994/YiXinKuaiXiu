@@ -25,7 +25,7 @@ class GetNearbyModel: GetNearbyProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
-                    self.getNearbyDelegate?.onGetNearbyResult(false, info: "获取附近师傅坐标失败", handymanList: [])
+                    self.getNearbyDelegate?.onGetNearbyResult(false, info: "获取附近师傅坐标失败", personList: [])
                     return
                 }
                 
@@ -33,24 +33,24 @@ class GetNearbyModel: GetNearbyProtocol {
                 
                 let ret = json["ret"]
                 
-                var handymanList: [Handyman] = []
+                var personList: [Person] = []
                 
                 if ret != nil && ret.count != 0 {
                     for var index in 0 ... ret.count-1 {
-                        let handyman = Handyman(name: ret[index]["nme"].stringValue, latitude: ret[index]["lat"].stringValue, longitude: ret[index]["lot"].stringValue)
+                        let person = Person(name: ret[index]["nme"].stringValue, latitude: ret[index]["lat"].stringValue, longitude: ret[index]["lot"].stringValue)
                         
-                        handymanList.append(handyman)
+                        personList.append(person)
                     }
                 }
                 
-                self.getNearbyDelegate?.onGetNearbyResult(true, info: "", handymanList: handymanList)
+                self.getNearbyDelegate?.onGetNearbyResult(true, info: "", personList: personList)
             } else {
-                self.getNearbyDelegate?.onGetNearbyResult(false, info: "获取附近师傅坐标失败", handymanList: [])
+                self.getNearbyDelegate?.onGetNearbyResult(false, info: "获取附近用户坐标失败", personList: [])
             }
         }
     }
 }
 
 protocol GetNearbyDelegate {
-    func onGetNearbyResult(result: Bool, info: String, handymanList: [Handyman])
+    func onGetNearbyResult(result: Bool, info: String, personList: [Person])
 }

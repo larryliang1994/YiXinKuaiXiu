@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoppingCartPayPopoverView: UIView, PayDelegate, BeeCloudDelegate {
+class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate {
     
     @IBOutlet var doPayButton: PrimaryButton!
     @IBOutlet var descLabel: UILabel!
@@ -29,6 +29,8 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BeeCloudDelegate {
     
     var delegate: PopoverPayDelegate?
     
+    var bcpayVC: BCPayController?
+    
     var viewController: UIViewController?
     
     var date: String?
@@ -37,42 +39,51 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BeeCloudDelegate {
     
     override func awakeFromNib() {
         balanceFee.text = "￥" + Config.Money!
+        
+        bcpayVC = BCPayController()
+        bcpayVC?.delegate = self
     }
     
     @IBAction func doPay(sender: PrimaryButton) {
-        doneThirdPay()
-//        if payWay == 2 {
-//            doneThirdPay()
-//        } else {
-//            BeeCloud.setBeeCloudDelegate(self)
-//            
-//            let request = BCPayReq()
-//            request.title = "这是标题"
-//            request.totalFee = Int(Float(fee!)! * 100).toString()
-//            request.billNo = date
-//            request.viewController = viewController
-//            
-//            if payWay == 0 {
-//                request.channel = .Ali
-//                request.scheme = "alipayurl"
-//            } else if payWay == 1 {
-//                request.channel = .Wx
-//            }
-//            
-//            print("send" + Int(Float(fee!)! * 100).toString())
-//            
-//            BeeCloud.sendBCReq(request)
-//        }
+        if payWay == 2 {
+            doneThirdPay()
+        } else {
+            BeeCloud.setBeeCloudDelegate(bcpayVC)
+            
+            let request = BCPayReq()
+            request.title = "壹心快修"
+            request.totalFee = String(Int(Float(fee!)! * 100))
+            request.billNo = Int(NSDate().timeIntervalSince1970 * 1000).toString()
+            request.billTimeOut = 300
+            request.viewController = viewController
+            
+            if payWay == 0 {
+                request.channel = .AliApp
+                request.scheme = "yxkxalipayurl"
+            } else if payWay == 1 {
+                request.channel = .WxApp
+            }
+            
+            BeeCloud.sendBCReq(request)
+        }
     }
     
-    func onBeeCloudResp(resp: BCBaseResp!) {
+    func onBCPayResult(resp: BCBaseResp!) {
         if resp.resultCode == 0 {
             print(resp.resultMsg + "!!")
+            PayModel(payDelegate: self).goRecharge(String(Int(Float(fee!)! * 100)))
         } else {
             print(resp.resultMsg + "：" + resp.errDetail)
+            delegate?.onPayResult(false, info: "支付取消")
         }
-        
-        doneThirdPay()
+    }
+    
+    func onGoRechargeResult(result: Bool, info: String) {
+        if result {
+            doneThirdPay()
+        } else {
+            delegate?.onPayResult(false, info: info)
+        }
     }
     
     func doneThirdPay() {

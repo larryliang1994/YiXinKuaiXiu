@@ -171,6 +171,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
     }
     
     //MARK : - PopBottomViewDataSource
+    //var payPopoverView: PayPopoverView?
     func viewPop() -> UIView {
         let payPopoverView = UIView.loadFromNibNamed("PayPopoverView") as! PayPopoverView
         payPopoverView.closeButton.addTarget(self, action: #selector(PopBottomView.hide), forControlEvents: UIControlEvents.TouchUpInside)
@@ -189,11 +190,6 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             payPopoverView.feeLabel.text = "￥" + order.fee!
             payPopoverView.fee = order.fee!
             payPopoverView.type = .Fee
-            payPopoverView.date = order.date!
-        } else { // 付维修费
-            payPopoverView.feeLabel.text = "￥" + mFee!
-            payPopoverView.fee = mFee
-            payPopoverView.type = .MFee
             payPopoverView.date = order.date!
         }
         
@@ -241,45 +237,19 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         let order = orders[(selectedIndexPath?.section)!]
         
         if order.type == .Normal && order.state != .NotPayFee {
-            let alert = UIAlertController(
-                title: "请输入维修费",
-                message: nil,
-                preferredStyle: UIAlertControllerStyle.Alert
-            )
+
+            let vc = UtilBox.getController(Constants.ControllerID.GoPayMFee) as! PayMFeeViewController
+            vc.order = order
+            vc.delegate = self
+            self.navigationController?.showViewController(vc, sender: self)
             
-            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
-            
-            alert.addAction(UIAlertAction(
-                title: "确认",
-                style: .Default)
-            { (action: UIAlertAction) -> Void in
-                let textField = alert.textFields!.first! as UITextField
-                
-                if textField.text != nil {
-                    self.mFee = textField.text!
-                    
-                    let v = PopBottomView(frame: self.view.bounds)
-                    v.dataSource = self
-                    v.delegate = self
-                    v.showInView(self.view)
-                }
-            }
-            )
-            
-            alert.textFields?.first?.delegate = self
-            alert.addTextFieldWithConfigurationHandler { (textField) -> Void in
-                textField.placeholder = "维修费"
-                textField.keyboardType = UIKeyboardType.DecimalPad
-                textField.textAlignment = .Center
-            }
-            
-            presentViewController(alert, animated: true, completion: nil)
         } else {
             let v = PopBottomView(frame: self.view.bounds)
             v.dataSource = self
             v.delegate = self
             v.showInView(self.view)
         }
+
     }
     
     func goRatingAction(sender: UIButton) {

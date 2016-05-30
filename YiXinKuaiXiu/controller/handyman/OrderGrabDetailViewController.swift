@@ -87,14 +87,6 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
         timeLabel.text = UtilBox.getDateFromString(order!.date!, format: Constants.DateFormat.MDHm)
     }
     
-    @IBAction func doTapImg1(sender: UITapGestureRecognizer) {
-        UtilBox.showBigImg(picture1ImageView, parent: self, imgUrl: (order?.image1Url)!)
-    }
-    
-    @IBAction func doTapImg2(sender: UITapGestureRecognizer) {
-        UtilBox.showBigImg(picture2ImageView, parent: self, imgUrl: (order?.image2Url)!)
-    }
-    
     func mapView(mapView: BMKMapView!, viewForAnnotation annotation: BMKAnnotation!) -> BMKAnnotationView! {
         let view =  BMKPinAnnotationView(annotation: annotation, reuseIdentifier: "aaa")
         view.animatesDrop = true

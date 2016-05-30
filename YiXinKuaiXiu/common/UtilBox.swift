@@ -33,6 +33,10 @@ class UtilBox {
     static func isNum(input: String, digital: Bool) -> Bool {
         let regex:NSRegularExpression
         do {
+            if input == "" {
+                return true
+            }
+            
             if digital {
                 regex = try NSRegularExpression(pattern: "^[0123456789.]$", options: NSRegularExpressionOptions.CaseInsensitive)
             } else {
@@ -162,6 +166,23 @@ class UtilBox {
             imageData = UIImageJPEGRepresentation(image, compression)
         }
         
+        var scale: CGFloat = 0.9
+        while(imageData?.length > maxSize && scale > 0.1) {
+            let newSize = CGSizeMake(image.size.width * scale, image.size.height * scale)
+            UIGraphicsBeginImageContext(newSize)
+            
+            image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+            
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            imageData = newImage.asData()
+            
+            scale -= 0.2
+        }
+        
+        print(imageData?.length)
+        
         return imageData!
     }
     // MD5加密
@@ -262,25 +283,6 @@ class UtilBox {
     static func getController(identifier: String) -> UIViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
         return storyboard.instantiateViewControllerWithIdentifier(identifier)
-    }
-    
-    // 查看大图
-    static func showBigImg(sourceImg: UIImageView, parent: UIViewController, imgUrl: String) {
-//        let imageProvider = SomeImageProvider(image: sourceImg.image!)
-//        let buttonAssets = CloseButtonAssets(normal: UIImage(named:"checked")!, highlighted: UIImage(named: "checked"))
-//        let configuration = ImageViewerConfiguration(imageSize: CGSize(width: 10, height: 10), closeButtonAssets: buttonAssets)
-//        
-//        let imageViewer = ImageViewer(imageProvider: imageProvider, configuration: configuration, displacedView: sourceImg)
-        //parent.presentViewController(imageViewer, animated: false, completion: nil)
-        //parent.presentImageViewer(imageViewer)
-        
-//        let photoUrls: NSArray = [imgUrl]
-//        let photos: NSArray = [sourceImg.image!]
-//        let browser = 
-//        parent.presentViewController(browser, animated: true, completion: nil)
-        
-        print("!!")
-        
     }
     
 }

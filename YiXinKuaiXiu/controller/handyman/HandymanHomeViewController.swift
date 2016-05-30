@@ -9,13 +9,17 @@
 import UIKit
 import KYDrawerController
 
-class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate {
+class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, GetNearbyDelegate {
     
     @IBOutlet var mapView: BMKMapView!
     
     var drawerController: KYDrawerController?
     
+    var personList: [Person]?
+    
     let locationService = BMKLocationService()
+    
+    var gotLocation = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +46,43 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
         self.navigationItem.backBarButtonItem = back
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
+    
+    func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
+        if gotLocation {
+            locationService.stopUserLocationService()
+        } else {
+            mapView.updateLocationData(userLocation)
+            mapView.removeAnnotations(mapView.annotations)
+            
+            let localLatitude=userLocation.location.coordinate.latitude
+            let localLongitude=userLocation.location.coordinate.longitude
+            
+            Config.CurrentLocationInfo = CLLocation(latitude: localLatitude, longitude: localLongitude)
+            
+            GetNearbyModel(getNearbyDelegate: self).doGetNearby(localLatitude.description, longitude: localLongitude.description, distance: 30)
+            
+            gotLocation = true
+        }
+    }
+    
+    func onGetNearbyResult(result: Bool, info: String, personList: [Person]) {
+        if result {
+            self.personList = personList
+            
+            for var person in personList {
+                let annotation = BMKPointAnnotation()
+                let lat = CLLocationDegrees(person.latitude!)
+                let lot = CLLocationDegrees(person.longitude!)
+                
+                annotation.coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: lot!)
+                
+                mapView.addAnnotation(annotation)
+            }
+        } else {
+            UtilBox.alert(self, message: info)
+        }
+    }
+    
     
     func mapView(mapView: BMKMapView!, viewForAnnotation annotation: BMKAnnotation!) -> BMKAnnotationView! {
         let view =  BMKPinAnnotationView(annotation: annotation, reuseIdentifier: "aaa")
@@ -130,13 +171,20 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         mapView.viewWillAppear()
-        //mapView.delegate = self // 此处记得不用的时候需要置nil，否则影响内存的释放
+        mapView.delegate = self // 此处记得不用的时候需要置nil，否则影响内存的释放
+        
+        gotLocation = false
+        locationService.delegate = self
+        locationService.startUserLocationService()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         mapView.viewWillDisappear()
-        //mapView.delegate = nil // 不用时，置nil
+        mapView.delegate = nil // 不用时，置nil
+        
+        locationService.delegate = nil
+        locationService.stopUserLocationService()
     }
     
     

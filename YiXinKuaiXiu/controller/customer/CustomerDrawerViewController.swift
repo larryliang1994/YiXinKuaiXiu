@@ -72,6 +72,7 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
                 let img = UIImage(named: "orderList")
                 img?.resizableImageWithCapInsets(UIEdgeInsetsMake(2, 2, 2, 2))
                 image.image = img
+                badge.hidden = true
                 badge.badgeColor = Constants.Color.Orange
                 badge.text = "3"
             } else if indexPath.row == 2 {

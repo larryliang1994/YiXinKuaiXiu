@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Handyman {
+class Person {
     var name: String?
     var latitude: String?
     var longitude: String?

@@ -43,7 +43,7 @@ class UploadImageModel: UploadImageProtocol {
         body.appendData(NSString(format:"\r\n--\(boundary)\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
         body.appendData(NSString(format:"Content-Disposition:form-data;name=\"dat\";filename=\"dd.jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
         body.appendData(NSString(format:"Content-Type:application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
-        body.appendData(UtilBox.compressImage(image, maxSize: 1024))
+        body.appendData(UtilBox.compressImage(image, maxSize: 1000 * 1024))
         body.appendData(NSString(format:"\r\n--\(boundary)").dataUsingEncoding(NSUTF8StringEncoding)!)
         request.HTTPBody = body
         

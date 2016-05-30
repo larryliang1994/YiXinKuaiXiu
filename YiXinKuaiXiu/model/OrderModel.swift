@@ -154,9 +154,9 @@ class OrderModel: OrderProtocol {
                                 var parts: [Part] = []
                                 for var index in 0...partDetailJson.count-1 {
                                     parts.append(Part(
-                                        name: partDetailJson[index]["name"].stringValue,
+                                        name: partDetailJson[index]["nme"].stringValue,
                                         num: partDetailJson[index]["num"].intValue,
-                                        price: partDetailJson[index]["price"].stringValue))
+                                        price: String(partDetailJson[index]["prs"].floatValue)))
                                 }
                                 order.parts = parts
                             }
@@ -175,7 +175,9 @@ class OrderModel: OrderProtocol {
     }
     
     func pullGrabOrderList(requestTime: String, fromDistance: Int?, toDistance: Int?) {
-        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dis": (fromDistance == nil ? "" : fromDistance!.toString()), "dit": (toDistance == nil ? "" : toDistance!.toString()), "dts": "", "dte": "", "stt": "", "cnt": ""]
+//        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dis": (fromDistance == nil ? "" : fromDistance!.toString()), "dit": (toDistance == nil ? "" : toDistance!.toString()), "dts": "", "dte": "", "stt": "", "cnt": ""]
+        
+        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dis": "", "dit": "", "dts": "", "dte": "", "stt": "", "cnt": ""]
         
         AlamofireUtil.doRequest(Urls.PullGrabOrderList, parameters: paramters) { (result, response) in
             if result {
@@ -225,24 +227,32 @@ class OrderModel: OrderProtocol {
                             order.image1Url = nil
                             order.image2Url = nil
                         }
-                        
-//                        order.parts = [
-//                            Part(name: "第一种配件", num: 6, price: "1.5"),
-//                            Part(name: "第二种配件", num: 2, price: "2.5"),
-//                            Part(name: "第三种配件", num: 3, price: "1.8"),
-//                            Part(name: "第四种配件", num: 1, price: "3.8"),
-//                            Part(name: "第五种配件", num: 4, price: "1.5"),
-//                            Part(name: "第六种配件", num: 6, price: "1.5")]
-                        
+
                         order.parts = []
                         
-                        let distance = BMKMetersBetweenMapPoints(
-                            BMKMapPointForCoordinate(order.locationInfo!.coordinate),
-                            BMKMapPointForCoordinate(Config.LocationInfo!.coordinate))
+                        var distance: CLLocationDistance?
+                        if Config.CurrentLocationInfo == nil {
+                            distance = BMKMetersBetweenMapPoints(
+                                BMKMapPointForCoordinate(order.locationInfo!.coordinate),
+                                BMKMapPointForCoordinate(Config.LocationInfo!.coordinate))
+                        } else {
+                            distance = BMKMetersBetweenMapPoints(
+                                BMKMapPointForCoordinate(order.locationInfo!.coordinate),
+                                BMKMapPointForCoordinate(Config.CurrentLocationInfo!.coordinate))
+                        }
                         
-                        order.distance = Int(distance/1000)
+                        order.distance = Int(distance!/1000)
                         
-                        orderList.append(order)
+                        if fromDistance == nil && toDistance == nil {
+                            orderList.append(order)
+                        } else {
+                            if fromDistance == 30 && order.distance > 30 {
+                                orderList.append(order)
+                            } else if fromDistance < order.distance && order.distance <= toDistance {
+                                orderList.append(order)
+                            }
+                        }
+                        
                     }
                     
                     self.orderDelegate?.onPullGrabOrderListResult(true, info: "", orderList: orderList)

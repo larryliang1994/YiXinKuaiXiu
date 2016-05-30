@@ -99,7 +99,10 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
                     self.window?.rootViewController = self.storyboard!.instantiateViewControllerWithIdentifier("WelcomeVCNavigation")
                     UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
                         self.window?.makeKeyAndVisible()
-                        }, completion: nil)
+                        }, completion: { (Bool) in
+                            self.imageView.image = nil
+                            self.imageView.backgroundColor = UIColor.whiteColor()
+                    })
                 })
                 alertController.addAction(okAction)
                 
@@ -190,7 +193,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     }
     
     func initBeeCloud() {
-        BeeCloud.initWithAppID(Constants.Key.BeeCloudAppID, andAppSecret: Constants.Key.BeeCloudAppSecret, sandbox: true)
+        BeeCloud.initWithAppID(Constants.Key.BeeCloudAppID, andAppSecret: Constants.Key.BeeCloudAppSecret)
         BeeCloud.initWeChatPay(Constants.Key.WechatAppID)
     }
 }

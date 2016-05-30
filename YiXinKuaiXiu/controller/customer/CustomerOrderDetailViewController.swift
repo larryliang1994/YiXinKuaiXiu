@@ -32,6 +32,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     @IBOutlet var imageCell: UITableViewCell!
     @IBOutlet var picture2ImageView: UIImageView!
     @IBOutlet var picture1ImageView: UIImageView!
+    @IBOutlet var ratingCell: UITableViewCell!
     
     var delegate: OrderListChangeDelegate?
     
@@ -92,15 +93,20 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     }
     
     func initView() {
-        ratingLabel.text = order?.ratingDesc!
+        if order?.state?.rawValue < State.HasBeenRated.rawValue {
+            ratingLabel.hidden = true
+            serviceRating.hidden = true
+            ratingCell.hidden = true
+        } else {
+            ratingLabel.text = order?.ratingDesc!
+            serviceRating.rating = Float((order?.ratingStar)!)
+        }
         
         descLabel.text = order?.desc
         
         locationLabel.text = order?.location
         
         dateLabel.text = UtilBox.getDateFromString((order?.date)!, format: Constants.DateFormat.YMD)
-        
-        serviceRating.rating = Float((order?.ratingStar)!)
         
         if order?.type == .Pack {
             feeLabel.text = "￥" + (order?.fee)!

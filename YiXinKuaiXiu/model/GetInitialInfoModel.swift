@@ -133,7 +133,7 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                 }
                 
             } else {
-                self.getInitialInfoDelegate?.onGetAdsResult!(false, info: "获取广告失败")
+                self.getInitialInfoDelegate?.onGetAdsResult!(false, info: "获取广告列表失败")
             }
         }
     }

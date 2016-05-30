@@ -157,6 +157,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
     var loginButtonEnabled = false
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
+        if !UtilBox.isNum(string, digital: false) {
+            return false
+        }
+        
         if textField == telephoneNumTextField {
             
             if range.location >= 11 {

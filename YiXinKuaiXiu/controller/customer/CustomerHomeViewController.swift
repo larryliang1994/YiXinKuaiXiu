@@ -13,11 +13,13 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
 
     @IBOutlet var mapView: BMKMapView!
     
-    var handymanList: [Handyman]?
+    var personList: [Person]?
     
     var drawerController: KYDrawerController?
     
     let locationService = BMKLocationService()
+    
+    var gotLocation = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +27,6 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
         initView()
         
         initNavBar()
-        
-        //GetNearbyModel(getNearbyDelegate: self).doGetNearby("31.9444170195652", longitude: "118.79602497754", distance: 100)
     }
     
     func initView() {
@@ -42,24 +42,30 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     }
     
     func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
-        mapView.updateLocationData(userLocation)
+        if gotLocation {
+            locationService.stopUserLocationService()
+        } else {
+            mapView.updateLocationData(userLocation)
+            
+            mapView.removeAnnotations(mapView.annotations)
         
-        let localLatitude=userLocation.location.coordinate.latitude
-        let localLongitude=userLocation.location.coordinate.longitude
+            let localLatitude=userLocation.location.coordinate.latitude
+            let localLongitude=userLocation.location.coordinate.longitude
         
-        if handymanList == nil {
             GetNearbyModel(getNearbyDelegate: self).doGetNearby(localLatitude.description, longitude: localLongitude.description, distance: 30)
+            
+            gotLocation = true
         }
     }
     
-    func onGetNearbyResult(result: Bool, info: String, handymanList: [Handyman]) {
+    func onGetNearbyResult(result: Bool, info: String, personList: [Person]) {
         if result {
-            self.handymanList = handymanList
+            self.personList = personList
             
-            for var handyman in handymanList {
+            for var person in personList {
                 let annotation = BMKPointAnnotation()
-                let lat = CLLocationDegrees(handyman.latitude!)
-                let lot = CLLocationDegrees(handyman.longitude!)
+                let lat = CLLocationDegrees(person.latitude!)
+                let lot = CLLocationDegrees(person.longitude!)
                 
                 annotation.coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: lot!)
                 
@@ -150,6 +156,7 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
         mapView.viewWillAppear()
         mapView.delegate = self // 此处记得不用的时候需要置nil，否则影响内存的释放
         
+        gotLocation = false
         locationService.delegate = self
         locationService.startUserLocationService()
     }

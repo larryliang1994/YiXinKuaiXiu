@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 public enum PayType: Int {
     case Fee = 1
@@ -53,6 +54,34 @@ class PayModel: PayProtocol, PayDelegate {
             } else {
                 self.payDelegate?.onGoPayResult!(false, info: "支付失败")
             }
+        }
+    }
+    
+    func goRecharge(fee: String) {
+        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "act": "tst", "out_trade_no": Config.Aid! + "_" + NSDate().timeIntervalSince1970.description, "trade_no": "123456", "total_fee": fee]
+        
+        var requestUrl = Urls.Recharge
+        
+        for (key, value) in parameters {
+            requestUrl += key + "=" + value + "&"
+        }
+        
+        requestUrl = requestUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())!
+        
+        print(requestUrl)
+        
+        request(.GET, requestUrl)
+            .responseString{ response in
+                if response.result.isSuccess {
+                    print(response.result.value!)
+                    if response.result.value! == "success" {
+                        self.payDelegate?.onGoRechargeResult!(true, info: "")
+                    } else {
+                        self.payDelegate?.onGoRechargeResult!(false, info: "充值失败")
+                    }
+                } else {
+                    self.payDelegate?.onGoRechargeResult!(false, info: "充值失败")
+                }
         }
     }
     
@@ -135,4 +164,5 @@ class PayModel: PayProtocol, PayDelegate {
     optional func onGoPayResult(result: Bool, info: String)
     optional func onGoPayPartsResult(result: Bool, info: String)
     optional func onGoPayMFeeResult(result: Bool, info: String)
+    optional func onGoRechargeResult(result: Bool, info: String)
 }

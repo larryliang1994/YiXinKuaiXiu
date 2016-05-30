@@ -10,4 +10,5 @@ protocol PayProtocol {
     func goPay(date: String, type: PayType, fee: String)
     func goPayParts(date: String, detail: String, fee: String)
     func goPayMFee(date: String, fee: String)
+    func goRecharge(fee: String)
 }
