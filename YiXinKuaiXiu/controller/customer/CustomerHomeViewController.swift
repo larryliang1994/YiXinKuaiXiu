@@ -103,25 +103,28 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
         switch index {
         case 0:
             segue = Constants.SegueID.CustomerDrawerToPersonalInfoSegue
-            break
             
         case 1:
             segue = Constants.SegueID.CustomerDrawerToOrderListSegue
-            break
             
         case 2:
-            segue = Constants.SegueID.CustomerDrawerToMessageCenterSegue
-            break
+            let walletVC = UtilBox.getController(Constants.ControllerID.Wallet) as! WalletViewController
+            walletVC.delegate = self
+            self.navigationController?.showViewController(walletVC, sender: self)
             
         case 3:
+            segue = Constants.SegueID.CustomerDrawerToMessageCenterSegue
+            
+        case 4:
             segue = Constants.SegueID.CustomerDrawerToMallSegue
-            break
             
         default:
             break
         }
         
-        performSegueWithIdentifier(segue, sender: self)
+        if segue != "" {
+            performSegueWithIdentifier(segue, sender: self)
+        }
     }
     
     func didLogout() {

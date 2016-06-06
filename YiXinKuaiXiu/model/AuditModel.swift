@@ -16,15 +16,15 @@ class AuditModel: AuditProtocol {
         self.auditDelegate = auditDelegate
     }
     
-    func doAudit(mTypeIDString: String, location: String, locationInfo: CLLocation, IDNum: String, picture: String, contactsName: String, contactNum: String) {
-        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "fld0": "lxs", "val0": mTypeIDString, "fld1": "sfz", "val1": IDNum, "fld2": "phe", "val2": contactNum, "fld3": "adr", "val3": location]
+    func doAudit(name: String, mTypeIDString: String, location: String, locationInfo: CLLocation, IDNum: String, picture: String, contactsName: String, contactNum: String) {
+        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "fld0": "lxs", "val0": mTypeIDString, "fld1": "sfz", "val1": IDNum, "fld2": "phe", "val2": contactNum, "fld3": "adr", "val3": location, "fld4": "nme", "val4": name, "fld5": "lxr", "val5": contactsName]
         
         AlamofireUtil.doRequest(Urls.MultiModify, parameters: parameters) { (result, response) in
-            print(response)
             if result {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.auditDelegate?.onAuditResult(false, info: "申请失败")
                     return
                 }
@@ -36,7 +36,6 @@ class AuditModel: AuditProtocol {
                 if ret == 0 {
                     let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "lot": locationInfo.coordinate.longitude.description, "lat": locationInfo.coordinate.latitude.description]
                     AlamofireUtil.doRequest(Urls.UpdateLocationInfo, parameters: paramters, callback: { (result, response) in
-                        print(response)
                         if result {
                             let json = JSON(UtilBox.convertStringToDictionary(response)!)
                             

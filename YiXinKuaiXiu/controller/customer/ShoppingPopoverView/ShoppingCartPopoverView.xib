@@ -7,10 +7,29 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ShoppingCartPopoverView" customModule="YiXinKuaiXiu" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ShoppingCartPopoverView" customModule="壹心快修" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMY-AT-Pov">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="9lL-39-2Ip">
+                            <variation key="heightClass=regular-widthClass=compact" constant="44"/>
+                        </constraint>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="9lL-39-2Ip"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="9lL-39-2Ip"/>
+                        </mask>
+                    </variation>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购物车" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYa-gd-Knc">
                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -116,25 +135,6 @@
                         </mask>
                     </variation>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMY-AT-Pov">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="48" id="9lL-39-2Ip">
-                            <variation key="heightClass=regular-widthClass=compact" constant="44"/>
-                        </constraint>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="9lL-39-2Ip"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="9lL-39-2Ip"/>
-                        </mask>
-                    </variation>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -168,12 +168,12 @@
             </constraints>
             <variation key="default">
                 <mask key="subviews">
+                    <exclude reference="LMY-AT-Pov"/>
                     <exclude reference="SYa-gd-Knc"/>
                     <exclude reference="M9C-c2-Jkf"/>
                     <exclude reference="MZP-6q-EyG"/>
                     <exclude reference="Vlv-cM-XVr"/>
                     <exclude reference="iyW-mn-esp"/>
-                    <exclude reference="LMY-AT-Pov"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="98g-yS-Ufj"/>
@@ -197,12 +197,12 @@
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
+                    <include reference="LMY-AT-Pov"/>
                     <include reference="SYa-gd-Knc"/>
                     <include reference="M9C-c2-Jkf"/>
                     <include reference="MZP-6q-EyG"/>
                     <include reference="Vlv-cM-XVr"/>
                     <include reference="iyW-mn-esp"/>
-                    <include reference="LMY-AT-Pov"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="98g-yS-Ufj"/>

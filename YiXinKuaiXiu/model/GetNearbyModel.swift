@@ -19,13 +19,15 @@ class GetNearbyModel: GetNearbyProtocol {
     func doGetNearby(latitude: String, longitude: String, distance: Int) {
         let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "lat": latitude, "lot": longitude, "dis": distance.toString()]
         
-        AlamofireUtil.doRequest(Urls.GetNearbyHandyman, parameters: paramters) { (result, response) in
+        AlamofireUtil.doRequest(Config.Role == Constants.Role.Customer ? Urls.GetNearbyHandyman : Urls.GetNearbyCustomer,
+                                parameters: paramters) { (result, response) in
             if result {
                 print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
-                    self.getNearbyDelegate?.onGetNearbyResult(false, info: "获取附近师傅坐标失败", personList: [])
+                    UtilBox.reportBug(response)
+                    self.getNearbyDelegate?.onGetNearbyResult(false, info: "获取附近用户坐标失败", personList: [])
                     return
                 }
                 
@@ -37,9 +39,15 @@ class GetNearbyModel: GetNearbyProtocol {
                 
                 if ret != nil && ret.count != 0 {
                     for var index in 0 ... ret.count-1 {
-                        let person = Person(name: ret[index]["nme"].stringValue, latitude: ret[index]["lat"].stringValue, longitude: ret[index]["lot"].stringValue)
+                        if Config.Role == Constants.Role.Customer {
+                            let person = Person(name: ret[index]["nme"].stringValue, latitude: ret[index]["lat"].stringValue, longitude: ret[index]["lot"].stringValue)
                         
-                        personList.append(person)
+                            personList.append(person)
+                        } else {
+                            let person = Person(name: ret[index]["cmt"].stringValue, latitude: ret[index]["lat"].stringValue, longitude: ret[index]["lot"].stringValue)
+                            
+                            personList.append(person)
+                        }
                     }
                 }
                 

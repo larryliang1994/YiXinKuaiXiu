@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageCenterViewController: UITableViewController, GetInitialInfoDelegate {
+class MessageCenterViewController: UITableViewController, GetInitialInfoDelegate, UserInfoDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,13 @@ class MessageCenterViewController: UITableViewController, GetInitialInfoDelegate
     func onGetMessageResult(result: Bool, info: String) {
         self.clearAllNotice()
         if result {
+            if Config.Messages.count == 0 {
+                self.tableView.backgroundView = UtilBox.getEmptyView("还没有新消息")
+            } else {
+                UserInfoModel(userInfoDelegate: self).doReadMessages()
+                self.tableView.backgroundView = nil
+            }
+            
             tableView.reloadData()
         } else {
             UtilBox.alert(self, message: info)

@@ -19,9 +19,11 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     func getMaintenanceType() {
         AlamofireUtil.doRequest(Urls.GetMaintenanceType, parameters: [:]) { (result, response) in
             if result {
+                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.getInitialInfoDelegate?.onGetMaintenanceTypeResult!(false, info: "获取工种失败")
                     return
                 }
@@ -58,6 +60,7 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.getInitialInfoDelegate?.onGetFeeResult!(false, info: "获取默认价格失败")
                     return
                 }
@@ -87,6 +90,7 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.getInitialInfoDelegate?.onGetMessageResult!(false, info: "获取默认价格失败")
                     return
                 }
@@ -112,13 +116,14 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     }
     
     func getAds() {
-        AlamofireUtil.doRequest(Urls.GetAds, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
+        AlamofireUtil.doRequest(Urls.GetAds, parameters: ["": ""]) { (result, response) in
             if result {
                 print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
-                    self.getInitialInfoDelegate?.onGetFeeResult!(false, info: "获取默认价格失败")
+                    UtilBox.reportBug(response)
+                    self.getInitialInfoDelegate?.onGetAdsResult!(false, info: "获取广告列表失败")
                     return
                 }
                 
@@ -137,6 +142,51 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
             }
         }
     }
+    
+    func getMessageNum() {
+        AlamofireUtil.doRequest(Urls.GetMessageNum, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
+            if result {
+                print(response)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    UtilBox.reportBug(response)
+                    self.getInitialInfoDelegate?.onGetMessageNum!(false, info: "获取新消息数目失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
+                
+                Config.MessagesNum = json["ret"].intValue
+                
+                self.getInitialInfoDelegate?.onGetMessageNum!(true, info: "")
+            } else {
+                self.getInitialInfoDelegate?.onGetMessageNum!(false, info: "获取新消息数目失败")
+            }
+        }
+    }
+    
+    func getOrderNum() {
+        AlamofireUtil.doRequest(Urls.GetOrderNum, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!, "tpe": Config.Role!]) { (result, response) in
+            if result {
+                print(response)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    UtilBox.reportBug(response)
+                    self.getInitialInfoDelegate?.onGetOrderNum!(false, info: "获取订单数目失败")
+                    return
+                }
+                let json = JSON(responseDic!)
+                
+                Config.OrderNum = json["ret"].intValue
+                
+                self.getInitialInfoDelegate?.onGetOrderNum!(true, info: "")
+            } else {
+                self.getInitialInfoDelegate?.onGetOrderNum!(false, info: "获取订单数目失败")
+            }
+        }
+    }
 }
 
 @objc protocol GetInitialInfoDelegate {
@@ -144,4 +194,6 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     optional func onGetFeeResult(result: Bool, info: String)
     optional func onGetMessageResult(result: Bool, info: String)
     optional func onGetAdsResult(result: Bool, info: String)
+    optional func onGetMessageNum(result: Bool, info: String)
+    optional func onGetOrderNum(result: Bool, info: String)
 }

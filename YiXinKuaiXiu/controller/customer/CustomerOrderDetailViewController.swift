@@ -117,7 +117,8 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             showPartDetailButton.hidden = true
         } else if order?.type == .Normal {
             feeLabel.text = "￥" + (order?.fee)!
-            mFeeLabel.text = "￥" + (order?.mFee)!
+            //mFeeLabel.text = "￥" + (order?.mFee)!
+            mFeeLabel.text = (order?.mFee)! == "0" ? "无" : "￥" + (order?.mFee)!
             partFeeLabel.text = (order?.partFee)! == "0" ? "无" : "￥" + (order?.partFee)!
             totalFeeLabel.text = "￥" + String(Float((order?.fee)!)! + Float((order?.mFee)!)! + Float((order?.partFee)!)!)
             

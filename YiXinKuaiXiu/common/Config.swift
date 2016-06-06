@@ -44,4 +44,7 @@ class Config {
     static var Parts: [Part] = []
     
     static var Messages: [Message] = []
+    
+    static var MessagesNum: Int?
+    static var OrderNum: Int?
 }

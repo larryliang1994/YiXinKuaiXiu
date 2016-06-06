@@ -10,6 +10,7 @@ import UIKit
 
 class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseLocationDelegate, AuditDelegate, UploadImageDelegate, UITextFieldDelegate {
     
+    @IBOutlet var nameLabel: UITextField!
     @IBOutlet var maintenanceTypeLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var submitButton: UIBarButtonItem!
@@ -47,19 +48,30 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
     }
     
     @IBAction func submit(sender: UIBarButtonItem) {
-        if maintenanceTypeLabel.text == "请选择" {
+        self.nameLabel.resignFirstResponder()
+        self.idNumTextField.resignFirstResponder()
+        self.contactNameTextField.resignFirstResponder()
+        self.contactTelephoneTextField.resignFirstResponder()
+        
+        if nameLabel.text == nil || nameLabel.text == "" {
+            UtilBox.alert(self, message: "请输入姓名")
+        } else if maintenanceTypeLabel.text == "请选择" {
             UtilBox.alert(self, message: "请选择维修工种")
         } else if locationLabel.text == "选择地址" {
             UtilBox.alert(self, message: "请选择常住地址")
         } else if idNumTextField.text == nil || idNumTextField.text == "" {
             UtilBox.alert(self, message: "请输入身份证号码")
+        } else if !UtilBox.isIDNum(idNumTextField.text!) {
+            UtilBox.alert(self, message: "请输入完整身份证号码")
         } else if imageAsset == nil {
             UtilBox.alert(self, message: "请选择手持身份证照")
         } else if contactNameTextField.text == nil || contactNameTextField.text == "" {
             UtilBox.alert(self, message: "请输入紧急联系人姓名")
         } else if contactTelephoneTextField.text == nil || contactTelephoneTextField.text == "" {
             UtilBox.alert(self, message: "请输入紧急联系人手机号")
-        } else {
+        } else if !UtilBox.isTelephoneNum(contactTelephoneTextField.text!) {
+            UtilBox.alert(self, message: "请输入紧急联系人11位手机号")
+        }else {
             self.pleaseWait()
             
             UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail(imageAsset!.originalAsset!), type: .ID)
@@ -68,7 +80,7 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
     
     func onUploadOrderImageResult(result: Bool, info: String) {
         if result {
-            AuditModel(auditDelegate: self).doAudit(idString!, location: locationLabel.text!, locationInfo: locationInfo!, IDNum: idNumTextField.text!, picture: info, contactsName: contactNameTextField.text!, contactNum: contactTelephoneTextField.text!)
+            AuditModel(auditDelegate: self).doAudit(nameLabel.text!, mTypeIDString: idString!, location: locationLabel.text!, locationInfo: locationInfo!, IDNum: idNumTextField.text!, picture: info, contactsName: contactNameTextField.text!, contactNum: contactTelephoneTextField.text!)
         } else {
             self.clearAllNotice()
             UtilBox.alert(self, message: info)
@@ -79,6 +91,10 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
         self.clearAllNotice()
         if result {
             Config.PortraitUrl = Urls.PortraitServer + Config.Aid! + ".jpg"
+            
+            Config.Name = nameLabel.text
+            Config.IDNum = idNumTextField.text
+            
             self.noticeSuccess("申请成功", autoClear: true, autoClearTime: 2)
             
             self.navigationController?.popViewControllerAnimated(true)
@@ -88,7 +104,10 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
     }
 
     @IBAction func choosePicture(sender: UITapGestureRecognizer){
-        self.view.resignFirstResponder()
+        self.nameLabel.resignFirstResponder()
+        self.idNumTextField.resignFirstResponder()
+        self.contactNameTextField.resignFirstResponder()
+        self.contactTelephoneTextField.resignFirstResponder()
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
@@ -158,9 +177,9 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
+        if indexPath.row == 1 {
             performSegueWithIdentifier(Constants.SegueID.ShowHandymanChooseMaintenanceTypeSegue, sender: self)
-        } else if indexPath.row == 1 {
+        } else if indexPath.row == 2 {
             let chooseLocationVC = UtilBox.getController(Constants.ControllerID.ChooseLocation) as! ChooseLocationTableViewController
             chooseLocationVC.delegate = self
             self.navigationController?.showViewController(chooseLocationVC, sender: self)

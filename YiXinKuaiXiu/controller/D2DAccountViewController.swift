@@ -20,6 +20,13 @@ class D2DAccountViewController: UITableViewController, WalletDelegate {
     func onGetD2DAccountResult(result: Bool, info: String, accountList: [D2DAccount]) {
         if result {
             self.accountList = accountList
+            
+            if accountList.count == 0 {
+                self.tableView.backgroundView = UtilBox.getEmptyView("还没有新流水条目")
+            } else {
+                self.tableView.backgroundView = nil
+            }
+            
             tableView.reloadData()
         }
     }

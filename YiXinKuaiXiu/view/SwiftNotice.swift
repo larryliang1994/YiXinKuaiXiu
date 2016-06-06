@@ -44,7 +44,10 @@ extension UIViewController {
         SwiftNotice.showNoticeWithText(type, text: text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
     func pleaseWait() {
-        SwiftNotice.wait()
+        SwiftNotice.wait(timeInterval: 2)
+    }
+    func pleaseWait(timeInterval: Int) {
+        SwiftNotice.wait(timeInterval: timeInterval)
     }
     func noticeOnlyText(text: String) {
         SwiftNotice.showText(text)

@@ -35,6 +35,8 @@ class BindBankCardViewController: UITableViewController, UserInfoDelegate {
             UtilBox.alert(self, message: "请输入开户行")
         } else if numLabel.text == nil || numLabel.text == "" {
             UtilBox.alert(self, message: "请输入卡号")
+        } else if !UtilBox.isBankCardNum(numLabel.text!) {
+            UtilBox.alert(self, message: "请输入有效卡号")
         } else {
             self.pleaseWait()
             

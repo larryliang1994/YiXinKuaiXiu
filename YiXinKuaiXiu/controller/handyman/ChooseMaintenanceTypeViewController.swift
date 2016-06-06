@@ -34,9 +34,10 @@ class ChooseMaintenanceTypeViewController: UITableViewController {
             nameString = nameString.substringToIndex(nameString.endIndex.advancedBy(-1))
         }
         
-        if idString.characters.last == "," {
-            idString = idString.substringToIndex(idString.endIndex.advancedBy(-1))
-        }
+        // 即使只有一个，最后也要有一个逗号
+//        if idString.characters.last == "," {
+//            idString = idString.substringToIndex(idString.endIndex.advancedBy(-1))
+//        }
         
         delegate?.didSelectedMaintenanceType(nameString, idString: idString, checked: checked)
         
@@ -64,9 +65,9 @@ class ChooseMaintenanceTypeViewController: UITableViewController {
         titleLabel.text = Config.MTypeNames![indexPath.row]
         
         if checked[indexPath.row] {
-            checkImage.image = UIImage(named: "checked")
+            checkImage.image = UIImage(named: "checked_rect")
         } else {
-            checkImage.image = nil
+            checkImage.image = UIImage(named: "unchecked_rect")
         }
         
         return cell

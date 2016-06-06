@@ -48,12 +48,30 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate {
         if payWay == 2 {
             doneThirdPay()
         } else {
+            viewController?.pleaseWait()
+            
+            PayModel(payDelegate: self).getBillNumber(fee!)
+            //PayModel(payDelegate: self).getBillNumber("0.01")
+        }
+    }
+    
+    func onGetBillNumberResult(result: Bool, info: String) {
+        let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
+        dispatch_async(dispatch_get_global_queue(qos, 0)) { () -> Void in
+            sleep(2)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.viewController?.clearAllNotice()
+            })
+        }
+        
+        if result {
             BeeCloud.setBeeCloudDelegate(bcpayVC)
             
             let request = BCPayReq()
             request.title = "壹心快修"
             request.totalFee = String(Int(Float(fee!)! * 100))
-            request.billNo = Int(NSDate().timeIntervalSince1970 * 1000).toString()
+            //request.totalFee = "1"
+            request.billNo = info
             request.billTimeOut = 300
             request.viewController = viewController
             
@@ -65,26 +83,31 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate {
             }
             
             BeeCloud.sendBCReq(request)
+        } else {
+            delegate?.onPayResult(false, info: info)
         }
     }
     
     func onBCPayResult(resp: BCBaseResp!) {
+        viewController?.clearAllNotice()
+        
         if resp.resultCode == 0 {
             print(resp.resultMsg + "!!")
-            PayModel(payDelegate: self).goRecharge(String(Int(Float(fee!)! * 100)))
+            doneThirdPay()
+//            PayModel(payDelegate: self).goRecharge(String(Int(Float(fee!)! * 100)))
         } else {
             print(resp.resultMsg + "：" + resp.errDetail)
             delegate?.onPayResult(false, info: "支付取消")
         }
     }
     
-    func onGoRechargeResult(result: Bool, info: String) {
-        if result {
-            doneThirdPay()
-        } else {
-            delegate?.onPayResult(false, info: info)
-        }
-    }
+//    func onGoRechargeResult(result: Bool, info: String) {
+//        if result {
+//            doneThirdPay()
+//        } else {
+//            delegate?.onPayResult(false, info: info)
+//        }
+//    }
     
     func doneThirdPay() {
         viewController?.pleaseWait()

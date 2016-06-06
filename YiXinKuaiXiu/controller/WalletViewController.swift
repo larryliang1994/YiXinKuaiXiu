@@ -12,6 +12,8 @@ class WalletViewController: UITableViewController, WalletChangeDelegate, UserInf
     
     @IBOutlet var buttonBackgroundView: UIView!
     @IBOutlet var moneyLabel: UILabel!
+    
+    var delegate: ModifyUserInfoDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,11 +53,11 @@ class WalletViewController: UITableViewController, WalletChangeDelegate, UserInf
     }
     
     @IBAction func recharge(sender: UIButton) {
-       performSegueWithIdentifier(Constants.SegueID.ShowRechargeSegue, sender: self)
+        performSegueWithIdentifier(Constants.SegueID.ShowRechargeSegue, sender: self)
     }
     
     @IBAction func goWithDraw(sender: UIButton) {
-       performSegueWithIdentifier(Constants.SegueID.ShowWithDrawSegue, sender: self)
+        performSegueWithIdentifier(Constants.SegueID.ShowWithDrawSegue, sender: self)
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -103,9 +105,18 @@ class WalletViewController: UITableViewController, WalletChangeDelegate, UserInf
     
     func didChange() {
         refresh()
+        delegate?.didModify(NSIndexPath(forRow: 0, inSection: 0), value: "")
     }
+    
+    func didRecharge() {
+        moneyLabel.text = Config.Money == nil ? "0.00" : Config.Money
+        tableView.reloadData()
+        delegate?.didModify(NSIndexPath(forRow: 0, inSection: 0), value: "")
+    }
+
 }
 
 protocol WalletChangeDelegate {
     func didChange()
+    func didRecharge()
 }

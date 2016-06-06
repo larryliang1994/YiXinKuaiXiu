@@ -24,7 +24,8 @@ class AlamofireUtil {
         request(.GET, requestUrl)
             .responseString{ response in
                 if response.result.isSuccess {
-                    callback(result: true, response: response.result.value!)
+                    let res = response.result.value!
+                    callback(result: true, response: res.stringByReplacingOccurrencesOfString("\n", withString: " "))
                 } else {
                     callback(result: false, response: "")
                 }

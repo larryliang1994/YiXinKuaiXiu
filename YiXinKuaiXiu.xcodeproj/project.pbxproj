@@ -23,6 +23,7 @@
 		491B6ED71CE021970039B70E /* EnterPasswordAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6ED61CE021970039B70E /* EnterPasswordAlertView.swift */; };
 		491B6ED91CE021C50039B70E /* EnterPasswordAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491B6ED81CE021C50039B70E /* EnterPasswordAlertView.xib */; };
 		491B6EDF1CE172320039B70E /* ChooseFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */; };
+		4929ED631D050DE20016A722 /* BugReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4929ED621D050DE20016A722 /* BugReport.swift */; };
 		493CE2361CF9903700EFE3F3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F522481CED97E00066E72A /* libc++.tbd */; };
 		493CE2371CF9903D00EFE3F3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F5224A1CED97F00066E72A /* libsqlite3.tbd */; };
 		493CE23A1CF9906900EFE3F3 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F522461CED97D00066E72A /* libz.1.2.5.tbd */; };
@@ -220,6 +221,7 @@
 		49F580B61CCF56280084EE99 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580B51CCF56280084EE99 /* UserInfoModel.swift */; };
 		49F580B81CCF56510084EE99 /* UserInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580B71CCF56510084EE99 /* UserInfoProtocol.swift */; };
 		49F580BA1CCF64A20084EE99 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F580B91CCF64A20084EE99 /* SplashScreenViewController.swift */; };
+		49FC72E21CFFFE050049AF0B /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FC72E11CFFFE050049AF0B /* UMMobClick.framework */; };
 		8FCF539454734AC335E6DF57 /* Pods_YiXinKuaiXiu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4634183D301F81F555E28AC /* Pods_YiXinKuaiXiu.framework */; };
 /* End PBXBuildFile section */
 
@@ -267,6 +269,7 @@
 		491B6ED61CE021970039B70E /* EnterPasswordAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterPasswordAlertView.swift; path = view/EnterPasswordAlertView/EnterPasswordAlertView.swift; sourceTree = "<group>"; };
 		491B6ED81CE021C50039B70E /* EnterPasswordAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnterPasswordAlertView.xib; path = view/EnterPasswordAlertView/EnterPasswordAlertView.xib; sourceTree = "<group>"; };
 		491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseFeeViewController.swift; path = controller/customer/ChooseFeeViewController.swift; sourceTree = "<group>"; };
+		4929ED621D050DE20016A722 /* BugReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BugReport.swift; path = common/BugReport.swift; sourceTree = "<group>"; };
 		493CE2271CF98F2600EFE3F3 /* EasyAnimation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyAnimation.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/EasyAnimation/EasyAnimation.framework"; sourceTree = "<group>"; };
 		493CE2281CF98F2600EFE3F3 /* Pods_YiXinKuaiXiu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_YiXinKuaiXiu.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/Pods_YiXinKuaiXiu.framework"; sourceTree = "<group>"; };
 		493CE22C1CF98F6D00EFE3F3 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
@@ -544,6 +547,7 @@
 		49F580B51CCF56280084EE99 /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoModel.swift; path = model/UserInfoModel.swift; sourceTree = "<group>"; };
 		49F580B71CCF56510084EE99 /* UserInfoProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoProtocol.swift; path = model/UserInfoProtocol.swift; sourceTree = "<group>"; };
 		49F580B91CCF64A20084EE99 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashScreenViewController.swift; path = controller/SplashScreenViewController.swift; sourceTree = "<group>"; };
+		49FC72E11CFFFE050049AF0B /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMMobClick.framework; path = Pods/UMengAnalytics/umsdk_IOS_analyics_idfa_v4.0.4/UMMobClick.framework; sourceTree = "<group>"; };
 		5D71ECBF79F79DDB689A7357 /* Pods-YiXinKuaiXiu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YiXinKuaiXiu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YiXinKuaiXiu/Pods-YiXinKuaiXiu.debug.xcconfig"; sourceTree = "<group>"; };
 		B4634183D301F81F555E28AC /* Pods_YiXinKuaiXiu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YiXinKuaiXiu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C2A98F15285661340C7D4D /* Pods-YiXinKuaiXiu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YiXinKuaiXiu.release.xcconfig"; path = "Pods/Target Support Files/Pods-YiXinKuaiXiu/Pods-YiXinKuaiXiu.release.xcconfig"; sourceTree = "<group>"; };
@@ -560,6 +564,7 @@
 				496567661CF99EBA003D979A /* SwiftyJSON.framework in Frameworks */,
 				496567671CF99EBA003D979A /* SWXMLHash.framework in Frameworks */,
 				4965675B1CF99EB5003D979A /* Alamofire.framework in Frameworks */,
+				49FC72E21CFFFE050049AF0B /* UMMobClick.framework in Frameworks */,
 				4965675C1CF99EB5003D979A /* EasyAnimation.framework in Frameworks */,
 				4965675D1CF99EB5003D979A /* Haneke.framework in Frameworks */,
 				496567571CF99E90003D979A /* AlipaySDK.framework in Frameworks */,
@@ -644,6 +649,7 @@
 				491288821CB15C22007DD199 /* Constants.swift */,
 				491288831CB15C22007DD199 /* UtilBox.swift */,
 				49A15E8D1CC9FD200028023C /* Urls.swift */,
+				4929ED621D050DE20016A722 /* BugReport.swift */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -1539,6 +1545,7 @@
 		FD57357E724B506239746FE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49FC72E11CFFFE050049AF0B /* UMMobClick.framework */,
 				4965675E1CF99EBA003D979A /* KYDrawerController.framework */,
 				4965675F1CF99EBA003D979A /* Pods_YiXinKuaiXiu.framework */,
 				496567601CF99EBA003D979A /* ReachabilitySwift.framework */,
@@ -1589,9 +1596,9 @@
 			buildConfigurationList = 4991F3341CB0FCD600E1BF85 /* Build configuration list for PBXNativeTarget "YiXinKuaiXiu" */;
 			buildPhases = (
 				D6CA3A24DE02F5352B4DE499 /* 📦 Check Pods Manifest.lock */,
+				4991F30A1CB0FCD600E1BF85 /* Resources */,
 				4991F3081CB0FCD600E1BF85 /* Sources */,
 				4991F3091CB0FCD600E1BF85 /* Frameworks */,
-				4991F30A1CB0FCD600E1BF85 /* Resources */,
 				1F0B2170C695858725BC0785 /* 📦 Embed Pods Frameworks */,
 				90162469612D4A47DDA89435 /* 📦 Copy Pods Resources */,
 			);
@@ -1917,6 +1924,7 @@
 				49B6F7771CF86C6100482502 /* BeeCloud+Utils.m in Sources */,
 				49B6F7591CF86C6100482502 /* BCBaseResp.m in Sources */,
 				49B6F77F1CF86C6100482502 /* BCAliPayAdapter.m in Sources */,
+				4929ED631D050DE20016A722 /* BugReport.swift in Sources */,
 				49A15E671CC5DC650028023C /* AuditIDViewController.swift in Sources */,
 				49D48EDD1CE4A0D300D19FC2 /* D2DAccount.swift in Sources */,
 				49DBB74C1CF34BD400A50CB9 /* PartDetailPopover.swift in Sources */,
@@ -2034,7 +2042,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Jiu Bai Wang Network Technology Co. Ltd (W8C6FGP93V)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing Jiu Bai Wang Network Technology Co. Ltd (W8C6FGP93V)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2079,7 +2088,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Jiu Bai Wang Network Technology Co. Ltd (W8C6FGP93V)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing Jiu Bai Wang Network Technology Co. Ltd (W8C6FGP93V)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2118,6 +2128,7 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos/ReachabilitySwift",
 					"$(PROJECT_DIR)/build/Release-iphoneos/SwiftyJSON",
 					"$(PROJECT_DIR)/build/Release-iphoneos/SWXMLHash",
+					"$(PROJECT_DIR)/Pods/UMengAnalytics/umsdk_IOS_analyics_idfa_v4.0.4",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/YiXinKuaiXiu/support/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2126,7 +2137,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/YiXinKuaiXiu/BCPay/Channel/WXPay",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.YiXinKuaiXiu;
 				PRODUCT_NAME = "壹心快修";
 				PROVISIONING_PROFILE = "";
@@ -2154,6 +2165,7 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos/ReachabilitySwift",
 					"$(PROJECT_DIR)/build/Release-iphoneos/SwiftyJSON",
 					"$(PROJECT_DIR)/build/Release-iphoneos/SWXMLHash",
+					"$(PROJECT_DIR)/Pods/UMengAnalytics/umsdk_IOS_analyics_idfa_v4.0.4",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/YiXinKuaiXiu/support/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2162,6 +2174,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/YiXinKuaiXiu/BCPay/Channel/WXPay",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.YiXinKuaiXiu;
 				PRODUCT_NAME = "壹心快修";
 				PROVISIONING_PROFILE = "";

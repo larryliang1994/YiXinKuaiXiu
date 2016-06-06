@@ -10,4 +10,6 @@ protocol GetInitialInfoProtocol {
     func getMaintenanceType()
     func getFees()
     func getMessage()
+    func getMessageNum()
+    func getOrderNum()
 }

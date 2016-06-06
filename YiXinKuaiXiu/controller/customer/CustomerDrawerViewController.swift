@@ -72,20 +72,34 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
                 let img = UIImage(named: "orderList")
                 img?.resizableImageWithCapInsets(UIEdgeInsetsMake(2, 2, 2, 2))
                 image.image = img
-                badge.hidden = true
-                badge.badgeColor = Constants.Color.Orange
-                badge.text = "3"
+                 
+                if Config.OrderNum! == 0 {
+                    badge.hidden = true
+                } else {
+                    badge.font = UIFont(name: (badge.font?.fontName)!, size: 13)
+                    badge.text = Config.OrderNum!.toString()
+                    badge.badgeColor = Constants.Color.Primary
+                }
             } else if indexPath.row == 2 {
+                image.image = UIImage(named: "wallet")
+                label.text = "我的钱包"
+                
+                badge.text = "¥ " + Config.Money!
+                badge.textColor = Constants.Color.Orange
+                badge.badgeColor = UIColor.whiteColor()
+                badge.font = UIFont(name: (badge.font?.fontName)!, size: 15)
+            } else if indexPath.row == 3 {
                 label.text = "消息中心"
                 image.image = UIImage(named: "messageCenter")
                 
-                if Config.Messages.count != 0 {
-                    badge.badgeColor = Constants.Color.Green
-                    badge.text = Config.Messages.count.toString()
-                } else {
+                if Config.MessagesNum! == 0 {
                     badge.hidden = true
+                } else {
+                    badge.font = UIFont(name: (badge.font?.fontName)!, size: 13)
+                    badge.text = Config.MessagesNum!.toString()
+                    badge.badgeColor = Constants.Color.Primary
                 }
-            } else if indexPath.row == 3 {
+            } else if indexPath.row == 4 {
                 label.text = "壹心商城"
                 image.image = UIImage(named: "mall")
                 badge.alpha = 0
@@ -96,6 +110,11 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 3 {
+            Config.MessagesNum = 0
+            tableView.reloadData()
+        }
+        
         delegate?.didSelected(indexPath.row)
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }
@@ -105,7 +124,7 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -118,3 +137,5 @@ protocol CustomerDrawerDelegate{
     func didSelected(index: Int)
     func didLogout()
 }
+
+

@@ -22,6 +22,7 @@ class WalletModel: WalletProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.walletDelegate?.onWithDrawResult(false, info: "提现失败")
                     return
                 }
@@ -52,6 +53,7 @@ class WalletModel: WalletProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.walletDelegate?.onGetD2DAccountResult(false, info: "获取消息列表失败", accountList: [])
                     return
                 }
@@ -64,7 +66,7 @@ class WalletModel: WalletProtocol {
                 if ret != nil && ret.count != 0 {
                     
                     for index in 0 ... ret.count - 1 {
-                        let account = D2DAccount(id: ret[index]["id"].intValue, week: UtilBox.stringToWeek(ret[index]["dte"].stringValue), date: ret[index]["dte"].stringValue, fee: ret[index]["num"].stringValue + ".00", type: ret[index]["cmt"].stringValue, status: ret[index]["ste"].intValue)
+                        let account = D2DAccount(id: ret[index]["id"].intValue, week: UtilBox.stringToWeek(ret[index]["dte"].stringValue), date: ret[index]["dte"].stringValue, fee: ret[index]["num"].stringValue, type: ret[index]["cmt"].stringValue, status: ret[index]["ste"].intValue)
                         
                         accountList.append(account)
                     }

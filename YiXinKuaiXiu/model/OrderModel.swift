@@ -24,6 +24,7 @@ class OrderModel: OrderProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.orderDelegate?.onPublishOrderResult(false, info: "订单发布失败")
                     return
                 }
@@ -50,7 +51,7 @@ class OrderModel: OrderProtocol {
         }
     }
     
-    func pullOrderList(requestTime: String, pullType: PullOrderListType) {
+    func pullOrderList(requestIndex: Int, pullType: PullOrderListType) {
         let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "ste": pullType.rawValue.toString(), "dts": "", "dte": "", "stt": "", "cnt": ""]
         
         AlamofireUtil.doRequest(Config.Role == Constants.Role.Customer ? Urls.PullCustomerOrderList : Urls.PullHandymanOrderList, parameters: paramters) { (result, response) in
@@ -59,7 +60,8 @@ class OrderModel: OrderProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
-                    self.orderDelegate?.onPullOrderListResult(false, info: "获取订单列表失败", orderList: [])
+                    UtilBox.reportBug(response)
+                    self.orderDelegate?.onPullOrderListResult(false, info: "获取订单列表失败,请重试", orderList: [])
                     return
                 }
                 
@@ -164,9 +166,9 @@ class OrderModel: OrderProtocol {
                         
                         orderList.append(order)
                     }
-                    self.orderDelegate?.onPullOrderListResult(true, info: "", orderList: orderList)
+                    self.orderDelegate?.onPullOrderListResult(true, info: requestIndex.toString(), orderList: orderList)
                 } else {
-                    self.orderDelegate?.onPullOrderListResult(true, info: "", orderList: [])
+                    self.orderDelegate?.onPullOrderListResult(true, info: requestIndex.toString(), orderList: [])
                 }
             } else {
                 self.orderDelegate?.onPullOrderListResult(false, info: "获取订单列表失败", orderList: [])
@@ -175,15 +177,15 @@ class OrderModel: OrderProtocol {
     }
     
     func pullGrabOrderList(requestTime: String, fromDistance: Int?, toDistance: Int?) {
-//        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dis": (fromDistance == nil ? "" : fromDistance!.toString()), "dit": (toDistance == nil ? "" : toDistance!.toString()), "dts": "", "dte": "", "stt": "", "cnt": ""]
-        
         let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dis": "", "dit": "", "dts": "", "dte": "", "stt": "", "cnt": ""]
         
         AlamofireUtil.doRequest(Urls.PullGrabOrderList, parameters: paramters) { (result, response) in
             if result {
+                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.orderDelegate?.onPullGrabOrderListResult(false, info: "获取订单列表失败", orderList: [])
                     return
                 }
@@ -273,6 +275,7 @@ class OrderModel: OrderProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.orderDelegate?.onGrabOrderResult(false, info: "抢单失败")
                     return
                 }
@@ -302,6 +305,7 @@ class OrderModel: OrderProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.orderDelegate?.onCancelOrderResult(false, info: "取消失败")
                     return
                 }
@@ -332,7 +336,16 @@ class OrderModel: OrderProtocol {
         
         AlamofireUtil.doRequest(Urls.CancelOrderConfirm, parameters: parameters) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    UtilBox.reportBug(response)
+                    self.orderDelegate?.onCancelOrderResult(false, info: "失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 

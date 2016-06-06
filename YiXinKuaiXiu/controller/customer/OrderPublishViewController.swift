@@ -20,6 +20,7 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
     @IBOutlet var feeLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var maintenanceTypeLabel: UILabel!
+    @IBOutlet var cameraNoticeLabel: UILabel!
     
     var selectedImage: [DKAsset] = []
     var mTypeID: String?
@@ -43,6 +44,8 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
     }
     
     func initView() {
+        cameraNoticeLabel.hidden = true
+        
         descTextView.placeholder = "在这儿输入问题详情"
         descTextView.setPlaceholderFont(UIFont(name: (descTextView.font?.fontName)!, size: 16))
     }
@@ -82,6 +85,8 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
         let pickerController = DKImagePickerController()
         pickerController.sourceType = .Camera
         pickerController.didSelectAssets = { (assets: [DKAsset]) in
+            self.cameraNoticeLabel.hidden = false
+            
             self.selectedImage = assets
             
             if self.selectedImage.count == 0 {

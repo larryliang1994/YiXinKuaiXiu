@@ -17,8 +17,10 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     
     var alert: OYSimpleAlertController?
     
-    let requestNum = 3
+    let requestNum = 5
     var initRequestNum = 0
+    
+    var sleepTime: UInt32 = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +43,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         Bugly.startWithAppId(Constants.Key.BuglyAppID)
         
         // 初始化数据统计服务
-        MobClick.startWithAppkey(Constants.Key.UMAppKey, reportPolicy: BATCH, channelId: "developer")
+        initUMAnalytics()
         
         // 设置起始页面
         setInitialViewController()
@@ -55,12 +57,20 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         }
         
         if Config.Aid != nil && Config.Aid != "" && Config.VerifyCode != nil && Config.VerifyCode != "" {
+            sleepTime = 2
+            
             UserInfoModel(userInfoDelegate: self).doGetUserInfo()
             
             let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
             getInitialInfoModel.getMaintenanceType()
             getInitialInfoModel.getAds()
+            getInitialInfoModel.getMessageNum()
+            getInitialInfoModel.getOrderNum()
         } else {
+            sleepTime = 3
+            
+            let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
+            getInitialInfoModel.getAds()
             showMainScreen()
         }
     }
@@ -68,7 +78,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     func showMainScreen() {
         let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
         dispatch_async(dispatch_get_global_queue(qos, 0)) { () -> Void in
-            sleep(2)
+            sleep(self.sleepTime)
             dispatch_async(dispatch_get_main_queue(), {
                 self.clearAllNotice()
                 UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
@@ -92,6 +102,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         } else {
             // 强制要求登录
             if info == "1" {
+                alert?.dismissViewControllerAnimated(true, completion: nil)
                 let alertController = UIAlertController(title: nil, message: "登录信息已过期，请重新登录", preferredStyle: .Alert)
                 let okAction = UIAlertAction(title: "好的", style: .Default, handler: { (UIAlertAction) in
                     UtilBox.clearUserDefaults()
@@ -114,6 +125,34 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     }
     
     func onGetMaintenanceTypeResult(result: Bool, info: String) {
+        if result {
+            initRequestNum += 1
+            
+            if initRequestNum == requestNum {
+                showMainScreen()
+            }
+        } else {
+            if alert == nil {
+                alert(info)
+            }
+        }
+    }
+    
+    func onGetOrderNum(result: Bool, info: String) {
+        if result {
+            initRequestNum += 1
+            
+            if initRequestNum == requestNum {
+                showMainScreen()
+            }
+        } else {
+            if alert == nil {
+                alert(info)
+            }
+        }
+    }
+    
+    func onGetMessageNum(result: Bool, info: String) {
         if result {
             initRequestNum += 1
             
@@ -180,6 +219,16 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         }
         
         self.window?.rootViewController = initialViewController
+    }
+    
+    func initUMAnalytics() {
+        MobClick.setLogEnabled(true)
+        let config = UMAnalyticsConfig.init()
+        config.appKey=Constants.Key.UMAppKey
+        config.bCrashReportEnabled = true
+        config.ePolicy = BATCH
+        config.channelId = "developer"
+        MobClick.startWithConfigure(config)
     }
     
     func initBMK(){

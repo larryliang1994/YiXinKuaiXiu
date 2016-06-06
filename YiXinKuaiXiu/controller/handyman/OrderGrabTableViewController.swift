@@ -41,6 +41,13 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
         refreshControl?.endRefreshing()
         if result {
             orders = orderList
+            
+            if orders.count == 0 {
+                self.tableView.backgroundView = UtilBox.getEmptyView("暂无新订单")
+            } else {
+                self.tableView.backgroundView = nil
+            }
+            
             tableView.reloadData()
         } else {
             UtilBox.alert(self, message: info)

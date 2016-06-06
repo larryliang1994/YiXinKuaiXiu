@@ -28,7 +28,12 @@ class HandymanInfoViewController: UITableViewController{
                     cell.detailTextLabel?.text = name
                 } else if indexPath.row == 1 {
                     cell.textLabel?.text = "年龄"
-                    cell.detailTextLabel?.text = age?.toString()
+                    if age == nil || age == 0 {
+                        cell.detailTextLabel?.text = "暂无"
+                    } else {
+                        cell.detailTextLabel?.text = age?.toString()
+                    }
+                    
                 } else {
                     cell.textLabel?.text = "手机号"
                     cell.detailTextLabel?.text = telephone

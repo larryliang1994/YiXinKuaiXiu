@@ -22,6 +22,7 @@ class GetPartsInfoModel: GetPartsInfoProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.getPartsInfoDelegate?.onGetCategoryInfoResult(false, info: "获取商品类别失败")
                     return
                 }
@@ -52,6 +53,7 @@ class GetPartsInfoModel: GetPartsInfoProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.getPartsInfoDelegate?.onGetPartsInfoResult(false, info: "获取商品信息失败")
                     return
                 }

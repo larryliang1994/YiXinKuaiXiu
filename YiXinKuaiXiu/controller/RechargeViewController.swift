@@ -76,7 +76,7 @@ class RechargeViewController: UITableViewController, UITextFieldDelegate, PopBot
         if result {
             self.noticeSuccess("充值成功", autoClear: true, autoClearTime: 2)
             Config.Money = String(Float(Config.Money!)! + Float(feeTextField.text!)!)
-            //delegate?.didChange()
+            delegate?.didRecharge()
             self.navigationController?.popViewControllerAnimated(true)
         } else {
             UtilBox.alert(self, message: info)

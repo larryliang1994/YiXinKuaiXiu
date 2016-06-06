@@ -20,10 +20,10 @@ class UserInfoModel: UserInfoProtocol {
         AlamofireUtil.doRequest(Urls.GetUserInfo, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
                 print(response)
-                
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.userInfoDelegate.onGetUserInfoResult!(false, info: "获取用户信息失败")
                     return
                 }
@@ -53,6 +53,7 @@ class UserInfoModel: UserInfoProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.userInfoDelegate.onModifyUserInfoResult!(false, info: "设置失败")
                     return
                 }
@@ -84,6 +85,7 @@ class UserInfoModel: UserInfoProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.userInfoDelegate.onUpdateLocationInfoResult!(false, info: "设置失败")
                     return
                 }
@@ -111,6 +113,7 @@ class UserInfoModel: UserInfoProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.userInfoDelegate.onGetHandymanInfoResult!(false, info: "获取师傅信息失败", name: "", telephoneNum: "", sex: 0, age: 0, star: 0, mNum: 0, portraitUrl: "",starList: [], descList: [], dateList: [])
                     return
                 }
@@ -159,7 +162,15 @@ class UserInfoModel: UserInfoProtocol {
         
         AlamofireUtil.doRequest(Urls.MultiModify, parameters: parameters) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    UtilBox.reportBug(response)
+                    self.userInfoDelegate.onBindBankCardResult!(false, info: "绑定失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 
@@ -178,12 +189,30 @@ class UserInfoModel: UserInfoProtocol {
         }
     }
     
+    func doReadMessages() {
+        for var message in Config.Messages {
+            let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": message.date!]
+            
+            AlamofireUtil.doRequest(Urls.SetMessageRead, parameters: parameters) { (result, response) in
+                print(response)
+            }
+        }
+    }
+    
     func doChangePassword(old: String, new: String) {
         let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "old": old, "new": new]
         
         AlamofireUtil.doRequest(Urls.ChangePassword, parameters: parameters) { (result, response) in
             if result {
-                let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    UtilBox.reportBug(response)
+                    self.userInfoDelegate.onChangePasswordResult!(false, info: "修改失败")
+                    return
+                }
+                
+                let json = JSON(responseDic!)
                 
                 let ret = json["ret"].intValue
                 
@@ -219,6 +248,7 @@ class UserInfoModel: UserInfoProtocol {
         Config.MaintenanceNum = json["cnt"].stringValue == "" ? nil : json["cnt"].stringValue
         Config.Audited = json["lck"].intValue
         Config.MTypeIDString = json["lxs"].stringValue
+        Config.ContactName = json["lxr"].stringValue
         Config.ContactTelephone = json["phe"].stringValue
         Config.LocationInfo = CLLocation(latitude:CLLocationDegrees(json["lat"].doubleValue), longitude: CLLocationDegrees(json["lot"].doubleValue))
         

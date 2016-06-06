@@ -72,16 +72,21 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
             if indexPath.row == 1 {
                 image.image = UIImage(named: "orderList")
                 title.text = "订单信息"
-                badge.hidden = true
-                badge.text = "3"
-                badge.badgeColor = Constants.Color.Orange
+                
+                if Config.OrderNum! == 0 {
+                    badge.hidden = true
+                } else {
+                    badge.text = Config.OrderNum!.toString()
+                    badge.badgeColor = Constants.Color.Primary
+                }
             } else {
                 image.image = UIImage(named: "messageCenter")
                 title.text = "消息中心"
-                if Config.Messages.count == 0 {
+                
+                if Config.MessagesNum! == 0 {
                     badge.hidden = true
                 } else {
-                    badge.text = Config.Messages.count.toString()
+                    badge.text = Config.MessagesNum!.toString()
                     badge.badgeColor = Constants.Color.Primary
                 }
             }
@@ -97,6 +102,7 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
             if indexPath.row == 2 {
                 image.image = UIImage(named: "wallet")
                 title.text = "我的钱包"
+                
                 label.text = "¥ " + Config.Money!
                 label.textColor = Constants.Color.Orange
             } else if indexPath.row == 3 {
@@ -115,6 +121,11 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 4 {
+            Config.MessagesNum = 0
+            tableView.reloadData()
+        }
+        
         delegate?.didSelected(indexPath.row)
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }

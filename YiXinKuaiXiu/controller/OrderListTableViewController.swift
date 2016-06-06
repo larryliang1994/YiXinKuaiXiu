@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XLRefreshSwift
 
 class OrderListTableViewController: UITableViewController, OrderDelegate {
     var orders: [Order] = []
@@ -25,16 +26,24 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
     }
     
     func initView() {
-        
+//        tableView.xlfooter = XLRefreshFooter(action: {
+//            if self.tableType == 0 {
+//                OrderModel(orderDelegate: self).pullOrderList(self.orders.count - 1, pullType: .OnGoing)
+//            } else {
+//                OrderModel(orderDelegate: self).pullOrderList(self.orders.count - 1, pullType: .Done)
+//            }
+//            
+//            print("more")
+//        })
     }
     
     func refresh() {
         refreshControl?.beginRefreshing()
         
         if tableType == 0 {
-            OrderModel(orderDelegate: self).pullOrderList("", pullType: .OnGoing)
+            OrderModel(orderDelegate: self).pullOrderList(0, pullType: .OnGoing)
         } else {
-            OrderModel(orderDelegate: self).pullOrderList("", pullType: .Done)
+            OrderModel(orderDelegate: self).pullOrderList(0, pullType: .Done)
         }
     }
 
@@ -43,8 +52,22 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
     }
     
     func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {
+        self.tableView.endFooterRefresh()
+        
         if result {
-            orders = orderList
+            if info == "0" {
+                orders = orderList
+            } else {
+                orders += orderList
+            }
+            
+            print(orderList.count)
+            
+            if orders.count == 0 {
+                self.tableView.backgroundView = UtilBox.getEmptyView("还没有新订单")
+            } else {
+                self.tableView.backgroundView = nil
+            }
             
             tableView.reloadData()
         } else {

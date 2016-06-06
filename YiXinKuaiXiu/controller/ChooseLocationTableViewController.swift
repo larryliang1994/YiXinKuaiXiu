@@ -46,8 +46,8 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
     }
     
     func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
-        let localLatitude=userLocation.location.coordinate.latitude
-        let localLongitude=userLocation.location.coordinate.longitude
+        let localLatitude = userLocation.location.coordinate.latitude
+        let localLongitude = userLocation.location.coordinate.longitude
         
         locationService.stopUserLocationService()
         
@@ -57,7 +57,14 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
                 for placeMark in placeData {
                     let cityName = placeMark.locality
                     print(cityName)
+                    print(placeMark.name)
                     self.chooseCityButton.setTitle(cityName?.stringByReplacingOccurrencesOfString("市", withString: ""), forState: .Normal)
+                    
+                    let option = BMKCitySearchOption()
+                    option.city = self.chooseCityButton.currentTitle
+                    option.pageCapacity = 10
+                    option.keyword = placeMark.name
+                    self.poiSearch.poiSearchInCity(option)
                 }
             }
         }

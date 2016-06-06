@@ -28,6 +28,7 @@ class PayModel: PayProtocol, PayDelegate {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.payDelegate?.onGoPayResult!(false, info: "支付失败")
                     return
                 }
@@ -57,31 +58,65 @@ class PayModel: PayProtocol, PayDelegate {
         }
     }
     
-    func goRecharge(fee: String) {
-        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "act": "tst", "out_trade_no": Config.Aid! + "_" + NSDate().timeIntervalSince1970.description, "trade_no": "123456", "total_fee": fee]
-        
-        var requestUrl = Urls.Recharge
-        
-        for (key, value) in parameters {
-            requestUrl += key + "=" + value + "&"
-        }
-        
-        requestUrl = requestUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())!
-        
-        print(requestUrl)
-        
-        request(.GET, requestUrl)
-            .responseString{ response in
-                if response.result.isSuccess {
-                    print(response.result.value!)
-                    if response.result.value! == "success" {
-                        self.payDelegate?.onGoRechargeResult!(true, info: "")
-                    } else {
-                        self.payDelegate?.onGoRechargeResult!(false, info: "充值失败")
-                    }
-                } else {
-                    self.payDelegate?.onGoRechargeResult!(false, info: "充值失败")
+//    func goRecharge(fee: String) {
+//        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "act": "tst", "out_trade_no": Config.Aid! + "_" + NSDate().timeIntervalSince1970.description, "trade_no": "123456", "total_fee": fee]
+//        
+//        var requestUrl = Urls.Recharge
+//        
+//        for (key, value) in parameters {
+//            requestUrl += key + "=" + value + "&"
+//        }
+//        
+//        requestUrl = requestUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())!
+//        
+//        print(requestUrl)
+//        
+//        request(.GET, requestUrl)
+//            .responseString{ response in
+//                if response.result.isSuccess {
+//                    print(response.result.value!)
+//                    if response.result.value! == "success" {
+//                        self.payDelegate?.onGoRechargeResult!(true, info: "")
+//                    } else {
+//                        UtilBox.reportBug(response.result.value!)
+//                        self.payDelegate?.onGoRechargeResult!(false, info: "充值失败")
+//                    }
+//                } else {
+//                    self.payDelegate?.onGoRechargeResult!(false, info: "充值失败")
+//                }
+//        }
+//    }
+    
+    func getBillNumber(fee: String) {
+        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "cnt": fee]
+        AlamofireUtil.doRequest(Urls.GetBillNumber, parameters: parameters) { (result, response) in
+            if result {
+                print(response)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    UtilBox.reportBug(response)
+                    self.payDelegate?.onGetBillNumberResult!(false, info: "支付失败")
+                    return
                 }
+                
+                let json = JSON(responseDic!)
+                
+                let ret = json["ret"].intValue
+                
+                if ret == 0 {
+                    let ddh = json["ddh"].stringValue
+                    if ddh.containsString("_") {
+                        self.payDelegate?.onGetBillNumberResult!(true, info: ddh.componentsSeparatedByString("_")[1])
+                    } else {
+                        self.payDelegate?.onGetBillNumberResult!(true, info: ddh)
+                    }
+                } else if ret == 1 {
+                    self.payDelegate?.onGetBillNumberResult!(false, info: "认证失败")
+                }
+            } else {
+                self.payDelegate?.onGetBillNumberResult!(false, info: "支付失败")
+            }
         }
     }
     
@@ -92,6 +127,7 @@ class PayModel: PayProtocol, PayDelegate {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.payDelegate?.onGoPayPartsResult!(false, info: "支付失败")
                     return
                 }
@@ -126,6 +162,7 @@ class PayModel: PayProtocol, PayDelegate {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.payDelegate?.onGoPayMFeeResult!(false, info: "支付失败")
                     return
                 }
@@ -164,5 +201,6 @@ class PayModel: PayProtocol, PayDelegate {
     optional func onGoPayResult(result: Bool, info: String)
     optional func onGoPayPartsResult(result: Bool, info: String)
     optional func onGoPayMFeeResult(result: Bool, info: String)
-    optional func onGoRechargeResult(result: Bool, info: String)
+//    optional func onGoRechargeResult(result: Bool, info: String)
+    optional func onGetBillNumberResult(result: Bool, info: String)
 }

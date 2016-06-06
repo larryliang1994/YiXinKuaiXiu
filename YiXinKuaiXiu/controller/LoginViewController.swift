@@ -16,7 +16,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
     @IBOutlet var getVerifyCodeButton: UIButton!
     @IBOutlet var loginButton: UIButton!
     
-    let requestNum = 3
+    var alert: OYSimpleAlertController?
+    
+    let requestNum = 4
     var initRequestNum = 0
     
     override func viewDidLoad() {
@@ -88,25 +90,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
             
             let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
             getInitialInfoModel.getMaintenanceType()
-            getInitialInfoModel.getMessage()
+            getInitialInfoModel.getMessageNum()
+            getInitialInfoModel.getOrderNum()
         } else {
             self.clearAllNotice()
             self.noticeError(info, autoClear: true, autoClearTime: 2)
         }
     }
     
-    func onGetMessageResult(result: Bool, info: String) {
+    func onGetOrderNum(result: Bool, info: String) {
         if result {
             initRequestNum += 1
             
             if initRequestNum == requestNum {
-                self.clearAllNotice()
                 showMainScreen()
             }
-            
         } else {
-            self.clearAllNotice()
-            UtilBox.alert(self, message: info)
+            if alert == nil {
+                alert(info)
+            }
+        }
+    }
+    
+    func onGetMessageNum(result: Bool, info: String) {
+        if result {
+            initRequestNum += 1
+            
+            if initRequestNum == requestNum {
+                showMainScreen()
+            }
+        } else {
+            if alert == nil {
+                alert(info)
+            }
         }
     }
     
@@ -115,13 +131,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
             initRequestNum += 1
             
             if initRequestNum == requestNum {
-                self.clearAllNotice()
                 showMainScreen()
             }
             
         } else {
-            self.clearAllNotice()
-            UtilBox.alert(self, message: info)
+            if alert == nil {
+                alert(info)
+            }
         }
     }
     
@@ -135,9 +151,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
             }
             
         } else {
-            self.clearAllNotice()
-            UtilBox.alert(self, message: info)
+            if alert == nil {
+                alert(info)
+            }
         }
+    }
+    
+    func alert(info: String) {
+        self.clearAllNotice()
+        initRequestNum = 0
+        
+        alert = OYSimpleAlertController()
+        UtilBox.showAlertView(self, alertViewController: alert!, message: info, cancelButtonTitle: "退出", cancelButtonAction: #selector(SplashScreenViewController.close), confirmButtonTitle: "重试", confirmButtonAction: #selector(SplashScreenViewController.getInitialInfo))
     }
     
     func showMainScreen() {
@@ -147,6 +172,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
         } else {
             initialViewController = storyboard!.instantiateViewControllerWithIdentifier("HandymanMainVC") as! KYDrawerController
         }
+        
+        self.clearAllNotice()
         
         UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
             UIApplication.sharedApplication().keyWindow?.rootViewController = initialViewController

@@ -7,5 +7,5 @@
 //
 
 protocol AuditProtocol {
-    func doAudit(mTypeIDString: String, location: String, locationInfo: CLLocation, IDNum: String, picture: String, contactsName: String, contactNum: String)
+    func doAudit(name: String, mTypeIDString: String, location: String, locationInfo: CLLocation, IDNum: String, picture: String, contactsName: String, contactNum: String)
 }

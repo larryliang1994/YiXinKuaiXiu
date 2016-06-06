@@ -9,7 +9,7 @@
 import UIKit
 import KYDrawerController
 
-class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, GetNearbyDelegate {
+class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, GetNearbyDelegate, ModifyUserInfoDelegate {
     
     @IBOutlet var mapView: BMKMapView!
     
@@ -65,6 +65,10 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
         }
     }
     
+    func didModify(indexPath: NSIndexPath, value: String) {
+        (drawerController?.drawerViewController as! HandymanDrawerViewController).tableView.reloadData()
+    }
+    
     func onGetNearbyResult(result: Bool, info: String, personList: [Person]) {
         if result {
             self.personList = personList
@@ -83,7 +87,6 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
         }
     }
     
-    
     func mapView(mapView: BMKMapView!, viewForAnnotation annotation: BMKAnnotation!) -> BMKAnnotationView! {
         let view =  BMKPinAnnotationView(annotation: annotation, reuseIdentifier: "aaa")
         view.animatesDrop = true
@@ -93,8 +96,10 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
     }
     
     @IBAction func doGrab(sender: UIButton) {
-        if Config.Audited == 0 {
+        if Config.Audited == 0 && (Config.Name == nil || Config.Name == "") && (Config.IDNum == nil || Config.IDNum == "") {
             showAuditAlertView()
+        } else if Config.Audited == 0 && Config.Name != nil && Config.Name != "" && Config.IDNum != nil && Config.IDNum != "" {
+            showModifyAuditAlertView()
         } else {
             performSegueWithIdentifier(Constants.SegueID.ShowGrabListSegue, sender: self)
         }
@@ -105,6 +110,11 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
     func showAuditAlertView() {
         notAuditYetAlert = OYSimpleAlertController()
         UtilBox.showAlertView(self, alertViewController: notAuditYetAlert!, message: "尚未认证身份", cancelButtonTitle: "取消", cancelButtonAction: #selector(HandymanHomeViewController.auditCancel), confirmButtonTitle: "去认证", confirmButtonAction: #selector(HandymanHomeViewController.doAudit))
+    }
+    
+    func showModifyAuditAlertView() {
+        notAuditYetAlert = OYSimpleAlertController()
+        UtilBox.showAlertView(self, alertViewController: notAuditYetAlert!, message: "身份认证审核中", cancelButtonTitle: "取消", cancelButtonAction: #selector(HandymanHomeViewController.auditCancel), confirmButtonTitle: "修改", confirmButtonAction: #selector(HandymanHomeViewController.doAudit))
     }
     
     // 点击去认证按钮
@@ -148,6 +158,7 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
             
         case 2:
             let walletVC = UtilBox.getController(Constants.ControllerID.Wallet) as! WalletViewController
+            walletVC.delegate = self
             self.navigationController?.showViewController(walletVC, sender: self)
             
         case 3:
@@ -186,6 +197,4 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
         locationService.delegate = nil
         locationService.stopUserLocationService()
     }
-    
-    
 }

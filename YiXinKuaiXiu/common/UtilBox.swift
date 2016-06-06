@@ -29,6 +29,30 @@ class UtilBox {
         }
     }
     
+    // 验证是否为身份证号
+    static func isIDNum(input: String) -> Bool {
+        let regex:NSRegularExpression
+        do {
+//            regex = try NSRegularExpression(pattern: "d{15}|d{18}", options: NSRegularExpressionOptions.CaseInsensitive)
+//            
+//            let matches = regex.matchesInString(input, options: NSMatchingOptions.ReportCompletion , range: NSMakeRange(0, input.characters.count))
+//            
+//            if matches.count > 0 {
+//                return true
+//            } else {
+//                return false
+//            }
+            
+            if input.characters.count == 15 || input.characters.count == 18 {
+                return true
+            } else {
+                return false
+            }
+        } catch {
+            return false
+        }
+    }
+    
     // 判断是否为数字
     static func isNum(input: String, digital: Bool) -> Bool {
         let regex:NSRegularExpression
@@ -51,6 +75,19 @@ class UtilBox {
                 return false
             }
         } catch {
+            return false
+        }
+    }
+    
+    // 判断是否为银行卡号
+    static func isBankCardNum(input: String) -> Bool {
+        if !isNum(input, digital: false) {
+            return false
+        }
+        
+        if input.characters.count >= 15 && input.characters.count <= 22 {
+            return true
+        } else {
             return false
         }
     }
@@ -283,6 +320,20 @@ class UtilBox {
     static func getController(identifier: String) -> UIViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
         return storyboard.instantiateViewControllerWithIdentifier(identifier)
+    }
+    
+    // 获取空白页背景
+    static func getEmptyView(text: String) -> UIView {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 200))
+        label.textAlignment = .Center
+        label.textColor = UIColor.lightGrayColor()
+        label.text = text
+        
+        return label
+    }
+    
+    static func reportBug(message: String) {
+        Bugly.reportError(NSError(domain: "domain", code: 101, userInfo: ["msg": message]))
     }
     
 }

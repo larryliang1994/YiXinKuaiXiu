@@ -22,6 +22,7 @@ class RatingModel: RatingProtocol {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
+                    UtilBox.reportBug(response)
                     self.ratingDelegate?.onRatingResult(false, info: "评价失败")
                     return
                 }

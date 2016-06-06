@@ -80,7 +80,7 @@ class WithDrawViewController: UITableViewController, UITextFieldDelegate, Wallet
             self.noticeSuccess("申请成功", autoClear: true, autoClearTime: 2)
             
             Config.Money = String(Float(Config.Money!)! - Float(moneyTextField.text!)!)
-            delegate?.didChange()
+            delegate?.didRecharge()
             
             alert?.dismissViewControllerAnimated(true, completion: nil)
             alert = nil
