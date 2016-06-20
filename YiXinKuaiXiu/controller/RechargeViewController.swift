@@ -67,6 +67,7 @@ class RechargeViewController: UITableViewController, UITextFieldDelegate, PopBot
         payPopoverView.delegate = self
         payPopoverView.viewController = self
         payPopoverView.feeLabel.text = "￥ " + feeTextField.text!
+        payPopoverView.couponLabel.text = "不可用"
         
         return payPopoverView
     }
@@ -92,7 +93,7 @@ class RechargeViewController: UITableViewController, UITextFieldDelegate, PopBot
     }
     
     func viewHeight() -> CGFloat {
-        return 295
+        return 346
     }
     
     func isEffectView() -> Bool {

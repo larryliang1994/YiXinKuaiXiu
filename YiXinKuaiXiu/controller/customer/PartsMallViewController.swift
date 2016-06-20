@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class PartsMallViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopBottomViewDataSource,PopBottomViewDelegate, PartsMallDelegate, GetPartsInfoDelegate, PopoverPayDelegate {
+class PartsMallViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopBottomViewDataSource,PopBottomViewDelegate, PartsMallDelegate, GetPartsInfoDelegate, PopoverPayDelegate, PartsMallSearchDelegate {
 
     @IBOutlet var containerView: UIView!
     @IBOutlet var bottomSeperator: UIView!
@@ -20,7 +20,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var showShoppingCartButton: UIButton!
     @IBOutlet var totalPriceLabel: UILabel!
     @IBOutlet var bottomSeperatorHeight: NSLayoutConstraint!
-
+    
     var totalNum = 0
     var totalPrice: Float = 0.0
     var categoryIndex = 0
@@ -32,6 +32,9 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     var delegate: OrderListChangeDelegate?
     
     var lastPick = NSIndexPath(forRow: 0, inSection: 0)
+    
+    var needScroll = false
+    var scrollID: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +48,38 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         self.automaticallyAdjustsScrollViewInsets = false
         
         GetPartsInfoModel(getPartsInfoDelegate: self).doGetPartsInfo()
+        
+        rightTableView.estimatedRowHeight = rightTableView.rowHeight
+        rightTableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if needScroll {
+            for var index in 0...Config.Parts.count-1 {
+                if Config.Parts[index].id == scrollID {
+                    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                    rightTableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .Top)
+                    
+                    // 这里会报错，暂时不知道为什么，所以先注释掉
+//                    if Config.Parts[indexPath.row].num != 99 {
+//                        Config.Parts[indexPath.row].num! += 1
+//                        
+//                        rightTableView.reloadData()
+//
+//                        totalNum += 1
+//                        
+//                        totalPrice += Float(Config.Parts[indexPath.row].price!)
+//                        
+//                        updateBottonView()
+//                    }
+                    
+                    needScroll = false
+                    scrollID = nil
+                }
+            }
+        }
     }
     
     func initView() {
@@ -149,6 +184,17 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             totalPriceLabel.textColor = Constants.Color.Primary
         }
     }
+    
+    @IBAction func showSearchBar(sender: UIBarButtonItem) {
+        let searchVC = UtilBox.getController(Constants.ControllerID.PartsMallSearch) as! PartsMallSearchViewController
+        searchVC.delegate = self
+        self.navigationController?.showViewController(searchVC, sender: self)
+    }
+    
+    func didSelect(id: Int) {
+        needScroll = true
+        scrollID = id
+    }
 
     func hide(container: UIView){
         for v in container.subviews {
@@ -249,8 +295,6 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         
         detailString = detailString.substringToIndex(detailString.endIndex.predecessor()).substringFromIndex(detailString.startIndex.advancedBy(1))
         
-        print("{" + detailString + "}")
-        
         return "{" + detailString + "}"
     }
     
@@ -275,7 +319,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func viewHeight() -> CGFloat {
-        return popoverName == "ShoppingCartPayPopoverView" ? 357 : 226
+        return popoverName == "ShoppingCartPayPopoverView" ? 408 : 226
     }
     
     func isEffectView() -> Bool {
@@ -294,7 +338,13 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         if tableView.tag == Constants.Tag.PartsMallLeftTableView {
             return indexPath.row == Config.Categorys.count ? leftTableView.bounds.height - CGFloat(Config.Categorys.count * 40) + 1: 40
         } else {
-            return 65
+            if Config.Parts[indexPath.row].desc == "" || Config.Parts[indexPath.row].desc == "无" {
+                return 65
+            } else {
+                return UITableViewAutomaticDimension
+            }
+            
+//            return UITableViewAutomaticDimension
         }
     }
 
@@ -341,6 +391,15 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             let priceLabel = cell?.viewWithTag(Constants.Tag.PartsMallRightPrice) as! UILabel
             priceLabel.text = "￥" + String(Config.Parts[indexPath.row].price!)
             priceLabel.textColor = Constants.Color.Orange
+            
+            let descLabel = cell?.viewWithTag(1) as! UILabel
+            descLabel.text = Config.Parts[indexPath.row].desc
+            
+            if Config.Parts[indexPath.row].desc == "" || Config.Parts[indexPath.row].desc == "无" {
+                descLabel.font = UIFont(name: (descLabel.font?.familyName)!, size: 0)
+            } else {
+                descLabel.font = UIFont(name: (descLabel.font?.familyName)!, size: 11)
+            }
             
             let addButton = cell?.viewWithTag(Constants.Tag.PartsMallRightAdd) as! UIButton
             addButton.layer.cornerRadius = 22 / 2
@@ -410,11 +469,11 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if tableView.tag == Constants.Tag.PartsMallLeftTableView {
             
-            rightTableView.delegate = nil
-            
-            updateLeftTableView(indexPath)
-            
             if categoryIndex != indexPath.row {
+                rightTableView.delegate = nil
+                
+                updateLeftTableView(indexPath)
+                
                 categoryIndex = indexPath.row
             
                 let index = NSIndexPath(forRow: Config.Categorys[categoryIndex].partIndex!, inSection: 0)

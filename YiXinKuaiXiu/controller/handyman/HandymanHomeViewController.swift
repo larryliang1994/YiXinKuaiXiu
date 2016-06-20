@@ -175,6 +175,13 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
         case 5:
             performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToProjectBidingSegue, sender: self)
             
+        case 6:
+            let mallVC = UtilBox.getController(Constants.ControllerID.Mall) as! MallViewController
+            self.navigationController?.showViewController(mallVC, sender: self)
+            
+        case 7:
+            performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToBlacklistSegue, sender: self)
+            
         default:    break
         }
     }

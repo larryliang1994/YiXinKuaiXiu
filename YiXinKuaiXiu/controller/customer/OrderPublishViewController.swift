@@ -72,7 +72,7 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
             title: "从相册中选择",
             style: .Default)
         { (action: UIAlertAction) -> Void in
-            self.fromAlbum()
+            self.fromAlbum(self.selectedImage)
             }
         )
         
@@ -85,28 +85,14 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
         let pickerController = DKImagePickerController()
         pickerController.sourceType = .Camera
         pickerController.didSelectAssets = { (assets: [DKAsset]) in
-            self.cameraNoticeLabel.hidden = false
-            
-            self.selectedImage = assets
-            
-            if self.selectedImage.count == 0 {
-                self.picture1ImageView.image = UIImage(named: "add_picture")
-                self.picture2ImageView.image = nil
-            } else if self.selectedImage.count == 1 {
-                self.picture1ImageView.image = UtilBox.getAssetThumbnail(self.selectedImage[0].originalAsset!)
-                self.picture2ImageView.image = UIImage(named: "add_picture")
-                
-            } else {
-                self.picture1ImageView.image = UtilBox.getAssetThumbnail(self.selectedImage[0].originalAsset!)
-                self.picture2ImageView.image = UtilBox.getAssetThumbnail(self.selectedImage[1].originalAsset!)
-            }
+            self.fromAlbum(assets)
         }
         self.presentViewController(pickerController, animated: true){}
     }
     
-    func fromAlbum() {
+    func fromAlbum(selectedImage: [DKAsset]) {
         let pickerController = DKImagePickerController()
-        pickerController.defaultSelectedAssets = self.selectedImage
+        pickerController.defaultSelectedAssets = selectedImage
         pickerController.showsCancelButton = true
         pickerController.maxSelectableCount = 2
         
@@ -171,6 +157,7 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
             self.pleaseWait()
             generateOrder()
         
+            publishButtonItem.enabled = false
             //OrderModel(orderDelegate: self).publishOrder(order!)
         
             if order?.image1 != nil {
@@ -201,6 +188,7 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
                 OrderModel(orderDelegate: self).publishOrder(order!, imgString: imgString)
             }
         } else {
+            publishButtonItem.enabled = true
             self.clearAllNotice()
             UtilBox.alert(self, message: info)
         }
@@ -219,6 +207,7 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
         } else {
+            publishButtonItem.enabled = true
             UtilBox.alert(self, message: info)
         }
     }

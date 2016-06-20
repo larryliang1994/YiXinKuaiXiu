@@ -9,8 +9,10 @@
 import UIKit
 
 
-class ChooseFeeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, GetInitialInfoDelegate {
+class ChooseFeeViewController: UIViewController, UICollectionViewDelegateFlowLayout, GetInitialInfoDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var feeTextField: UITextField!
     var delegate: OrderPublishDelegate?
 
     override func viewDidLoad() {
@@ -18,7 +20,7 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
 
         collectionView?.delegate = self
         
-        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         
         if Config.Fees == [] {
             self.pleaseWait()
@@ -34,17 +36,27 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
             UtilBox.alert(self, message: info)
         }
     }
+    
+    @IBAction func done(sender: UIBarButtonItem) {
+        if feeTextField.text == nil || feeTextField.text == "" {
+            UtilBox.alert(self, message: "请输入检查费用")
+            return
+        }
+        
+        delegate?.didSelectedFee(feeTextField.text!)
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Config.Fees.count
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = (UIScreen.mainScreen().bounds.width - 10) / 3
+        let width = (UIScreen.mainScreen().bounds.width - 20) / 3
         return CGSizeMake(width, 60)
     }
     
@@ -56,12 +68,12 @@ class ChooseFeeViewController: UICollectionViewController, UICollectionViewDeleg
         return 0
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         delegate?.didSelectedFee(Config.Fees[indexPath.row].toString())
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("chooseFeeCell", forIndexPath: indexPath)
         
         let button = cell.viewWithTag(Constants.Tag.CustomerChooseFeeCellButton) as! HollowButton

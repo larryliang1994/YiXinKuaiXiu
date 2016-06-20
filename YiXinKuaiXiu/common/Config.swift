@@ -42,9 +42,14 @@ class Config {
     
     static var Categorys: [Category] = []
     static var Parts: [Part] = []
+    static var PartNames: [String] = []
     
     static var Messages: [Message] = []
     
     static var MessagesNum: Int?
     static var OrderNum: Int?
+    
+    static var Blacklist: [BlackPerson] = []
+    static var CouponList: [Coupon] = []
+    static var ReceiptList: [Receipt] = []
 }

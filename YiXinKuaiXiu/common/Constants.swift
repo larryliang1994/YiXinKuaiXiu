@@ -27,6 +27,12 @@ class Constants {
         static let PartsMall = "partsMallController"
         
         static let GoPayMFee = "goPayMFeeController"
+        
+        static let Mall = "mallController"
+        
+        static let Coupon = "couponController"
+        
+        static let PartsMallSearch = "partsMallSearchController"
     }
     
     struct UserDefaultKey {
@@ -140,6 +146,7 @@ class Constants {
         static let HandymanDrawerToMessageCenterSegue = "handymanDrawerToMessageCenterSegue"
         static let HandymanDrawerToProjectBidingSegue = "handymanDrawerToProjectBidingSegue"
         static let HandymanDrawerToAuditedSegue = "handymanDrawerToAuditedSegue"
+        static let HandymanDrawerToBlacklistSegue = "handymanDrawerToBlacklistSegue"
         
         static let ShowHandymanOrderDetailSegue = "showHandymanOrderDetailSegue"
         static let ShowHandymanD2DAccountSegue = "showHandymanD2DAccountSegue"

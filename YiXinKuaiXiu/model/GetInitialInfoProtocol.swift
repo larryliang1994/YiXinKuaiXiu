@@ -12,4 +12,6 @@ protocol GetInitialInfoProtocol {
     func getMessage()
     func getMessageNum()
     func getOrderNum()
+    func getBlacklist()
+    func getCouponList()
 }

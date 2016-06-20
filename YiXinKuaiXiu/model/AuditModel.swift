@@ -37,7 +37,15 @@ class AuditModel: AuditProtocol {
                     let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "lot": locationInfo.coordinate.longitude.description, "lat": locationInfo.coordinate.latitude.description]
                     AlamofireUtil.doRequest(Urls.UpdateLocationInfo, parameters: paramters, callback: { (result, response) in
                         if result {
-                            let json = JSON(UtilBox.convertStringToDictionary(response)!)
+                            let responseDic = UtilBox.convertStringToDictionary(response)
+                            
+                            if responseDic == nil {
+                                UtilBox.reportBug(response)
+                                self.auditDelegate?.onAuditResult(false, info: "申请失败")
+                                return
+                            }
+                            
+                            let json = JSON(responseDic!)
                             
                             let ret = json["ret"].intValue
 

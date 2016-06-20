@@ -15,6 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
     @IBOutlet var telephoneNumTextField: UITextField!
     @IBOutlet var getVerifyCodeButton: UIButton!
     @IBOutlet var loginButton: UIButton!
+    @IBOutlet var refereeTelephoneTextField: UITextField!
     
     var alert: OYSimpleAlertController?
     
@@ -43,11 +44,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
         if !UtilBox.isTelephoneNum(telephoneNumTextField.text!) {
             UtilBox.alert(self, message: "请输入11位手机号")
             return
+        } else if refereeTelephoneTextField.text != nil
+            && refereeTelephoneTextField.text != ""
+            && !UtilBox.isTelephoneNum(refereeTelephoneTextField.text!) {
+            UtilBox.alert(self, message: "推荐人手机号输入不正确")
+            return
         }
         
         self.pleaseWait()
-        
-        LoginModel(loginDelegate: self).doGetVerifyCode(Config.Role!, telephoneNum: telephoneNumTextField.text!)
         
         let timer = NSTimer.scheduledTimerWithTimeInterval(
             1.0, target: self, selector: #selector(LoginViewController.counting(_:)),
@@ -56,6 +60,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
         
         timer.tolerance = 0.1
         timer.fire()
+        
+        if refereeTelephoneTextField.text != nil && refereeTelephoneTextField.text != "" {
+            LoginModel(loginDelegate: self).doGetVerifyCode(Config.Role!, telephoneNum: telephoneNumTextField.text!, refereeTelephone: refereeTelephoneTextField.text!)
+        } else {
+            LoginModel(loginDelegate: self).doGetVerifyCode(Config.Role!, telephoneNum: telephoneNumTextField.text!, refereeTelephone: nil)
+        }
     }
     
     func onGetVerifyCodeResult(result: Bool, info: String) {
@@ -74,8 +84,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
         if !UtilBox.isTelephoneNum(telephoneNumTextField.text!) {
             UtilBox.alert(self, message: "请输入11位手机号")
             return
-        } else if verifyCodeTextField.text?.characters.count != 5 {
-            UtilBox.alert(self, message: "请输入5位验证码")
+        } else if verifyCodeTextField.text == nil || verifyCodeTextField.text == "" {
+            UtilBox.alert(self, message: "请输入验证码")
             return
         }
         
@@ -232,9 +242,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
 //                loginButton.backgroundColor = UIColor.lightGrayColor()
 //            }
         } else if textField == verifyCodeTextField {
-            if range.location >= 5 {
-                return false
-            }
             
             if textField.text?.characters.count == 0 && range.location == 0 {
                 loginButton.enabled = true
@@ -271,11 +278,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginDelegate,
             getVerifyCodeButton.backgroundColor = UIColor.lightGrayColor()
             getVerifyCodeButton.enabled = false
             getVerifyCodeButton.setTitle("\(time)秒", forState: .Normal)
+            refereeTelephoneTextField.enabled = false
+            refereeTelephoneTextField.placeholder = "需要在获取验证码之前填入"
             time -= 1
         } else {
             isCounting = false
             getVerifyCodeButton.setTitle("验证", forState: .Normal)
             timer.invalidate()
+            
+            refereeTelephoneTextField.enabled = true
             
             if telephoneNumTextField.text?.characters.count >= 11 {
                 getVerifyCodeButton.backgroundColor = Constants.Color.Primary

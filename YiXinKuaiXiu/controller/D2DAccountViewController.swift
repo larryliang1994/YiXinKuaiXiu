@@ -63,7 +63,7 @@ class D2DAccountViewController: UITableViewController, WalletDelegate {
         dateLabel.text = UtilBox.getDateFromString(account.date!, format: Constants.DateFormat.MD)
         feeLabel.text = account.fee
         typeLabel.text = account.type
-        statusLabel.text = account.status == 0 ? "审核中" : ""
+        statusLabel.text = account.status == 0 ? "审核中" : "    "
         
         return cell
     }

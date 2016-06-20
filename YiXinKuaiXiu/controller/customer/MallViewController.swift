@@ -14,7 +14,7 @@ class MallViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let request = NSURLRequest(URL: NSURL(string: "https://cn.bing.com")!)
+        let request = NSURLRequest(URL: NSURL(string: "https://wap.koudaitong.com/v2/home/1f1cjsz5r?common%2Furl%2Fcreate=&scan=3&from=kdt")!)
         webView.loadRequest(request)
     }
 

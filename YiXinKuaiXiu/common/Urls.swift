@@ -9,12 +9,12 @@
 import Foundation
 
 class Urls {
-    static let ServerUrl = "http://yxkx.carvedge.com/svr/"
-    static let PortraitServer = "http://yxkx.carvedge.com/uld/2/"
-    static let OrderImgServer = "http://yxkx.carvedge.com/uld/3/"
-    static let AdServer = "http://yxkx.carvedge.com/uld/0/"
+    static let ServerUrl = "https://www.yixinkuaixiu.com/svr/"
+    static let PortraitServer = "https://www.yixinkuaixiu.com/uld/2/"
+    static let OrderImgServer = "https://www.yixinkuaixiu.com/uld/3/"
+    static let AdServer = "https://www.yixinkuaixiu.com/uld/0/"
     
-    static let Recharge = "http://yxkx.carvedge.com/pay/alipay/notify_url.php?"
+    static let Recharge = "https://www.yixinkuaixiu.com/pay/alipay/notify_url.php?"
     
     static let Login = "100.php?"
     static let GetVerifyCode = "11.php?"
@@ -31,11 +31,15 @@ class Urls {
     static let GetMessage = "25.php?"
     static let GetAds = "26.php?"
     static let GetD2DAccount = "27.php?"
+    static let GetBlacklist = "28.php?"
+    static let GetReceiptList = "29.php?"
+    static let Invoice = "30.php?"
     static let WithDraw = "31.php?"
     static let GetBillNumber = "32.php?"
     static let SetMessageRead = "35.php?"
     static let GetMessageNum = "36.php?"
     static let GetOrderNum = "37.php?"
+    static let GetCouponList = "38.php?"
     static let SendIDImage = "42.php?"
     static let SendOrderImage = "43.php?"
     static let GetNearbyHandyman = "50.php?"

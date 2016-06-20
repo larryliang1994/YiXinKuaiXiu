@@ -54,7 +54,7 @@ class WalletModel: WalletProtocol {
                 
                 if responseDic == nil {
                     UtilBox.reportBug(response)
-                    self.walletDelegate?.onGetD2DAccountResult(false, info: "获取消息列表失败", accountList: [])
+                    self.walletDelegate?.onGetD2DAccountResult(false, info: "获取账户流水失败", accountList: [])
                     return
                 }
                 
@@ -74,7 +74,7 @@ class WalletModel: WalletProtocol {
                 
                 self.walletDelegate?.onGetD2DAccountResult(true, info: "", accountList: accountList)
             } else {
-                self.walletDelegate?.onGetD2DAccountResult(false, info: "获取消息列表失败", accountList: [])
+                self.walletDelegate?.onGetD2DAccountResult(false, info: "获取账户流水失败", accountList: [])
             }
         }
     }

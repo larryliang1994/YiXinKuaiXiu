@@ -64,7 +64,8 @@ class MessageCenterViewController: UITableViewController, GetInitialInfoDelegate
         titleLabel.text = message.title
         dateLabel.text = UtilBox.getDateFromString(message.date!, format: Constants.DateFormat.Full)
         descLabel.text = message.desc
-
+        descLabel.textAlignment = .Justified
+        
         return cell
     }
     

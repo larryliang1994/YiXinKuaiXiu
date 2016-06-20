@@ -7,6 +7,6 @@
 //
 
 protocol LoginProtocol {
-    func doGetVerifyCode(type: String, telephoneNum: String)
+    func doGetVerifyCode(type: String, telephoneNum: String, refereeTelephone: String?)
     func doLogin(telephoneNum: String, verifyCode: String)
 }

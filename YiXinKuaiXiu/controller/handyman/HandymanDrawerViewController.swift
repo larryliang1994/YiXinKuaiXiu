@@ -48,7 +48,7 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 8
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -102,17 +102,30 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
             if indexPath.row == 2 {
                 image.image = UIImage(named: "wallet")
                 title.text = "我的钱包"
-                
                 label.text = "¥ " + Config.Money!
                 label.textColor = Constants.Color.Orange
             } else if indexPath.row == 3 {
                 image.image = UIImage(named: "audit")
                 title.text = "身份认证"
-                label.text = Config.Audited == 0 ? "未认证" : "已认证"
+                if Config.Audited == 1 {
+                    label.text = "已认证"
+                } else if Config.Audited == 0 && Config.Name != nil && Config.Name != "" {
+                    label.text = "审核中"
+                } else {
+                    label.text = "未认证"
+                }
                 label.textColor = Constants.Color.Primary
-            } else {
-                image.image = UIImage(named: "mall")
+            } else if indexPath.row == 5 {
+                image.image = UIImage(named: "projectBinding")
                 title.text = "项目招标"
+                label.alpha = 0
+            } else if indexPath.row == 6 {
+                image.image = UIImage(named: "mall")
+                title.text = "壹心商城"
+                label.alpha = 0
+            } else if indexPath.row == 7 {
+                image.image = UIImage(named: "blacklist")
+                title.text = "信用黑名单"
                 label.alpha = 0
             }
             

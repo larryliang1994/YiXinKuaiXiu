@@ -15,6 +15,9 @@ class HandymanInfoViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        tableView.estimatedRowHeight = tableView.rowHeight
+//        tableView.rowHeight = UITableViewAutomaticDimension
+        
         tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
     }
     
@@ -62,7 +65,9 @@ class HandymanInfoViewController: UITableViewController{
                 
                 ratingView.rating = Float(starList![indexPath.row - 1])
                 dateLabel.text = UtilBox.getDateFromString(dateList![indexPath.row - 1], format: Constants.DateFormat.YMD)
-                descLabel.text = descList![indexPath.row - 1]
+                
+                let desc = descList![indexPath.row - 1]
+                descLabel.text = desc == "" ? "无评价内容" : desc
                 
                 return cell
             }

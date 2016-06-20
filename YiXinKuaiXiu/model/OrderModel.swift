@@ -83,6 +83,8 @@ class OrderModel: OrderProtocol {
                         
                         let desc = orderJson["cmt"].stringValue
                         
+                        let type = orderJson["tpe"].intValue
+                        
                         let order = Order(
                             id: orderJson["id"].stringValue,
                             date: orderJson["dte"].stringValue,
@@ -90,7 +92,7 @@ class OrderModel: OrderProtocol {
                             senderName: orderJson["anm"].stringValue,
                             senderNum: orderJson["aph"].stringValue,
                             graberID: orderJson["bid"].stringValue,
-                            type:  Type(rawValue: orderJson["tpe"].intValue - 1)!,
+                            type: Type(rawValue: orderJson["tpe"].intValue - 1)!,
                             image1Url: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
                             image2Url: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
                             desc: desc == "" ? "无" : desc,
@@ -158,7 +160,8 @@ class OrderModel: OrderProtocol {
                                     parts.append(Part(
                                         name: partDetailJson[index]["nme"].stringValue,
                                         num: partDetailJson[index]["num"].intValue,
-                                        price: String(partDetailJson[index]["prs"].floatValue)))
+                                        price: String(partDetailJson[index]["prs"].floatValue),
+                                        desc: ""))
                                 }
                                 order.parts = parts
                             }

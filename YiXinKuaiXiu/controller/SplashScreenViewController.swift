@@ -57,7 +57,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         }
         
         if Config.Aid != nil && Config.Aid != "" && Config.VerifyCode != nil && Config.VerifyCode != "" {
-            sleepTime = 2
+            sleepTime = 0
             
             UserInfoModel(userInfoDelegate: self).doGetUserInfo()
             
@@ -67,7 +67,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
             getInitialInfoModel.getMessageNum()
             getInitialInfoModel.getOrderNum()
         } else {
-            sleepTime = 3
+            sleepTime = 0
             
             let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
             getInitialInfoModel.getAds()

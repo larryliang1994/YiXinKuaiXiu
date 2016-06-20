@@ -19,7 +19,7 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
     @IBOutlet var contactTelephoneTextField: UITextField!
     @IBOutlet var pictureImageView: UIImageView!
     
-    var checked: [Bool] = []
+    var checked: [Bool] = [Bool](count: Config.MTypes!.count, repeatedValue: false)
     
     var imageAsset: DKAsset?
     
@@ -37,7 +37,31 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
     
     func initView() {
         pictureImageView.clipsToBounds = true
-        //submitButton.enabled = false
+        
+        if Config.Name != nil && Config.Name != "" {
+            nameLabel.text = Config.Name
+            locationLabel.text = Config.Location
+            locationInfo = Config.LocationInfo
+            idNumTextField.text = Config.IDNum
+            contactNameTextField.text = Config.ContactName
+            contactTelephoneTextField.text = Config.ContactTelephone
+            
+            var mType = ""
+            let tempString = Config.MTypeIDString!
+                .stringByReplacingOccurrencesOfString("[", withString: "")
+                .stringByReplacingOccurrencesOfString("]", withString: "")
+            let mTypeStrings: [String] = tempString.componentsSeparatedByString(",")
+            for var typeString in mTypeStrings {
+                if typeString == "" {
+                    continue
+                }
+                checked[Int(typeString)!-1] = true
+                mType += UtilBox.findMTypeNameByID(typeString)! + "维修,"
+            }
+            mType = mType.substringToIndex(mType.endIndex.advancedBy(-1))
+            
+            maintenanceTypeLabel.text = mType
+        }
     }
     
     func initNavBar() {
@@ -93,7 +117,12 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
             Config.PortraitUrl = Urls.PortraitServer + Config.Aid! + ".jpg"
             
             Config.Name = nameLabel.text
+            Config.Location = locationLabel.text
+            Config.LocationInfo = locationInfo
             Config.IDNum = idNumTextField.text
+            Config.ContactName = contactNameTextField.text
+            Config.ContactTelephone = contactTelephoneTextField.text
+            Config.MTypeIDString = idString
             
             self.noticeSuccess("申请成功", autoClear: true, autoClearTime: 2)
             

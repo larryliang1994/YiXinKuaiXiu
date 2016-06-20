@@ -19,6 +19,7 @@ class UserInfoViewController: UITableViewController, ModifyUserInfoDelegate, Cho
     @IBOutlet var addressCell: UITableViewCell!
     @IBOutlet var companyCell: UITableViewCell!
     @IBOutlet var walletCell: UITableViewCell!
+    @IBOutlet var couponCell: UITableViewCell!
     
     var selectedIndex: NSIndexPath?
     
@@ -43,6 +44,7 @@ class UserInfoViewController: UITableViewController, ModifyUserInfoDelegate, Cho
             addressCell.hidden = true
             companyCell.hidden = true
             walletCell.hidden = true
+            couponCell.hidden = true
         }
     }
     
@@ -66,13 +68,21 @@ class UserInfoViewController: UITableViewController, ModifyUserInfoDelegate, Cho
         case 4:
             selectedIndex = indexPath
             performSegueWithIdentifier(Constants.SegueID.ModifyUserInfoSefue, sender: self)
+            
         case 3:
             let chooseLocationVC = UtilBox.getController(Constants.ControllerID.ChooseLocation) as! ChooseLocationTableViewController
             chooseLocationVC.delegate = self
             self.navigationController?.showViewController(chooseLocationVC, sender: self)
+            
         case 5:
+            let couponVC = UtilBox.getController(Constants.ControllerID.Coupon) as! CouponViewController
+            couponVC.justCheck = true
+            self.navigationController?.showViewController(couponVC, sender: self)
+            
+        case 6:
             let walletVC = UtilBox.getController(Constants.ControllerID.Wallet) as! WalletViewController
             self.navigationController?.showViewController(walletVC, sender: self)
+            
         default:    break
         }
     }

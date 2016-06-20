@@ -64,10 +64,12 @@ class GetPartsInfoModel: GetPartsInfoProtocol {
                 if ret != nil && ret.count != 0 {
                     
                     Config.Parts = []
+                    Config.PartNames = []
                     for index in 0 ... ret.count - 1 {
-                        let part = Part(id: ret[index]["odr"].intValue, name: ret[index]["nme"].stringValue, num: 0, price: ret[index]["prs"].floatValue, categoryID: ret[index]["pid"].intValue)
+                        let part = Part(id: ret[index]["odr"].intValue, name: ret[index]["nme"].stringValue, num: 0, price: ret[index]["prs"].floatValue, desc: ret[index]["cmt"].stringValue, categoryID: ret[index]["pid"].intValue)
                         
                         Config.Parts.append(part)
+                        Config.PartNames.append(ret[index]["nme"].stringValue)
                     }
                 }
                 

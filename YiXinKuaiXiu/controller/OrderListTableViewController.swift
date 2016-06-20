@@ -61,8 +61,6 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
                 orders += orderList
             }
             
-            print(orderList.count)
-            
             if orders.count == 0 {
                 self.tableView.backgroundView = UtilBox.getEmptyView("还没有新订单")
             } else {

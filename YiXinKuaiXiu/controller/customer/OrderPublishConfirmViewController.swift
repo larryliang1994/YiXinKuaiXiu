@@ -118,7 +118,7 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
     }
     
     func viewHeight() -> CGFloat {
-        return 295
+        return 346
     }
     
     func isEffectView() -> Bool {

@@ -82,7 +82,7 @@ class PayMFeeViewController: UITableViewController, PopBottomViewDataSource, Pop
     }
     
     func viewHeight() -> CGFloat {
-        return 295
+        return 346
     }
     
     func isEffectView() -> Bool {

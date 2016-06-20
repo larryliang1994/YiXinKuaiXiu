@@ -133,7 +133,7 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
     }
     
     func agreeCancelOrderConfirm(sender: UIButton) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alert = UIAlertController(title: nil, message: "取消订单文字，先留着，以后再填", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         alert.addAction(UIAlertAction(
             title: "同意取消订单",
@@ -154,7 +154,7 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
     }
     
     func disagreeCancelOrderConfirm(sender: UIButton) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alert = UIAlertController(title: nil, message: "取消订单文字，先留着，以后再填", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         alert.addAction(UIAlertAction(
             title: "不同意取消订单",

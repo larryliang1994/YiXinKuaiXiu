@@ -187,6 +187,81 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
             }
         }
     }
+    
+    func getBlacklist() {
+        AlamofireUtil.doRequest(Urls.GetBlacklist, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
+            if result {
+                print(response)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    UtilBox.reportBug(response)
+                    self.getInitialInfoDelegate?.onGetBlacklistResult!(false, info: "获取黑名单失败")
+                    return
+                }
+                let json = JSON(responseDic!)
+                
+                let ret = json["ret"]
+                
+                if ret != nil && ret.count != 0 {
+                    Config.Blacklist = []
+                    for index in 0 ... ret.count - 1 {
+                        let blackJson = ret[index]
+                        
+                        let blackPerson = BlackPerson(
+                            name: blackJson["tit"].stringValue,
+                            telephone: blackJson["cod"].stringValue,
+                            desc: blackJson["cmt"].stringValue,
+                            date: blackJson["dte"].stringValue)
+                        
+                        Config.Blacklist.append(blackPerson)
+                    }
+                }
+                
+                self.getInitialInfoDelegate?.onGetBlacklistResult!(true, info: "")
+            } else {
+                self.getInitialInfoDelegate?.onGetBlacklistResult!(false, info: "获取黑名单失败")
+            }
+        }
+    }
+    
+    func getCouponList() {
+        AlamofireUtil.doRequest(Urls.GetCouponList, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
+            if result {
+                print(response)
+                let responseDic = UtilBox.convertStringToDictionary(response)
+                
+                if responseDic == nil {
+                    UtilBox.reportBug(response)
+                    self.getInitialInfoDelegate?.onGetCouponListResult!(false, info: "获取抵用券列表失败")
+                    return
+                }
+                let json = JSON(responseDic!)
+                
+                let ret = json["ret"]
+                
+                if ret != nil && ret.count != 0 {
+                    Config.CouponList = []
+                    for index in 0 ... ret.count - 1 {
+                        let couponJson = ret[index]
+                        
+                        let coupon = Coupon(
+                            id: couponJson["id"].stringValue,
+                            fee: couponJson["num"].intValue,
+                            desc: couponJson["cmt"].stringValue,
+                            used: couponJson["ste"].intValue == 1,
+                            date: couponJson["dte"].stringValue)
+                        
+                        Config.CouponList.append(coupon)
+                    }
+                }
+                
+                self.getInitialInfoDelegate?.onGetCouponListResult!(true, info: "")
+            } else {
+                self.getInitialInfoDelegate?.onGetCouponListResult!(false, info: "获取抵用券列表失败")
+            }
+        }
+    }
 }
 
 @objc protocol GetInitialInfoDelegate {
@@ -196,4 +271,6 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     optional func onGetAdsResult(result: Bool, info: String)
     optional func onGetMessageNum(result: Bool, info: String)
     optional func onGetOrderNum(result: Bool, info: String)
+    optional func onGetBlacklistResult(result: Bool, info: String)
+    optional func onGetCouponListResult(result: Bool, info: String)
 }

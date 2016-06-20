@@ -52,15 +52,15 @@ class OrderTypeViewController: UIViewController, UITableViewDelegate, UITableVie
         if indexPath.section == 0 {
             image.image = UIImage(named: "normalOrder")
             title.text = Constants.Types[0]
-            desc.text = "即时发单，需支付上门检查费。维修费与物料费另算。"
+            desc.text = "即时发单，支付上门检查费。维修费与物料费另算"
         } else if indexPath.section == 1 {
             image.image = UIImage(named: "packOrder")
             title.text = Constants.Types[1]
-            desc.text = "即时发单，一次性支付所有费用。"
+            desc.text = "即时发单，一次性支付所有费用"
         } else if indexPath.section == 2 {
             image.image = UIImage(named: "reservationOrder")
             title.text = Constants.Types[2]
-            desc.text = "预约维修，不收取上门检查费。"
+            desc.text = "预约维修，不收取上门检查费"
         }
         
         return cell!

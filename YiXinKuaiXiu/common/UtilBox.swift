@@ -316,6 +316,28 @@ class UtilBox {
         return nil
     }
     
+    // 通过配件名查找ID
+    static func findPartIDByName(name: String) -> Int? {
+        for var part in Config.Parts {
+            if part.name == name {
+                return part.id
+            }
+        }
+        
+        return nil
+    }
+    
+    // 通过配件ID查找配件
+    static func findPartByID(id: Int) -> Part? {
+        for var part in Config.Parts {
+            if part.id == id {
+                return part
+            }
+        }
+        
+        return nil
+    }
+    
     // 通过ID获取vc
     static func getController(identifier: String) -> UIViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())

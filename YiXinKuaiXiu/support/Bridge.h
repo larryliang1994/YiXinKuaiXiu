@@ -28,5 +28,6 @@
 #import <UMMobClick/MobClick.h>
 
 #import "BeeCloud.h"
+#import "YLLabel.h"
 
 #endif

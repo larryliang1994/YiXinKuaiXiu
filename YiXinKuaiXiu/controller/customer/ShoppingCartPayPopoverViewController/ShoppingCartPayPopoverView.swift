@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate {
+class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate, ChooseCouponDelegate {
     
     @IBOutlet var doPayButton: PrimaryButton!
     @IBOutlet var descLabel: UILabel!
@@ -24,6 +24,7 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate {
     @IBOutlet var balanceTitle: UILabel!
     @IBOutlet var balanceFee: UILabel!
     @IBOutlet var balanceCheck: UIImageView!
+    @IBOutlet var couponLabel: UILabel!
     
     var payWay: Int = 0
     
@@ -36,6 +37,9 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate {
     var date: String?
     var detail: String?
     var fee: String?
+    
+    var coupon: Coupon?
+    var newFee: Float?
     
     override func awakeFromNib() {
         balanceFee.text = "￥" + Config.Money!
@@ -50,8 +54,11 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate {
         } else {
             viewController?.pleaseWait()
             
-            PayModel(payDelegate: self).getBillNumber(fee!)
-            //PayModel(payDelegate: self).getBillNumber("0.01")
+            if self.coupon != nil {
+                PayModel(payDelegate: self).getBillNumber(String(newFee!))
+            } else {
+                PayModel(payDelegate: self).getBillNumber(fee!)
+            }
         }
     }
     
@@ -65,11 +72,13 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate {
         }
         
         if result {
+            let currentFee = coupon == nil ? fee! : String(newFee!)
+            
             BeeCloud.setBeeCloudDelegate(bcpayVC)
             
             let request = BCPayReq()
             request.title = "壹心快修"
-            request.totalFee = String(Int(Float(fee!)! * 100))
+            request.totalFee = String(Int(Float(currentFee)! * 100))
             //request.totalFee = "1"
             request.billNo = info
             request.billTimeOut = 300
@@ -101,21 +110,41 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate {
         }
     }
     
-//    func onGoRechargeResult(result: Bool, info: String) {
-//        if result {
-//            doneThirdPay()
-//        } else {
-//            delegate?.onPayResult(false, info: info)
-//        }
-//    }
-    
     func doneThirdPay() {
         viewController?.pleaseWait()
-        PayModel(payDelegate: self).goPayParts(date!, detail: detail!, fee: fee!)
+        
+        let couponID = coupon == nil ? "" : coupon?.id!
+        
+        PayModel(payDelegate: self).goPayParts(date!, detail: detail!, fee: fee!, couponID: couponID!)
     }
     
     func onGoPayPartsResult(result: Bool, info: String) {
         delegate?.onPayResult(result, info: info)
+    }
+    
+    func didChooseCoupon(coupon: Coupon?) {
+        self.coupon = coupon
+        
+        if coupon == nil {
+            couponLabel.text = "选择抵用券"
+            priceLabel.text = "￥ " + fee!
+        } else {
+            couponLabel.text = coupon!.fee!.toString() + "元抵用券"
+            
+            newFee = Float(fee!)! - Float(coupon!.fee!)
+            if newFee <= 0 {
+                newFee = 0.01
+            }
+            
+            //fee = String(newFee)
+            priceLabel.text = "￥ " + String(newFee!)
+        }
+    }
+    
+    @IBAction func chooseCoupon(sender: UITapGestureRecognizer) {
+        let couponVC = UtilBox.getController(Constants.ControllerID.Coupon) as! CouponViewController
+        couponVC.delegate = self
+        viewController!.navigationController?.showViewController(couponVC, sender: viewController)
     }
     
     @IBAction func checkAliPay(recognizer:UITapGestureRecognizer) {

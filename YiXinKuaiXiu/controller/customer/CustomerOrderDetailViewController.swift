@@ -28,6 +28,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     @IBOutlet var mFeeLabel: UILabel!
     @IBOutlet var partFeeLabel: UILabel!
     @IBOutlet var showPartDetailButton: UIButton!
+    @IBOutlet var cancelOrderButton: HollowButton!
     
     @IBOutlet var imageCell: UITableViewCell!
     @IBOutlet var picture2ImageView: UIImageView!
@@ -137,6 +138,10 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image2Url)!)!)
         }
         
+        if order?.state == .HasBeenRated {
+            cancelOrderButton.hidden = true
+        }
+        
         picture1ImageView.clipsToBounds = true
         picture2ImageView.clipsToBounds = true
         picture1ImageView.setupForImageViewer(Constants.Color.BlackBackground)
@@ -203,7 +208,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     }
     
     @IBAction func cancelOrder(sender: UIButton) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alert = UIAlertController(title: nil, message: "取消订单文字，先留着，以后再填", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         alert.addAction(UIAlertAction(
             title: "取消订单",

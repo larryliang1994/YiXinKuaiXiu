@@ -16,8 +16,11 @@ class LoginModel : LoginProtocol{
         self.loginDelegate = loginDelegate
     }
     
-    func doGetVerifyCode(type: String, telephoneNum: String) {
-        AlamofireUtil.doRequest(Urls.GetVerifyCode, parameters: ["tpe": type, "cod": telephoneNum]) { (result, response) in
+    func doGetVerifyCode(type: String, telephoneNum: String, refereeTelephone: String?) {
+        let parameters = refereeTelephone == nil ?
+            ["tpe": type, "cod": telephoneNum] : ["tpe": type, "cod": telephoneNum, "tjr": refereeTelephone!]
+        
+        AlamofireUtil.doRequest(Urls.GetVerifyCode, parameters: parameters) { (result, response) in
             if result {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
@@ -42,8 +45,10 @@ class LoginModel : LoginProtocol{
                         info = "手机号码错误"
                     } else if ret == 2 {
                         info = "会员类型错误"
-                    } else {
+                    } else if ret == 3 {
                         info = "短信发送失败"
+                    } else if ret == 4 {
+                        info = "不存在该推荐人"
                     }
                     
                     self.loginDelegate.onGetVerifyCodeResult(false, info: info)

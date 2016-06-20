@@ -23,6 +23,12 @@
 		491B6ED71CE021970039B70E /* EnterPasswordAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6ED61CE021970039B70E /* EnterPasswordAlertView.swift */; };
 		491B6ED91CE021C50039B70E /* EnterPasswordAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491B6ED81CE021C50039B70E /* EnterPasswordAlertView.xib */; };
 		491B6EDF1CE172320039B70E /* ChooseFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */; };
+		4924E7BE1D103902006E4400 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924E7BD1D103902006E4400 /* Coupon.swift */; };
+		4924E7C01D1045C1006E4400 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924E7BF1D1045C1006E4400 /* CouponViewController.swift */; };
+		4924E7C21D1199F8006E4400 /* PartsMallSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924E7C11D1199F8006E4400 /* PartsMallSearchViewController.swift */; };
+		4924E7C41D1255AD006E4400 /* ReceiptProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924E7C31D1255AD006E4400 /* ReceiptProtocol.swift */; };
+		4924E7C61D12561A006E4400 /* ReceiptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924E7C51D12561A006E4400 /* ReceiptModel.swift */; };
+		4924E7C81D1256E6006E4400 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924E7C71D1256E6006E4400 /* Receipt.swift */; };
 		4929ED631D050DE20016A722 /* BugReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4929ED621D050DE20016A722 /* BugReport.swift */; };
 		493CE2361CF9903700EFE3F3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F522481CED97E00066E72A /* libc++.tbd */; };
 		493CE2371CF9903D00EFE3F3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F5224A1CED97F00066E72A /* libsqlite3.tbd */; };
@@ -57,6 +63,9 @@
 		4970BF181CDAE90400E20E70 /* UploadImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF171CDAE90400E20E70 /* UploadImageModel.swift */; };
 		497542491CDDDB1200E23D38 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497542481CDDDB1200E23D38 /* Category.swift */; };
 		4979E8961CB4AD5800D03919 /* SMSwipeableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979E8951CB4AD5800D03919 /* SMSwipeableTabViewController.swift */; };
+		497CEE691D0F9F8700EBE279 /* BlacklistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CEE681D0F9F8700EBE279 /* BlacklistTableViewController.swift */; };
+		497CEE6B1D0F9FD700EBE279 /* BlackPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CEE6A1D0F9FD700EBE279 /* BlackPerson.swift */; };
+		497CEE6F1D0FACE700EBE279 /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CEE6E1D0FACE700EBE279 /* YLLabel.m */; };
 		497E9AB81CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */; };
 		4981966F1CD1A43E0046B72A /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4981966E1CD1A43E0046B72A /* AlertView.xib */; };
 		498196711CD1A4520046B72A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498196701CD1A4520046B72A /* AlertView.swift */; };
@@ -269,6 +278,12 @@
 		491B6ED61CE021970039B70E /* EnterPasswordAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterPasswordAlertView.swift; path = view/EnterPasswordAlertView/EnterPasswordAlertView.swift; sourceTree = "<group>"; };
 		491B6ED81CE021C50039B70E /* EnterPasswordAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnterPasswordAlertView.xib; path = view/EnterPasswordAlertView/EnterPasswordAlertView.xib; sourceTree = "<group>"; };
 		491B6EDE1CE172320039B70E /* ChooseFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseFeeViewController.swift; path = controller/customer/ChooseFeeViewController.swift; sourceTree = "<group>"; };
+		4924E7BD1D103902006E4400 /* Coupon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
+		4924E7BF1D1045C1006E4400 /* CouponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CouponViewController.swift; path = controller/customer/CouponViewController.swift; sourceTree = "<group>"; };
+		4924E7C11D1199F8006E4400 /* PartsMallSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartsMallSearchViewController.swift; path = controller/customer/PartsMallSearchViewController.swift; sourceTree = "<group>"; };
+		4924E7C31D1255AD006E4400 /* ReceiptProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReceiptProtocol.swift; path = model/ReceiptProtocol.swift; sourceTree = "<group>"; };
+		4924E7C51D12561A006E4400 /* ReceiptModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReceiptModel.swift; path = model/ReceiptModel.swift; sourceTree = "<group>"; };
+		4924E7C71D1256E6006E4400 /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Receipt.swift; path = bean/Receipt.swift; sourceTree = "<group>"; };
 		4929ED621D050DE20016A722 /* BugReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BugReport.swift; path = common/BugReport.swift; sourceTree = "<group>"; };
 		493CE2271CF98F2600EFE3F3 /* EasyAnimation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyAnimation.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/EasyAnimation/EasyAnimation.framework"; sourceTree = "<group>"; };
 		493CE2281CF98F2600EFE3F3 /* Pods_YiXinKuaiXiu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_YiXinKuaiXiu.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/Pods_YiXinKuaiXiu.framework"; sourceTree = "<group>"; };
@@ -315,6 +330,10 @@
 		497A24841CF966D800A43E70 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Release-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		497A24851CF966D800A43E70 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = "Pods/../build/Release-iphoneos/SWXMLHash/SWXMLHash.framework"; sourceTree = "<group>"; };
 		497A24891CF966E200A43E70 /* Pods_YiXinKuaiXiu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_YiXinKuaiXiu.framework; path = "Pods/../build/Debug-iphoneos/Pods_YiXinKuaiXiu.framework"; sourceTree = "<group>"; };
+		497CEE681D0F9F8700EBE279 /* BlacklistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlacklistTableViewController.swift; path = controller/handyman/BlacklistTableViewController.swift; sourceTree = "<group>"; };
+		497CEE6A1D0F9FD700EBE279 /* BlackPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlackPerson.swift; path = bean/BlackPerson.swift; sourceTree = "<group>"; };
+		497CEE6D1D0FACE700EBE279 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
+		497CEE6E1D0FACE700EBE279 /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
 		497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseMaintenanceTypeViewController.swift; path = controller/handyman/ChooseMaintenanceTypeViewController.swift; sourceTree = "<group>"; };
 		4981966E1CD1A43E0046B72A /* AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertView.xib; path = view/AlertView/AlertView.xib; sourceTree = "<group>"; };
 		498196701CD1A4520046B72A /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = view/AlertView/AlertView.swift; sourceTree = "<group>"; };
@@ -596,6 +615,7 @@
 		4912885E1CB13AA6007DD199 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				497CEE6C1D0FACC300EBE279 /* YLLabel */,
 				49B6F7841CF936E400482502 /* MCRefreshView */,
 				49BDAC5A1CF6AB4E003E7C35 /* ImageViewer */,
 				491B6ED51CE0215B0039B70E /* EnterPwdAlertView */,
@@ -635,8 +655,9 @@
 				49D76BA71CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift */,
 				4909EC4E1CE9FE7100C4FD04 /* HandymanInfoViewController.swift */,
 				49A15E591CC51E4B0028023C /* PartsMallViewController.swift */,
+				4924E7C11D1199F8006E4400 /* PartsMallSearchViewController.swift */,
 				496F11211CF6FE5500BAFA56 /* PayMFeeViewController.swift */,
-				49F36D231CB79BE8000DF874 /* MallViewController.swift */,
+				4924E7BF1D1045C1006E4400 /* CouponViewController.swift */,
 			);
 			name = customer;
 			sourceTree = "<group>";
@@ -734,8 +755,18 @@
 				49517E5E1CEB643000A20361 /* AuditedViewController.swift */,
 				497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */,
 				49A15E781CC675430028023C /* ProjectBidingViewController.swift */,
+				497CEE681D0F9F8700EBE279 /* BlacklistTableViewController.swift */,
 			);
 			name = handyman;
+			sourceTree = "<group>";
+		};
+		497CEE6C1D0FACC300EBE279 /* YLLabel */ = {
+			isa = PBXGroup;
+			children = (
+				497CEE6D1D0FACE700EBE279 /* YLLabel.h */,
+				497CEE6E1D0FACE700EBE279 /* YLLabel.m */,
+			);
+			name = YLLabel;
 			sourceTree = "<group>";
 		};
 		4981966D1CD1A4080046B72A /* AlertView */ = {
@@ -888,6 +919,7 @@
 				49B6F67D1CF8658E00482502 /* RatingViewController.swift */,
 				49B6F6791CF8658E00482502 /* ChooseLocationTableViewController.swift */,
 				49B6F67B1CF8658E00482502 /* MessageCenterViewController.swift */,
+				49F36D231CB79BE8000DF874 /* MallViewController.swift */,
 				49B6F6801CF8658E00482502 /* UserInfoViewController.swift */,
 				49B6F67F1CF8658E00482502 /* UserInfoModifyViewController.swift */,
 				49B6F6811CF8658E00482502 /* WalletViewController.swift */,
@@ -941,6 +973,8 @@
 				4909EC4C1CE9671B00C4FD04 /* AuditModel.swift */,
 				49F522541CEE987B0066E72A /* GetNearbyProtocol.swift */,
 				49F522521CEE96AF0066E72A /* GetNearbyModel.swift */,
+				4924E7C31D1255AD006E4400 /* ReceiptProtocol.swift */,
+				4924E7C51D12561A006E4400 /* ReceiptModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -968,6 +1002,9 @@
 				49D48EDC1CE4A0D300D19FC2 /* D2DAccount.swift */,
 				49F522561CEE9BCC0066E72A /* Handyman.swift */,
 				49F5225E1CEF5C1F0066E72A /* Rating.swift */,
+				497CEE6A1D0F9FD700EBE279 /* BlackPerson.swift */,
+				4924E7BD1D103902006E4400 /* Coupon.swift */,
+				4924E7C71D1256E6006E4400 /* Receipt.swift */,
 			);
 			name = bean;
 			sourceTree = "<group>";
@@ -1798,10 +1835,13 @@
 				49B6F7981CF936E400482502 /* MCRefreshHeader.swift in Sources */,
 				49A15E551CC515330028023C /* OrderGrabDetailViewController.swift in Sources */,
 				49F522531CEE96AF0066E72A /* GetNearbyModel.swift in Sources */,
+				4924E7C61D12561A006E4400 /* ReceiptModel.swift in Sources */,
 				49B6F79A1CF936E400482502 /* MCRefreshStateHeader.swift in Sources */,
 				49C380941CB8F6DB00242B7A /* CFCityPickerVCCommon.swift in Sources */,
 				49A15E7B1CC6781F0028023C /* OYSimpleAlertController.swift in Sources */,
 				49B6F75B1CF86C6100482502 /* BCPayResp.m in Sources */,
+				497CEE6F1D0FACE700EBE279 /* YLLabel.m in Sources */,
+				4924E7C01D1045C1006E4400 /* CouponViewController.swift in Sources */,
 				49B6F6D21CF86AF800482502 /* PayPopoverView.swift in Sources */,
 				49C380961CB8F6DB00242B7A /* CitySearchResultVC.swift in Sources */,
 				49B6F76E1CF86C6100482502 /* BCQueryRefundResult.m in Sources */,
@@ -1828,6 +1868,7 @@
 				49F5225B1CEF4BE30066E72A /* PrimaryButton.swift in Sources */,
 				49B6F7751CF86C6100482502 /* BCPayCache.m in Sources */,
 				49B6F76B1CF86C6100482502 /* BCRefundStatusResp.m in Sources */,
+				4924E7C81D1256E6006E4400 /* Receipt.swift in Sources */,
 				49B6F7601CF86C6100482502 /* BCQueryBillsReq.m in Sources */,
 				49B6F7691CF86C6100482502 /* BCQueryRefundsCountResp.m in Sources */,
 				498E26461CBBAA7D00DE6EDC /* DKAssetGroupDetailVC.swift in Sources */,
@@ -1876,8 +1917,10 @@
 				49F5225D1CEF51910066E72A /* HollowButton.swift in Sources */,
 				49B6F7581CF86C6100482502 /* BCBaseReq.m in Sources */,
 				49B6F7801CF86C6100482502 /* BCWXPayAdapter.m in Sources */,
+				497CEE6B1D0F9FD700EBE279 /* BlackPerson.swift in Sources */,
 				49B6F7991CF936E400482502 /* MCRefreshNormalHeader.swift in Sources */,
 				49A15E5B1CC51E4B0028023C /* CustomerOrderListTableViewController.swift in Sources */,
+				4924E7C21D1199F8006E4400 /* PartsMallSearchViewController.swift in Sources */,
 				49B6F7761CF86C6100482502 /* BCPayUtil.m in Sources */,
 				49A2E9181CB7FD890079C690 /* CheckFeeViewController.swift in Sources */,
 				498E26431CBBAA7D00DE6EDC /* DKImagePickerControllerDefaultCamera.swift in Sources */,
@@ -1892,12 +1935,15 @@
 				49B6F7711CF86C6100482502 /* BCSecurityPolicy.m in Sources */,
 				496C5D4B1CC232FA00CA63AC /* OrderGrabTableViewController.swift in Sources */,
 				49F522611CF036980066E72A /* BindBankCardViewController.swift in Sources */,
+				497CEE691D0F9F8700EBE279 /* BlacklistTableViewController.swift in Sources */,
 				4912887C1CB15189007DD199 /* CustomerHomeViewController.swift in Sources */,
 				49B6F7571CF86C6100482502 /* BeeCloud.m in Sources */,
+				4924E7C41D1255AD006E4400 /* ReceiptProtocol.swift in Sources */,
 				4912888E1CB256D0007DD199 /* OrderPublishViewController.swift in Sources */,
 				4912888C1CB25634007DD199 /* BRPlaceholderTextView.m in Sources */,
 				49D76B9A1CBF48C4005E2213 /* SwiftBadge.swift in Sources */,
 				49D76BA81CC0E5DB005E2213 /* CustomerOrderDetailViewController.swift in Sources */,
+				4924E7BE1D103902006E4400 /* Coupon.swift in Sources */,
 				4979E8961CB4AD5800D03919 /* SMSwipeableTabViewController.swift in Sources */,
 				49B6F7941CF936E400482502 /* MCRefreshBackStateFooter.swift in Sources */,
 				49A15E8B1CC866740028023C /* SimpleButtonStateChangeValue.swift in Sources */,
@@ -2114,8 +2160,8 @@
 			baseConfigurationReference = 5D71ECBF79F79DDB689A7357 /* Pods-YiXinKuaiXiu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Jiu Bai Wang Network Technology Co. Ltd (W8C6FGP93V)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing Jiu Bai Wang Network Technology Co. Ltd (W8C6FGP93V)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2151,8 +2197,8 @@
 			baseConfigurationReference = E8C2A98F15285661340C7D4D /* Pods-YiXinKuaiXiu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Jiu Bai Wang Network Technology Co. Ltd (W8C6FGP93V)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing Jiu Bai Wang Network Technology Co. Ltd (W8C6FGP93V)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

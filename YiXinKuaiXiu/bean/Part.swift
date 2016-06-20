@@ -16,23 +16,26 @@ class Part {
     var paid = false
     var categoryID: Int?
     var categoryIndex: Int?
+    var desc: String?
     
     init() {
         
     }
     
-    init(name: String, num: Int, price: String) {
+    init(name: String, num: Int, price: String, desc: String) {
         self.name = name
         self.num = num
         self.price = Float(price)
+        self.desc = desc
         paid = false
     }
     
-    init(id: Int, name: String, num: Int, price: Float, categoryID: Int) {
+    init(id: Int, name: String, num: Int, price: Float, desc: String, categoryID: Int) {
         self.id = id
         self.name = name
         self.num = num
         self.price = price
+        self.desc = desc
         self.categoryID = categoryID
         paid = false
     }

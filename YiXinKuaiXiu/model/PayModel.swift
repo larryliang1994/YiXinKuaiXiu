@@ -22,8 +22,10 @@ class PayModel: PayProtocol, PayDelegate {
         self.payDelegate = payDelegate
     }
     
-    func goPay(date: String, type: PayType, fee: String) {
-        AlamofireUtil.doRequest(Urls.GoPay, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "tpe": type.rawValue.toString(), "fee": fee]) { (result, response) in
+    func goPay(date: String, type: PayType, fee: String, couponID: String) {
+        let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "tpe": type.rawValue.toString(), "fee": fee, "dyq": couponID]
+        
+        AlamofireUtil.doRequest(Urls.GoPay, parameters: paramters) { (result, response) in
             if result {
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
@@ -89,6 +91,7 @@ class PayModel: PayProtocol, PayDelegate {
     
     func getBillNumber(fee: String) {
         let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "cnt": fee]
+        
         AlamofireUtil.doRequest(Urls.GetBillNumber, parameters: parameters) { (result, response) in
             if result {
                 print(response)
@@ -105,6 +108,7 @@ class PayModel: PayProtocol, PayDelegate {
                 let ret = json["ret"].intValue
                 
                 if ret == 0 {
+                    
                     let ddh = json["ddh"].stringValue
                     if ddh.containsString("_") {
                         self.payDelegate?.onGetBillNumberResult!(true, info: ddh.componentsSeparatedByString("_")[1])
@@ -120,8 +124,8 @@ class PayModel: PayProtocol, PayDelegate {
         }
     }
     
-    func goPayParts(date: String, detail: String, fee: String) {
-        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "con": detail, "fee": fee]
+    func goPayParts(date: String, detail: String, fee: String, couponID: String) {
+        let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "con": detail, "fee": fee, "dyq": couponID]
         AlamofireUtil.doRequest(Urls.PayParts, parameters: parameters) { (result, response) in
             if result {
                 let responseDic = UtilBox.convertStringToDictionary(response)
@@ -155,7 +159,7 @@ class PayModel: PayProtocol, PayDelegate {
         }
     }
     
-    func goPayMFee(date: String, fee: String) {
+    func goPayMFee(date: String, fee: String, couponID: String) {
         let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": date, "fee": fee]
         AlamofireUtil.doRequest(Urls.PayMFee, parameters: parameters) { (result, response) in
             if result {
@@ -172,7 +176,7 @@ class PayModel: PayProtocol, PayDelegate {
                 let ret = json["ret"].intValue
                 
                 if ret == 0 {
-                    PayModel(payDelegate: self).goPay(date, type: .MPFee, fee: fee)
+                    PayModel(payDelegate: self).goPay(date, type: .MPFee, fee: fee, couponID: couponID)
                 } else if ret == 1 {
                     self.payDelegate?.onGoPayMFeeResult!(false, info: "认证失败")
                 } else if ret == 2 {
