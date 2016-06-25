@@ -52,10 +52,9 @@ class AlamofireUtil {
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.progress { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) in
-                        print("Uploading Avatar \(totalBytesWritten) / \(totalBytesExpectedToWrite)")
+                        //print("Uploading Avatar \(totalBytesWritten) / \(totalBytesExpectedToWrite)")
                     }
                     upload.responseJSON { response in
-                        print(response)
                         if response.result.isSuccess {
                             callback(result: true, response: String(response.result.value!))
                         } else {

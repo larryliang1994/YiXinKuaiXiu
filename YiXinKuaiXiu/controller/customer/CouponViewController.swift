@@ -20,14 +20,23 @@ class CouponViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
-
-        tableView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
-        self.automaticallyAdjustsScrollViewInsets = false
+        initView()
         
         self.pleaseWait()
         GetInitialInfoModel(getInitialInfoDelegate: self).getCouponList()
+    }
+    
+    func initView() {
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        tableView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        if justCheck {
+            cancelButton.enabled = false
+            cancelButton.title = ""
+        }
     }
     
     func onGetCouponListResult(result: Bool, info: String) {

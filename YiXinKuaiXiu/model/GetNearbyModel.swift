@@ -22,7 +22,6 @@ class GetNearbyModel: GetNearbyProtocol {
         AlamofireUtil.doRequest(Config.Role == Constants.Role.Customer ? Urls.GetNearbyHandyman : Urls.GetNearbyCustomer,
                                 parameters: paramters) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {

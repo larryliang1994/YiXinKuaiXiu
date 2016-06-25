@@ -40,7 +40,10 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         initBeeCloud()
         
         // 初始化Bugly
-        Bugly.startWithAppId(Constants.Key.BuglyAppID)
+        let config = BuglyConfig()
+        config.blockMonitorEnable = true
+        config.unexpectedTerminatingDetectionEnable = true
+        Bugly.startWithAppId(Constants.Key.BuglyAppID, config: config)
         
         // 初始化数据统计服务
         initUMAnalytics()
@@ -227,7 +230,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         config.appKey=Constants.Key.UMAppKey
         config.bCrashReportEnabled = true
         config.ePolicy = BATCH
-        config.channelId = "developer"
+        config.channelId = "AppStore"
         MobClick.startWithConfigure(config)
     }
     

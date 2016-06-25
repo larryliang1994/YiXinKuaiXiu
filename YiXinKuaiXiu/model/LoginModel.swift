@@ -35,10 +35,7 @@ class LoginModel : LoginProtocol{
                 let ret = json["ret"].intValue
                 
                 if ret == Constants.Success {
-                    //print(json["tok"].intValue)
-                    
                     self.loginDelegate.onGetVerifyCodeResult(true, info: "短信已发送")
-                    //self.loginDelegate.onGetVerifyCodeResult(true, info: json["tok"].intValue.toString())
                 } else {
                     var info = ""
                     if ret == 1 {

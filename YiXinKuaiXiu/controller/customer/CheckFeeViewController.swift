@@ -35,8 +35,14 @@ class CheckFeeViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func done(sender: UIBarButtonItem) {
-        delegate?.didSelectedFee(feeTextField.text!)
-        self.navigationController?.popViewControllerAnimated(true)
+        if feeTextField.text == nil || feeTextField.text == "" {
+            UtilBox.alert(self, message: "请输入检查费用")
+        } else if Double((feeTextField.text)!) <= 0 {
+            UtilBox.alert(self, message: "请输入大于0的金额")
+        } else {
+            delegate?.didSelectedFee(feeTextField.text!)
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
 
     // MARK: - Table view data source

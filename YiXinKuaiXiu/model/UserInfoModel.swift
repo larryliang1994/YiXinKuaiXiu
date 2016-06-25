@@ -19,7 +19,6 @@ class UserInfoModel: UserInfoProtocol {
     func doGetUserInfo() {
         AlamofireUtil.doRequest(Urls.GetUserInfo, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
@@ -194,7 +193,7 @@ class UserInfoModel: UserInfoProtocol {
             let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": message.date!]
             
             AlamofireUtil.doRequest(Urls.SetMessageRead, parameters: parameters) { (result, response) in
-                print(response)
+                
             }
         }
     }

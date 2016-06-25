@@ -40,11 +40,12 @@ class ChooseFeeViewController: UIViewController, UICollectionViewDelegateFlowLay
     @IBAction func done(sender: UIBarButtonItem) {
         if feeTextField.text == nil || feeTextField.text == "" {
             UtilBox.alert(self, message: "请输入检查费用")
-            return
+        } else if Double((feeTextField.text)!) <= 0 {
+            UtilBox.alert(self, message: "请输入大于0的金额")
+        } else {
+            delegate?.didSelectedFee(feeTextField.text!)
+            self.navigationController?.popViewControllerAnimated(true)
         }
-        
-        delegate?.didSelectedFee(feeTextField.text!)
-        self.navigationController?.popViewControllerAnimated(true)
     }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

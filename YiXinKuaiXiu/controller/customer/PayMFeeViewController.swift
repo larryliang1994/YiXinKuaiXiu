@@ -33,6 +33,8 @@ class PayMFeeViewController: UITableViewController, PopBottomViewDataSource, Pop
     func submit() {
         if textField.text == nil || textField.text == "" {
             UtilBox.alert(self, message: "请输入维修费")
+        } else if Double((textField.text)!) <= 0 {
+            UtilBox.alert(self, message: "请输入大于0的金额")
         } else {
             textField.resignFirstResponder()
             

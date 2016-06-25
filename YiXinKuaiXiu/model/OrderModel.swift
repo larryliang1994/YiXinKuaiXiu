@@ -56,7 +56,6 @@ class OrderModel: OrderProtocol {
         
         AlamofireUtil.doRequest(Config.Role == Constants.Role.Customer ? Urls.PullCustomerOrderList : Urls.PullHandymanOrderList, parameters: paramters) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
@@ -184,7 +183,6 @@ class OrderModel: OrderProtocol {
         
         AlamofireUtil.doRequest(Urls.PullGrabOrderList, parameters: paramters) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {

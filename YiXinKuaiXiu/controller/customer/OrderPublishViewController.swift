@@ -184,7 +184,6 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
             if order?.image2 != nil && uploadedCount != 2 {
                 UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail((order?.image2?.originalAsset)!), type: .Order)
             } else {
-                print(imgString)
                 OrderModel(orderDelegate: self).publishOrder(order!, imgString: imgString)
             }
         } else {

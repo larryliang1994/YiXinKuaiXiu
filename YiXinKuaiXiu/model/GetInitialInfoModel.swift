@@ -19,7 +19,6 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     func getMaintenanceType() {
         AlamofireUtil.doRequest(Urls.GetMaintenanceType, parameters: [:]) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
@@ -118,7 +117,6 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     func getAds() {
         AlamofireUtil.doRequest(Urls.GetAds, parameters: ["": ""]) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
@@ -146,7 +144,6 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     func getMessageNum() {
         AlamofireUtil.doRequest(Urls.GetMessageNum, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
@@ -169,7 +166,6 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     func getOrderNum() {
         AlamofireUtil.doRequest(Urls.GetOrderNum, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!, "tpe": Config.Role!]) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
@@ -191,7 +187,6 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     func getBlacklist() {
         AlamofireUtil.doRequest(Urls.GetBlacklist, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
@@ -228,7 +223,6 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
     func getCouponList() {
         AlamofireUtil.doRequest(Urls.GetCouponList, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {

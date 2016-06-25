@@ -17,9 +17,8 @@ class ReceiptModel: ReceiptProtocol {
     }
     
     func getReceiptList() {
-        AlamofireUtil.doRequest(Urls.GetMaintenanceType, parameters: [:]) { (result, response) in
+        AlamofireUtil.doRequest(Urls.GetReceiptList, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
@@ -61,9 +60,8 @@ class ReceiptModel: ReceiptProtocol {
     
     func invoice(title: String, fee: String, desc: String) {
         let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "tit": title, "num": fee, "cmt": desc]
-        AlamofireUtil.doRequest(Urls.UpdateLocationInfo, parameters: paramters, callback: { (result, response) in
+        AlamofireUtil.doRequest(Urls.Invoice, parameters: paramters, callback: { (result, response) in
             if result {
-                print(response)
                 let responseDic = UtilBox.convertStringToDictionary(response)
                 
                 if responseDic == nil {
@@ -80,7 +78,7 @@ class ReceiptModel: ReceiptProtocol {
                     self.receiptDelegate?.onInvoiceResult!(true, info: "")
                 } else if ret == 1 {
                     self.receiptDelegate?.onInvoiceResult!(false, info: "认证失败")
-                } else if ret == 1 {
+                } else if ret == 2 {
                     self.receiptDelegate?.onInvoiceResult!(false, info: "参数错误")
                 }
             } else {

@@ -8,10 +8,11 @@
 
 import UIKit
 
-class WalletViewController: UITableViewController, WalletChangeDelegate, UserInfoDelegate {
+class WalletViewController: UITableViewController, WalletChangeDelegate, UserInfoDelegate, GetInitialInfoDelegate {
     
     @IBOutlet var buttonBackgroundView: UIView!
     @IBOutlet var moneyLabel: UILabel!
+    @IBOutlet var couponNumLabel: UILabel!
     
     var delegate: ModifyUserInfoDelegate?
 
@@ -25,6 +26,8 @@ class WalletViewController: UITableViewController, WalletChangeDelegate, UserInf
         self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
         
         refresh()
+        
+        GetInitialInfoModel(getInitialInfoDelegate: self).getCouponList()
     }
     
     func intiView() {
@@ -41,6 +44,15 @@ class WalletViewController: UITableViewController, WalletChangeDelegate, UserInf
     func refresh() {
         self.pleaseWait()
         UserInfoModel(userInfoDelegate: self).doGetUserInfo()
+    }
+    
+    func onGetCouponListResult(result: Bool, info: String) {
+        if result {
+            if Config.CouponList.count != 0 {
+                couponNumLabel.text = Config.CouponList.count.toString() + "张"
+                tableView.reloadData()
+            }
+        }
     }
     
     func onGetUserInfoResult(result: Bool, info: String) {
@@ -77,13 +89,21 @@ class WalletViewController: UITableViewController, WalletChangeDelegate, UserInf
             if indexPath.row == 0 {
                 performSegueWithIdentifier(Constants.SegueID.ShowD2DAccountSegue, sender: self)
             } else if indexPath.row == 1 {
+                let couponVC = UtilBox.getController(Constants.ControllerID.Coupon) as! CouponViewController
+                couponVC.justCheck = true
+                self.navigationController?.showViewController(couponVC, sender: self)
+            }
+        } else if indexPath.section == 2 {
+            if indexPath.row == 0 {
                 performSegueWithIdentifier(Constants.SegueID.ShowChangePasswordSegue, sender: self)
-            } else if indexPath.row == 2 {
+            } else if indexPath.row == 1 {
                 if Config.BankName == nil {
                     performSegueWithIdentifier(Constants.SegueID.ShowBindBankCardSegue, sender: self)
                 } else {
                     performSegueWithIdentifier(Constants.SegueID.ShowBoundBankCardSegue, sender: self)
                 }
+            } else if indexPath.row == 2 {
+                performSegueWithIdentifier(Constants.SegueID.ShowReceiptSegue, sender: self)
             }
         }
     }

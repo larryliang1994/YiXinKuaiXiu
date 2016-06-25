@@ -33,7 +33,7 @@ class UploadImageModel: UploadImageProtocol {
         let uploadurl = Urls.ServerUrl + target + "id=" + Config.Aid! + "&tok=" + Config.VerifyCode!
         
         let request = NSMutableURLRequest(URL:NSURL(string:uploadurl)!)
-        request.HTTPMethod="POST"//设置请求方式
+        request.HTTPMethod="POST"
 
         let boundary = "-------------------21212222222222222222222"
         let contentType = "multipart/form-data;boundary=" + boundary
@@ -52,12 +52,10 @@ class UploadImageModel: UploadImageProtocol {
             (response, data, error) ->Void in
 
             if (error != nil){
-                print(error)
                 self.uploadImageDelegate?.onUploadOrderImageResult(false, info: "图片上传失败")
             }else{
                 let res: String=NSString(data:data!,encoding:NSUTF8StringEncoding)! as String
                 
-                print(res)
                 let responseDic = UtilBox.convertStringToDictionary(res)
                 
                 if responseDic == nil {

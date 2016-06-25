@@ -37,6 +37,11 @@ class RechargeViewController: UITableViewController, UITextFieldDelegate, PopBot
     @IBAction func done(sender: UIBarButtonItem) {
         feeTextField.resignFirstResponder()
         
+        if Double((feeTextField.text)!) <= 0 {
+            UtilBox.alert(self, message: "请输入大于0的金额")
+            return
+        }
+        
         let v = PopBottomView(frame: self.view.bounds)
         v.dataSource = self
         v.delegate = self

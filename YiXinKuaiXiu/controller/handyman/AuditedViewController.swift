@@ -39,6 +39,9 @@ class AuditedViewController: UITableViewController {
             presentViewController(alert, animated: true, completion: nil)
         } else {
             initView()
+            
+            tableView.estimatedRowHeight = tableView.rowHeight
+            tableView.rowHeight = UITableViewAutomaticDimension
         }
     }
     
@@ -59,7 +62,7 @@ class AuditedViewController: UITableViewController {
         mTypeLabel.text = mType
         locationLabel.text = Config.Location
         idNumLabel.text = Config.IDNum
-        contactNumLabel.text = Config.ContactName
+        contactNameLabel.text = Config.ContactName
         contactNumLabel.text = Config.ContactTelephone
         nameLabel.text = Config.Name
         
@@ -74,7 +77,7 @@ class AuditedViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
+        return section == 0 ? 1 : 30
     }
 }
 

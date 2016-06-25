@@ -61,6 +61,12 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
             mType = mType.substringToIndex(mType.endIndex.advancedBy(-1))
             
             maintenanceTypeLabel.text = mType
+            
+            idString = Config.MTypeIDString
+            
+            pictureImageView.hnk_setImageFromURL(NSURL(string: Urls.ServerUrl + "pic.php?f=../uld/2/" + Config.Aid! + ".jpg&w=180&h=180")!)
+            
+            //submitButton.title = "修改"
         }
     }
     
@@ -87,7 +93,7 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
             UtilBox.alert(self, message: "请输入身份证号码")
         } else if !UtilBox.isIDNum(idNumTextField.text!) {
             UtilBox.alert(self, message: "请输入完整身份证号码")
-        } else if imageAsset == nil {
+        } else if imageAsset == nil && (Config.Name == nil || Config.Name == "") {
             UtilBox.alert(self, message: "请选择手持身份证照")
         } else if contactNameTextField.text == nil || contactNameTextField.text == "" {
             UtilBox.alert(self, message: "请输入紧急联系人姓名")
@@ -98,7 +104,11 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
         }else {
             self.pleaseWait()
             
-            UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail(imageAsset!.originalAsset!), type: .ID)
+            if Config.Name != nil && Config.Name != "" {
+                AuditModel(auditDelegate: self).doAudit(nameLabel.text!, mTypeIDString: idString!, location: locationLabel.text!, locationInfo: locationInfo!, IDNum: idNumTextField.text!, picture: Config.PortraitUrl!, contactsName: contactNameTextField.text!, contactNum: contactTelephoneTextField.text!)
+            } else {
+                UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail(imageAsset!.originalAsset!), type: .ID)
+            }
         }
     }
     
@@ -123,6 +133,7 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
             Config.ContactName = contactNameTextField.text
             Config.ContactTelephone = contactTelephoneTextField.text
             Config.MTypeIDString = idString
+            Config.PortraitUrl = Urls.PortraitServer + Config.Aid! + ".jpg"
             
             self.noticeSuccess("申请成功", autoClear: true, autoClearTime: 2)
             

@@ -36,6 +36,8 @@
 		493CE23B1CF9908200EFE3F3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B6F7541CF86C6100482502 /* libWeChatSDK.a */; };
 		494D6E8A1CB80F19007824F1 /* PopBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494D6E891CB80F19007824F1 /* PopBottomView.swift */; };
 		49517E5F1CEB643000A20361 /* AuditedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517E5E1CEB643000A20361 /* AuditedViewController.swift */; };
+		495743311D1935E0000C6A69 /* ReceiptTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495743301D1935E0000C6A69 /* ReceiptTableViewController.swift */; };
+		495743331D194448000C6A69 /* InvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495743321D194448000C6A69 /* InvoiceViewController.swift */; };
 		496567571CF99E90003D979A /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493CE22C1CF98F6D00EFE3F3 /* AlipaySDK.framework */; };
 		4965675B1CF99EB5003D979A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496567581CF99EB5003D979A /* Alamofire.framework */; };
 		4965675C1CF99EB5003D979A /* EasyAnimation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496567591CF99EB5003D979A /* EasyAnimation.framework */; };
@@ -296,6 +298,8 @@
 		493CE2381CF9905E00EFE3F3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		494D6E891CB80F19007824F1 /* PopBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopBottomView.swift; path = view/PopBottomView.swift; sourceTree = "<group>"; };
 		49517E5E1CEB643000A20361 /* AuditedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuditedViewController.swift; path = controller/handyman/AuditedViewController.swift; sourceTree = "<group>"; };
+		495743301D1935E0000C6A69 /* ReceiptTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReceiptTableViewController.swift; path = controller/ReceiptTableViewController.swift; sourceTree = "<group>"; };
+		495743321D194448000C6A69 /* InvoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvoiceViewController.swift; path = controller/InvoiceViewController.swift; sourceTree = "<group>"; };
 		496567581CF99EB5003D979A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Release-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		496567591CF99EB5003D979A /* EasyAnimation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyAnimation.framework; path = "Pods/../build/Release-iphoneos/EasyAnimation/EasyAnimation.framework"; sourceTree = "<group>"; };
 		4965675A1CF99EB5003D979A /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = "Pods/../build/Release-iphoneos/HanekeSwift/Haneke.framework"; sourceTree = "<group>"; };
@@ -657,7 +661,6 @@
 				49A15E591CC51E4B0028023C /* PartsMallViewController.swift */,
 				4924E7C11D1199F8006E4400 /* PartsMallSearchViewController.swift */,
 				496F11211CF6FE5500BAFA56 /* PayMFeeViewController.swift */,
-				4924E7BF1D1045C1006E4400 /* CouponViewController.swift */,
 			);
 			name = customer;
 			sourceTree = "<group>";
@@ -928,6 +931,9 @@
 				49B6F67A1CF8658E00482502 /* D2DAccountViewController.swift */,
 				49B6F67E1CF8658E00482502 /* RechargeViewController.swift */,
 				49B6F6781CF8658E00482502 /* ChangePasswordViewController.swift */,
+				4924E7BF1D1045C1006E4400 /* CouponViewController.swift */,
+				495743301D1935E0000C6A69 /* ReceiptTableViewController.swift */,
+				495743321D194448000C6A69 /* InvoiceViewController.swift */,
 				49B6F6821CF8658E00482502 /* WithDrawViewController.swift */,
 				4991F3431CB113A100E1BF85 /* LoginViewController.swift */,
 				4991F3411CB1029A00E1BF85 /* WelcomeViewController.swift */,
@@ -1872,6 +1878,7 @@
 				49B6F7601CF86C6100482502 /* BCQueryBillsReq.m in Sources */,
 				49B6F7691CF86C6100482502 /* BCQueryRefundsCountResp.m in Sources */,
 				498E26461CBBAA7D00DE6EDC /* DKAssetGroupDetailVC.swift in Sources */,
+				495743331D194448000C6A69 /* InvoiceViewController.swift in Sources */,
 				49B6F7931CF936E400482502 /* MCRefreshBackNormalFooter.swift in Sources */,
 				49F580B61CCF56280084EE99 /* UserInfoModel.swift in Sources */,
 				49A15E631CC5D2020028023C /* HandymanOrderDetailViewController.swift in Sources */,
@@ -1913,6 +1920,7 @@
 				496C5D3D1CC1D64800CA63AC /* ShoppingCartPayPopoverView.swift in Sources */,
 				49B6F68A1CF8658E00482502 /* UserInfoModifyViewController.swift in Sources */,
 				49D48ED11CE42A4700D19FC2 /* GetPartsInfoModel.swift in Sources */,
+				495743311D1935E0000C6A69 /* ReceiptTableViewController.swift in Sources */,
 				49B6F6841CF8658E00482502 /* ChooseLocationTableViewController.swift in Sources */,
 				49F5225D1CEF51910066E72A /* HollowButton.swift in Sources */,
 				49B6F7581CF86C6100482502 /* BCBaseReq.m in Sources */,
@@ -2184,7 +2192,7 @@
 					"$(PROJECT_DIR)/YiXinKuaiXiu/BCPay/Channel/WXPay",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.YiXinKuaiXiu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.yxkx;
 				PRODUCT_NAME = "壹心快修";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = YiXinKuaiXiu/support/Bridge.h;
@@ -2221,7 +2229,7 @@
 					"$(PROJECT_DIR)/YiXinKuaiXiu/BCPay/Channel/WXPay",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.YiXinKuaiXiu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.yxkx;
 				PRODUCT_NAME = "壹心快修";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = YiXinKuaiXiu/support/Bridge.h;

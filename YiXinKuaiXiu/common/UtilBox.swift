@@ -81,10 +81,6 @@ class UtilBox {
     
     // 判断是否为银行卡号
     static func isBankCardNum(input: String) -> Bool {
-        if !isNum(input, digital: false) {
-            return false
-        }
-        
         if input.characters.count >= 15 && input.characters.count <= 22 {
             return true
         } else {

@@ -208,7 +208,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     }
     
     @IBAction func cancelOrder(sender: UIButton) {
-        let alert = UIAlertController(title: nil, message: "取消订单文字，先留着，以后再填", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         alert.addAction(UIAlertAction(
             title: "取消订单",

@@ -163,6 +163,7 @@ class Constants {
         static let ShowRechargeSegue = "showRechargeSegue"
         static let ShowBindBankCardSegue = "showBindBankCardSegue"
         static let ShowBoundBankCardSegue = "showBoundBankCardSegue"
+        static let ShowReceiptSegue = "showReceiptSegue"
         
         static let WithDrawToBindBankCardSegue = "withDrawToBindBankCardSegue"
         static let WithDrawToBoundBankCardSegue = "withDrawToBoundBankCardSegue"

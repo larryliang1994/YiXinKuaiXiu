@@ -15,7 +15,7 @@ class ProjectBidingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let request = NSURLRequest(URL: NSURL(string: "https://cn.bing.com")!)
+        let request = NSURLRequest(URL: NSURL(string: "https://www.yixinkuaixiu.com/xmzb.php")!)
         webView.loadRequest(request)
     }
 
