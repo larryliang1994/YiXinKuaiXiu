@@ -20,7 +20,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     let requestNum = 5
     var initRequestNum = 0
     
-    var sleepTime: UInt32 = 0
+    var sleepTime: UInt32 = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +41,8 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         
         // 初始化Bugly
         let config = BuglyConfig()
-        config.blockMonitorEnable = true
-        config.unexpectedTerminatingDetectionEnable = true
+        //config.blockMonitorEnable = true
+        //config.unexpectedTerminatingDetectionEnable = true
         Bugly.startWithAppId(Constants.Key.BuglyAppID, config: config)
         
         // 初始化数据统计服务

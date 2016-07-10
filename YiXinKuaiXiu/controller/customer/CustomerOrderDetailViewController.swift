@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate, OrderDelegate, PopBottomViewDelegate, PopBottomViewDataSource {
+class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate, OrderDelegate, PopBottomViewDelegate, PopBottomViewDataSource, OrderListChangeDelegate {
     
     @IBOutlet var feeTitleLabel: UILabel!
     @IBOutlet var portraitImageView: UIImageView!
@@ -29,15 +29,26 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     @IBOutlet var partFeeLabel: UILabel!
     @IBOutlet var showPartDetailButton: UIButton!
     @IBOutlet var cancelOrderButton: HollowButton!
+    @IBOutlet var partsMallButton: HollowButton!
+    @IBOutlet var partsMallButtonLeading: NSLayoutConstraint!
+    @IBOutlet var partsMallButtonTrailing: NSLayoutConstraint!
+    @IBOutlet var partsMallButtonWidth: NSLayoutConstraint!
     
     @IBOutlet var imageCell: UITableViewCell!
-    @IBOutlet var picture2ImageView: UIImageView!
-    @IBOutlet var picture1ImageView: UIImageView!
     @IBOutlet var ratingCell: UITableViewCell!
+    
+    @IBOutlet var picture1ImageView: UIImageView!
+    @IBOutlet var picture2ImageView: UIImageView!
+    @IBOutlet var picture3ImageView: UIImageView!
+    @IBOutlet var picture4ImageView: UIImageView!
+    
+    var images: [UIImageView] = []
     
     var delegate: OrderListChangeDelegate?
     
     var order: Order?
+    
+    var failToGetHandymanInfo = false
     
     var name: String?, telephoneNum: String?, sex: Int?, age: Int?, star: Int?, mNum: Int?, portraitUrl: String? ,starList: [Int]?, descList: [String]?, dateList: [String]?
 
@@ -46,8 +57,8 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         
         initView()
         
-        self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
-        self.tableView.layoutIfNeeded()
+        tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
+        tableView.layoutIfNeeded()
         
         initNavBar()
         
@@ -61,35 +72,6 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             contactButton.hidden = true
             contactButtonWidth.constant = 0
             contactButtonLeading.constant = 0
-        }
-    }
-    
-    func onGetHandymanInfoResult(result: Bool, info: String, name: String, telephoneNum: String, sex: Int, age: Int, star: Int, mNum: Int, portraitUrl: String, starList: [Int], descList: [String], dateList: [String]) {
-        self.clearAllNotice()
-        if result {
-            self.name = name
-            self.telephoneNum = telephoneNum
-            self.sex = sex
-            self.age = age
-            self.star = star
-            self.mNum = mNum
-            self.portraitUrl = portraitUrl
-            self.starList = starList
-            self.descList = descList
-            self.dateList = dateList
-            
-            portraitImageView.clipsToBounds = true
-            portraitImageView.hnk_setImageFromURL(NSURL(string: portraitUrl)!)
-            
-            nameLabel.text = name
-            if mNum != 0 {
-                rating.rating = Float(star / mNum)
-            } else {
-                rating.rating = 0
-            }
-            orderCountLabel.text = mNum.toString() + "单"
-        } else {
-            UtilBox.alert(self, message: info)
         }
     }
     
@@ -125,27 +107,35 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             
             if (order?.partFee)! == "0" {
                 showPartDetailButton.hidden = true
+            } else {
+                showPartDetailButton.hidden = false
             }
         }
         
-        if order?.image1Url == nil {
+        if !((order!.state == .HasBeenGrabbed || order!.state == .PaidMFee) && order!.type == .Normal) {
+            partsMallButton.hidden = true
+            partsMallButtonLeading.constant = 0
+            partsMallButtonWidth.constant = 0
+        }
+        
+        images.append(picture1ImageView)
+        images.append(picture2ImageView)
+        images.append(picture3ImageView)
+        images.append(picture4ImageView)
+        
+        if order?.imageUrls!.count == 0 {
             imageCell.hidden = true
-        } else if order?.image2Url == nil {
-            picture1ImageView.image = nil
-            picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
         } else {
-            picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
-            picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image2Url)!)!)
+            for var index in 0...(order?.imageUrls!.count)!-1 {
+                images[index].hnk_setImageFromURL(NSURL(string: (order?.imageUrls![index])!)!)
+                images[index].clipsToBounds = true
+                images[index].setupForImageViewer(Constants.Color.BlackBackground)
+            }
         }
         
         if order?.state == .HasBeenRated {
             cancelOrderButton.hidden = true
         }
-        
-        picture1ImageView.clipsToBounds = true
-        picture2ImageView.clipsToBounds = true
-        picture1ImageView.setupForImageViewer(Constants.Color.BlackBackground)
-        picture2ImageView.setupForImageViewer(Constants.Color.BlackBackground)
     }
     
     func initNavBar() {
@@ -185,6 +175,35 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     
     func viewWillDisappear() {
         tableView.scrollEnabled = true
+    }
+    
+    @IBAction func showPartsMall(sender: HollowButton) {
+        let partsMallVC = UtilBox.getController(Constants.ControllerID.PartsMall) as! PartsMallViewController
+        partsMallVC.order = order
+        partsMallVC.delegate = self
+        self.navigationController?.showViewController(partsMallVC, sender: self)
+    }
+    
+    func didChange() {
+        self.pleaseWait()
+        OrderModel(orderDelegate: self).pullOrderList(0, pullType: .OnGoing)
+    }
+    
+    func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {
+        self.clearAllNotice()
+        if result {
+            for var o in orderList {
+                if o.date == order?.date {
+                    order = o
+                    initView()
+                    tableView.reloadData()
+                    delegate?.didChange()
+                    break
+                }
+            }
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
     
     @IBAction func contact(sender: UIButton) {
@@ -241,6 +260,36 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         }
     }
     
+    func onGetHandymanInfoResult(result: Bool, info: String, name: String, telephoneNum: String, sex: Int, age: Int, star: Int, mNum: Int, portraitUrl: String, starList: [Int], descList: [String], dateList: [String]) {
+        self.clearAllNotice()
+        if result {
+            self.name = name
+            self.telephoneNum = telephoneNum
+            self.sex = sex
+            self.age = age
+            self.star = star
+            self.mNum = mNum
+            self.portraitUrl = portraitUrl
+            self.starList = starList
+            self.descList = descList
+            self.dateList = dateList
+            
+            portraitImageView.clipsToBounds = true
+            portraitImageView.hnk_setImageFromURL(NSURL(string: portraitUrl)!)
+            
+            nameLabel.text = name
+            if mNum != 0 {
+                rating.rating = Float(star / mNum)
+            } else {
+                rating.rating = 0
+            }
+            orderCountLabel.text = mNum.toString() + "单"
+        } else {
+            UtilBox.alert(self, message: info)
+            failToGetHandymanInfo = true
+        }
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
@@ -249,7 +298,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         case 1:
             switch indexPath.row {
             case 0: return descLabel.frame.size.height + 24
-            case 1: return order?.image1Url == nil ? 0 : 70
+            case 1: return order?.imageUrls!.count == 0 ? 0 : 70
             case 2: return locationLabel.frame.size.height + 24
             case 3: return 44
             default:    return 44
@@ -279,7 +328,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && !failToGetHandymanInfo {
             if (order?.state?.rawValue)! >= (State.HasBeenGrabbed.rawValue) {
                 performSegueWithIdentifier(Constants.SegueID.ShowHandymanInfoSugue, sender: self)
             }
@@ -308,8 +357,6 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     func onGrabOrderResult(result: Bool, info: String) {}
     
     func onPublishOrderResult(result: Bool, info: String) {}
-    
-    func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {}
     
     func onPullGrabOrderListResult(result: Bool, info: String, orderList: [Order]) {}
     

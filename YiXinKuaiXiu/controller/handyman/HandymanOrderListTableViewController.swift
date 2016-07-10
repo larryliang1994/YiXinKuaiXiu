@@ -26,7 +26,7 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
             
             if order.type == .Normal {
                 typeLabel.backgroundColor = Constants.Color.Orange
-                typeLabel.text = "普通"
+                typeLabel.text = "紧急"
             } else if order.type == .Pack {
                 typeLabel.backgroundColor = Constants.Color.Green
                 typeLabel.text = "打包"
@@ -92,12 +92,12 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
             let origin = cell.contentView.frame
             
             if order.payments?.count == 1 {
-                background.frame = CGRect(x: origin.minX + 10, y: origin.minY, width: UIScreen.mainScreen().bounds.width - 20, height: 30)
+                background.frame = CGRect(x: origin.minX + 10, y: origin.minY, width: UIScreen.mainScreen().bounds.width - 20, height: 36)
             } else {
                 if indexPath.row == 1 {
-                    background.frame = CGRect(x: origin.minX + 10, y: origin.minY, width: UIScreen.mainScreen().bounds.width - 20, height: 40)
+                    background.frame = CGRect(x: origin.minX + 10, y: origin.minY, width: UIScreen.mainScreen().bounds.width - 20, height: 50)
                 } else if indexPath.row == order.payments?.count {
-                    background.frame = CGRect(x: origin.minX + 10, y: origin.minY - 10, width: UIScreen.mainScreen().bounds.width - 20, height: 40)
+                    background.frame = CGRect(x: origin.minX + 10, y: origin.minY - 20, width: UIScreen.mainScreen().bounds.width - 20, height: 56)
                 } else {
                     background.frame = CGRect(x: origin.minX + 10, y: origin.minY, width: UIScreen.mainScreen().bounds.width - 20, height: 30)
                     background.layer.cornerRadius = 0
@@ -116,24 +116,24 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 66
+            return UITableViewAutomaticDimension
         } else if indexPath.row == (orders[indexPath.section].payments?.count)! + 1 {
             if orders[indexPath.section].state == .Cancelling {
-                return 60
+                return UITableViewAutomaticDimension
             } else {
                 return 8
             }
         } else {
             if indexPath.row == 1 || indexPath.row == orders[indexPath.section].payments?.count {
-                return 30
+                return 36
             } else {
-                return 20
+                return 24
             }
         }
     }
     
     func agreeCancelOrderConfirm(sender: UIButton) {
-        let alert = UIAlertController(title: nil, message: "取消订单文字，先留着，以后再填", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         alert.addAction(UIAlertAction(
             title: "同意取消订单",
@@ -154,7 +154,7 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
     }
     
     func disagreeCancelOrderConfirm(sender: UIButton) {
-        let alert = UIAlertController(title: nil, message: "取消订单文字，先留着，以后再填", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         alert.addAction(UIAlertAction(
             title: "不同意取消订单",

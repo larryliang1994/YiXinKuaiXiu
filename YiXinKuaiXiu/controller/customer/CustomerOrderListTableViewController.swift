@@ -30,7 +30,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             
             if order.type == .Normal {
                 typeLabel.backgroundColor = Constants.Color.Orange
-                typeLabel.text = "普通"
+                typeLabel.text = "紧急"
             } else if order.type == .Pack {
                 typeLabel.backgroundColor = Constants.Color.Green
                 typeLabel.text = "打包"
@@ -63,7 +63,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             case .NotPayFee:
                 leftButton.hidden = true
                 
-                rightButton.setTitle("付上门费", forState: .Normal)
+                rightButton.setTitle("付检查费", forState: .Normal)
                 rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
                 
             case .PaidFee:
@@ -121,12 +121,12 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             let origin = cell.contentView.frame
             
             if order.payments?.count == 1 {
-                background.frame = CGRect(x: origin.minX + 10, y: origin.minY, width: UIScreen.mainScreen().bounds.width - 20, height: 30)
+                background.frame = CGRect(x: origin.minX + 10, y: origin.minY, width: UIScreen.mainScreen().bounds.width - 20, height: 36)
             } else {
                 if indexPath.row == 1 {
-                    background.frame = CGRect(x: origin.minX + 10, y: origin.minY, width: UIScreen.mainScreen().bounds.width - 20, height: 40)
+                    background.frame = CGRect(x: origin.minX + 10, y: origin.minY, width: UIScreen.mainScreen().bounds.width - 20, height: 50)
                 } else if indexPath.row == order.payments?.count {
-                    background.frame = CGRect(x: origin.minX + 10, y: origin.minY - 10, width: UIScreen.mainScreen().bounds.width - 20, height: 40)
+                    background.frame = CGRect(x: origin.minX + 10, y: origin.minY - 20, width: UIScreen.mainScreen().bounds.width - 20, height: 56)
                 } else {
                     background.frame = CGRect(x: origin.minX + 10, y: origin.minY, width: UIScreen.mainScreen().bounds.width - 20, height: 30)
                     background.layer.cornerRadius = 0
@@ -145,19 +145,20 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 66
+            return UITableViewAutomaticDimension
         } else if indexPath.row == (orders[indexPath.section].payments?.count)! + 1 {
+            // 这里导致报了警告
             let state = orders[indexPath.section].state
             if state == .PaidFee || state == .HasBeenRated {
                 return 8
             } else {
-                return 60
+                return UITableViewAutomaticDimension
             }
         } else {
             if indexPath.row == 1 || indexPath.row == orders[indexPath.section].payments?.count {
-                return 30
+                return 36
             } else {
-                return 20
+                return 24
             }
         }
     }

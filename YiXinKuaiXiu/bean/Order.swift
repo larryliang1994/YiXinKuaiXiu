@@ -54,8 +54,7 @@ class Order {
     var locationInfo: CLLocation?
     var fee: String?
     var mFee: String?
-    var image1: DKAsset?
-    var image2: DKAsset?
+    var images: [DKAsset]?
     
     var status: Status?
     var state: State?
@@ -74,14 +73,13 @@ class Order {
     var senderName: String?
     var senderNum: String?
     var graberID: String?
-    var image1Url: String?
-    var image2Url: String?
+    var imageUrls: [String]?
     
     var distance: Int?
     
     var senderTotalNum: Int?
     
-    init(type: Type, desc: String, mType: String, mTypeID: String, location: String, locationInfo: CLLocation, fee: String?, image1: DKAsset?, image2: DKAsset?) {
+    init(type: Type, desc: String, mType: String, mTypeID: String, location: String, locationInfo: CLLocation, fee: String?, images: [DKAsset]?) {
         self.type = type
         self.desc = desc
         self.mType = mType
@@ -89,11 +87,10 @@ class Order {
         self.location = location
         self.locationInfo = locationInfo
         self.fee = fee
-        self.image1 = image1
-        self.image2 = image2
+        self.images = images
     }
     
-    init(type: Type, desc: String, mType: String, mTypeID: String, location: String, locationInfo: CLLocation, fee: String?, image1: DKAsset?, image2: DKAsset?, status: Status, ratingStar: Int?, ratingDesc: String?, parts: [Part]?, payments: [Payment]) {
+    init(type: Type, desc: String, mType: String, mTypeID: String, location: String, locationInfo: CLLocation, fee: String?, images: [DKAsset]?, status: Status, ratingStar: Int?, ratingDesc: String?, parts: [Part]?, payments: [Payment]) {
         self.type = type
         self.desc = desc
         self.mType = mType
@@ -101,8 +98,7 @@ class Order {
         self.location = location
         self.locationInfo = locationInfo
         self.fee = fee
-        self.image1 = image1
-        self.image2 = image2
+        self.images = images
         self.status = status
         self.ratingStar = ratingStar
         self.ratingDesc = ratingDesc
@@ -111,7 +107,7 @@ class Order {
     }
     
     // 订单列表构造
-    init(id: String, date: String, senderID: String, senderName: String, senderNum: String, graberID: String, type: Type, image1Url: String?, image2Url: String?, desc: String, mTypeID: String, mType: String, location: String, locationInfo: CLLocation, fee: String, mFee: String, status: Status, state: State, ratingStar: Int?, ratingDesc: String?) {
+    init(id: String, date: String, senderID: String, senderName: String, senderNum: String, graberID: String, type: Type, imageUrls: [String]?, desc: String, mTypeID: String, mType: String, location: String, locationInfo: CLLocation, fee: String, mFee: String, status: Status, state: State, ratingStar: Int?, ratingDesc: String?) {
         self.id = id
         self.date = date
         self.senderID = senderID
@@ -119,8 +115,7 @@ class Order {
         self.senderNum = senderNum
         self.graberID = graberID
         self.type = type
-        self.image1Url = image1Url
-        self.image2Url = image2Url
+        self.imageUrls = imageUrls
         self.desc = desc
         self.mTypeID = mTypeID
         self.mType = mType
@@ -135,14 +130,13 @@ class Order {
     }
     
     // 抢单列表构造
-    init(date: String, senderID: String, senderName: String, senderNum: String, type: Type, image1Url: String?, image2Url: String?, desc: String, mTypeID: String, mType: String, location: String, locationInfo: CLLocation, fee: String) {
+    init(date: String, senderID: String, senderName: String, senderNum: String, type: Type, imageUrls: [String]?, desc: String, mTypeID: String, mType: String, location: String, locationInfo: CLLocation, fee: String) {
         self.date = date
         self.senderID = senderID
         self.senderName = senderName
         self.senderNum = senderNum
         self.type = type
-        self.image1Url = image1Url
-        self.image2Url = image2Url
+        self.imageUrls = imageUrls
         self.desc = desc
         self.mTypeID = mTypeID
         self.mType = mType

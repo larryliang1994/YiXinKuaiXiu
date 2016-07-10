@@ -141,6 +141,10 @@ class UtilBox {
         Config.ContactName = nil
         Config.ContactTelephone = nil
         Config.Messages = []
+        Config.MessagesNum = 0
+        Config.OrderNum = 0
+        Config.CouponList = []
+        Config.ReceiptList = []
     }
     
     // PHAsset转UIImage

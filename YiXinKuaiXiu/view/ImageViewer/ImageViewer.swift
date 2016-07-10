@@ -167,7 +167,9 @@ final class ImageViewer: UIViewController {
     // MARK: - Animation
     private func animateEntry() {
         guard let image = imageView.image else {
-            fatalError("no image provided")
+            //fatalError("no image provided")
+            UtilBox.reportBug("no image provided")
+            return
         }
         
         UIView.animateWithDuration(0.8, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.CurveEaseInOut], animations: {() -> Void in

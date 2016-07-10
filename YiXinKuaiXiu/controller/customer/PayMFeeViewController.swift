@@ -15,6 +15,7 @@ class PayMFeeViewController: UITableViewController, PopBottomViewDataSource, Pop
     var delegate: OrderListChangeDelegate?
     
     var order: Order?
+    var item: UIBarButtonItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class PayMFeeViewController: UITableViewController, PopBottomViewDataSource, Pop
     func initView() {
         textField.delegate = self
         
-        let item = UIBarButtonItem(title: "提交", style: .Plain, target: self, action: #selector(PayMFeeViewController.submit))
+        item = UIBarButtonItem(title: "提交", style: .Plain, target: self, action: #selector(PayMFeeViewController.submit))
         self.navigationItem.rightBarButtonItem = item
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
     }
@@ -36,6 +37,8 @@ class PayMFeeViewController: UITableViewController, PopBottomViewDataSource, Pop
         } else if Double((textField.text)!) <= 0 {
             UtilBox.alert(self, message: "请输入大于0的金额")
         } else {
+            item?.enabled = false
+            
             textField.resignFirstResponder()
             
             order?.mFee = textField.text
@@ -92,10 +95,12 @@ class PayMFeeViewController: UITableViewController, PopBottomViewDataSource, Pop
     }
     
     func viewWillAppear() {
+        item?.enabled = false
         tableView.scrollEnabled = false
     }
     
     func viewWillDisappear() {
+        item?.enabled = true
         tableView.scrollEnabled = true
     }
     

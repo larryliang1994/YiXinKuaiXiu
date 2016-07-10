@@ -12,13 +12,15 @@ import KYDrawerController
 class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, ModifyUserInfoDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, GetNearbyDelegate {
 
     @IBOutlet var mapView: BMKMapView!
+    @IBOutlet var getLocationButton: UIButton!
+    @IBOutlet var publishButton: PrimaryButton!
     
     var personList: [Person]?
     
     var drawerController: KYDrawerController?
     
     let locationService = BMKLocationService()
-    
+   
     var gotLocation = false
     
     override func viewDidLoad() {
@@ -31,14 +33,25 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     
     func initView() {
         drawerController = self.navigationController?.parentViewController as? KYDrawerController
-        
         drawerController?.drawerWidth = UIScreen.mainScreen().bounds.width * 0.75
-        
         (drawerController?.drawerViewController as! CustomerDrawerViewController).delegate = self
+        
+        publishButton.setTitle("找维修师傅", forState: .Normal)
+        
+        getLocationButton.layer.borderWidth = 0.5
+        getLocationButton.layer.borderColor = Constants.Color.Gray.CGColor
+        getLocationButton.layer.cornerRadius = 3
         
         mapView.zoomLevel = 18
         mapView.showsUserLocation = true
+        
         mapView.userTrackingMode = BMKUserTrackingModeFollow
+    }
+    
+    @IBAction func getLocation(sender: UIButton) {
+        if !mapView.userLocationVisible {
+            locationService.startUserLocationService()
+        }
     }
     
     func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
@@ -47,10 +60,12 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
         } else {
             mapView.updateLocationData(userLocation)
             
+            mapView.centerCoordinate = userLocation.location.coordinate
+            
             mapView.removeAnnotations(mapView.annotations)
         
-            let localLatitude=userLocation.location.coordinate.latitude
-            let localLongitude=userLocation.location.coordinate.longitude
+            let localLatitude = userLocation.location.coordinate.latitude
+            let localLongitude = userLocation.location.coordinate.longitude
         
             GetNearbyModel(getNearbyDelegate: self).doGetNearby(localLatitude.description, longitude: localLongitude.description, distance: 30)
             
@@ -117,6 +132,9 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
             
         case 4:
             segue = Constants.SegueID.CustomerDrawerToMallSegue
+            
+        case 5:
+            segue = Constants.SegueID.CustomerDrawerToProjectBidingSegue
             
         default:
             break

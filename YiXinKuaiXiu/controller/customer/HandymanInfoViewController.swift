@@ -15,8 +15,8 @@ class HandymanInfoViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        tableView.estimatedRowHeight = tableView.rowHeight
-//        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
     }
@@ -78,7 +78,7 @@ class HandymanInfoViewController: UITableViewController{
         if indexPath.section == 0 {
             return indexPath.row == 3 ? 80 : 44
         } else {
-            return indexPath.row == 0 ? 44 : 62
+            return indexPath.row == 0 ? 44 : 82
         }
     }
 

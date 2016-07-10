@@ -17,8 +17,13 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
     @IBOutlet var feeTitleLabel: UILabel!
     @IBOutlet var feeCell: UITableViewCell!
     @IBOutlet var imageCell: UITableViewCell!
-    @IBOutlet var image2: UIImageView!
-    @IBOutlet var image1: UIImageView!
+    
+    @IBOutlet var picture1ImageView: UIImageView!
+    @IBOutlet var picture2ImageView: UIImageView!
+    @IBOutlet var picture3ImageView: UIImageView!
+    @IBOutlet var picture4ImageView: UIImageView!
+    
+    var images: [UIImageView] = []
     
     var order: Order?
 
@@ -67,13 +72,19 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
             feeLabel.text = "￥ " + order!.fee!
         }
         
-        if order?.image1 == nil {
+        images.append(picture1ImageView)
+        images.append(picture2ImageView)
+        images.append(picture3ImageView)
+        images.append(picture4ImageView)
+        
+        if order?.images!.count == 0 {
             imageCell.hidden = true
-        } else if order?.image2 == nil {
-            image2.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
         } else {
-            image1.image = UtilBox.getAssetThumbnail((order?.image1!.originalAsset)!)
-            image2.image = UtilBox.getAssetThumbnail((order?.image2!.originalAsset)!)
+            for var index in 0...(order?.images!.count)!-1 {
+                images[index].image = UtilBox.getAssetThumbnail((order?.images![index].originalAsset)!)
+                images[index].clipsToBounds = true
+                images[index].setupForImageViewer(Constants.Color.BlackBackground)
+            }
         }
     }
     
@@ -143,7 +154,7 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
             } else if indexPath.row == 2 {
                 return locationLabel.frame.size.height + 28
             } else if indexPath.row == 1{
-               return order?.image1 == nil ? 0 : 70
+               return order?.images!.count == 0 ? 0 : 70
             } else {
                 return 44
             }

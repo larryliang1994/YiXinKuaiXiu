@@ -12,6 +12,7 @@ import KYDrawerController
 class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, GetNearbyDelegate, ModifyUserInfoDelegate {
     
     @IBOutlet var mapView: BMKMapView!
+    @IBOutlet var getLocationButton: UIButton!
     
     var drawerController: KYDrawerController?
     
@@ -31,9 +32,13 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
     
     func initView() {
         drawerController = self.navigationController?.parentViewController as? KYDrawerController
-        
         drawerController?.drawerWidth = UIScreen.mainScreen().bounds.width * 0.75
         (drawerController?.drawerViewController as! HandymanDrawerViewController).delegate = self
+        
+        getLocationButton.layer.borderWidth = 0.5
+        getLocationButton.layer.borderColor = Constants.Color.Gray.CGColor
+        getLocationButton.layer.cornerRadius = 3
+
         
         mapView.zoomLevel = 18
         mapView.showsUserLocation = true
@@ -173,13 +178,10 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
             self.navigationController?.showViewController(messageCenterVC, sender: self)
             
         case 5:
-            performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToProjectBidingSegue, sender: self)
-            
-        case 6:
             let mallVC = UtilBox.getController(Constants.ControllerID.Mall) as! MallViewController
             self.navigationController?.showViewController(mallVC, sender: self)
             
-        case 7:
+        case 6:
             performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToBlacklistSegue, sender: self)
             
         default:    break

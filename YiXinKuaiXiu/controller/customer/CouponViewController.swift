@@ -44,7 +44,9 @@ class CouponViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if result {
             if Config.CouponList.count == 0 || justCheck {
                 cancelButton.enabled = false
-                self.tableView.backgroundView = UtilBox.getEmptyView("暂无可用抵用券")
+                if Config.CouponList.count == 0 {
+                    self.tableView.backgroundView = UtilBox.getEmptyView("暂无可用抵用券")
+                }
             } else {
                 self.tableView.backgroundView = nil
             }
@@ -96,6 +98,8 @@ class CouponViewController: UIViewController, UITableViewDelegate, UITableViewDa
         descLabel.text = coupon.desc
         dateLabel.text = "获取日期：" + UtilBox.getDateFromString(coupon.date!, format: Constants.DateFormat.YMD)
         usedLabel.text = coupon.used! ? "已使用" : "可用"
+        usedLabel.textColor = coupon.used! ? UIColor.darkGrayColor() : Constants.Color.Primary
+        //cell.backgroundColor = coupon.used! ? UIColor.groupTableViewBackgroundColor() : UIColor.whiteColor()
         
         return cell
     }

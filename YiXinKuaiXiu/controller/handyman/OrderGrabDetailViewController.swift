@@ -14,8 +14,12 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
     @IBOutlet var mapView: BMKMapView!
     @IBOutlet var descLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
+    
     @IBOutlet var picture1ImageView: UIImageView!
     @IBOutlet var picture2ImageView: UIImageView!
+    @IBOutlet var picture3ImageView: UIImageView!
+    @IBOutlet var picture4ImageView: UIImageView!
+    
     @IBOutlet var maintenanceTypeLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var feeImgImageView: UIImageView!
@@ -27,6 +31,8 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
     var order: Order?
     
     var delegate: GrabOrderDelegate?
+    
+    var images: [UIImageView] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +57,7 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
         typeLabel.layer.cornerRadius = 3
         if order?.type == .Normal {
             typeLabel.backgroundColor = Constants.Color.Orange
-            typeLabel.text = "普通"
+            typeLabel.text = "紧急"
             feeTypeLabel.text = "检查费"
             feeLabel.textColor = Constants.Color.Orange
             feeLabel.text = "￥" + String(order!.fee!)
@@ -69,15 +75,23 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
             feeImgImageView.hidden = true
         }
         
-        if order?.image1Url != nil {
-            picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
-        } else {
+        images.append(picture1ImageView)
+        images.append(picture2ImageView)
+        images.append(picture3ImageView)
+        images.append(picture4ImageView)
+        
+        if order?.imageUrls!.count == 0 {
             image1Height.constant = 1
             picture1ImageView.hidden = true
             picture2ImageView.hidden = true
-        }
-        if order?.image2Url != nil {
-            picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image2Url)!)!)
+            picture3ImageView.hidden = true
+            picture4ImageView.hidden = true
+        } else {
+            for var index in 0...(order?.imageUrls!.count)!-1 {
+                images[index].hnk_setImageFromURL(NSURL(string: (order?.imageUrls![index])!)!)
+                images[index].clipsToBounds = true
+                images[index].setupForImageViewer(Constants.Color.BlackBackground)
+            }
         }
         
         maintenanceTypeLabel.text = (order?.mType)! + "维修"

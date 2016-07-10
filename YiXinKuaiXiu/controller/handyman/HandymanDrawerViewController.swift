@@ -48,7 +48,7 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 7
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -116,14 +116,10 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
                 }
                 label.textColor = Constants.Color.Primary
             } else if indexPath.row == 5 {
-                image.image = UIImage(named: "projectBinding")
-                title.text = "项目招标"
-                label.alpha = 0
-            } else if indexPath.row == 6 {
                 image.image = UIImage(named: "mall")
                 title.text = "壹心商城"
                 label.alpha = 0
-            } else if indexPath.row == 7 {
+            } else if indexPath.row == 6 {
                 image.image = UIImage(named: "blacklist")
                 title.text = "信用黑名单"
                 label.alpha = 0

@@ -72,7 +72,8 @@ class ShoppingCartPayPopoverView: UIView, PayDelegate, BCPayDelegate, ChooseCoup
         }
         
         if result {
-            let currentFee = coupon == nil ? fee! : String(newFee!)
+            //let currentFee = coupon == nil ? fee! : String(newFee!)
+            let currentFee = fee!
             
             BeeCloud.setBeeCloudDelegate(bcpayVC)
             

@@ -7,7 +7,7 @@
 //
 
 class Constants {
-    static let Types = ["普通维修 ", "打包维修", "预约维修"]
+    static let Types = ["紧急维修", "打包维修", "预约服务"]
     static let Status = ["待发单", "待抢单", "进行中", "待评价", "已完成", "取消中"]
     
     struct ControllerID {
@@ -127,6 +127,8 @@ class Constants {
         static let CustomerDrawerToPersonalInfoSegue = "customerDrawerToPersonalInfoSegue"
         static let CustomerDrawerToMessageCenterSegue = "customerDrawerToMessageCenterSegue"
         static let CustomerDrawerToMallSegue = "customerDrawerToMallSegue"
+        static let CustomerDrawerToProjectBidingSegue = "customerDrawerToProjectBidingSegue"
+        
         static let ShowPartsMallSegue = "showPartsMallSegue"
         static let ShowCustomerRatingSegue = "showCustomerRatingSegue"
         static let ShowCustomerOrderDetail = "showCustomerOrderDetail"
@@ -144,7 +146,6 @@ class Constants {
         static let HandymanDrawerToWalletSegue = "handymanDrawerToWalletSegue"
         static let HandymanDrawerToAuditIDSegue = "handymanDrawerToAuditIDSegue"
         static let HandymanDrawerToMessageCenterSegue = "handymanDrawerToMessageCenterSegue"
-        static let HandymanDrawerToProjectBidingSegue = "handymanDrawerToProjectBidingSegue"
         static let HandymanDrawerToAuditedSegue = "handymanDrawerToAuditedSegue"
         static let HandymanDrawerToBlacklistSegue = "handymanDrawerToBlacklistSegue"
         

@@ -246,7 +246,8 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                             used: couponJson["ste"].intValue == 1,
                             date: couponJson["dte"].stringValue)
                         
-                        Config.CouponList.append(coupon)
+                        Config.CouponList.insert(coupon, atIndex: 0)
+                        //Config.CouponList.append(coupon)
                     }
                 }
                 

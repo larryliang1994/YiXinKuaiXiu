@@ -180,7 +180,8 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             numBadge.text = totalNum.toString()
             
             totalPriceLabel.font = UIFont(name: (totalPriceLabel?.font?.fontName)!, size: 17)
-            totalPriceLabel.text = "￥" + String(totalPrice)
+            //totalPriceLabel.text = "￥" + String(totalPrice)
+            totalPriceLabel.text = "￥" + Float(totalPrice).description
             totalPriceLabel.textColor = Constants.Color.Primary
         }
     }
@@ -343,8 +344,6 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             } else {
                 return UITableViewAutomaticDimension
             }
-            
-//            return UITableViewAutomaticDimension
         }
     }
 
@@ -503,7 +502,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         lastPick = indexPath
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if let tableView = scrollView as? UITableView {
             if tableView.tag == Constants.Tag.PartsMallRightTableView {
                 let row = rightTableView.indexPathForCell(tableView.visibleCells[0])?.row

@@ -95,7 +95,7 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
         typeLabel.layer.cornerRadius = 3
         if order.type == .Normal {
             typeLabel.backgroundColor = Constants.Color.Orange
-            typeLabel.text = "普通"
+            typeLabel.text = "紧急"
             feeLabel.text = "检查费" + " ￥" + String(order.fee!)
         } else if order.type == .Pack {
             typeLabel.backgroundColor = Constants.Color.Green

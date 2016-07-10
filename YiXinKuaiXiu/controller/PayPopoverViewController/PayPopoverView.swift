@@ -109,11 +109,11 @@ class PayPopoverView: UIView, PayDelegate, BCPayDelegate, ChooseCouponDelegate {
         viewController?.clearAllNotice()
         
         if resp.resultCode == 0 {
-            print(resp.resultMsg + "!!")
+            //print(resp.resultMsg + "!!")
             doneThirdPay()
             //PayModel(payDelegate: self).goRecharge(String(Int(Float(fee!)! * 100)))
         } else {
-            print(resp.resultMsg + "：" + resp.errDetail)
+            //print(resp.resultMsg + "：" + resp.errDetail)
             delegate?.onPayResult(false, info: "支付取消")
         }
     }
@@ -121,7 +121,8 @@ class PayPopoverView: UIView, PayDelegate, BCPayDelegate, ChooseCouponDelegate {
     func doneThirdPay() {
         viewController?.pleaseWait()
         
-        let currentFee = coupon == nil ? fee! : String(newFee)
+        //let currentFee = coupon == nil ? fee! : String(newFee)
+        let currentFee = fee!
         let couponID = coupon == nil ? "" : coupon?.id!
         
         if type == .PackFee { // 付打包费

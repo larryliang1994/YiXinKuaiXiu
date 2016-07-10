@@ -107,7 +107,7 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
             if Config.Name != nil && Config.Name != "" {
                 AuditModel(auditDelegate: self).doAudit(nameLabel.text!, mTypeIDString: idString!, location: locationLabel.text!, locationInfo: locationInfo!, IDNum: idNumTextField.text!, picture: Config.PortraitUrl!, contactsName: contactNameTextField.text!, contactNum: contactTelephoneTextField.text!)
             } else {
-                UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail(imageAsset!.originalAsset!), type: .ID)
+                UploadImageModel(uploadImageDelegate: self).uploadImage(UtilBox.getAssetThumbnail(imageAsset!.originalAsset!), type: .ID)
             }
         }
     }

@@ -35,6 +35,9 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
 //            
 //            print("more")
 //        })
+        
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     func refresh() {

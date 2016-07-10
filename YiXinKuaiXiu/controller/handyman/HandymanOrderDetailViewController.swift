@@ -25,8 +25,14 @@ class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDel
     @IBOutlet var mFeeLabel: UILabel!
     @IBOutlet var partFeeLabel: UILabel!
     @IBOutlet var imageCell: UITableViewCell!
-    @IBOutlet var picture2ImageView: UIImageView!
+    @IBOutlet var ratingCell: UITableViewCell!
+    
     @IBOutlet var picture1ImageView: UIImageView!
+    @IBOutlet var picture2ImageView: UIImageView!
+    @IBOutlet var picture3ImageView: UIImageView!
+    @IBOutlet var picture4ImageView: UIImageView!
+    
+    var images: [UIImageView] = []
     
     var order: Order?
     
@@ -35,8 +41,11 @@ class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDel
         
         initView()
         
-        self.tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
-        self.tableView.layoutIfNeeded()
+        tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
+        tableView.layoutIfNeeded()
+        
+//        tableView.estimatedRowHeight = tableView.rowHeight
+//        tableView.rowHeight = UITableViewAutomaticDimension
         
         initNavBar()
     }
@@ -68,24 +77,28 @@ class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDel
             totalFeeLabel.text = "￥" + String(Float((order?.fee)!)! + Float((order?.mFee)!)!)
         }
         
-        if order?.image1Url == nil {
+        if order?.state?.rawValue < State.HasBeenRated.rawValue {
+            ratingCell.hidden = true
+        }
+        
+        images.append(picture1ImageView)
+        images.append(picture2ImageView)
+        images.append(picture3ImageView)
+        images.append(picture4ImageView)
+        
+        if order?.imageUrls!.count == 0 {
             imageCell.hidden = true
-        } else if order?.image2Url == nil {
-            picture1ImageView.image = nil
-            picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
         } else {
-            picture1ImageView.hnk_setImageFromURL(NSURL(string: (order?.image1Url)!)!)
-            picture2ImageView.hnk_setImageFromURL(NSURL(string: (order?.image2Url)!)!)
+            for var index in 0...(order?.imageUrls!.count)!-1 {
+                images[index].hnk_setImageFromURL(NSURL(string: (order?.imageUrls![index])!)!)
+                images[index].clipsToBounds = true
+                images[index].setupForImageViewer(Constants.Color.BlackBackground)
+            }
         }
         
         if (order?.partFee)! == "0" {
             showPartDetailButton.hidden = true
         }
-        
-        picture1ImageView.clipsToBounds = true
-        picture2ImageView.clipsToBounds = true
-        picture1ImageView.setupForImageViewer(Constants.Color.BlackBackground)
-        picture2ImageView.setupForImageViewer(Constants.Color.BlackBackground)
     }
     
     func initNavBar() {
@@ -145,13 +158,13 @@ class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDel
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
-        case 0:
-            return indexPath.row == 0 ? 60 : 49
+        case 0: return indexPath.row == 0 ? 60 : 49
             
         case 1:
+            
             switch indexPath.row {
             case 0: return descLabel.frame.size.height + 24
-            case 1: return order?.image1Url == nil ? 0 : 70
+            case 1: return order?.imageUrls!.count == 0 ? 0 : 70
             case 2: return locationLabel.frame.size.height + 24
             case 3: return 44
             default:    return 44
@@ -160,6 +173,7 @@ class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDel
         case 2: return order?.type == .Reservation ? 0 : 129
             
         case 3: return order?.state?.rawValue < State.HasBeenRated.rawValue ? 0 : ratingLabel.frame.size.height + 64
+        //case 3: return order?.state?.rawValue < State.HasBeenRated.rawValue ? 0 : UITableViewAutomaticDimension
             
         default:    return 44
         }

@@ -15,6 +15,7 @@ enum PullOrderListType: Int {
 }
 
 protocol OrderProtocol {
+    func publish(order: Order)
     func publishOrder(order: Order, imgString: String)
     func pullOrderList(requestIndex: Int, pullType: PullOrderListType)
     func pullGrabOrderList(requestTime: String, fromDistance: Int?, toDistance: Int?)

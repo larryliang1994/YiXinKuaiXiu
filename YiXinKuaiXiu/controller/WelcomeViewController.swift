@@ -13,6 +13,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descLabel: UILabel!
     @IBOutlet var mainImageView: UIImageView!
+    @IBOutlet var customerButton: PrimaryButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class WelcomeViewController: UIViewController {
     func initView() {
         titleLabel.text = "壹 心 快 修"
         descLabel.text = "您 的 居 家 维 修 助 手"
+        customerButton.setTitle("我要维修", forState: .Normal)
     }
     
     func setImageViewAnimation() {

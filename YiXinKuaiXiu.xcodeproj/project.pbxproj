@@ -63,6 +63,7 @@
 		4970BF141CDA43A000E20E70 /* OrderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF131CDA43A000E20E70 /* OrderProtocol.swift */; };
 		4970BF161CDAE8E100E20E70 /* UploadImageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF151CDAE8E100E20E70 /* UploadImageProtocol.swift */; };
 		4970BF181CDAE90400E20E70 /* UploadImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970BF171CDAE90400E20E70 /* UploadImageModel.swift */; };
+		497471BF1D2B6B9A003B796A /* ProtocolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497471BE1D2B6B9A003B796A /* ProtocolViewController.swift */; };
 		497542491CDDDB1200E23D38 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497542481CDDDB1200E23D38 /* Category.swift */; };
 		4979E8961CB4AD5800D03919 /* SMSwipeableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979E8951CB4AD5800D03919 /* SMSwipeableTabViewController.swift */; };
 		497CEE691D0F9F8700EBE279 /* BlacklistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CEE681D0F9F8700EBE279 /* BlacklistTableViewController.swift */; };
@@ -324,6 +325,7 @@
 		4970BF131CDA43A000E20E70 /* OrderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderProtocol.swift; path = model/OrderProtocol.swift; sourceTree = "<group>"; };
 		4970BF151CDAE8E100E20E70 /* UploadImageProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadImageProtocol.swift; path = model/UploadImageProtocol.swift; sourceTree = "<group>"; };
 		4970BF171CDAE90400E20E70 /* UploadImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadImageModel.swift; path = model/UploadImageModel.swift; sourceTree = "<group>"; };
+		497471BE1D2B6B9A003B796A /* ProtocolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProtocolViewController.swift; path = controller/ProtocolViewController.swift; sourceTree = "<group>"; };
 		497542481CDDDB1200E23D38 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = bean/Category.swift; sourceTree = "<group>"; };
 		4979E8951CB4AD5800D03919 /* SMSwipeableTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSwipeableTabViewController.swift; path = view/SMSwipeableTabViewController.swift; sourceTree = "<group>"; };
 		497A247B1CF966D200A43E70 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Release-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
@@ -661,6 +663,7 @@
 				49A15E591CC51E4B0028023C /* PartsMallViewController.swift */,
 				4924E7C11D1199F8006E4400 /* PartsMallSearchViewController.swift */,
 				496F11211CF6FE5500BAFA56 /* PayMFeeViewController.swift */,
+				49A15E781CC675430028023C /* ProjectBidingViewController.swift */,
 			);
 			name = customer;
 			sourceTree = "<group>";
@@ -757,7 +760,6 @@
 				49A15E661CC5DC650028023C /* AuditIDViewController.swift */,
 				49517E5E1CEB643000A20361 /* AuditedViewController.swift */,
 				497E9AB71CD2440300A7D934 /* ChooseMaintenanceTypeViewController.swift */,
-				49A15E781CC675430028023C /* ProjectBidingViewController.swift */,
 				497CEE681D0F9F8700EBE279 /* BlacklistTableViewController.swift */,
 			);
 			name = handyman;
@@ -935,6 +937,7 @@
 				495743301D1935E0000C6A69 /* ReceiptTableViewController.swift */,
 				495743321D194448000C6A69 /* InvoiceViewController.swift */,
 				49B6F6821CF8658E00482502 /* WithDrawViewController.swift */,
+				497471BE1D2B6B9A003B796A /* ProtocolViewController.swift */,
 				4991F3431CB113A100E1BF85 /* LoginViewController.swift */,
 				4991F3411CB1029A00E1BF85 /* WelcomeViewController.swift */,
 				49F580B91CCF64A20084EE99 /* SplashScreenViewController.swift */,
@@ -1971,6 +1974,7 @@
 				49B6F7951CF936E400482502 /* MCRefreshComponent.swift in Sources */,
 				4909EC4B1CE966E000C4FD04 /* AuditProtocol.swift in Sources */,
 				49F5225F1CEF5C1F0066E72A /* Rating.swift in Sources */,
+				497471BF1D2B6B9A003B796A /* ProtocolViewController.swift in Sources */,
 				49F36D221CB79575000DF874 /* SearchTextField.m in Sources */,
 				49F522571CEE9BCC0066E72A /* Handyman.swift in Sources */,
 				496C5D491CC2323A00CA63AC /* OrderGrabViewController.swift in Sources */,

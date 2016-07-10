@@ -62,9 +62,11 @@ class UserInfoViewController: UITableViewController, ModifyUserInfoDelegate, Cho
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
+        case 2:
+            tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+            
         case 0: fallthrough
         case 1: fallthrough
-        case 2: fallthrough
         case 4:
             selectedIndex = indexPath
             performSegueWithIdentifier(Constants.SegueID.ModifyUserInfoSefue, sender: self)

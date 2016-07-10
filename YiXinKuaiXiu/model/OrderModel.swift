@@ -9,11 +9,29 @@
 import Foundation
 import SwiftyJSON
 
-class OrderModel: OrderProtocol {
+class OrderModel: OrderProtocol, UploadImageDelegate {
     var orderDelegate: OrderDelegate?
+    var order: Order?
     
     init(orderDelegate: OrderDelegate) {
         self.orderDelegate = orderDelegate
+    }
+    
+    func publish(order: Order) {
+        self.order = order
+        if order.images != nil && order.images?.count != 0 {
+            UploadImageModel(uploadImageDelegate: self).uploadImages(order.images!)
+        } else {
+            publishOrder(order, imgString: "")
+        }
+    }
+    
+    @objc func onUploadImagesResult(result: Bool, info: String) {
+        if result {
+            publishOrder(order!, imgString: info)
+        } else {
+            self.orderDelegate?.onPublishOrderResult(false, info: "订单发布失败")
+        }
     }
     
     func publishOrder(order: Order, imgString: String) {
@@ -92,8 +110,7 @@ class OrderModel: OrderProtocol {
                             senderNum: orderJson["aph"].stringValue,
                             graberID: orderJson["bid"].stringValue,
                             type: Type(rawValue: orderJson["tpe"].intValue - 1)!,
-                            image1Url: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
-                            image2Url: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
+                            imageUrls: [],
                             desc: desc == "" ? "无" : desc,
                             mTypeID: orderJson["wxg"].stringValue,
                             mType: UtilBox.findMTypeNameByID(orderJson["wxg"].stringValue)!,
@@ -113,15 +130,10 @@ class OrderModel: OrderProtocol {
                         order.senderTotalNum = orderJson["cnt"].intValue
                         
                         let imgs = orderJson["pic"].stringValue.componentsSeparatedByString(",")
-                        if imgs.count == 1 && imgs[0] != "" {
-                            order.image1Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[0] + ".jpg"
-                            order.image2Url = nil
-                        } else if imgs.count == 2 {
-                            order.image1Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[0] + ".jpg"
-                            order.image2Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[1] + ".jpg"
-                        } else {
-                            order.image1Url = nil
-                            order.image2Url = nil
+                        for var index in 0...imgs.count-1 {
+                            if imgs[index] != "" {
+                                order.imageUrls?.append(Urls.OrderImgServer + order.senderID! + "/" + imgs[index] + ".jpg")
+                            }
                         }
                         
                         if order.senderName == "" {
@@ -130,13 +142,13 @@ class OrderModel: OrderProtocol {
                         
                         order.payments = []
                         if order.type == .Normal {
-                            order.payments?.append(Payment(name: "上门检查费", price: Float(order.fee!)!, paid: order.state != .NotPayFee))
+                            order.payments?.append(Payment(name: "紧急检查费", price: Float(order.fee!)!, paid: order.state != .NotPayFee))
                         }
                         if order.mFee != nil && order.mFee != "" && order.mFee != "0" {
                             order.payments?.append(Payment(name: "维修费", price: Float(order.mFee!)!, paid: true))
                         }
                         if order.type == .Pack {
-                            order.payments?.append(Payment(name: "打包维修费", price: Float(order.fee!)!, paid: order.state == .PaidMFee))
+                            order.payments?.append(Payment(name: "打包费", price: Float(order.fee!)!, paid: order.state == .PaidMFee))
                         }
                         if order.partFee != nil && order.partFee != "" && order.partFee != "0" {
                             order.payments?.append(Payment(name: "配件费", price: Float(order.partFee!)!, paid: true))
@@ -210,8 +222,7 @@ class OrderModel: OrderProtocol {
                             senderName: orderJson["anm"].stringValue,
                             senderNum: orderJson["aph"].stringValue,
                             type: Type(rawValue: orderJson["tpe"].intValue - 1)!,
-                            image1Url: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
-                            image2Url: "http://tse2.mm.bing.net/th?id=OIP.M9265f275be9a36c548da144b7b0d8edeo0&pid=15.1",
+                            imageUrls: [],
                             desc: desc == "" ? "无" : desc,
                             mTypeID: orderJson["wxg"].stringValue,
                             mType: UtilBox.findMTypeNameByID(orderJson["wxg"].stringValue)!,
@@ -220,15 +231,10 @@ class OrderModel: OrderProtocol {
                             fee: orderJson["fe1"].stringValue)
                         
                         let imgs = orderJson["pic"].stringValue.componentsSeparatedByString(",")
-                        if imgs.count == 1 && imgs[0] != "" {
-                            order.image1Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[0] + ".jpg"
-                            order.image2Url = nil
-                        } else if imgs.count == 2 {
-                            order.image1Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[0] + ".jpg"
-                            order.image2Url = Urls.OrderImgServer + order.senderID! + "/" + imgs[1] + ".jpg"
-                        } else {
-                            order.image1Url = nil
-                            order.image2Url = nil
+                        for var index in 0...imgs.count-1 {
+                            if imgs[index] != "" {
+                                order.imageUrls?.append(Urls.OrderImgServer + order.senderID! + "/" + imgs[index] + ".jpg")
+                            }
                         }
 
                         order.parts = []

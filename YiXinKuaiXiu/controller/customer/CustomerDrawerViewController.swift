@@ -103,6 +103,10 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
                 label.text = "壹心商城"
                 image.image = UIImage(named: "mall")
                 badge.alpha = 0
+            } else if indexPath.row == 5 {
+                label.text = "项目招标"
+                image.image = UIImage(named: "projectBinding")
+                badge.alpha = 0
             }
             
             return cell
@@ -124,7 +128,7 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

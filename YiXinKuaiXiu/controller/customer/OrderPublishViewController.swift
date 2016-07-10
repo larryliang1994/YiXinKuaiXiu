@@ -9,10 +9,12 @@
 import UIKit
 import Photos
 
-class OrderPublishViewController: UITableViewController, OrderPublishDelegate, UploadImageDelegate,OrderDelegate, ChooseLocationDelegate {
+class OrderPublishViewController: UITableViewController, OrderPublishDelegate, OrderDelegate, ChooseLocationDelegate {
     @IBOutlet var publishButtonItem: UIBarButtonItem!
     @IBOutlet var picture1ImageView: UIImageView!
     @IBOutlet var picture2ImageView: UIImageView!
+    @IBOutlet var picture3ImageView: UIImageView!
+    @IBOutlet var picture4ImageView: UIImageView!
     
     @IBOutlet var descTextView: BRPlaceholderTextView!
     @IBOutlet var feeCell: UITableViewCell!
@@ -20,7 +22,8 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
     @IBOutlet var feeLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var maintenanceTypeLabel: UILabel!
-    @IBOutlet var cameraNoticeLabel: UILabel!
+    
+    var imageViews: [UIImageView] = []
     
     var selectedImage: [DKAsset] = []
     var mTypeID: String?
@@ -36,6 +39,8 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
             feeCell.textLabel?.text = "打包费"
         } else if title == Constants.Types[2] {
             feeCell.hidden = true
+        } else {
+            feeCell.textLabel?.text = "紧急检查费"
         }
         
         initView()
@@ -44,10 +49,13 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
     }
     
     func initView() {
-        cameraNoticeLabel.hidden = true
-        
         descTextView.placeholder = "在这儿输入问题详情"
         descTextView.setPlaceholderFont(UIFont(name: (descTextView.font?.fontName)!, size: 16))
+        
+        imageViews.append(picture1ImageView)
+        imageViews.append(picture2ImageView)
+        imageViews.append(picture3ImageView)
+        imageViews.append(picture4ImageView)
     }
     
     func initNavBar() {
@@ -94,21 +102,37 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
         let pickerController = DKImagePickerController()
         pickerController.defaultSelectedAssets = selectedImage
         pickerController.showsCancelButton = true
-        pickerController.maxSelectableCount = 2
+        pickerController.maxSelectableCount = 4
         
         pickerController.didSelectAssets = { (assets: [DKAsset]) in
             self.selectedImage = assets
             
+            // bad code
             if self.selectedImage.count == 0 {
-                self.picture1ImageView.image = UIImage(named: "add_picture")
-                self.picture2ImageView.image = nil
+                self.imageViews[0].image = UIImage(named: "add_picture")
+                self.imageViews[1].image = nil
+                self.imageViews[2].image = nil
+                self.imageViews[3].image = nil
             } else if self.selectedImage.count == 1 {
-                self.picture1ImageView.image = UtilBox.getAssetThumbnail(self.selectedImage[0].originalAsset!)
-                self.picture2ImageView.image = UIImage(named: "add_picture")
-                
+                self.imageViews[0].image = UtilBox.getAssetThumbnail(self.selectedImage[0].originalAsset!)
+                self.imageViews[1].image = UIImage(named: "add_picture")
+                self.imageViews[2].image = nil
+                self.imageViews[3].image = nil
+            } else if self.selectedImage.count == 2 {
+                self.imageViews[0].image = UtilBox.getAssetThumbnail(self.selectedImage[0].originalAsset!)
+                self.imageViews[1].image = UtilBox.getAssetThumbnail(self.selectedImage[1].originalAsset!)
+                self.imageViews[2].image = UIImage(named: "add_picture")
+                self.imageViews[3].image = nil
+            } else if self.selectedImage.count == 3 {
+                self.imageViews[0].image = UtilBox.getAssetThumbnail(self.selectedImage[0].originalAsset!)
+                self.imageViews[1].image = UtilBox.getAssetThumbnail(self.selectedImage[1].originalAsset!)
+                self.imageViews[2].image = UtilBox.getAssetThumbnail(self.selectedImage[2].originalAsset!)
+                self.imageViews[3].image = UIImage(named: "add_picture")
             } else {
-                self.picture1ImageView.image = UtilBox.getAssetThumbnail(self.selectedImage[0].originalAsset!)
-                self.picture2ImageView.image = UtilBox.getAssetThumbnail(self.selectedImage[1].originalAsset!)
+                self.imageViews[0].image = UtilBox.getAssetThumbnail(self.selectedImage[0].originalAsset!)
+                self.imageViews[1].image = UtilBox.getAssetThumbnail(self.selectedImage[1].originalAsset!)
+                self.imageViews[2].image = UtilBox.getAssetThumbnail(self.selectedImage[2].originalAsset!)
+                self.imageViews[3].image = UtilBox.getAssetThumbnail(self.selectedImage[3].originalAsset!)
             }
         }
         
@@ -121,18 +145,6 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
     
     // 生成订单
     func generateOrder() {
-        var image1: DKAsset?, image2: DKAsset?
-        if selectedImage.count == 0 {
-            image1 = nil
-            image2 = nil
-        } else if selectedImage.count == 1 {
-            image1 = selectedImage[0]
-            image2 = nil
-        } else {
-            image1 = selectedImage[0]
-            image2 = selectedImage[1]
-        }
-        
         var type: Type
         if self.title == Constants.Types[0] {
             type = .Normal
@@ -141,7 +153,8 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
         } else {
             type = .Reservation
         }
-        order = Order(type: type, desc: descTextView.text, mType: maintenanceTypeLabel.text!, mTypeID: mTypeID!, location: locationLabel.text!, locationInfo: locationInfo!, fee: self.fee, image1: image1, image2: image2)
+        
+        order = Order(type: type, desc: descTextView.text, mType: maintenanceTypeLabel.text!, mTypeID: mTypeID!, location: locationLabel.text!, locationInfo: locationInfo!, fee: self.fee, images: selectedImage)
     }
     
     @IBAction func publish(sender: UIBarButtonItem) {
@@ -155,41 +168,12 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, U
             UtilBox.alert(self, message: "请选择费用")
         } else {
             self.pleaseWait()
+            
             generateOrder()
         
             publishButtonItem.enabled = false
-            //OrderModel(orderDelegate: self).publishOrder(order!)
-        
-            if order?.image1 != nil {
-                UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail((order?.image1?.originalAsset)!), type: .Order)
-            } else {
-                OrderModel(orderDelegate: self).publishOrder(order!, imgString: "")
-            }
-        
-        }
-    }
-    
-    var uploadedCount = 0
-    var imgString = ""
-    func onUploadOrderImageResult(result: Bool, info: String) {
-        if result {
-            uploadedCount += 1;
             
-            if uploadedCount == 1 {
-                imgString += info
-            } else {
-                imgString += "," + info
-            }
-            
-            if order?.image2 != nil && uploadedCount != 2 {
-                UploadImageModel(uploadImageDelegate: self).uploadOrderImage(UtilBox.getAssetThumbnail((order?.image2?.originalAsset)!), type: .Order)
-            } else {
-                OrderModel(orderDelegate: self).publishOrder(order!, imgString: imgString)
-            }
-        } else {
-            publishButtonItem.enabled = true
-            self.clearAllNotice()
-            UtilBox.alert(self, message: info)
+            OrderModel(orderDelegate: self).publish(order!)
         }
     }
     

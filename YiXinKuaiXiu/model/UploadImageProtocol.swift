@@ -9,5 +9,6 @@
 import Foundation
 
 protocol UploadImageProtocol {
-    func uploadOrderImage(image: UIImage, type: UploadImageType)
+    func uploadImage(image: UIImage, type: UploadImageType)
+    func uploadImages(images: [DKAsset])
 }
