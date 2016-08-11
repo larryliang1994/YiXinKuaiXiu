@@ -14,4 +14,7 @@ protocol GetInitialInfoProtocol {
     func getOrderNum()
     func getBlacklist()
     func getCouponList()
+    func getMallUrl()
+    func getVersionCode()
+    func getCityList()
 }

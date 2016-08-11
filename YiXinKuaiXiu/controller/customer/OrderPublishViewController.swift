@@ -147,7 +147,7 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, O
     func generateOrder() {
         var type: Type
         if self.title == Constants.Types[0] {
-            type = .Normal
+            type = .Urgent
         } else if self.title == Constants.Types[1] {
             type = .Pack
         } else {
@@ -182,10 +182,12 @@ class OrderPublishViewController: UITableViewController, OrderPublishDelegate, O
         if result {
             order?.date = info
             
-            if order?.type == .Normal {
+            if order?.type == .Urgent {
                 performSegueWithIdentifier(Constants.SegueID.ShowOrderPublishConfirmSegue, sender: self)
             } else {
                 self.noticeSuccess("发布成功", autoClear: true, autoClearTime: 2)
+                
+                Config.NotToHomePage = true
                 
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }

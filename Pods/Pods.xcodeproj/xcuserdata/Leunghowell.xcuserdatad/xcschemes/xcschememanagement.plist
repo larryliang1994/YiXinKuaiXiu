@@ -44,6 +44,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftyTimer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>UsefulPickerView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>XLRefreshSwift-XLRefreshSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,22 +67,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>05DA5951428B28A7CB7F01641265CB5B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1351AC3C1B3EEB288EA8E2295D9617DE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2C2B1953A91633859BF7AD238FF567A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>34A7013EA49E36157A716CCCE698A4C1</key>
+		<key>31165386FD92280CEE26C7C4200B8A52</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51572E38853BAF1B6B0268F01A1D8F7E</key>
+		<key>5DA14C9114959CA2ECA137EEF0CF79B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6A17BE5F7A08BF8ACD9FBFA49011BE93</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8206DA17EB870E89FB17C4870DCE724C</key>
+		<key>8EC1FDB98A8816315E54BA51642264BA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CB1FD7B38699F3195737755DE1FA5412</key>
+		<key>A6217BD7CF3A85824FE10B10EEF1129D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BBC8797B6C5AC6180D3C706CED167A4B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C96BE230DC42F00EE46AA31492FAACCC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E2D579373CC529B1C102876CBD800470</key>
 		<dict>
 			<key>primary</key>
 			<true/>

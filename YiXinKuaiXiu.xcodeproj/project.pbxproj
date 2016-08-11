@@ -361,7 +361,7 @@
 		498E26381CBBAA7D00DE6EDC /* DKAssetGroupGridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKAssetGroupGridLayout.swift; sourceTree = "<group>"; };
 		498E26391CBBAA7D00DE6EDC /* DKAssetGroupListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKAssetGroupListVC.swift; sourceTree = "<group>"; };
 		498E263A1CBBAA7D00DE6EDC /* DKPermissionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKPermissionView.swift; sourceTree = "<group>"; };
-		4991F30C1CB0FCD600E1BF85 /* 壹心快修.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "壹心快修.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4991F30C1CB0FCD600E1BF85 /* 谊心快修.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "谊心快修.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4991F30F1CB0FCD600E1BF85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4991F3141CB0FCD600E1BF85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4991F3191CB0FCD600E1BF85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -871,7 +871,7 @@
 		4991F30D1CB0FCD600E1BF85 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4991F30C1CB0FCD600E1BF85 /* 壹心快修.app */,
+				4991F30C1CB0FCD600E1BF85 /* 谊心快修.app */,
 				4991F3201CB0FCD600E1BF85 /* YiXinKuaiXiuTests.xctest */,
 				4991F32B1CB0FCD600E1BF85 /* YiXinKuaiXiuUITests.xctest */,
 			);
@@ -1654,7 +1654,7 @@
 			);
 			name = YiXinKuaiXiu;
 			productName = YiXinKuaiXiu;
-			productReference = 4991F30C1CB0FCD600E1BF85 /* 壹心快修.app */;
+			productReference = 4991F30C1CB0FCD600E1BF85 /* 谊心快修.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4991F31F1CB0FCD600E1BF85 /* YiXinKuaiXiuTests */ = {
@@ -1705,7 +1705,7 @@
 				TargetAttributes = {
 					4991F30B1CB0FCD600E1BF85 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = W8C6FGP93V;
+						DevelopmentTeam = 7534DF25WK;
 					};
 					4991F31F1CB0FCD600E1BF85 = {
 						CreatedOnToolsVersion = 7.3;
@@ -2196,8 +2196,8 @@
 					"$(PROJECT_DIR)/YiXinKuaiXiu/BCPay/Channel/WXPay",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.yxkx;
-				PRODUCT_NAME = "壹心快修";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.yixkx;
+				PRODUCT_NAME = "谊心快修";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = YiXinKuaiXiu/support/Bridge.h;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2233,8 +2233,8 @@
 					"$(PROJECT_DIR)/YiXinKuaiXiu/BCPay/Channel/WXPay",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.yxkx;
-				PRODUCT_NAME = "壹心快修";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.yixkx;
+				PRODUCT_NAME = "谊心快修";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = YiXinKuaiXiu/support/Bridge.h;
 				TARGETED_DEVICE_FAMILY = 1;

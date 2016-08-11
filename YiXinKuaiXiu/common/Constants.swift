@@ -10,6 +10,8 @@ class Constants {
     static let Types = ["紧急维修", "打包维修", "预约服务"]
     static let Status = ["待发单", "待抢单", "进行中", "待评价", "已完成", "取消中"]
     
+    static let RefreshTimer: Double = 2
+    
     struct ControllerID {
         static let PayPopover = "payPopover"
         
@@ -184,13 +186,13 @@ class Constants {
     }
     
     struct Key {
-        static let BaiDuMapAK = "UXx8zEHN9Fad78kxTY4ZQNSw62qjxcZc" 
+        static let BaiDuMapAK = "Z4AmKrzsUPYk25BPoXhvGHGVqfNfGtWW"
         static let UMAppKey = "56fc95ec67e58eb5ca0009f4"
         static let BuglyAppKey = "FQxNsqd5EzvoM5ct"
         static let BuglyAppID = "900024596"
-        static let WechatAppID = "wx95e732c9d17a5f96"
-        static let BeeCloudAppID = "5c4004ab-46ca-44b1-b4dc-5bc9dcc75415"
-        static let BeeCloudAppSecret = "8db42bff-1892-45c7-81ea-b3209a923dec"
+        static let WechatAppID = "wxe50122ae776cd502"
+        static let BeeCloudAppID = "4829b534-625a-4e47-aa66-f511628e1eff"
+        static let BeeCloudAppSecret = "e0e435bf-6522-4dd9-8721-4b1be57e82a4"
 //        static let WechatAppID = "wxf1aa465362b4c8f1"
 //        static let BeeCloudAppID = "c5d1cba1-5e3f-4ba0-941d-9b0a371fe719"
 //        static let BeeCloudAppSecret = "39a7a518-9ac8-4a9e-87bc-7885f33cf18c"

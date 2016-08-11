@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eGS-JG-N2G">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eGS-JG-N2G">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -10,7 +10,7 @@
         <!--欢迎页-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="欢迎页" id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="欢迎页" id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -35,7 +35,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="壹 心 快 修" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xx7-tp-i9d">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="谊 心 快 修" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xx7-tp-i9d">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Rah-Ml-h3x"/>
@@ -82,7 +82,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BG0-xL-0Hw" customClass="HollowButton" customModule="壹心快修" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BG0-xL-0Hw" customClass="HollowButton" customModule="谊心快修" customModuleProvider="target">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="THe-Yj-0nW">
@@ -108,11 +108,11 @@
                                     <action selector="handymanLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V2d-4Z-6FK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xoU-0f-lrO" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xoU-0f-lrO" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                <state key="normal" title="我要维修"/>
+                                <state key="normal" title="我是户主"/>
                                 <connections>
                                     <action selector="customerLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GDa-SH-0Xi"/>
                                 </connections>
@@ -255,7 +255,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="jV6-Zb-URH"/>
                     <connections>
-                        <outlet property="customerButton" destination="xoU-0f-lrO" id="lhq-7T-UoJ"/>
                         <outlet property="descLabel" destination="of6-jX-xqG" id="1ei-Of-bUj"/>
                         <outlet property="mainImageView" destination="nOz-HA-2Of" id="tIO-w5-1qD"/>
                         <outlet property="titleLabel" destination="Xx7-tp-i9d" id="Pse-LC-zag"/>
@@ -295,10 +294,10 @@
             </objects>
             <point key="canvasLocation" x="2763" y="-1817.25"/>
         </scene>
-        <!--壹心快修-->
+        <!--谊心快修-->
         <scene sceneID="a2e-Wb-Iez">
             <objects>
-                <viewController id="GRI-g9-LkU" customClass="HandymanHomeViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GRI-g9-LkU" customClass="HandymanHomeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1SD-T9-a2T"/>
                         <viewControllerLayoutGuide type="bottom" id="ojG-I5-MA0"/>
@@ -310,7 +309,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjq-6Y-ar5" customClass="BMKMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x10-zt-UaI" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x10-zt-UaI" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="WDv-2g-X98">
@@ -341,10 +340,10 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="3M7-Ud-IbW">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                                <variation key="heightClass=regular-widthClass=compact" constant="40"/>
                                             </constraint>
                                             <constraint firstAttribute="width" constant="118" id="tZ7-Fo-JPA">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                                <variation key="heightClass=regular-widthClass=compact" constant="40"/>
                                             </constraint>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
@@ -362,7 +361,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="getLocation:" destination="6u8-Eh-x1H" eventType="touchUpInside" id="6KB-bB-B2n"/>
+                                            <action selector="getLocation:" destination="GRI-g9-LkU" eventType="touchUpInside" id="pS9-Rm-QTN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -440,7 +439,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="壹心快修" id="USY-G8-uOc">
+                    <navigationItem key="navigationItem" title="谊心快修" id="USY-G8-uOc">
                         <barButtonItem key="leftBarButtonItem" image="drawerIcon" id="UvQ-Fm-U69">
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -464,7 +463,7 @@
         <!--订单列表-->
         <scene sceneID="Bfo-i3-4hR">
             <objects>
-                <viewController title="订单列表" id="f8u-jC-h1X" customClass="OrderGrabViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="订单列表" id="f8u-jC-h1X" customClass="OrderGrabViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5DJ-9u-kFD"/>
                         <viewControllerLayoutGuide type="bottom" id="oZw-uC-fWN"/>
@@ -482,7 +481,7 @@
         <!--订单详情-->
         <scene sceneID="fu7-Am-a2E">
             <objects>
-                <viewController title="订单详情" id="QR4-HB-ldc" customClass="OrderGrabDetailViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="订单详情" id="QR4-HB-ldc" customClass="OrderGrabDetailViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ntx-Jr-Dy1"/>
                         <viewControllerLayoutGuide type="bottom" id="7df-Yx-lFi"/>
@@ -665,7 +664,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvg-xK-OLp" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvg-xK-OLp" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="QDK-x0-FD5">
@@ -1023,7 +1022,7 @@
         <!--Order Grab Table View Controller-->
         <scene sceneID="Fpr-xJ-ygB">
             <objects>
-                <tableViewController storyboardIdentifier="OrderGrabTableViewController" id="Wvl-gy-jSq" customClass="OrderGrabTableViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OrderGrabTableViewController" id="Wvl-gy-jSq" customClass="OrderGrabTableViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="111" sectionHeaderHeight="28" sectionFooterHeight="28" id="38O-dl-K75">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1331,7 +1330,7 @@
         <!--验证手机-->
         <scene sceneID="OoB-ux-aaH">
             <objects>
-                <viewController title="验证手机" id="Azk-av-R6b" customClass="LoginViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="验证手机" id="Azk-av-R6b" customClass="LoginViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dcx-k6-UKP"/>
                         <viewControllerLayoutGuide type="bottom" id="Qz9-Ka-z7R"/>
@@ -1372,7 +1371,7 @@
                                     <outlet property="delegate" destination="Azk-av-R6b" id="0NM-0F-q9m"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIO-5q-Tpj" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIO-5q-Tpj" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="开始">
@@ -1390,7 +1389,7 @@
                                     <outlet property="delegate" destination="Azk-av-R6b" id="zgZ-HZ-913"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyH-Gc-o2N" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyH-Gc-o2N" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="M5G-zN-C4Y">
@@ -1418,7 +1417,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbo-ym-bcZ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="《壹心快修用户协议》">
+                                <state key="normal" title="《谊心快修用户协议》">
                                     <color key="titleColor" red="0.82745098039999998" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -1551,6 +1550,17 @@
                                 <exclude reference="Sbo-ym-bcZ"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="0fK-dl-ak6"/>
+                                <exclude reference="2yh-6X-g1A"/>
+                                <exclude reference="51p-1X-Csw"/>
+                                <exclude reference="5gJ-pa-N1i"/>
+                                <exclude reference="8hL-u4-R48"/>
+                                <exclude reference="BG0-pd-lT9"/>
+                                <exclude reference="JJM-C5-Tf8"/>
+                                <exclude reference="Koe-vX-P2H"/>
+                                <exclude reference="PEp-wf-3C0"/>
+                                <exclude reference="Zfb-oz-IaK"/>
+                                <exclude reference="ha0-M9-HMy"/>
                                 <exclude reference="CJ3-HQ-PDm"/>
                                 <exclude reference="Ogl-ws-Ml8"/>
                                 <exclude reference="Y3i-uT-Dgv"/>
@@ -1559,6 +1569,26 @@
                                 <exclude reference="eZh-gi-pN9"/>
                                 <exclude reference="iEX-mD-eeD"/>
                                 <exclude reference="rhG-S6-VhE"/>
+                                <exclude reference="N7i-IT-Ztx"/>
+                                <exclude reference="X4Z-Bo-Opb"/>
+                                <exclude reference="0Cc-xU-hNt"/>
+                                <exclude reference="G3F-0I-5vU"/>
+                                <exclude reference="GYe-tr-efg"/>
+                                <exclude reference="MAs-Dr-4WJ"/>
+                                <exclude reference="WYO-xC-Y04"/>
+                                <exclude reference="d3X-Z4-QFK"/>
+                                <exclude reference="mPT-9s-ZIQ"/>
+                                <exclude reference="neC-1Z-gul"/>
+                                <exclude reference="tfH-tu-Eqm"/>
+                                <exclude reference="3Hd-Dp-Ac8"/>
+                                <exclude reference="3rM-Zc-3Ho"/>
+                                <exclude reference="8f3-uQ-Zz0"/>
+                                <exclude reference="Lrg-bN-gyT"/>
+                                <exclude reference="dEk-Uj-tJW"/>
+                                <exclude reference="e8O-v5-623"/>
+                                <exclude reference="egP-w3-YcR"/>
+                                <exclude reference="ftb-nx-gdo"/>
+                                <exclude reference="g5G-re-rNj"/>
                                 <exclude reference="2Ep-2w-N9k"/>
                                 <exclude reference="3fj-o7-4sG"/>
                                 <exclude reference="3pA-0v-WWK"/>
@@ -1572,37 +1602,6 @@
                                 <exclude reference="oyq-It-yX0"/>
                                 <exclude reference="pRr-ju-gag"/>
                                 <exclude reference="uor-uT-3qq"/>
-                                <exclude reference="0fK-dl-ak6"/>
-                                <exclude reference="2yh-6X-g1A"/>
-                                <exclude reference="51p-1X-Csw"/>
-                                <exclude reference="5gJ-pa-N1i"/>
-                                <exclude reference="8hL-u4-R48"/>
-                                <exclude reference="BG0-pd-lT9"/>
-                                <exclude reference="JJM-C5-Tf8"/>
-                                <exclude reference="Koe-vX-P2H"/>
-                                <exclude reference="PEp-wf-3C0"/>
-                                <exclude reference="Zfb-oz-IaK"/>
-                                <exclude reference="ha0-M9-HMy"/>
-                                <exclude reference="0Cc-xU-hNt"/>
-                                <exclude reference="G3F-0I-5vU"/>
-                                <exclude reference="GYe-tr-efg"/>
-                                <exclude reference="MAs-Dr-4WJ"/>
-                                <exclude reference="WYO-xC-Y04"/>
-                                <exclude reference="d3X-Z4-QFK"/>
-                                <exclude reference="mPT-9s-ZIQ"/>
-                                <exclude reference="neC-1Z-gul"/>
-                                <exclude reference="tfH-tu-Eqm"/>
-                                <exclude reference="ftb-nx-gdo"/>
-                                <exclude reference="g5G-re-rNj"/>
-                                <exclude reference="3Hd-Dp-Ac8"/>
-                                <exclude reference="3rM-Zc-3Ho"/>
-                                <exclude reference="8f3-uQ-Zz0"/>
-                                <exclude reference="Lrg-bN-gyT"/>
-                                <exclude reference="dEk-Uj-tJW"/>
-                                <exclude reference="e8O-v5-623"/>
-                                <exclude reference="egP-w3-YcR"/>
-                                <exclude reference="N7i-IT-Ztx"/>
-                                <exclude reference="X4Z-Bo-Opb"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1616,6 +1615,17 @@
                                 <include reference="cqg-PA-cSL"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="0fK-dl-ak6"/>
+                                <include reference="2yh-6X-g1A"/>
+                                <include reference="51p-1X-Csw"/>
+                                <exclude reference="5gJ-pa-N1i"/>
+                                <exclude reference="8hL-u4-R48"/>
+                                <include reference="BG0-pd-lT9"/>
+                                <exclude reference="JJM-C5-Tf8"/>
+                                <exclude reference="Koe-vX-P2H"/>
+                                <exclude reference="PEp-wf-3C0"/>
+                                <include reference="Zfb-oz-IaK"/>
+                                <exclude reference="ha0-M9-HMy"/>
                                 <exclude reference="CJ3-HQ-PDm"/>
                                 <include reference="Ogl-ws-Ml8"/>
                                 <exclude reference="Y3i-uT-Dgv"/>
@@ -1624,6 +1634,26 @@
                                 <include reference="eZh-gi-pN9"/>
                                 <include reference="iEX-mD-eeD"/>
                                 <exclude reference="rhG-S6-VhE"/>
+                                <include reference="N7i-IT-Ztx"/>
+                                <include reference="X4Z-Bo-Opb"/>
+                                <include reference="0Cc-xU-hNt"/>
+                                <exclude reference="G3F-0I-5vU"/>
+                                <include reference="GYe-tr-efg"/>
+                                <exclude reference="MAs-Dr-4WJ"/>
+                                <exclude reference="WYO-xC-Y04"/>
+                                <include reference="d3X-Z4-QFK"/>
+                                <include reference="mPT-9s-ZIQ"/>
+                                <exclude reference="neC-1Z-gul"/>
+                                <exclude reference="tfH-tu-Eqm"/>
+                                <include reference="3Hd-Dp-Ac8"/>
+                                <exclude reference="3rM-Zc-3Ho"/>
+                                <exclude reference="8f3-uQ-Zz0"/>
+                                <include reference="Lrg-bN-gyT"/>
+                                <exclude reference="dEk-Uj-tJW"/>
+                                <exclude reference="e8O-v5-623"/>
+                                <include reference="egP-w3-YcR"/>
+                                <include reference="ftb-nx-gdo"/>
+                                <include reference="g5G-re-rNj"/>
                                 <exclude reference="2Ep-2w-N9k"/>
                                 <exclude reference="3fj-o7-4sG"/>
                                 <exclude reference="3pA-0v-WWK"/>
@@ -1637,37 +1667,6 @@
                                 <exclude reference="oyq-It-yX0"/>
                                 <exclude reference="pRr-ju-gag"/>
                                 <exclude reference="uor-uT-3qq"/>
-                                <exclude reference="0fK-dl-ak6"/>
-                                <include reference="2yh-6X-g1A"/>
-                                <include reference="51p-1X-Csw"/>
-                                <exclude reference="5gJ-pa-N1i"/>
-                                <exclude reference="8hL-u4-R48"/>
-                                <include reference="BG0-pd-lT9"/>
-                                <exclude reference="JJM-C5-Tf8"/>
-                                <exclude reference="Koe-vX-P2H"/>
-                                <exclude reference="PEp-wf-3C0"/>
-                                <include reference="Zfb-oz-IaK"/>
-                                <exclude reference="ha0-M9-HMy"/>
-                                <include reference="0Cc-xU-hNt"/>
-                                <exclude reference="G3F-0I-5vU"/>
-                                <include reference="GYe-tr-efg"/>
-                                <exclude reference="MAs-Dr-4WJ"/>
-                                <exclude reference="WYO-xC-Y04"/>
-                                <include reference="d3X-Z4-QFK"/>
-                                <include reference="mPT-9s-ZIQ"/>
-                                <exclude reference="neC-1Z-gul"/>
-                                <exclude reference="tfH-tu-Eqm"/>
-                                <include reference="ftb-nx-gdo"/>
-                                <include reference="g5G-re-rNj"/>
-                                <include reference="3Hd-Dp-Ac8"/>
-                                <exclude reference="3rM-Zc-3Ho"/>
-                                <exclude reference="8f3-uQ-Zz0"/>
-                                <include reference="Lrg-bN-gyT"/>
-                                <exclude reference="dEk-Uj-tJW"/>
-                                <exclude reference="e8O-v5-623"/>
-                                <include reference="egP-w3-YcR"/>
-                                <include reference="N7i-IT-Ztx"/>
-                                <include reference="X4Z-Bo-Opb"/>
                             </mask>
                         </variation>
                     </view>
@@ -1706,7 +1705,7 @@
         <!--Splash Screen View Controller-->
         <scene sceneID="d6C-AZ-drp">
             <objects>
-                <viewController id="eGS-JG-N2G" customClass="SplashScreenViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eGS-JG-N2G" customClass="SplashScreenViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PSj-uy-xgP"/>
                         <viewControllerLayoutGuide type="bottom" id="8e3-Bv-vxw"/>
@@ -1715,51 +1714,89 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k9y-Pk-K91">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="谊 心 快 修" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfd-4v-l10">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="1gO-IP-Urd"/>
+                                    <constraint firstAttribute="height" constant="63" id="3j7-uo-gyu"/>
+                                    <constraint firstAttribute="height" constant="36" id="8lS-E2-TzP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="32"/>
+                                <color key="textColor" red="0.84705882349999995" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1gO-IP-Urd"/>
+                                        <exclude reference="3j7-uo-gyu"/>
+                                        <exclude reference="8lS-E2-TzP"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="1gO-IP-Urd"/>
+                                        <exclude reference="3j7-uo-gyu"/>
+                                        <include reference="8lS-E2-TzP"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您 的 居 家 维 修 助 手" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxi-bH-S15">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="197" id="Dza-SL-p9z"/>
+                                    <constraint firstAttribute="height" constant="45" id="k4C-Hb-GRs"/>
+                                    <constraint firstAttribute="height" constant="36" id="tZg-bp-61S"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Dza-SL-p9z"/>
+                                        <exclude reference="k4C-Hb-GRs"/>
+                                        <exclude reference="tZg-bp-61S"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="Dza-SL-p9z"/>
+                                        <exclude reference="k4C-Hb-GRs"/>
+                                        <include reference="tZg-bp-61S"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8e3-Bv-vxw" firstAttribute="top" secondItem="k9y-Pk-K91" secondAttribute="bottom" constant="644" id="YQ1-Ge-3dq">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
-                            </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="k9y-Pk-K91" secondAttribute="trailing" constant="86" id="cRO-y3-8ae">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
-                            </constraint>
-                            <constraint firstItem="k9y-Pk-K91" firstAttribute="leading" secondItem="Mf9-yw-oKV" secondAttribute="leadingMargin" constant="34" id="ixY-bI-EQb">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
-                            </constraint>
-                            <constraint firstItem="k9y-Pk-K91" firstAttribute="top" secondItem="PSj-uy-xgP" secondAttribute="bottom" constant="8" id="yh7-fg-skU">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
-                            </constraint>
+                            <constraint firstItem="Zxi-bH-S15" firstAttribute="centerY" secondItem="Mf9-yw-oKV" secondAttribute="centerY" id="64J-Wz-AsT"/>
+                            <constraint firstItem="Zxi-bH-S15" firstAttribute="centerX" secondItem="Mf9-yw-oKV" secondAttribute="centerX" id="6re-Nc-0MN"/>
+                            <constraint firstItem="Zxi-bH-S15" firstAttribute="top" secondItem="xfd-4v-l10" secondAttribute="bottom" constant="8" id="WSq-xn-qug"/>
+                            <constraint firstItem="xfd-4v-l10" firstAttribute="centerX" secondItem="Mf9-yw-oKV" secondAttribute="centerX" id="gQV-TU-NzK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="k9y-Pk-K91"/>
+                                <exclude reference="xfd-4v-l10"/>
+                                <exclude reference="Zxi-bH-S15"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="YQ1-Ge-3dq"/>
-                                <exclude reference="cRO-y3-8ae"/>
-                                <exclude reference="ixY-bI-EQb"/>
-                                <exclude reference="yh7-fg-skU"/>
+                                <exclude reference="64J-Wz-AsT"/>
+                                <exclude reference="6re-Nc-0MN"/>
+                                <exclude reference="WSq-xn-qug"/>
+                                <exclude reference="gQV-TU-NzK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="k9y-Pk-K91"/>
+                                <include reference="xfd-4v-l10"/>
+                                <include reference="Zxi-bH-S15"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="YQ1-Ge-3dq"/>
-                                <include reference="cRO-y3-8ae"/>
-                                <include reference="ixY-bI-EQb"/>
-                                <include reference="yh7-fg-skU"/>
+                                <include reference="64J-Wz-AsT"/>
+                                <include reference="6re-Nc-0MN"/>
+                                <include reference="WSq-xn-qug"/>
+                                <include reference="gQV-TU-NzK"/>
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <outlet property="imageView" destination="k9y-Pk-K91" id="556-Tp-lF5"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiL-vp-1G2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1797,7 +1834,7 @@
         <!--户主抽屉-->
         <scene sceneID="OQu-Rp-aOr">
             <objects>
-                <viewController title="户主抽屉" id="bGs-VT-3vx" customClass="CustomerDrawerViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="户主抽屉" id="bGs-VT-3vx" customClass="CustomerDrawerViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="22P-0c-jPx"/>
                         <viewControllerLayoutGuide type="bottom" id="KSu-UU-xaB"/>
@@ -1988,7 +2025,7 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="31" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9t-CV-eIh" customClass="SwiftBadge" customModule="壹心快修" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="31" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9t-CV-eIh" customClass="SwiftBadge" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="AbY-aQ-dFc"/>
@@ -2157,7 +2194,7 @@
         <!--订单列表-->
         <scene sceneID="AAE-Uq-nD2">
             <objects>
-                <viewController storyboardIdentifier="orderListController" title="订单列表" id="Tf2-2g-zxf" customClass="OrderListViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="orderListController" title="订单列表" id="Tf2-2g-zxf" customClass="OrderListViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V8o-FD-EtS"/>
                         <viewControllerLayoutGuide type="bottom" id="4KN-32-eSH"/>
@@ -2175,7 +2212,7 @@
         <!--消息中心-->
         <scene sceneID="3YS-xl-Z1e">
             <objects>
-                <tableViewController storyboardIdentifier="messageCenterController" title="消息中心" id="pHl-6F-HQM" customClass="MessageCenterViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="messageCenterController" title="消息中心" id="pHl-6F-HQM" customClass="MessageCenterViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="146" sectionHeaderHeight="18" sectionFooterHeight="18" id="bDQ-jH-KEw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2306,7 +2343,7 @@
         <!--个人信息-->
         <scene sceneID="XG7-iA-GmI">
             <objects>
-                <tableViewController storyboardIdentifier="userInfoController" title="个人信息" id="BNT-oh-Vqw" customClass="UserInfoViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="userInfoController" title="个人信息" id="BNT-oh-Vqw" customClass="UserInfoViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="3tl-rs-15d">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2512,7 +2549,7 @@
         <!--我的抵用券-->
         <scene sceneID="gNE-U2-egx">
             <objects>
-                <viewController storyboardIdentifier="couponController" title="我的抵用券" id="liT-SA-ZkX" customClass="CouponViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="couponController" title="我的抵用券" id="liT-SA-ZkX" customClass="CouponViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nyz-Xy-QGI"/>
                         <viewControllerLayoutGuide type="bottom" id="QeM-x1-vAt"/>
@@ -2605,7 +2642,8 @@
                                                             <exclude reference="nF4-LQ-Xvq"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="182" y="45" width="50" height="18"/>
                                                         <mask key="constraints">
                                                             <include reference="nF4-LQ-Xvq"/>
                                                         </mask>
@@ -2851,7 +2889,7 @@
         <!--修改信息-->
         <scene sceneID="ezY-TW-aV1">
             <objects>
-                <tableViewController title="修改信息" id="iiW-mx-tec" customClass="UserInfoModifyViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="修改信息" id="iiW-mx-tec" customClass="UserInfoModifyViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="sOe-I7-R4V">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2947,7 +2985,7 @@
         <!--我的钱包-->
         <scene sceneID="JUi-cb-DaO">
             <objects>
-                <tableViewController storyboardIdentifier="walletController" title="我的钱包" id="aQK-RX-JXW" customClass="WalletViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="walletController" title="我的钱包" id="aQK-RX-JXW" customClass="WalletViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="9ap-C4-fsh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2956,7 +2994,7 @@
                             <rect key="frame" x="0.0" y="569" width="600" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfF-ez-B5g" customClass="HollowButton" customModule="壹心快修" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfF-ez-B5g" customClass="HollowButton" customModule="谊心快修" customModuleProvider="target">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="5YC-AX-ukd"/>
@@ -2978,7 +3016,7 @@
                                         <action selector="goWithDraw:" destination="aQK-RX-JXW" eventType="touchUpInside" id="qAx-Zt-e8p"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28Q-Cx-VX3" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28Q-Cx-VX3" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="MN5-Q1-nn1">
@@ -3162,7 +3200,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AQU-OL-kgt">
-                                                    <rect key="frame" x="530" y="15" width="35" height="16"/>
+                                                    <rect key="frame" x="525" y="13" width="40" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -3262,17 +3300,17 @@
         <!--订单列表-->
         <scene sceneID="ZPV-Gp-Q7Z">
             <objects>
-                <tableViewController storyboardIdentifier="customerOrderListTableViewController" title="订单列表" id="ui6-t4-rWR" customClass="CustomerOrderListTableViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="customerOrderListTableViewController" title="订单列表" id="ui6-t4-rWR" customClass="CustomerOrderListTableViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="271" sectionHeaderHeight="18" sectionFooterHeight="18" id="heu-If-IGz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="customerOrderListTopCell" rowHeight="70" id="awa-KZ-zmz">
-                                <rect key="frame" x="0.0" y="50" width="600" height="66"/>
+                                <rect key="frame" x="0.0" y="50" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="awa-KZ-zmz" id="CFx-mp-TSN">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="水维修" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pd-Pn-ABf">
@@ -3445,14 +3483,14 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="customerOrderListMidCell" textLabel="meC-mD-2t6" detailTextLabel="mvZ-gr-prc" rowHeight="34" style="IBUITableViewCellStyleValue1" id="yik-xw-MZL">
-                                <rect key="frame" x="0.0" y="116" width="600" height="30"/>
+                                <rect key="frame" x="0.0" y="120" width="600" height="34"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yik-xw-MZL" id="34R-Ng-kbK">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="34"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="meC-mD-2t6">
-                                            <rect key="frame" x="20" y="7" width="27" height="16"/>
+                                            <rect key="frame" x="20" y="8" width="30" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -3460,7 +3498,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mvZ-gr-prc">
-                                            <rect key="frame" x="545" y="7" width="35" height="16"/>
+                                            <rect key="frame" x="540" y="8" width="40" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -3473,7 +3511,7 @@
                                 <edgeInsets key="layoutMargins" top="8" left="20" bottom="8" right="20"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="customerOrderListBottomCell" rowHeight="60" id="842-Ik-hrJ">
-                                <rect key="frame" x="0.0" y="146" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="154" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="842-Ik-hrJ" id="Dow-f1-Gth">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
@@ -3504,38 +3542,7 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <button opaque="NO" tag="13" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oo1-de-Yme" customClass="HollowButton" customModule="壹心快修" customModuleProvider="target">
-                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="52" id="8Fs-ks-1jy">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="64"/>
-                                                </constraint>
-                                                <constraint firstAttribute="height" constant="35" id="W3N-OP-Qgd"/>
-                                                <constraint firstAttribute="height" constant="49" id="WZj-B2-Rqy">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="30"/>
-                                                </constraint>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <inset key="contentEdgeInsets" minX="8" minY="5" maxX="8" maxY="5"/>
-                                            <state key="normal" title="购买配件">
-                                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="8Fs-ks-1jy"/>
-                                                    <exclude reference="W3N-OP-Qgd"/>
-                                                    <exclude reference="WZj-B2-Rqy"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <exclude reference="8Fs-ks-1jy"/>
-                                                    <exclude reference="W3N-OP-Qgd"/>
-                                                    <exclude reference="WZj-B2-Rqy"/>
-                                                </mask>
-                                            </variation>
-                                        </button>
-                                        <button opaque="NO" tag="14" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypw-IZ-ZXS" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                                        <button opaque="NO" tag="14" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypw-IZ-ZXS" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="52" id="0qV-dh-3nE">
@@ -3565,6 +3572,37 @@
                                                     <exclude reference="0qV-dh-3nE"/>
                                                     <exclude reference="6zl-nN-ju7"/>
                                                     <include reference="foI-iP-Y2U"/>
+                                                </mask>
+                                            </variation>
+                                        </button>
+                                        <button opaque="NO" tag="13" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oo1-de-Yme" customClass="HollowButton" customModule="谊心快修" customModuleProvider="target">
+                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="52" id="8Fs-ks-1jy">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="64"/>
+                                                </constraint>
+                                                <constraint firstAttribute="height" constant="35" id="W3N-OP-Qgd"/>
+                                                <constraint firstAttribute="height" constant="49" id="WZj-B2-Rqy">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                                </constraint>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <inset key="contentEdgeInsets" minX="8" minY="5" maxX="8" maxY="5"/>
+                                            <state key="normal" title="购买配件">
+                                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="8Fs-ks-1jy"/>
+                                                    <exclude reference="W3N-OP-Qgd"/>
+                                                    <exclude reference="WZj-B2-Rqy"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <exclude reference="8Fs-ks-1jy"/>
+                                                    <exclude reference="W3N-OP-Qgd"/>
+                                                    <exclude reference="WZj-B2-Rqy"/>
                                                 </mask>
                                             </variation>
                                         </button>
@@ -3602,10 +3640,6 @@
                                             <exclude reference="DA1-ZC-qPg"/>
                                             <exclude reference="DPm-Z1-oOR"/>
                                             <exclude reference="nd3-Wh-d8e"/>
-                                            <exclude reference="WID-K5-a1X"/>
-                                            <exclude reference="Wcr-rA-fiE"/>
-                                            <exclude reference="YcG-8O-gKo"/>
-                                            <exclude reference="oNu-iz-Cxf"/>
                                             <exclude reference="JgB-pu-8gi"/>
                                             <exclude reference="Nah-e5-6zJ"/>
                                             <exclude reference="Y6R-5G-T2a"/>
@@ -3615,23 +3649,23 @@
                                             <exclude reference="nhQ-wh-2pD"/>
                                             <exclude reference="pa7-DZ-p1R"/>
                                             <exclude reference="vMd-uB-sCi"/>
+                                            <exclude reference="WID-K5-a1X"/>
+                                            <exclude reference="Wcr-rA-fiE"/>
+                                            <exclude reference="YcG-8O-gKo"/>
+                                            <exclude reference="oNu-iz-Cxf"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
                                             <include reference="Vx5-fD-BaE"/>
                                             <include reference="VnM-EF-Rpg"/>
-                                            <include reference="Oo1-de-Yme"/>
                                             <include reference="ypw-IZ-ZXS"/>
+                                            <include reference="Oo1-de-Yme"/>
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="DA1-ZC-qPg"/>
                                             <include reference="DPm-Z1-oOR"/>
                                             <include reference="nd3-Wh-d8e"/>
-                                            <include reference="WID-K5-a1X"/>
-                                            <exclude reference="Wcr-rA-fiE"/>
-                                            <exclude reference="YcG-8O-gKo"/>
-                                            <include reference="oNu-iz-Cxf"/>
                                             <exclude reference="JgB-pu-8gi"/>
                                             <include reference="Nah-e5-6zJ"/>
                                             <include reference="Y6R-5G-T2a"/>
@@ -3641,6 +3675,10 @@
                                             <include reference="nhQ-wh-2pD"/>
                                             <include reference="pa7-DZ-p1R"/>
                                             <include reference="vMd-uB-sCi"/>
+                                            <include reference="WID-K5-a1X"/>
+                                            <exclude reference="Wcr-rA-fiE"/>
+                                            <exclude reference="YcG-8O-gKo"/>
+                                            <include reference="oNu-iz-Cxf"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -3672,7 +3710,7 @@
         <!--评价-->
         <scene sceneID="oj0-om-i8O">
             <objects>
-                <tableViewController storyboardIdentifier="ratingController" title="评价" id="PVg-lA-KNp" customClass="RatingViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ratingController" title="评价" id="PVg-lA-KNp" customClass="RatingViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ij5-6X-UkN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3693,7 +3731,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vI-Ke-9x7" customClass="FloatRatingView" customModule="壹心快修" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vI-Ke-9x7" customClass="FloatRatingView" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -3847,7 +3885,7 @@
         <!--申请提现-->
         <scene sceneID="xbE-Kk-i5D">
             <objects>
-                <tableViewController id="WQ6-6Q-Ks7" customClass="WithDrawViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="WQ6-6Q-Ks7" customClass="WithDrawViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="igQ-7K-tzl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3870,7 +3908,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="交通银行(尾号3219)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kCo-OB-Kny">
-                                                    <rect key="frame" x="447" y="15" width="118" height="16"/>
+                                                    <rect key="frame" x="430" y="13" width="135" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -3983,7 +4021,7 @@
         <!--订单详情-->
         <scene sceneID="gIR-aQ-cAL">
             <objects>
-                <tableViewController title="订单详情" id="u4x-eT-Nqp" customClass="CustomerOrderDetailViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="订单详情" id="u4x-eT-Nqp" customClass="CustomerOrderDetailViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="H5D-GU-Yxq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4033,7 +4071,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OhS-Dw-bfp" customClass="FloatRatingView" customModule="壹心快修" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OhS-Dw-bfp" customClass="FloatRatingView" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -4140,7 +4178,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbV-vC-i5x" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbV-vC-i5x" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="52" id="5BG-9k-jpR">
@@ -4170,7 +4208,7 @@
                                                         <action selector="contact:" destination="u4x-eT-Nqp" eventType="touchUpInside" id="shR-RZ-PxC"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yj-0z-MIB" customClass="HollowButton" customModule="壹心快修" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yj-0z-MIB" customClass="HollowButton" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="4As-BP-cWK"/>
@@ -4193,7 +4231,7 @@
                                                         <action selector="showPartsMall:" destination="u4x-eT-Nqp" eventType="touchUpInside" id="C2U-10-7G7"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGj-JL-Yr6" customClass="HollowButton" customModule="壹心快修" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGj-JL-Yr6" customClass="HollowButton" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="C4x-Sy-7tn"/>
@@ -4241,11 +4279,11 @@
                                                     <exclude reference="iGj-JL-Yr6"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="ZtH-jf-UES"/>
                                                     <exclude reference="8VK-BK-elQ"/>
                                                     <exclude reference="Jdf-uX-LpP"/>
                                                     <exclude reference="gDD-UE-fKV"/>
                                                     <exclude reference="uU5-2u-Cix"/>
+                                                    <exclude reference="ZtH-jf-UES"/>
                                                     <exclude reference="DLv-Ns-yAl"/>
                                                     <exclude reference="MRT-33-6Fb"/>
                                                     <exclude reference="XAr-aM-9S8"/>
@@ -4261,11 +4299,11 @@
                                                     <include reference="iGj-JL-Yr6"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="ZtH-jf-UES"/>
                                                     <include reference="8VK-BK-elQ"/>
                                                     <include reference="Jdf-uX-LpP"/>
                                                     <include reference="gDD-UE-fKV"/>
                                                     <exclude reference="uU5-2u-Cix"/>
+                                                    <include reference="ZtH-jf-UES"/>
                                                     <include reference="DLv-Ns-yAl"/>
                                                     <exclude reference="MRT-33-6Fb"/>
                                                     <include reference="XAr-aM-9S8"/>
@@ -4850,7 +4888,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbk-vX-1oo" customClass="FloatRatingView" customModule="壹心快修" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbk-vX-1oo" customClass="FloatRatingView" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -5008,7 +5046,7 @@
         <!--师傅详情-->
         <scene sceneID="rEM-Wc-ZuR">
             <objects>
-                <tableViewController title="师傅详情" id="JNl-tX-wC9" customClass="HandymanInfoViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="师傅详情" id="JNl-tX-wC9" customClass="HandymanInfoViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Dx7-O9-oMP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5148,13 +5186,13 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="handymanInfoRatingCell" rowHeight="82" id="B7q-tL-qPn">
-                                <rect key="frame" x="0.0" y="208" width="600" height="62"/>
+                                <rect key="frame" x="0.0" y="208" width="600" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B7q-tL-qPn" id="KRd-B5-zFD">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="61"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="81"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bBU-Rq-YIM" customClass="FloatRatingView" customModule="壹心快修" customModuleProvider="target">
+                                        <view tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bBU-Rq-YIM" customClass="FloatRatingView" customModule="谊心快修" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -5278,16 +5316,16 @@
                                             <exclude reference="O7G-FR-b5f"/>
                                             <exclude reference="jJ8-FB-9Ty"/>
                                             <exclude reference="jvt-dc-7xR"/>
+                                            <exclude reference="FxJ-a1-l9i"/>
+                                            <exclude reference="awH-RY-Q9u"/>
+                                            <exclude reference="tCL-aY-q5R"/>
+                                            <exclude reference="ytV-fg-IvC"/>
                                             <exclude reference="8zC-rD-60W"/>
                                             <exclude reference="AW2-RY-jKL"/>
                                             <exclude reference="R5P-YV-zPK"/>
                                             <exclude reference="l51-B2-Y3p"/>
                                             <exclude reference="nuV-sD-2sl"/>
                                             <exclude reference="q5w-n2-1RX"/>
-                                            <exclude reference="FxJ-a1-l9i"/>
-                                            <exclude reference="awH-RY-Q9u"/>
-                                            <exclude reference="tCL-aY-q5R"/>
-                                            <exclude reference="ytV-fg-IvC"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -5301,16 +5339,16 @@
                                             <include reference="O7G-FR-b5f"/>
                                             <include reference="jJ8-FB-9Ty"/>
                                             <exclude reference="jvt-dc-7xR"/>
+                                            <exclude reference="FxJ-a1-l9i"/>
+                                            <exclude reference="awH-RY-Q9u"/>
+                                            <include reference="tCL-aY-q5R"/>
+                                            <include reference="ytV-fg-IvC"/>
                                             <include reference="8zC-rD-60W"/>
                                             <include reference="AW2-RY-jKL"/>
                                             <include reference="R5P-YV-zPK"/>
                                             <include reference="l51-B2-Y3p"/>
                                             <exclude reference="nuV-sD-2sl"/>
                                             <exclude reference="q5w-n2-1RX"/>
-                                            <exclude reference="FxJ-a1-l9i"/>
-                                            <exclude reference="awH-RY-Q9u"/>
-                                            <include reference="tCL-aY-q5R"/>
-                                            <include reference="ytV-fg-IvC"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -5332,7 +5370,7 @@
         <!--配件商城-->
         <scene sceneID="0he-3k-jpb">
             <objects>
-                <viewController storyboardIdentifier="partsMallController" title="配件商城" id="1Zm-UI-wbl" customClass="PartsMallViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="partsMallController" title="配件商城" id="1Zm-UI-wbl" customClass="PartsMallViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c3a-ib-DjZ"/>
                         <viewControllerLayoutGuide type="bottom" id="QMp-tp-mMW"/>
@@ -5385,7 +5423,7 @@
                                     <action selector="showShoppingCart:" destination="1Zm-UI-wbl" eventType="touchUpInside" id="7uO-tL-wAY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGT-6s-w3i" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGT-6s-w3i" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7dG-FS-vdt">
@@ -5697,7 +5735,8 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="16" y="56" width="208" height="30"/>
                                                                 <mask key="constraints">
                                                                     <exclude reference="KDn-DE-H1d"/>
                                                                 </mask>
@@ -5899,7 +5938,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mm8-Yu-kQR" customClass="SwiftBadge" customModule="壹心快修" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mm8-Yu-kQR" customClass="SwiftBadge" customModule="谊心快修" customModuleProvider="target">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="29" id="9mT-hC-arh">
@@ -6060,7 +6099,7 @@
         <!--搜索-->
         <scene sceneID="Yai-ME-ppd">
             <objects>
-                <tableViewController storyboardIdentifier="partsMallSearchController" title="搜索" id="bRv-RM-eXe" customClass="PartsMallSearchViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="partsMallSearchController" title="搜索" id="bRv-RM-eXe" customClass="PartsMallSearchViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" id="lSf-mR-FBt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -6118,7 +6157,7 @@
         <!--付维修费-->
         <scene sceneID="0d3-Rx-NLD">
             <objects>
-                <tableViewController storyboardIdentifier="goPayMFeeController" title="付维修费" id="EOx-Nh-eaX" customClass="PayMFeeViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="goPayMFeeController" title="付维修费" id="EOx-Nh-eaX" customClass="PayMFeeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="uzh-81-Rxd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -6217,10 +6256,10 @@
             </objects>
             <point key="canvasLocation" x="5941.5" y="3286.5"/>
         </scene>
-        <!--壹心快修-->
+        <!--谊心快修-->
         <scene sceneID="93I-Af-Zmp">
             <objects>
-                <viewController id="6u8-Eh-x1H" customClass="CustomerHomeViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6u8-Eh-x1H" customClass="CustomerHomeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1HG-r3-1Tc"/>
                         <viewControllerLayoutGuide type="bottom" id="cGA-xc-KLt"/>
@@ -6232,7 +6271,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izy-vc-3kw" customClass="BMKMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boI-RI-krx" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boI-RI-krx" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" red="0.82745098039999998" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -6269,10 +6308,10 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="9nQ-7G-u5A">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                                <variation key="heightClass=regular-widthClass=compact" constant="40"/>
                                             </constraint>
                                             <constraint firstAttribute="width" constant="118" id="r5K-iw-vp8">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                                <variation key="heightClass=regular-widthClass=compact" constant="40"/>
                                             </constraint>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
@@ -6374,7 +6413,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="壹心快修" id="9qU-aj-Pec">
+                    <navigationItem key="navigationItem" title="谊心快修" id="9qU-aj-Pec">
                         <barButtonItem key="leftBarButtonItem" image="drawerIcon" id="tWL-3l-He4">
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -6400,7 +6439,7 @@
         <!--发单-->
         <scene sceneID="i6R-Wk-rVT">
             <objects>
-                <viewController title="发单" id="K8W-Jn-BMl" customClass="OrderTypeViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="发单" id="K8W-Jn-BMl" customClass="OrderTypeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PWP-l7-Hxx"/>
                         <viewControllerLayoutGuide type="bottom" id="9qD-ym-7G6"/>
@@ -6496,6 +6535,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="92" y="41" width="107" height="32"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6634,7 +6676,7 @@
         <!--填写订单-->
         <scene sceneID="RnL-qz-dAV">
             <objects>
-                <tableViewController title="填写订单" id="nRF-1r-f6o" customClass="OrderPublishViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="填写订单" id="nRF-1r-f6o" customClass="OrderPublishViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="M8h-lO-3zX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -6835,7 +6877,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="点击选择" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hk3-90-drs">
-                                                    <rect key="frame" x="513" y="15" width="52" height="16"/>
+                                                    <rect key="frame" x="505" y="13" width="60" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -6861,7 +6903,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="点击选择" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iAV-mE-7Te">
-                                                    <rect key="frame" x="513" y="15" width="52" height="16"/>
+                                                    <rect key="frame" x="505" y="13" width="60" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -6887,7 +6929,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="点击选择" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="omP-7q-ahA">
-                                                    <rect key="frame" x="513" y="15" width="52" height="16"/>
+                                                    <rect key="frame" x="505" y="13" width="60" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -6961,7 +7003,7 @@
         <!--订单详情-->
         <scene sceneID="N6t-oO-yWv">
             <objects>
-                <tableViewController title="订单详情" id="gOz-4z-Pfq" customClass="OrderPublishConfirmViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="订单详情" id="gOz-4z-Pfq" customClass="OrderPublishConfirmViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="8gF-2f-fq9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -7026,7 +7068,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uq3-ht-8I3" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uq3-ht-8I3" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="khl-NK-xeZ">
@@ -7474,7 +7516,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="2016年3月18日" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Y3j-QA-KdG">
-                                                    <rect key="frame" x="500" y="16" width="85" height="15"/>
+                                                    <rect key="frame" x="480" y="13" width="105" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -7538,10 +7580,10 @@
             </objects>
             <point key="canvasLocation" x="6769.5" y="1085.25"/>
         </scene>
-        <!--壹心商城-->
+        <!--谊心商城-->
         <scene sceneID="Zho-OK-Jr6">
             <objects>
-                <viewController storyboardIdentifier="mallController" title="壹心商城" id="G03-eB-qlE" customClass="MallViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mallController" title="谊心商城" id="G03-eB-qlE" customClass="MallViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GKs-0I-taf"/>
                         <viewControllerLayoutGuide type="bottom" id="Q6f-3b-3Qa"/>
@@ -7596,7 +7638,7 @@
         <!--维修类别-->
         <scene sceneID="YsV-MP-voE">
             <objects>
-                <tableViewController title="维修类别" id="36Y-qe-lqG" customClass="MaintenanceTypeViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="维修类别" id="36Y-qe-lqG" customClass="MaintenanceTypeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="C1o-VA-qXG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -7656,7 +7698,7 @@
         <!--选择地址-->
         <scene sceneID="htb-UX-74z">
             <objects>
-                <viewController storyboardIdentifier="chooseLocationController" title="选择地址" id="Rqz-Ik-aDz" customClass="ChooseLocationTableViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chooseLocationController" title="选择地址" id="Rqz-Ik-aDz" customClass="ChooseLocationTableViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lCu-JA-NER"/>
                         <viewControllerLayoutGuide type="bottom" id="TSM-G5-Y06"/>
@@ -7677,14 +7719,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZCF-JD-7tD">
-                                                    <rect key="frame" x="15" y="11" width="30" height="18"/>
+                                                    <rect key="frame" x="15" y="10" width="30" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pc8-aj-T7W">
-                                                    <rect key="frame" x="15" y="29" width="44" height="15"/>
+                                                    <rect key="frame" x="15" y="28" width="47" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -7850,7 +7892,7 @@
         <!--紧急检查费-->
         <scene sceneID="RMo-gQ-GTS">
             <objects>
-                <viewController title="紧急检查费" id="rPl-CT-kqE" customClass="ChooseFeeViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="紧急检查费" id="rPl-CT-kqE" customClass="ChooseFeeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sdG-Ga-yYf"/>
                         <viewControllerLayoutGuide type="bottom" id="UWk-ht-T0f"/>
@@ -7961,7 +8003,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" tag="50" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVL-qS-IxG" customClass="HollowButton" customModule="壹心快修" customModuleProvider="target">
+                                                <button opaque="NO" tag="50" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVL-qS-IxG" customClass="HollowButton" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -8155,7 +8197,7 @@
         <!--打包费-->
         <scene sceneID="0Zh-OV-HuD">
             <objects>
-                <tableViewController id="vCm-lR-YCt" customClass="CheckFeeViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="vCm-lR-YCt" customClass="CheckFeeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="u2h-yy-0zx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -8285,7 +8327,7 @@
         <!--师傅抽屉-->
         <scene sceneID="Ql6-iL-7nC">
             <objects>
-                <viewController title="师傅抽屉" id="zsl-SA-cBQ" customClass="HandymanDrawerViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="师傅抽屉" id="zsl-SA-cBQ" customClass="HandymanDrawerViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CVQ-Nb-EuP"/>
                         <viewControllerLayoutGuide type="bottom" id="CHC-q7-rOq"/>
@@ -8487,7 +8529,7 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="27" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMO-Om-uaJ" customClass="SwiftBadge" customModule="壹心快修" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="27" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMO-Om-uaJ" customClass="SwiftBadge" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="40f-yy-HHG"/>
@@ -8742,7 +8784,7 @@
         <!--选择工种-->
         <scene sceneID="vRO-hu-ZFH">
             <objects>
-                <tableViewController title="选择工种" id="ao2-EC-NJb" customClass="ChooseMaintenanceTypeViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="选择工种" id="ao2-EC-NJb" customClass="ChooseMaintenanceTypeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="L8q-gZ-VHn">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -8846,7 +8888,7 @@
         <!--订单详情-->
         <scene sceneID="BwE-wD-nUD">
             <objects>
-                <tableViewController title="订单详情" id="WAe-hR-I04" customClass="HandymanOrderDetailViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="handymanOrderDetailViewController" title="订单详情" id="WAe-hR-I04" customClass="HandymanOrderDetailViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="56t-DE-Tos">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -8958,7 +9000,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2E-m7-zBS" customClass="PrimaryButton" customModule="壹心快修" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2E-m7-zBS" customClass="PrimaryButton" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="52" id="YIM-1n-5C9">
@@ -9605,7 +9647,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILo-P3-cSP" customClass="FloatRatingView" customModule="壹心快修" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILo-P3-cSP" customClass="FloatRatingView" customModule="谊心快修" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -9756,7 +9798,7 @@
         <!--身份审核-->
         <scene sceneID="Ab9-7C-XUk">
             <objects>
-                <tableViewController title="身份审核" id="5ML-z2-fXw" customClass="AuditIDViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="身份审核" id="5ML-z2-fXw" customClass="AuditIDViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="3if-95-9HB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -9849,7 +9891,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="请选择" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hkp-c8-NWr">
-                                                    <rect key="frame" x="526" y="15" width="39" height="16"/>
+                                                    <rect key="frame" x="520" y="13" width="45" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -10271,7 +10313,7 @@
         <!--信用黑名单-->
         <scene sceneID="b0Y-PE-MG9">
             <objects>
-                <tableViewController title="信用黑名单" id="2EW-um-J9F" customClass="BlacklistTableViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="信用黑名单" id="2EW-um-J9F" customClass="BlacklistTableViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="114" sectionHeaderHeight="18" sectionFooterHeight="18" id="2GR-24-ECD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -10433,7 +10475,7 @@
         <!--选择地址-->
         <scene sceneID="GOf-Z7-bOk">
             <objects>
-                <viewController title="选择地址" id="tKB-fB-JpR" customClass="ChooseLocationTableViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="选择地址" id="tKB-fB-JpR" customClass="ChooseLocationTableViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ibL-Zk-jmN"/>
                         <viewControllerLayoutGuide type="bottom" id="Io5-Vd-74A"/>
@@ -10625,7 +10667,7 @@
         <!--我的发票-->
         <scene sceneID="13O-EF-o2O">
             <objects>
-                <tableViewController id="y0T-9L-y4a" customClass="ReceiptTableViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="y0T-9L-y4a" customClass="ReceiptTableViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="157" sectionHeaderHeight="18" sectionFooterHeight="18" id="V99-fZ-Tty">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -10864,7 +10906,7 @@
         <!--充值-->
         <scene sceneID="iWo-jQ-sfb">
             <objects>
-                <tableViewController id="nx2-ng-c6P" customClass="RechargeViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="nx2-ng-c6P" customClass="RechargeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="5pi-gv-xES">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -10976,7 +11018,7 @@
         <!--我的银行卡-->
         <scene sceneID="F5L-Ro-ibs">
             <objects>
-                <tableViewController id="cud-xi-0mj" customClass="BindBankCardViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="cud-xi-0mj" customClass="BindBankCardViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="awl-wn-DMK">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -11224,7 +11266,7 @@
         <!--我的银行卡-->
         <scene sceneID="bA2-nh-QRg">
             <objects>
-                <tableViewController id="d4N-XI-4dt" customClass="BoundBankCardViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="d4N-XI-4dt" customClass="BoundBankCardViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="GqX-Py-Hjp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -11247,7 +11289,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="张三" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PVA-3H-qTf">
-                                                    <rect key="frame" x="559" y="15" width="26" height="16"/>
+                                                    <rect key="frame" x="555" y="13" width="30" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -11273,7 +11315,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="交通银行" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DeJ-TK-QAh">
-                                                    <rect key="frame" x="533" y="15" width="52" height="16"/>
+                                                    <rect key="frame" x="525" y="13" width="60" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -11299,7 +11341,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="**** **** ***3219" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iSj-QZ-mF3">
-                                                    <rect key="frame" x="475" y="15" width="110" height="16"/>
+                                                    <rect key="frame" x="460" y="13" width="125" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -11339,7 +11381,7 @@
         <!--修改支付密码-->
         <scene sceneID="kwC-of-BKA">
             <objects>
-                <tableViewController title="修改支付密码" id="TiC-mp-9Pb" customClass="ChangePasswordViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="修改支付密码" id="TiC-mp-9Pb" customClass="ChangePasswordViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="l0r-R9-d5k">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -11611,7 +11653,7 @@
         <!--账户流水-->
         <scene sceneID="jd5-Dk-dZH">
             <objects>
-                <tableViewController title="账户流水" id="k73-f0-6fh" customClass="D2DAccountViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="账户流水" id="k73-f0-6fh" customClass="D2DAccountViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ahy-CG-N1K">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -11679,8 +11721,7 @@
                                                     <exclude reference="Nlj-Fy-kUq"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="69" y="32" width="65" height="16"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
                                                     <exclude reference="Nlj-Fy-kUq"/>
                                                 </mask>
@@ -11788,17 +11829,17 @@
         <!--订单列表-->
         <scene sceneID="xti-Al-DI4">
             <objects>
-                <tableViewController storyboardIdentifier="handymanOrderListTableViewController" title="订单列表" id="1kK-9b-P9b" customClass="HandymanOrderListTableViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="handymanOrderListTableViewController" title="订单列表" id="1kK-9b-P9b" customClass="HandymanOrderListTableViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="271" sectionHeaderHeight="18" sectionFooterHeight="18" id="e31-bd-5Rj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="customerOrderListTopCell" rowHeight="70" id="7sS-Hb-W2Z">
-                                <rect key="frame" x="0.0" y="50" width="600" height="66"/>
+                                <rect key="frame" x="0.0" y="50" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7sS-Hb-W2Z" id="EHQ-xe-eHv">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="水维修" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="III-gT-6je">
@@ -11935,14 +11976,14 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="customerOrderListMidCell" textLabel="g2v-47-QIx" detailTextLabel="8ac-vl-SIh" rowHeight="36" style="IBUITableViewCellStyleValue1" id="LGK-CI-hzN">
-                                <rect key="frame" x="0.0" y="116" width="600" height="30"/>
+                                <rect key="frame" x="0.0" y="120" width="600" height="36"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LGK-CI-hzN" id="GjL-4B-iIa">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="36"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g2v-47-QIx">
-                                            <rect key="frame" x="20" y="7" width="27" height="16"/>
+                                            <rect key="frame" x="20" y="9" width="30" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -11950,7 +11991,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8ac-vl-SIh">
-                                            <rect key="frame" x="545" y="7" width="35" height="16"/>
+                                            <rect key="frame" x="540" y="9" width="40" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -11963,7 +12004,7 @@
                                 <edgeInsets key="layoutMargins" top="8" left="20" bottom="8" right="20"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="customerOrderListBottomCell" rowHeight="60" id="qsQ-YS-v2z">
-                                <rect key="frame" x="0.0" y="146" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="156" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qsQ-YS-v2z" id="4Jj-6S-lad">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
@@ -12089,10 +12130,6 @@
                                             <exclude reference="19h-Ec-pcD"/>
                                             <exclude reference="Mjv-mu-qsn"/>
                                             <exclude reference="i0V-3S-BSk"/>
-                                            <exclude reference="0yo-j7-Exl"/>
-                                            <exclude reference="CVI-Bq-faA"/>
-                                            <exclude reference="qES-Db-lbs"/>
-                                            <exclude reference="wYY-XG-GLD"/>
                                             <exclude reference="Lk6-us-sN1"/>
                                             <exclude reference="Uim-c8-izz"/>
                                             <exclude reference="auY-Ah-13T"/>
@@ -12102,6 +12139,10 @@
                                             <exclude reference="kZf-cV-E0m"/>
                                             <exclude reference="rFo-2e-9Qq"/>
                                             <exclude reference="s00-Fr-f52"/>
+                                            <exclude reference="0yo-j7-Exl"/>
+                                            <exclude reference="CVI-Bq-faA"/>
+                                            <exclude reference="qES-Db-lbs"/>
+                                            <exclude reference="wYY-XG-GLD"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -12115,10 +12156,6 @@
                                             <include reference="19h-Ec-pcD"/>
                                             <include reference="Mjv-mu-qsn"/>
                                             <include reference="i0V-3S-BSk"/>
-                                            <exclude reference="0yo-j7-Exl"/>
-                                            <exclude reference="CVI-Bq-faA"/>
-                                            <include reference="qES-Db-lbs"/>
-                                            <include reference="wYY-XG-GLD"/>
                                             <exclude reference="Lk6-us-sN1"/>
                                             <include reference="Uim-c8-izz"/>
                                             <include reference="auY-Ah-13T"/>
@@ -12128,12 +12165,16 @@
                                             <exclude reference="kZf-cV-E0m"/>
                                             <exclude reference="rFo-2e-9Qq"/>
                                             <include reference="s00-Fr-f52"/>
+                                            <exclude reference="0yo-j7-Exl"/>
+                                            <exclude reference="CVI-Bq-faA"/>
+                                            <include reference="qES-Db-lbs"/>
+                                            <include reference="wYY-XG-GLD"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="loadmoreCell" rowHeight="46" id="KN6-nW-Xs1">
-                                <rect key="frame" x="0.0" y="206" width="600" height="46"/>
+                                <rect key="frame" x="0.0" y="216" width="600" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KN6-nW-Xs1" id="SNc-78-T9p">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="46"/>
@@ -12164,7 +12205,7 @@
         <!--身份审核-->
         <scene sceneID="epD-15-0r4">
             <objects>
-                <tableViewController title="身份审核" id="Eht-49-Eoq" customClass="AuditedViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="身份审核" id="Eht-49-Eoq" customClass="AuditedViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="9Is-D3-7Bm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -12657,7 +12698,7 @@
         <!--用户协议-->
         <scene sceneID="ciN-bX-bNd">
             <objects>
-                <viewController title="用户协议" id="zuW-oi-CLS" customClass="ProjectBidingViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="用户协议" id="zuW-oi-CLS" customClass="ProjectBidingViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5IT-I9-c70"/>
                         <viewControllerLayoutGuide type="bottom" id="KjR-up-GAx"/>
@@ -12712,7 +12753,7 @@
         <!--申请发票-->
         <scene sceneID="mBF-uH-qQs">
             <objects>
-                <tableViewController id="LFU-Jm-OLM" customClass="InvoiceViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="LFU-Jm-OLM" customClass="InvoiceViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="SoU-v8-s1j">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -12953,7 +12994,7 @@
         <!--用户协议-->
         <scene sceneID="knM-ep-PrS">
             <objects>
-                <viewController title="用户协议" id="rOm-G1-5yp" customClass="ProtocolViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="用户协议" id="rOm-G1-5yp" customClass="ProtocolViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vBM-lT-bZo"/>
                         <viewControllerLayoutGuide type="bottom" id="MEl-GZ-Cjk"/>
@@ -13008,7 +13049,7 @@
         <!--项目招标-->
         <scene sceneID="w9c-QS-RYi">
             <objects>
-                <viewController title="项目招标" id="L4R-Er-1ob" customClass="ProjectBidingViewController" customModule="壹心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="项目招标" id="L4R-Er-1ob" customClass="ProjectBidingViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QjW-HX-WHQ"/>
                         <viewControllerLayoutGuide type="bottom" id="8wq-ac-aO1"/>
@@ -13065,7 +13106,7 @@
         <image name="add_picture" width="200" height="200"/>
         <image name="checked" width="23" height="23"/>
         <image name="distance" width="15" height="15"/>
-        <image name="drawerIcon" width="32" height="32"/>
+        <image name="drawerIcon" width="36" height="36"/>
         <image name="dropdown" width="16" height="16"/>
         <image name="grab" width="19" height="20"/>
         <image name="location" width="23" height="23"/>
@@ -13081,7 +13122,7 @@
         <image name="time" width="14" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hue-SV-jOO"/>
-        <segue reference="qXA-Aw-wsJ"/>
+        <segue reference="xWc-gd-T8C"/>
+        <segue reference="rXc-uX-Qgp"/>
     </inferredMetricsTieBreakers>
 </document>

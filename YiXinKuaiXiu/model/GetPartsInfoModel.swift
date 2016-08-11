@@ -31,11 +31,11 @@ class GetPartsInfoModel: GetPartsInfoProtocol {
                 
                 let ret = json["ret"]
                 if ret != nil && ret.count != 0 {
-                
+                    
                     Config.Categorys = []
                     for index in 0 ... ret.count - 1 {
                         let category = Category(id: ret[index]["id"].intValue, name: ret[index]["nme"].stringValue, partIndex: 0)
-
+                        
                         Config.Categorys.append(category)
                     }
                 }

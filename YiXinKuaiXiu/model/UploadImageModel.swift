@@ -80,11 +80,11 @@ class UploadImageModel: UploadImageProtocol, UploadImageDelegate {
     }
     
     func uploadImage(image: UIImage, type: UploadImageType) {
-
+        
         let que = NSOperationQueue()
         NSURLConnection.sendAsynchronousRequest(generateRequest(image, type: type), queue: que, completionHandler: {
             (response, data, error) ->Void in
-
+            
             if (error != nil){
                 self.uploadImageDelegate?.onUploadImageResult!(false, info: "图片上传失败")
             }else{
@@ -135,7 +135,7 @@ class UploadImageModel: UploadImageProtocol, UploadImageDelegate {
         body.appendData(NSString(format:"\r\n--\(boundary)\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
         body.appendData(NSString(format:"Content-Disposition:form-data;name=\"dat\";filename=\"dd.jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
         body.appendData(NSString(format:"Content-Type:application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
-        body.appendData(UtilBox.compressImage(image, maxSize: 700 * 1024))
+        body.appendData(UtilBox.compressImage(image, maxSize: 200 * 1024))
         body.appendData(NSString(format:"\r\n--\(boundary)").dataUsingEncoding(NSUTF8StringEncoding)!)
         request.HTTPBody = body
         

@@ -198,13 +198,13 @@ class UtilBox {
         
         var imageData = UIImageJPEGRepresentation(image, compression)
         
-        while (imageData?.length > maxSize && compression > maxCompression) {
-            compression -= 0.1
+        while (imageData?.length > maxSize && compression >= maxCompression) {
+            compression -= 0.4
             imageData = UIImageJPEGRepresentation(image, compression)
         }
         
-        var scale: CGFloat = 0.9
-        while(imageData?.length > maxSize && scale > 0.1) {
+        var scale: CGFloat = 0.5
+        while(imageData?.length > maxSize && scale >= 0.1) {
             let newSize = CGSizeMake(image.size.width * scale, image.size.height * scale)
             UIGraphicsBeginImageContext(newSize)
             
@@ -217,8 +217,6 @@ class UtilBox {
             
             scale -= 0.2
         }
-        
-        print(imageData?.length)
         
         return imageData!
     }

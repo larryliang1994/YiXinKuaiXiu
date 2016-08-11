@@ -16,18 +16,47 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
     
     var fromDistance: Int?
     var toDistance: Int?
+    
+    var timer: NSTimer?
+    var isRefreshing = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let footer = UIView()
-        footer.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        tableView.tableFooterView = footer
+        initView()
         
         refresh()
     }
     
+    func initView() {
+        let footer = UIView()
+        footer.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        tableView.tableFooterView = footer
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        timer = NSTimer.new(every: Constants.RefreshTimer.seconds) { (timer: NSTimer) in
+            if !self.isRefreshing {
+                self.isRefreshing = true
+                
+                OrderModel(orderDelegate: self).pullGrabOrderList("", fromDistance: self.fromDistance, toDistance: self.toDistance)
+            }
+        }
+        
+        timer?.start()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        timer?.invalidate()
+        
+        super.viewDidDisappear(animated)
+    }
+    
     func refresh() {
+        isRefreshing = true
+        
         refreshControl?.beginRefreshing()
         
         OrderModel(orderDelegate: self).pullGrabOrderList("", fromDistance: fromDistance, toDistance: toDistance)
@@ -52,6 +81,8 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
         } else {
             UtilBox.alert(self, message: info)
         }
+        
+        isRefreshing = false
     }
 
     // MARK: - Table view data source
@@ -93,7 +124,7 @@ class OrderGrabTableViewController: UITableViewController, OrderDelegate, GrabOr
         
         typeLabel.clipsToBounds = true
         typeLabel.layer.cornerRadius = 3
-        if order.type == .Normal {
+        if order.type == .Urgent {
             typeLabel.backgroundColor = Constants.Color.Orange
             typeLabel.text = "紧急"
             feeLabel.text = "检查费" + " ￥" + String(order.fee!)

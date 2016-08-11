@@ -8,6 +8,7 @@
 
 import UIKit
 import XLRefreshSwift
+import SwiftyTimer
 
 class OrderListTableViewController: UITableViewController, OrderDelegate {
     var orders: [Order] = []
@@ -17,12 +18,41 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
     
     var selectedIndexPath: NSIndexPath?
     
+    var isFromHomePage = true
+    
+    var timer: NSTimer?
+    var isRefreshing = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initView()
         
         refresh()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        timer = NSTimer.new(every: Constants.RefreshTimer.seconds) { (timer: NSTimer) in
+            if !self.isRefreshing {
+                self.isRefreshing = true
+                
+                if self.tableType == 0 {
+                    OrderModel(orderDelegate: self).pullOrderList(0, pullType: .OnGoing)
+                } else {
+                    OrderModel(orderDelegate: self).pullOrderList(0, pullType: .Done)
+                }
+            }
+        }
+        
+        timer?.start()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        timer?.invalidate()
+        
+        super.viewDidDisappear(animated)
     }
     
     func initView() {
@@ -41,6 +71,8 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
     }
     
     func refresh() {
+        isRefreshing = true
+        
         refreshControl?.beginRefreshing()
         
         if tableType == 0 {
@@ -68,6 +100,15 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
                 self.tableView.backgroundView = UtilBox.getEmptyView("还没有新订单")
             } else {
                 self.tableView.backgroundView = nil
+                if !isFromHomePage {
+                    isFromHomePage = true
+                    segueOrder = orders[0]
+                    if Config.Role == Constants.Role.Customer {
+                        performSegueWithIdentifier(Constants.SegueID.ShowCustomerOrderDetail, sender: self)
+                    } else {
+                        performSegueWithIdentifier(Constants.SegueID.ShowHandymanOrderDetailSegue, sender: self)
+                    }
+                }
             }
             
             tableView.reloadData()
@@ -76,6 +117,8 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
         }
         
         refreshControl?.endRefreshing()
+        
+        isRefreshing = false
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

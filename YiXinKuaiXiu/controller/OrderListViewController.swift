@@ -9,12 +9,14 @@
 import UIKit
 
 class OrderListViewController: UIViewController, SMSwipeableTabViewControllerDelegate {
-
+    
     let titleBarDataSource = ["进行中", "已完成"]
     
     var cOnGoingTableView, cDoneTableView: CustomerOrderListTableViewController?
     
     var hOnGoingTableView, hDoneTableView: HandymanOrderListTableViewController?
+    
+    var isFromHomePage = true
     
     var swipeableView :SMSwipeableTabViewController?
     
@@ -29,15 +31,19 @@ class OrderListViewController: UIViewController, SMSwipeableTabViewControllerDel
     func initView() {
         if Config.Role == Constants.Role.Customer {
             cOnGoingTableView = UtilBox.getController(Constants.ControllerID.CustomerOrderList) as? CustomerOrderListTableViewController
+            cOnGoingTableView?.isFromHomePage = isFromHomePage
             cOnGoingTableView?.tableType = 0
-        
+            
             cDoneTableView = UtilBox.getController(Constants.ControllerID.CustomerOrderList) as? CustomerOrderListTableViewController
+            cDoneTableView?.isFromHomePage = true
             cDoneTableView?.tableType = 1
         } else {
             hOnGoingTableView = UtilBox.getController(Constants.ControllerID.HandymanOrderList) as? HandymanOrderListTableViewController
+            hOnGoingTableView?.isFromHomePage = isFromHomePage
             hOnGoingTableView?.tableType = 0
             
             hDoneTableView = UtilBox.getController(Constants.ControllerID.HandymanOrderList) as? HandymanOrderListTableViewController
+            hDoneTableView?.isFromHomePage = true
             hDoneTableView?.tableType = 1
         }
         

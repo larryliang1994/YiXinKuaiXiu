@@ -1,6 +1,6 @@
 
-/* Class = "UINavigationItem"; title = "壹心快修"; ObjectID = "9qU-aj-Pec"; */
-"9qU-aj-Pec.title" = "壹心快修";
+/* Class = "UINavigationItem"; title = "谊心快修"; ObjectID = "9qU-aj-Pec"; */
+"9qU-aj-Pec.title" = "谊心快修";
 
 /* Class = "UIViewController"; title = "验证手机"; ObjectID = "Azk-av-R6b"; */
 "Azk-av-R6b.title" = "验证手机";
@@ -44,8 +44,8 @@
 /* Class = "UILabel"; text = "地址"; ObjectID = "SRQ-YT-bwR"; */
 "SRQ-YT-bwR.text" = "地址";
 
-/* Class = "UILabel"; text = "壹心快修"; ObjectID = "Xx7-tp-i9d"; */
-"Xx7-tp-i9d.text" = "壹心快修";
+/* Class = "UILabel"; text = "谊心快修"; ObjectID = "Xx7-tp-i9d"; */
+"Xx7-tp-i9d.text" = "谊心快修";
 
 /* Class = "UIButton"; normalTitle = "我要发单"; ObjectID = "boI-RI-krx"; */
 "boI-RI-krx.normalTitle" = "我要发单";
@@ -68,8 +68,8 @@
 /* Class = "UITextField"; placeholder = "请输入手机号"; ObjectID = "hc4-WF-TgR"; */
 "hc4-WF-TgR.placeholder" = "请输入手机号";
 
-/* Class = "UILabel"; text = "《壹心快修用户协议》"; ObjectID = "hvQ-W6-6UU"; */
-"hvQ-W6-6UU.text" = "《壹心快修用户协议》";
+/* Class = "UILabel"; text = "《谊心快修用户协议》"; ObjectID = "hvQ-W6-6UU"; */
+"hvQ-W6-6UU.text" = "《谊心快修用户协议》";
 
 /* Class = "UILabel"; text = "点击选择"; ObjectID = "iAV-mE-7Te"; */
 "iAV-mE-7Te.text" = "点击选择";
@@ -86,8 +86,8 @@
 /* Class = "UILabel"; text = "点击选择"; ObjectID = "omP-7q-ahA"; */
 "omP-7q-ahA.text" = "点击选择";
 
-/* Class = "UITableViewSection"; footerTitle = "壹心快修建议价格为¥20.00。"; ObjectID = "opi-DA-jwR"; */
-"opi-DA-jwR.footerTitle" = "壹心快修建议价格为¥20.00。";
+/* Class = "UITableViewSection"; footerTitle = "谊心快修建议价格为¥20.00。"; ObjectID = "opi-DA-jwR"; */
+"opi-DA-jwR.footerTitle" = "谊心快修建议价格为¥20.00。";
 
 /* Class = "UITextField"; placeholder = "请输入大于0的数字"; ObjectID = "uT3-x8-4pb"; */
 "uT3-x8-4pb.placeholder" = "请输入大于0的数字";

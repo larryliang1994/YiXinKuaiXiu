@@ -122,6 +122,7 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         self.clearAllNotice()
         if result {
             self.noticeSuccess("订单发布成功", autoClear: true, autoClearTime: 2)
+            Config.NotToHomePage = true
             goBack()
         } else {
             UtilBox.alert(self, message: info)

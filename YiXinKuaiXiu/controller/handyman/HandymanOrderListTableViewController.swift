@@ -24,7 +24,7 @@ class HandymanOrderListTableViewController: OrderListTableViewController {
             typeLabel.clipsToBounds = true
             typeLabel.layer.cornerRadius = 3
             
-            if order.type == .Normal {
+            if order.type == .Urgent {
                 typeLabel.backgroundColor = Constants.Color.Orange
                 typeLabel.text = "紧急"
             } else if order.type == .Pack {

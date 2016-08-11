@@ -17,6 +17,8 @@ class Urls {
     static let Recharge = "https://www.yixinkuaixiu.com/pay/alipay/notify_url.php?"
     
     static let Login = "100.php?"
+    static let GetMallUrl = "9.php?"
+    static let GetVersionCode = "10.php?"
     static let GetVerifyCode = "11.php?"
     static let ModifyUserInfo = "12.php?"
     static let GetUserInfo = "13.php?"
@@ -24,6 +26,7 @@ class Urls {
     static let GetHandymanInfo = "15.php?"
     static let ChangePassword = "16.php?"
     static let MultiModify = "17.php?"
+    static let GetCityList = "20.php?"
     static let GetMaintenanceType = "21.php?"
     static let GetFeeList = "22.php?"
     static let GetCategoryList = "23.php?"
@@ -54,5 +57,6 @@ class Urls {
     static let PullHandymanOrderList = "61.php?"
     static let PullGrabOrderList = "62.php?"
     static let GrabOrder = "63.php?"
-    static let CancelOrderConfirm = "64.php?" // cnt应该在这里返回
+    static let CancelOrderConfirm = "64.php?"
+    static let GetOrderDetail = "71.php?"
 }

@@ -8,14 +8,23 @@
 
 import UIKit
 
-class MallViewController: UIViewController {
+class MallViewController: UIViewController, GetInitialInfoDelegate {
     @IBOutlet var webView: UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GetInitialInfoModel(getInitialInfoDelegate: self).getMallUrl()
+    }
+    
+    func onGetMallUrlResult(result: Bool, info: String) {
+        if result {
+            let request = NSURLRequest(URL: NSURL(string: info)!)
+            webView.loadRequest(request)
 
-        let request = NSURLRequest(URL: NSURL(string: "https://wap.koudaitong.com/v2/home/1f1cjsz5r?common%2Furl%2Fcreate=&scan=3&from=kdt")!)
-        webView.loadRequest(request)
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
 
 }

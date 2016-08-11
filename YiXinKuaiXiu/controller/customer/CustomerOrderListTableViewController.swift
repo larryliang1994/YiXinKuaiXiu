@@ -28,7 +28,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
             typeLabel.clipsToBounds = true
             typeLabel.layer.cornerRadius = 3
             
-            if order.type == .Normal {
+            if order.type == .Urgent {
                 typeLabel.backgroundColor = Constants.Color.Orange
                 typeLabel.text = "紧急"
             } else if order.type == .Pack {
@@ -237,20 +237,17 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         
         let order = orders[(selectedIndexPath?.section)!]
         
-        if order.type == .Normal && order.state != .NotPayFee {
-
+        if order.type == .Urgent && order.state != .NotPayFee {
             let vc = UtilBox.getController(Constants.ControllerID.GoPayMFee) as! PayMFeeViewController
             vc.order = order
             vc.delegate = self
             self.navigationController?.showViewController(vc, sender: self)
-            
         } else {
             let v = PopBottomView(frame: self.view.bounds)
             v.dataSource = self
             v.delegate = self
             v.showInView(self.view)
         }
-
     }
     
     func goRatingAction(sender: UIButton) {

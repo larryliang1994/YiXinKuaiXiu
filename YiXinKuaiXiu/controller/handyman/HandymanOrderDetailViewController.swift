@@ -44,9 +44,6 @@ class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDel
         tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
         tableView.layoutIfNeeded()
         
-//        tableView.estimatedRowHeight = tableView.rowHeight
-//        tableView.rowHeight = UITableViewAutomaticDimension
-        
         initNavBar()
     }
     
@@ -70,7 +67,7 @@ class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDel
             mFeeLabel.text = "无"
             partFeeLabel.text = "无"
             totalFeeLabel.text = "￥" + (order?.fee)!
-        } else if order?.type == .Normal {
+        } else if order?.type == .Urgent {
             feeLabel.text = "￥" + (order?.fee)!
             mFeeLabel.text = "￥" + (order?.mFee)!
             partFeeLabel.text = (order?.partFee)! == "0" ? "无" : "￥" + (order?.partFee)!
@@ -161,7 +158,6 @@ class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDel
         case 0: return indexPath.row == 0 ? 60 : 49
             
         case 1:
-            
             switch indexPath.row {
             case 0: return descLabel.frame.size.height + 24
             case 1: return order?.imageUrls!.count == 0 ? 0 : 70

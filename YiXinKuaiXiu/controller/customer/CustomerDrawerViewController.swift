@@ -100,7 +100,7 @@ class CustomerDrawerViewController: UIViewController, UITableViewDelegate, UITab
                     badge.badgeColor = Constants.Color.Primary
                 }
             } else if indexPath.row == 4 {
-                label.text = "壹心商城"
+                label.text = "谊心商城"
                 image.image = UIImage(named: "mall")
                 badge.alpha = 0
             } else if indexPath.row == 5 {

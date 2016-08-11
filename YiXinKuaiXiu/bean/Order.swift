@@ -10,7 +10,7 @@ import Foundation
 import Photos
 
 public enum Type: Int {
-    case Normal = 0
+    case Urgent = 0
     case Pack
     case Reservation
 }

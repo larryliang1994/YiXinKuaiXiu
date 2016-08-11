@@ -117,7 +117,7 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
                 label.textColor = Constants.Color.Primary
             } else if indexPath.row == 5 {
                 image.image = UIImage(named: "mall")
-                title.text = "壹心商城"
+                title.text = "谊心商城"
                 label.alpha = 0
             } else if indexPath.row == 6 {
                 image.image = UIImage(named: "blacklist")

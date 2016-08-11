@@ -85,7 +85,7 @@ class PayPopoverView: UIView, PayDelegate, BCPayDelegate, ChooseCouponDelegate {
             BeeCloud.setBeeCloudDelegate(bcpayVC)
             
             let request = BCPayReq()
-            request.title = "壹心快修"
+            request.title = "谊心快修"
             request.totalFee = String(Int(Float(currentFee)! * 100))
             //request.totalFee = "1"
             request.billNo = info
@@ -109,12 +109,12 @@ class PayPopoverView: UIView, PayDelegate, BCPayDelegate, ChooseCouponDelegate {
         viewController?.clearAllNotice()
         
         if resp.resultCode == 0 {
-            //print(resp.resultMsg + "!!")
             doneThirdPay()
-            //PayModel(payDelegate: self).goRecharge(String(Int(Float(fee!)! * 100)))
-        } else {
-            //print(resp.resultMsg + "：" + resp.errDetail)
+        } else if resp.resultCode == -2 ||  resp.errDetail != nil || resp.errDetail == "" {
             delegate?.onPayResult(false, info: "支付取消")
+        } else {
+            delegate?.onPayResult(false, info: resp.errDetail)
+            UtilBox.reportBug(resp.resultMsg + "：" + resp.errDetail)
         }
     }
     

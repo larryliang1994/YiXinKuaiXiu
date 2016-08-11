@@ -1,14 +1,16 @@
 PODS:
-  - Alamofire (3.4.0)
+  - Alamofire (3.4.1)
   - BaiduMapKit (3.0.0)
-  - Bugly (2.2.3)
+  - Bugly (2.3.1)
   - EasyAnimation (1.0.5)
   - HanekeSwift (0.10.1)
-  - KYDrawerController (1.1.3)
+  - KYDrawerController (1.1.5)
   - ReachabilitySwift (2.3.3)
   - SwiftyJSON (2.3.2)
-  - SWXMLHash (2.3.1)
-  - UMengAnalytics (4.0.4)
+  - SwiftyTimer (1.4.0)
+  - SWXMLHash (2.5.0)
+  - UMengAnalytics (4.1.0)
+  - UsefulPickerView (0.1.2)
   - XLRefreshSwift (0.2.1)
 
 DEPENDENCIES:
@@ -20,8 +22,10 @@ DEPENDENCIES:
   - KYDrawerController
   - ReachabilitySwift
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - SwiftyTimer
   - SWXMLHash
   - UMengAnalytics
+  - UsefulPickerView
   - XLRefreshSwift
 
 EXTERNAL SOURCES:
@@ -34,18 +38,20 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   BaiduMapKit: de2a726d5296d6b2dc0e974b683af73153608dcd
-  Bugly: db578ea92b2a6b132cc19f79adf3bcd3b0fe6769
+  Bugly: c8ece2fa5bdcb404abdd0e07131e8129f580d893
   EasyAnimation: 32821f37dd39187e7364369a3d8f65d38405cf1d
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
-  KYDrawerController: 3bb920220cb1d1ff7d86d40c61d5848ed647d385
+  KYDrawerController: 98eb8f8c53164de1098b3ca5c6789f3d8aa86c3e
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  SWXMLHash: 795c66e74f4cc9473ad6465c6653c5a6f59f417e
-  UMengAnalytics: 4ed421fb3bca63b26fc13c947743cabf3831d199
+  SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
+  SWXMLHash: 04158642e0c90c52274db7914032edd41bed9a41
+  UMengAnalytics: 19b28253793d77dff10fb7d502faad1fb6b8ce4a
+  UsefulPickerView: 889c0559f6817f0c10f0314e65221847f45d89cb
   XLRefreshSwift: 9f6c05ca9ba9952e466d54015b6f4fb6af2a0f94
 
-PODFILE CHECKSUM: 28b58a48b5b846f101e2319e43d23ed79e8b397b
+PODFILE CHECKSUM: b0d8afcefc749593abe99d5f1cc186e2e2699d99
 
 COCOAPODS: 1.0.0

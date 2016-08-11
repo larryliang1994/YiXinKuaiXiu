@@ -11,21 +11,17 @@ import KYDrawerController
 
 class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitialInfoDelegate {
     
-    @IBOutlet var imageView: UIImageView!
-
     var window: UIWindow?
     
     var alert: OYSimpleAlertController?
     
-    let requestNum = 5
+    let requestNum = 4
     var initRequestNum = 0
     
-    var sleepTime: UInt32 = 2
+    var sleepTime: UInt32 = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        imageView.image = UIImage(named: "defaultAd")
         
         getStarted()
         
@@ -60,20 +56,16 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
         }
         
         if Config.Aid != nil && Config.Aid != "" && Config.VerifyCode != nil && Config.VerifyCode != "" {
-            sleepTime = 0
+            //sleepTime = 0
             
             UserInfoModel(userInfoDelegate: self).doGetUserInfo()
             
             let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
             getInitialInfoModel.getMaintenanceType()
-            getInitialInfoModel.getAds()
             getInitialInfoModel.getMessageNum()
             getInitialInfoModel.getOrderNum()
         } else {
-            sleepTime = 0
-            
-            let getInitialInfoModel = GetInitialInfoModel(getInitialInfoDelegate: self)
-            getInitialInfoModel.getAds()
+            //sleepTime = 0
             showMainScreen()
         }
     }
@@ -85,10 +77,9 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
             dispatch_async(dispatch_get_main_queue(), {
                 self.clearAllNotice()
                 UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
-                    self.window?.makeKeyAndVisible()
+                        self.window?.makeKeyAndVisible()
                     }, completion: { (Bool) in
-                    self.imageView.image = nil
-                    self.imageView.backgroundColor = UIColor.whiteColor()
+                        self.view.backgroundColor = UIColor.whiteColor()
                 })
             })
         }
@@ -114,8 +105,7 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
                     UIView.transitionWithView((UIApplication.sharedApplication().keyWindow)!, duration: 0.5, options: .TransitionCrossDissolve, animations: {
                         self.window?.makeKeyAndVisible()
                         }, completion: { (Bool) in
-                            self.imageView.image = nil
-                            self.imageView.backgroundColor = UIColor.whiteColor()
+                            self.view.backgroundColor = UIColor.whiteColor()
                     })
                 })
                 alertController.addAction(okAction)
@@ -158,22 +148,6 @@ class SplashScreenViewController: UIViewController, UserInfoDelegate, GetInitial
     func onGetMessageNum(result: Bool, info: String) {
         if result {
             initRequestNum += 1
-            
-            if initRequestNum == requestNum {
-                showMainScreen()
-            }
-        } else {
-            if alert == nil {
-                alert(info)
-            }
-        }
-    }
-    
-    func onGetAdsResult(result: Bool, info: String) {
-        if result {
-            initRequestNum += 1
-            
-            imageView.hnk_setImageFromURL(NSURL(string: info)!)
             
             if initRequestNum == requestNum {
                 showMainScreen()

@@ -50,6 +50,9 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     
     var failToGetHandymanInfo = false
     
+    var timer: NSTimer?
+    var isRefreshing = false
+    
     var name: String?, telephoneNum: String?, sex: Int?, age: Int?, star: Int?, mNum: Int?, portraitUrl: String? ,starList: [Int]?, descList: [String]?, dateList: [String]?
 
     override func viewDidLoad() {
@@ -64,6 +67,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         
         if order?.state != .NotPayFee && order?.state != .PaidFee {
             self.pleaseWait()
+            
             UserInfoModel(userInfoDelegate: self).doGetHandymanInfo((order?.graberID)!)
         } else {
             nameLabel.text = "待抢单"
@@ -73,6 +77,26 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             contactButtonWidth.constant = 0
             contactButtonLeading.constant = 0
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        timer = NSTimer.new(every: Constants.RefreshTimer.seconds) { (timer: NSTimer) in
+            if !self.isRefreshing && (self.order?.state == .NotPayFee || self.order?.state == .PaidFee) {
+                self.isRefreshing = true
+                
+                OrderModel(orderDelegate: self).pullOrderList(0, pullType: .OnGoing)
+            }
+        }
+        
+        timer?.start()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        timer?.invalidate()
+        
+        super.viewDidDisappear(animated)
     }
     
     func initView() {
@@ -98,7 +122,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             totalFeeLabel.text = "￥" + (order?.fee)!
             feeTitleLabel.text = "打包费"
             showPartDetailButton.hidden = true
-        } else if order?.type == .Normal {
+        } else if order?.type == .Urgent {
             feeLabel.text = "￥" + (order?.fee)!
             //mFeeLabel.text = "￥" + (order?.mFee)!
             mFeeLabel.text = (order?.mFee)! == "0" ? "无" : "￥" + (order?.mFee)!
@@ -112,7 +136,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             }
         }
         
-        if !((order!.state == .HasBeenGrabbed || order!.state == .PaidMFee) && order!.type == .Normal) {
+        if !((order!.state == .HasBeenGrabbed || order!.state == .PaidMFee) && order!.type == .Urgent) {
             partsMallButton.hidden = true
             partsMallButtonLeading.constant = 0
             partsMallButtonWidth.constant = 0
@@ -185,6 +209,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     }
     
     func didChange() {
+        self.isRefreshing = true
         self.pleaseWait()
         OrderModel(orderDelegate: self).pullOrderList(0, pullType: .OnGoing)
     }
@@ -195,8 +220,20 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             for var o in orderList {
                 if o.date == order?.date {
                     order = o
-                    initView()
-                    tableView.reloadData()
+                    
+                    if order?.state != .NotPayFee && order?.state != .PaidFee {
+                        initView()
+                        
+                        orderCountLabel.hidden = false
+                        contactButton.hidden = false
+                        contactButtonWidth.constant = 70
+                        contactButtonLeading.constant = 8
+                        
+                        UserInfoModel(userInfoDelegate: self).doGetHandymanInfo((order?.graberID)!)
+                        
+                        tableView.reloadData()
+                    }
+                    
                     delegate?.didChange()
                     break
                 }
@@ -204,6 +241,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         } else {
             UtilBox.alert(self, message: info)
         }
+        self.isRefreshing = false
     }
     
     @IBAction func contact(sender: UIButton) {
@@ -305,7 +343,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             }
             
         case 2:
-            if order?.type == .Normal {
+            if order?.type == .Urgent {
                 return 129
             } else if order?.type == .Pack {
                 return 74

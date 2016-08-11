@@ -52,4 +52,8 @@ class Config {
     static var Blacklist: [BlackPerson] = []
     static var CouponList: [Coupon] = []
     static var ReceiptList: [Receipt] = []
+    
+    static var canGrabUrgentOrder = true
+    
+    static var NotToHomePage = false // 很菜很菜的解决方案，赶紧改掉
 }

@@ -9,7 +9,7 @@
 import UIKit
 import KYDrawerController
 
-class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, ModifyUserInfoDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, GetNearbyDelegate {
+class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, ModifyUserInfoDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, GetInitialInfoDelegate, GetNearbyDelegate {
 
     @IBOutlet var mapView: BMKMapView!
     @IBOutlet var getLocationButton: UIButton!
@@ -29,6 +29,8 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
         initView()
         
         initNavBar()
+        
+        GetInitialInfoModel(getInitialInfoDelegate: self).getVersionCode()
     }
     
     func initView() {
@@ -38,7 +40,7 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
         
         publishButton.setTitle("找维修师傅", forState: .Normal)
         
-        getLocationButton.layer.borderWidth = 0.5
+        getLocationButton.layer.borderWidth = 1
         getLocationButton.layer.borderColor = Constants.Color.Gray.CGColor
         getLocationButton.layer.cornerRadius = 3
         
@@ -49,9 +51,15 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     }
     
     @IBAction func getLocation(sender: UIButton) {
-        if !mapView.userLocationVisible {
-            locationService.startUserLocationService()
+//        if !mapView.userLocationVisible {
+//            locationService.startUserLocationService()
+//        }
+        
+        if Config.CurrentLocationInfo != nil {
+            mapView.centerCoordinate = (Config.CurrentLocationInfo?.coordinate)!
         }
+        
+        locationService.startUserLocationService()
     }
     
     func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
@@ -63,6 +71,8 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
             mapView.centerCoordinate = userLocation.location.coordinate
             
             mapView.removeAnnotations(mapView.annotations)
+            
+            Config.CurrentLocationInfo = userLocation.location
         
             let localLatitude = userLocation.location.coordinate.latitude
             let localLongitude = userLocation.location.coordinate.longitude
@@ -171,6 +181,22 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
         (drawerController?.drawerViewController as! CustomerDrawerViewController).tableView.reloadData()
     }
     
+    func onGetVersionCodeResult(result: Bool, info: String, url: String) {
+        if result {
+            let alertController = UIAlertController(title: info, message: nil, preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: "更新", style: .Default, handler: { (UIAlertAction) in
+                UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+            })
+            let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+        } else {
+            
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -180,6 +206,13 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
         gotLocation = false
         locationService.delegate = self
         locationService.startUserLocationService()
+        
+        if Config.NotToHomePage {
+            Config.NotToHomePage = false
+            let orderListVC = UtilBox.getController(Constants.ControllerID.OrderList) as! OrderListViewController
+            orderListVC.isFromHomePage = false
+            self.navigationController?.showViewController(orderListVC, sender: self)
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {

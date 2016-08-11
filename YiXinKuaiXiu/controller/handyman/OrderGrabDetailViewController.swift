@@ -55,7 +55,7 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
         
         typeLabel.clipsToBounds = true
         typeLabel.layer.cornerRadius = 3
-        if order?.type == .Normal {
+        if order?.type == .Urgent {
             typeLabel.backgroundColor = Constants.Color.Orange
             typeLabel.text = "紧急"
             feeTypeLabel.text = "检查费"
@@ -110,8 +110,12 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
     }
     
     @IBAction func grab(sender: UIButton) {
-        self.pleaseWait()
-        OrderModel(orderDelegate: self).grabOrder(order!)
+        if order?.type == .Urgent && !Config.canGrabUrgentOrder {
+            UtilBox.alert(self, message: "你还有未完成的紧急订单")
+        } else {
+            self.pleaseWait()
+            OrderModel(orderDelegate: self).grabOrder(order!)
+        }
     }
     
     func onGrabOrderResult(result: Bool, info: String) {
@@ -119,13 +123,13 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
         
         if result {
             self.noticeSuccess("抢单成功", autoClear: true, autoClearTime: 2)
+            Config.NotToHomePage = true
+            self.navigationController?.popToRootViewControllerAnimated(true)
         } else {
             self.noticeError(info, autoClear: true, autoClearTime: 2)
+            self.navigationController?.popViewControllerAnimated(true)
+            delegate?.didGrabOrder()
         }
-        
-        self.navigationController?.popViewControllerAnimated(true)
-        
-        delegate?.didGrabOrder()
     }
     
     override func viewWillAppear(animated: Bool) {

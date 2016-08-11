@@ -82,6 +82,13 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                     return
                 }
                 
+                // 为了不让已经抢了紧急单的师傅再抢紧急单
+                if Config.Role! == Constants.Role.Handyman {
+                    Config.canGrabUrgentOrder = true
+                }
+                
+                print(response)
+                
                 let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
@@ -141,8 +148,11 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                         }
                         
                         order.payments = []
-                        if order.type == .Normal {
+                        if order.type == .Urgent {
                             order.payments?.append(Payment(name: "紧急检查费", price: Float(order.fee!)!, paid: order.state != .NotPayFee))
+                            if Config.Role! == Constants.Role.Handyman {
+                                Config.canGrabUrgentOrder = false
+                            }
                         }
                         if order.mFee != nil && order.mFee != "" && order.mFee != "0" {
                             order.payments?.append(Payment(name: "维修费", price: Float(order.mFee!)!, paid: true))
@@ -203,6 +213,8 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                     return
                 }
                 
+                print(response)
+                
                 let json = JSON(responseDic!)
                 
                 let ret = json["ret"]
@@ -236,7 +248,7 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                                 order.imageUrls?.append(Urls.OrderImgServer + order.senderID! + "/" + imgs[index] + ".jpg")
                             }
                         }
-
+                        
                         order.parts = []
                         
                         var distance: CLLocationDistance?
