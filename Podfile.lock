@@ -1,14 +1,14 @@
 PODS:
   - Alamofire (3.4.1)
   - BaiduMapKit (3.0.0)
-  - Bugly (2.3.1)
+  - Bugly (2.4.0)
   - EasyAnimation (1.0.5)
   - HanekeSwift (0.10.1)
   - KYDrawerController (1.1.5)
   - ReachabilitySwift (2.3.3)
   - SwiftyJSON (2.3.2)
-  - SwiftyTimer (1.4.0)
-  - SWXMLHash (2.5.0)
+  - SwiftyTimer (1.4.1)
+  - SWXMLHash (2.5.1)
   - UMengAnalytics (4.1.0)
   - UsefulPickerView (0.1.2)
   - XLRefreshSwift (0.2.1)
@@ -40,14 +40,14 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   BaiduMapKit: de2a726d5296d6b2dc0e974b683af73153608dcd
-  Bugly: c8ece2fa5bdcb404abdd0e07131e8129f580d893
+  Bugly: 3b56d8365c5687f74fd6fbb50c5b7ede3cdac96c
   EasyAnimation: 32821f37dd39187e7364369a3d8f65d38405cf1d
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   KYDrawerController: 98eb8f8c53164de1098b3ca5c6789f3d8aa86c3e
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
-  SWXMLHash: 04158642e0c90c52274db7914032edd41bed9a41
+  SwiftyTimer: 4d25b60ebdbdc5c34782663ab6a5974424f9095e
+  SWXMLHash: 89929225cad9c70ff96dcce54a19ddb2b1a18a69
   UMengAnalytics: 19b28253793d77dff10fb7d502faad1fb6b8ce4a
   UsefulPickerView: 889c0559f6817f0c10f0314e65221847f45d89cb
   XLRefreshSwift: 9f6c05ca9ba9952e466d54015b6f4fb6af2a0f94

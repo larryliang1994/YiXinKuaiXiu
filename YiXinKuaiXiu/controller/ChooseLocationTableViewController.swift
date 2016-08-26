@@ -68,14 +68,14 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
                 showDefaultLocationList(Config.CurrentLocationInfo!.coordinate)
             } else {
                 locationService.startUserLocationService()
-            
-                self.noticeInfo("定位失败", autoClear: true, autoClearTime: 1)
                 
                 let option = BMKCitySearchOption()
                 option.city = self.cityList[0]
                 option.pageCapacity = 10
                 option.keyword = self.cityList[0]
                 self.poiSearch.poiSearchInCity(option)
+            
+                self.noticeInfo("定位失败", autoClear: true, autoClearTime: 1)
             }
             
         } else {
@@ -105,16 +105,28 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
                         for var city in self.cityList {
                             if city == cityName {
                                 self.chooseCityButton.setTitle(cityName, forState: .Normal)
+                                let option = BMKCitySearchOption()
+                                option.city = cityName
+                                option.pageCapacity = 10
+                                option.keyword = cityName
+                                self.poiSearch.poiSearchInCity(option)
+                                
                                 break
                             } else {
                                 self.chooseCityButton.setTitle(self.cityList[0], forState: .Normal)
                             }
                         }
-                    
+                        
                         let option = BMKCitySearchOption()
                         option.city = self.chooseCityButton.currentTitle
                         option.pageCapacity = 10
-                        option.keyword = placeMark.name
+                        
+                        if placeMark.name?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 2 {
+                            option.keyword = placeMark.name
+                        } else {
+                            option.keyword = cityName
+                        }
+                        
                         self.poiSearch.poiSearchInCity(option)
                     }
                 }
@@ -195,13 +207,11 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
         
         let list = poiResult.poiInfoList
         
-        if list == nil {
-            addressList = []
-        } else {
-            addressList = list as! [BMKPoiInfo]
+        if list != nil && list.count != 0 {
+           addressList = list as! [BMKPoiInfo]
+            
+            tableView.reloadData()
         }
-        
-        tableView.reloadData()
     }
     
 }

@@ -23,6 +23,8 @@ class OrderListViewController: UIViewController, SMSwipeableTabViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         initView()
         
         initNavBar()

@@ -14,6 +14,8 @@ class MallViewController: UIViewController, GetInitialInfoDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         GetInitialInfoModel(getInitialInfoDelegate: self).getMallUrl()
     }
     

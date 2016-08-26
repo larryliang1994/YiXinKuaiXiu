@@ -300,7 +300,7 @@ class UtilBox {
             }
         }
         
-        return nil
+        return "找不到这个"
     }
     
     // 通过维修类别名查找ID
@@ -311,7 +311,7 @@ class UtilBox {
             }
         }
         
-        return nil
+        return "0"
     }
     
     // 通过配件名查找ID
@@ -322,7 +322,7 @@ class UtilBox {
             }
         }
         
-        return nil
+        return 0
     }
     
     // 通过配件ID查找配件
@@ -333,7 +333,7 @@ class UtilBox {
             }
         }
         
-        return nil
+        return Part(id: 0, name: "没有配件名", num: 0, price: 0, desc: "找不到这个配件", categoryID: 0)
     }
     
     // 通过ID获取vc

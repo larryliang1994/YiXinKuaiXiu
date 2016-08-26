@@ -64,9 +64,9 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
             
             idString = Config.MTypeIDString
             
-            pictureImageView.hnk_setImageFromURL(NSURL(string: Urls.ServerUrl + "pic.php?f=../uld/2/" + Config.Aid! + ".jpg&w=180&h=180")!)
+//            pictureImageView.hnk_setImageFromURL(NSURL(string: Urls.ServerUrl + "pic.php?f=../uld/2/" + Config.Aid! + ".jpg&w=180&h=180")!)
             
-            //submitButton.title = "修改"
+            pictureImageView.hnk_setImageFromURL(NSURL(string: Config.PortraitUrl!)!)
         }
     }
     
@@ -112,7 +112,7 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
         }
     }
     
-    func onUploadOrderImageResult(result: Bool, info: String) {
+    func onUploadImageResult(result: Bool, info: String) {
         if result {
             AuditModel(auditDelegate: self).doAudit(nameLabel.text!, mTypeIDString: idString!, location: locationLabel.text!, locationInfo: locationInfo!, IDNum: idNumTextField.text!, picture: info, contactsName: contactNameTextField.text!, contactNum: contactTelephoneTextField.text!)
         } else {
@@ -135,7 +135,7 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
             Config.MTypeIDString = idString
             Config.PortraitUrl = Urls.PortraitServer + Config.Aid! + ".jpg"
             
-            self.noticeSuccess("申请成功", autoClear: true, autoClearTime: 2)
+            self.noticeSuccess("提交成功", autoClear: true, autoClearTime: 2)
             
             self.navigationController?.popViewControllerAnimated(true)
         } else {

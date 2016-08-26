@@ -26,9 +26,11 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         initView()
         
-        refresh()
+        self.refresh()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -56,18 +58,10 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
     }
     
     func initView() {
-//        tableView.xlfooter = XLRefreshFooter(action: {
-//            if self.tableType == 0 {
-//                OrderModel(orderDelegate: self).pullOrderList(self.orders.count - 1, pullType: .OnGoing)
-//            } else {
-//                OrderModel(orderDelegate: self).pullOrderList(self.orders.count - 1, pullType: .Done)
-//            }
-//            
-//            print("more")
-//        })
-        
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     func refresh() {
@@ -87,9 +81,10 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
     }
     
     func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {
-        self.tableView.endFooterRefresh()
         
         if result {
+            tableView.reloadData()
+            
             if info == "0" {
                 orders = orderList
             } else {
@@ -116,7 +111,13 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
             UtilBox.alert(self, message: info)
         }
         
-        refreshControl?.endRefreshing()
+        let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
+        dispatch_async(dispatch_get_global_queue(qos, 0)) { () -> Void in
+            sleep(1)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.refreshControl?.endRefreshing()
+            })
+        }
         
         isRefreshing = false
     }

@@ -218,6 +218,7 @@
 		49DBB74E1CF34BE200A50CB9 /* PartDetailPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49DBB74D1CF34BE200A50CB9 /* PartDetailPopover.xib */; };
 		49DBB7551CF34E0C00A50CB9 /* PartDetailPopoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DBB7531CF34E0C00A50CB9 /* PartDetailPopoverCell.swift */; };
 		49DBB7561CF34E0C00A50CB9 /* PartDetailPopoverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49DBB7541CF34E0C00A50CB9 /* PartDetailPopoverCell.xib */; };
+		49E000E31D6F1E5700842430 /* UserAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E000E21D6F1E5700842430 /* UserAgreementViewController.swift */; };
 		49F36D221CB79575000DF874 /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F36D211CB79575000DF874 /* SearchTextField.m */; };
 		49F36D241CB79BE8000DF874 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F36D231CB79BE8000DF874 /* MallViewController.swift */; };
 		49F522531CEE96AF0066E72A /* GetNearbyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F522521CEE96AF0066E72A /* GetNearbyModel.swift */; };
@@ -548,6 +549,7 @@
 		49DBB74D1CF34BE200A50CB9 /* PartDetailPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PartDetailPopover.xib; path = controller/PartDetailPopover/PartDetailPopover.xib; sourceTree = "<group>"; };
 		49DBB7531CF34E0C00A50CB9 /* PartDetailPopoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartDetailPopoverCell.swift; path = controller/PartDetailPopover/PartDetailPopoverCell.swift; sourceTree = "<group>"; };
 		49DBB7541CF34E0C00A50CB9 /* PartDetailPopoverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PartDetailPopoverCell.xib; path = controller/PartDetailPopover/PartDetailPopoverCell.xib; sourceTree = "<group>"; };
+		49E000E21D6F1E5700842430 /* UserAgreementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAgreementViewController.swift; path = controller/UserAgreementViewController.swift; sourceTree = "<group>"; };
 		49E8C0141CB1258500B173E0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		49E8C0151CB1258500B173E0 /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/HanekeSwift/Haneke.framework"; sourceTree = "<group>"; };
 		49E8C0161CB1258500B173E0 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReachabilitySwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/YiXinKuaiXiu-emwibuymwydsbneplzpsmbdngcra/Build/Products/Debug-iphonesimulator/ReachabilitySwift/ReachabilitySwift.framework"; sourceTree = "<group>"; };
@@ -941,6 +943,7 @@
 				4991F3431CB113A100E1BF85 /* LoginViewController.swift */,
 				4991F3411CB1029A00E1BF85 /* WelcomeViewController.swift */,
 				49F580B91CCF64A20084EE99 /* SplashScreenViewController.swift */,
+				49E000E21D6F1E5700842430 /* UserAgreementViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -1983,6 +1986,7 @@
 				49B6F7591CF86C6100482502 /* BCBaseResp.m in Sources */,
 				49B6F77F1CF86C6100482502 /* BCAliPayAdapter.m in Sources */,
 				4929ED631D050DE20016A722 /* BugReport.swift in Sources */,
+				49E000E31D6F1E5700842430 /* UserAgreementViewController.swift in Sources */,
 				49A15E671CC5DC650028023C /* AuditIDViewController.swift in Sources */,
 				49D48EDD1CE4A0D300D19FC2 /* D2DAccount.swift in Sources */,
 				49DBB74C1CF34BD400A50CB9 /* PartDetailPopover.swift in Sources */,

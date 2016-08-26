@@ -15,6 +15,8 @@ class ProjectBidingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         let request = NSURLRequest(URL: NSURL(string: "https://www.yixinkuaixiu.com/xmzb.php")!)
         webView.loadRequest(request)
     }
