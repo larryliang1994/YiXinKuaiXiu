@@ -3556,7 +3556,7 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <inset key="contentEdgeInsets" minX="8" minY="5" maxX="8" maxY="5"/>
-                                            <state key="normal" title="付维修费">
+                                            <state key="normal" title="竣工付费">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <variation key="default">
@@ -6161,10 +6161,10 @@
             </objects>
             <point key="canvasLocation" x="5127" y="3997.5"/>
         </scene>
-        <!--付维修费-->
+        <!--竣工付费-->
         <scene sceneID="0d3-Rx-NLD">
             <objects>
-                <tableViewController storyboardIdentifier="goPayMFeeController" title="付维修费" id="EOx-Nh-eaX" customClass="PayMFeeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="goPayMFeeController" title="竣工付费" id="EOx-Nh-eaX" customClass="PayMFeeViewController" customModule="谊心快修" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="uzh-81-Rxd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -12057,7 +12057,7 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <inset key="contentEdgeInsets" minX="8" minY="5" maxX="8" maxY="5"/>
-                                            <state key="normal" title="付维修费">
+                                            <state key="normal" title="竣工付费">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <variation key="default">
@@ -13013,7 +13013,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="efx-nq-fmX">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">用户一旦注册成功，成为谊心快修的合法用户，将得到一个密码和用户名。 由用户对用户名和密码安全负全部责任。另外，每个用户都要对以其用户名进行的所有活动和事件负全责。您可随时根据规则改变您的密码。用户若发现任何非法使用用户帐号或存在安全漏洞的情况，请立即通告谊心快修。 谊心快修尊重用户个人隐私，未经合法用户授权，本网不会在公开、编辑或透露其注册资料及保存在本网的非公开内容，除非有法律许可要求或未经合法用户授权在诚信的基础上认为透露这些信息是必要的： (1)用户授权本网或授权某人通过电子邮件服务透露这些信息。 (2)相应的法律及程序要求本网提供用户的个人资料。 (3)遵守有关法律规定，遵从本网合法服务程序。4)保持维护本网的商标所有权。 (5)在紧急情况下竭力维护用户个人和社会大众的隐私安全。 (6)符合其他相关的要求。"</mutableString>
+                                <string key="text">用户一旦注册成功，成为谊心快修的合法用户，将得到一个密码和用户名。 由用户对用户名和密码安全负全部责任。另外，每个用户都要对以其用户名进行的所有活动和事件负全责。您可随时根据规则改变您的密码。用户若发现任何非法使用用户帐号或存在安全漏洞的情况，请立即通告谊心快修。 谊心快修尊重用户个人隐私，未经合法用户授权，本网不会在公开、编辑或透露其注册资料及保存在本网的非公开内容，除非有法律许可要求或未经合法用户授权在诚信的基础上认为透露这些信息是必要的： (1)用户授权本网或授权某人通过电子邮件服务透露这些信息。 (2)相应的法律及程序要求本网提供用户的个人资料。 (3)遵守有关法律规定，遵从本网合法服务程序。4)保持维护本网的商标所有权。 (5)在紧急情况下竭力维护用户个人和社会大众的隐私安全。 (6)符合其他相关的要求。"</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -13038,10 +13038,10 @@
                                 <exclude reference="efx-nq-fmX"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Wih-uq-jkO"/>
                                 <exclude reference="DqI-Tp-CaP"/>
                                 <exclude reference="Udc-cR-Vwr"/>
                                 <exclude reference="t72-gL-7fL"/>
-                                <exclude reference="Wih-uq-jkO"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -13049,10 +13049,10 @@
                                 <include reference="efx-nq-fmX"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Wih-uq-jkO"/>
                                 <include reference="DqI-Tp-CaP"/>
                                 <include reference="Udc-cR-Vwr"/>
                                 <include reference="t72-gL-7fL"/>
-                                <include reference="Wih-uq-jkO"/>
                             </mask>
                         </variation>
                     </view>

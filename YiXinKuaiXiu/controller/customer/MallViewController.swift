@@ -21,9 +21,9 @@ class MallViewController: UIViewController, GetInitialInfoDelegate {
     
     func onGetMallUrlResult(result: Bool, info: String) {
         if result {
-            let request = NSURLRequest(URL: NSURL(string: info)!)
+            let url = info + "?id=" + Config.Aid! + "&tok=" + Config.VerifyCode!
+            let request = NSURLRequest(URL: NSURL(string: url)!)
             webView.loadRequest(request)
-
         } else {
             UtilBox.alert(self, message: info)
         }

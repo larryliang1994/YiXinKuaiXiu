@@ -129,7 +129,7 @@ class PayPopoverView: UIView, PayDelegate, BCPayDelegate, ChooseCouponDelegate {
             PayModel(payDelegate: self).goPay(date!, type: .MPFee, fee: currentFee, couponID: couponID!)
         } else if type == .Fee { // 付上门费
             PayModel(payDelegate: self).goPay(date!, type: .Fee, fee: currentFee, couponID: couponID!)
-        } else if type == .MFee { // 付维修费
+        } else if type == .MFee { // 竣工付费
             PayModel(payDelegate: self).goPayMFee(date!, fee: fee!, couponID: couponID!)
         } else if type == .Recharge { // 充值
             delegate?.onPayResult(true, info: "充值成功")

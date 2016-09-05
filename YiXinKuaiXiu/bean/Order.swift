@@ -19,8 +19,8 @@ public enum Type: Int {
  * 订单流程：
  * 未支付上门费 —— 待发单 —— 去支付
  * 已支付上门费 —— 待抢单 —— 无
- * 已被抢单    —— 进行中 —— 购买配件 + 付维修费
- * 已支付维修费 —— 待评价 —— 补购配件 + 去评价
+ * 已被抢单    —— 进行中 —— 购买配件 + 竣工付费
+ * 已竣工付费 —— 待评价 —— 补购配件 + 去评价
  * 已支付配件费
  * 已支付全部费用
  * 已评价      —— 已完成 —— 无
@@ -41,7 +41,7 @@ public enum State: Int {
     case NotPayFee = 0  // 未支付上门费
     case PaidFee        // 已支付上门费
     case HasBeenGrabbed // 已被抢单
-    case PaidMFee       // 已支付维修费
+    case PaidMFee       // 已竣工付费
     case HasBeenRated   // 已评价
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 import KYDrawerController
 
-class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, ModifyUserInfoDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, GetInitialInfoDelegate, GetNearbyDelegate {
+class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, ModifyUserInfoDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, GetInitialInfoDelegate, GetNearbyDelegate, UserInfoDelegate {
 
     @IBOutlet var mapView: BMKMapView!
     @IBOutlet var getLocationButton: UIButton!
@@ -22,6 +22,9 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     let locationService = BMKLocationService()
    
     var gotLocation = false
+    
+    var timer: NSTimer?
+    var isRefreshing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +83,34 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
             GetNearbyModel(getNearbyDelegate: self).doGetNearby(localLatitude.description, longitude: localLongitude.description, distance: 30)
             
             gotLocation = true
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        timer = NSTimer.new(every: Constants.RefreshTimer.seconds) { (timer: NSTimer) in
+            if !self.isRefreshing {
+                self.isRefreshing = true
+                
+                UserInfoModel(userInfoDelegate: self).doGetUserInfo()
+            }
+        }
+        
+        timer?.start()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        timer?.invalidate()
+        
+        super.viewDidDisappear(animated)
+    }
+    
+    func onGetUserInfoResult(result: Bool, info: String) {
+        if result {
+            (drawerController?.drawerViewController as! CustomerDrawerViewController).tableView.reloadData()
+            
+            isRefreshing = false
         }
     }
     

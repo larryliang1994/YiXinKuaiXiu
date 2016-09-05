@@ -9,7 +9,7 @@
 import UIKit
 import UsefulPickerView
 
-class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, BMKPoiSearchDelegate, BMKLocationServiceDelegate, GetInitialInfoDelegate {
+class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, BMKPoiSearchDelegate, GetInitialInfoDelegate, BMKGeoCodeSearchDelegate {
     
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var chooseCityButton: UIButton!
@@ -23,7 +23,6 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
     var cityIndex = 0
     
     let poiSearch = BMKPoiSearch()
-    let locationService = BMKLocationService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,15 +34,9 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
         
         poiSearch.delegate = self
         
-        locationService.delegate = self
-        
         self.pleaseWait()
         
         GetInitialInfoModel(getInitialInfoDelegate: self).getCityList()
-        
-        if Config.CurrentLocationInfo != nil {
-            showDefaultLocationList(Config.CurrentLocationInfo!.coordinate)
-        }
     }
     
     func initView() {
@@ -62,12 +55,10 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
             
             self.cityList = cityList
             
-            self.chooseCityButton.setTitle(self.cityList[0], forState: .Normal)
-            
             if Config.CurrentLocationInfo != nil {
                 showDefaultLocationList(Config.CurrentLocationInfo!.coordinate)
             } else {
-                locationService.startUserLocationService()
+                self.chooseCityButton.setTitle(self.cityList[0], forState: .Normal)
                 
                 let option = BMKCitySearchOption()
                 option.city = self.cityList[0]
@@ -83,77 +74,62 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
         }
     }
     
-    func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
-        showDefaultLocationList(userLocation.location.coordinate)
+    func showDefaultLocationList(coordinate: CLLocationCoordinate2D) {
         
-        locationService.stopUserLocationService()
+        let searcher = BMKGeoCodeSearch()
+        searcher.delegate = self
+        
+        let reverseGeoCodeSearchOption = BMKReverseGeoCodeOption()
+        reverseGeoCodeSearchOption.reverseGeoPoint = coordinate
+        let flag = searcher.reverseGeoCode(reverseGeoCodeSearchOption)
+        
+        if !flag {
+            self.chooseCityButton.setTitle(self.cityList[0], forState: .Normal)
+            
+            let option = BMKCitySearchOption()
+            option.city = self.cityList[0]
+            option.pageCapacity = 10
+            option.keyword = self.cityList[0]
+            self.poiSearch.poiSearchInCity(option)
+        }
     }
     
-    func showDefaultLocationList(coordinate: CLLocationCoordinate2D) {
-        let localLatitude = coordinate.latitude
-        let localLongitude = coordinate.longitude
-        
-        locationService.stopUserLocationService()
-        
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(CLLocation(latitude: localLatitude, longitude: localLongitude)) { (place, error) in
-            if let placeData = place {
-                for placeMark in placeData {
-                    if placeMark.locality != nil {
-                        let cityName = placeMark.locality!.stringByReplacingOccurrencesOfString("市", withString: "")
-                    
-                        for var city in self.cityList {
-                            if city == cityName {
-                                self.chooseCityButton.setTitle(cityName, forState: .Normal)
-                                let option = BMKCitySearchOption()
-                                option.city = cityName
-                                option.pageCapacity = 10
-                                option.keyword = cityName
-                                self.poiSearch.poiSearchInCity(option)
-                                
-                                break
-                            } else {
-                                self.chooseCityButton.setTitle(self.cityList[0], forState: .Normal)
-                            }
-                        }
-                        
-                        let option = BMKCitySearchOption()
-                        option.city = self.chooseCityButton.currentTitle
-                        option.pageCapacity = 10
-                        
-                        if placeMark.name?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 2 {
-                            option.keyword = placeMark.name
-                        } else {
-                            option.keyword = cityName
-                        }
-                        
-                        self.poiSearch.poiSearchInCity(option)
-                    }
+    func onGetReverseGeoCodeResult(searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
+        if error == BMK_SEARCH_NO_ERROR {
+            let cityName = result.addressDetail.city.stringByReplacingOccurrencesOfString("市", withString: "")
+            
+            var located = false
+            
+            for var city in self.cityList {
+                let realCityName = city.stringByReplacingOccurrencesOfString("市", withString: "")
+                                        .stringByReplacingOccurrencesOfString("区", withString: "")
+                
+                if realCityName == cityName {
+                    self.chooseCityButton.setTitle(cityName, forState: .Normal)
+                    located = true
+                    break
                 }
             }
+
+            if !located {
+                self.chooseCityButton.setTitle(self.cityList[0], forState: .Normal)
+            }
+            
+            let option = BMKCitySearchOption()
+            option.city = self.chooseCityButton.currentTitle
+            option.pageCapacity = 30
+
+            if result.addressDetail.streetName.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 2 {
+                option.keyword = result.address
+            } else {
+                option.keyword = cityName
+            }
+
+            self.poiSearch.poiSearchInCity(option)
         }
     }
     
     @IBAction func chooseCity(sender: UIButton) {
-//        let cityVC = CFCityPickerVC()
-//    
-//        //设置热门城市
-//        cityVC.hotCities = cityList
-//        
-//        let navVC = UINavigationController(rootViewController: cityVC)
-//        navVC.navigationBar.barStyle = UIBarStyle.BlackTranslucent
-//        
-//        self.presentViewController(navVC, animated: true, completion: nil)
-//        
-//        //解析字典数据
-//        let cityModels = cityModelsPrepare()
-//        cityVC.cityModels = cityModels
-//        
-//        //选中了城市
-//        cityVC.selectedCityModel = { (cityModel: CFCityPickerVC.CityModel) in
-//            self.chooseCityButton.setTitle(cityModel.name, forState: UIControlState.Normal)
-//            self.chooseCityButton.setTitle(cityModel.name, forState: UIControlState.Highlighted)
-//        }
         searchBar.resignFirstResponder()
         
         UsefulPickerView.showSingleColPicker("选择城市", data: cityList, defaultSelectedIndex: cityIndex) {[unowned self] (selectedIndex, selectedValue) in
@@ -213,7 +189,6 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
             tableView.reloadData()
         }
     }
-    
 }
 
 protocol ChooseLocationDelegate {

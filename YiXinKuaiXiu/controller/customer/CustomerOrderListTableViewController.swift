@@ -80,7 +80,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
                     leftButton.setTitle("购买配件", forState: .Normal)
                     leftButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.showPartsMallAction), forControlEvents: UIControlEvents.TouchUpInside)
                 
-                    rightButton.setTitle("付维修费", forState: .Normal)
+                    rightButton.setTitle("竣工付费", forState: .Normal)
                     rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
                 }
                 

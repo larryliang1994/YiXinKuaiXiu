@@ -64,11 +64,17 @@ class BlacklistTableViewController: UITableViewController, GetInitialInfoDelegat
         let blackPerson = Config.Blacklist[indexPath.section]
         
         if blackPerson.name == nil || blackPerson.name == "" || blackPerson.name == "无" {
-            nameLabel.text = "姓名"
+            nameLabel.text = "***"
         } else {
-            nameLabel.text = blackPerson.name
+            var name = blackPerson.name
+            name = name!.substringToIndex(name!.startIndex.advancedBy(1)) + "**"
+            nameLabel.text = name
         }
-        telephoneLabel.text = blackPerson.telephone
+        
+        var telephone = blackPerson.telephone
+        telephone = telephone!.substringToIndex(telephone!.startIndex.advancedBy(3)) + "****" + telephone!.substringFromIndex(telephone!.startIndex.advancedBy(7))
+        telephoneLabel.text = telephone
+        
         dateLabel.text = UtilBox.getDateFromString(blackPerson.date!, format: Constants.DateFormat.YMD)
         descLabel.text = blackPerson.desc
         descLabel.textAlignment = .Justified

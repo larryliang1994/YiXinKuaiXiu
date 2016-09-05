@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.4.1)
+  - Alamofire (3.4.2)
   - BaiduMapKit (3.0.0)
   - Bugly (2.4.0)
   - EasyAnimation (1.0.5)
@@ -38,7 +38,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
   BaiduMapKit: de2a726d5296d6b2dc0e974b683af73153608dcd
   Bugly: 3b56d8365c5687f74fd6fbb50c5b7ede3cdac96c
   EasyAnimation: 32821f37dd39187e7364369a3d8f65d38405cf1d

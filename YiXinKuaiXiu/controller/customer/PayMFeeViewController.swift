@@ -66,7 +66,7 @@ class PayMFeeViewController: UITableViewController, PopBottomViewDataSource, Pop
         payPopoverView.delegate = self
         payPopoverView.viewController = self
         
-        // 付维修费
+        // 竣工付费
         payPopoverView.feeLabel.text = "￥" + order!.mFee!
         payPopoverView.fee = order!.mFee
         payPopoverView.type = .MFee

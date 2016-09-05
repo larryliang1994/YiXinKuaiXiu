@@ -149,7 +149,8 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                         
                         order.payments = []
                         if order.type == .Urgent {
-                            order.payments?.append(Payment(name: "紧急检查费", price: Float(order.fee!)!, paid: order.state != .NotPayFee))
+                            order.payments?.append(Payment(name: "紧急检查费", price: Float(order.fee!)!,
+                                paid: order.state!.rawValue > State.NotPayFee.rawValue))
                             if Config.Role! == Constants.Role.Handyman {
                                 Config.canGrabUrgentOrder = false
                             }
@@ -158,7 +159,8 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                             order.payments?.append(Payment(name: "维修费", price: Float(order.mFee!)!, paid: true))
                         }
                         if order.type == .Pack {
-                            order.payments?.append(Payment(name: "打包费", price: Float(order.fee!)!, paid: order.state == .PaidMFee))
+                            order.payments?.append(Payment(name: "打包费", price: Float(order.fee!)!,
+                                paid: order.state!.rawValue >= State.PaidMFee.rawValue))
                         }
                         if order.partFee != nil && order.partFee != "" && order.partFee != "0" {
                             order.payments?.append(Payment(name: "配件费", price: Float(order.partFee!)!, paid: true))

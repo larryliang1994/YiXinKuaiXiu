@@ -121,7 +121,7 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
                 label.alpha = 0
             } else if indexPath.row == 6 {
                 image.image = UIImage(named: "blacklist")
-                title.text = "信用黑名单"
+                title.text = "信用名单查询"
                 label.alpha = 0
             }
             
