@@ -122,12 +122,15 @@ class PayPopoverView: UIView, PayDelegate, BCPayDelegate, ChooseCouponDelegate {
         viewController?.pleaseWait()
         
         //let currentFee = coupon == nil ? fee! : String(newFee)
-        let currentFee = fee!
         let couponID = coupon == nil ? "" : coupon?.id!
         
+        print(type)
+        
         if type == .PackFee { // 付打包费
+            let currentFee = fee!
             PayModel(payDelegate: self).goPay(date!, type: .MPFee, fee: currentFee, couponID: couponID!)
         } else if type == .Fee { // 付上门费
+            let currentFee = fee!
             PayModel(payDelegate: self).goPay(date!, type: .Fee, fee: currentFee, couponID: couponID!)
         } else if type == .MFee { // 竣工付费
             PayModel(payDelegate: self).goPayMFee(date!, fee: fee!, couponID: couponID!)

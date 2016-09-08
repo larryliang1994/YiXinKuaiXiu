@@ -57,7 +57,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidAppear(animated)
         
         if needScroll {
-            for var index in 0...Config.Parts.count-1 {
+            for index in 0...Config.Parts.count-1 {
                 if Config.Parts[index].id == scrollID {
                     let indexPath = NSIndexPath(forRow: index, inSection: 0)
                     rightTableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .Top)
@@ -115,8 +115,8 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func initCPIndex() {
         // 初始化类别的Index
-        for var category in Config.Categorys {
-            for var index in 0...Config.Parts.count-1 {
+        for category in Config.Categorys {
+            for index in 0...Config.Parts.count-1 {
                 if Config.Parts[index].categoryID == category.id {
                     category.partIndex = index
                     break
@@ -125,8 +125,8 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         // 初始化配件的Index
-        for var part in Config.Parts {
-            for var index in 0...Config.Categorys.count-1 {
+        for part in Config.Parts {
+            for index in 0...Config.Categorys.count-1 {
                 if part.categoryID == Config.Categorys[index].id {
                     part.categoryIndex = index
                     break
@@ -145,7 +145,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     func didClear() {
         hide(containerView)
         
-        for var part in Config.Parts {
+        for part in Config.Parts {
             part.num = 0
         }
         
@@ -252,7 +252,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             shoppingCartPayPopoverView.viewController = self
             
             var desc = ""
-            for var part in Config.Parts {
+            for part in Config.Parts {
                 if part.num != 0 {
                     desc += part.name! + " x " + (part.num?.toString())! + "; "
                 }
@@ -272,7 +272,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // 原本已购买的
         var index = 0
-        for var part in order!.parts! {
+        for part in order!.parts! {
             if part.num != 0 {
                 jsonDic["val"]?.append(JSON(["nme": part.name!, "prs": part.price!, "num": part.num!]))
                 
@@ -282,7 +282,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // 后来添加的
         index = 0
-        for var part in Config.Parts {
+        for part in Config.Parts {
             if part.num != 0 {
                 jsonDic["val"]?.append(JSON(["nme": part.name!, "prs": part.price!, "num": part.num!]))
                 
@@ -341,7 +341,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
                 return leftTableView.bounds.height - CGFloat(Config.Categorys.count * 40) + 1
             } else {
             
-                var height = 40
+               // var height = 40
             
                 return Config.Categorys[indexPath.row].name!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 18 ? 60 : 40
             }

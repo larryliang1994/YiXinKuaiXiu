@@ -30,7 +30,7 @@ class UploadImageModel: UploadImageProtocol, UploadImageDelegate {
         
         var imgs: [UIImage] = []
         
-        for var i in images {
+        for i in images {
             imgs.append(UtilBox.getAssetThumbnail(i.originalAsset!))
         }
         

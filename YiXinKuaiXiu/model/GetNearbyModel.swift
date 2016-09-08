@@ -37,7 +37,7 @@ class GetNearbyModel: GetNearbyProtocol {
                 var personList: [Person] = []
                 
                 if ret != nil && ret.count != 0 {
-                    for var index in 0 ... ret.count-1 {
+                    for index in 0 ... ret.count-1 {
                         if Config.Role == Constants.Role.Customer {
                             let person = Person(name: ret[index]["nme"].stringValue, latitude: ret[index]["lat"].stringValue, longitude: ret[index]["lot"].stringValue)
                         

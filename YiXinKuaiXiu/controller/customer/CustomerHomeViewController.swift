@@ -118,7 +118,7 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
         if result {
             self.personList = personList
             
-            for var person in personList {
+            for person in personList {
                 let annotation = BMKPointAnnotation()
                 let lat = CLLocationDegrees(person.latitude!)
                 let lot = CLLocationDegrees(person.longitude!)

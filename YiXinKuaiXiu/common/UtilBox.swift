@@ -31,8 +31,8 @@ class UtilBox {
     
     // 验证是否为身份证号
     static func isIDNum(input: String) -> Bool {
-        let regex:NSRegularExpression
-        do {
+        //let regex:NSRegularExpression
+       //do {
 //            regex = try NSRegularExpression(pattern: "d{15}|d{18}", options: NSRegularExpressionOptions.CaseInsensitive)
 //            
 //            let matches = regex.matchesInString(input, options: NSMatchingOptions.ReportCompletion , range: NSMakeRange(0, input.characters.count))
@@ -48,9 +48,9 @@ class UtilBox {
             } else {
                 return false
             }
-        } catch {
-            return false
-        }
+//        } catch {
+//            return false
+//        }
     }
     
     // 判断是否为数字
@@ -114,7 +114,7 @@ class UtilBox {
         
         let dictionary = userDefault.dictionaryRepresentation()
         
-        for var key in dictionary.keys {
+        for key in dictionary.keys {
             userDefault.removeObjectForKey(key)
             userDefault.synchronize()
         }
@@ -294,7 +294,7 @@ class UtilBox {
     
     // 通过ID查找维修类别名
     static func findMTypeNameByID(id: String) -> String? {
-        for var mType in Config.MTypes! {
+        for mType in Config.MTypes! {
             if mType.id == id {
                 return mType.name
             }
@@ -305,7 +305,7 @@ class UtilBox {
     
     // 通过维修类别名查找ID
     static func findMTypeIDByName(name: String) -> String? {
-        for var mType in Config.MTypes! {
+        for mType in Config.MTypes! {
             if mType.name == name {
                 return mType.id
             }
@@ -316,7 +316,7 @@ class UtilBox {
     
     // 通过配件名查找ID
     static func findPartIDByName(name: String) -> Int? {
-        for var part in Config.Parts {
+        for part in Config.Parts {
             if part.name == name {
                 return part.id
             }
@@ -327,7 +327,7 @@ class UtilBox {
     
     // 通过配件ID查找配件
     static func findPartByID(id: Int) -> Part? {
-        for var part in Config.Parts {
+        for part in Config.Parts {
             if part.id == id {
                 return part
             }

@@ -100,7 +100,7 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
             
             var located = false
             
-            for var city in self.cityList {
+            for city in self.cityList {
                 let realCityName = city.stringByReplacingOccurrencesOfString("市", withString: "")
                                         .stringByReplacingOccurrencesOfString("区", withString: "")
                 

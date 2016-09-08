@@ -62,7 +62,7 @@ class AlamofireUtil {
                         }
                     }
                     
-                case .Failure(let encodingError):
+                case .Failure( _):
                     callback(result: false, response: "")
                 }
             }

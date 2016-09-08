@@ -150,7 +150,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         if order?.imageUrls!.count == 0 {
             imageCell.hidden = true
         } else {
-            for var index in 0...(order?.imageUrls!.count)!-1 {
+            for index in 0...(order?.imageUrls!.count)!-1 {
                 images[index].hnk_setImageFromURL(NSURL(string: (order?.imageUrls![index])!)!)
                 images[index].clipsToBounds = true
                 images[index].setupForImageViewer(Constants.Color.BlackBackground)
@@ -217,7 +217,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {
         self.clearAllNotice()
         if result {
-            for var o in orderList {
+            for o in orderList {
                 if o.date == order?.date {
                     order = o
                     

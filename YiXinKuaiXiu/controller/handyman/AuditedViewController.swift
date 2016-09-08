@@ -51,7 +51,7 @@ class AuditedViewController: UITableViewController {
             .stringByReplacingOccurrencesOfString("[", withString: "")
             .stringByReplacingOccurrencesOfString("]", withString: "")
         let mTypeStrings: [String] = tempString.componentsSeparatedByString(",")
-        for var typeString in mTypeStrings {
+        for typeString in mTypeStrings {
             if typeString == "" {
                 continue
             }

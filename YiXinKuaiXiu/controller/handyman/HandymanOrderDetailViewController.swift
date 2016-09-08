@@ -86,7 +86,7 @@ class HandymanOrderDetailViewController: UITableViewController, PopBottomViewDel
         if order?.imageUrls!.count == 0 {
             imageCell.hidden = true
         } else {
-            for var index in 0...(order?.imageUrls!.count)!-1 {
+            for index in 0...(order?.imageUrls!.count)!-1 {
                 images[index].hnk_setImageFromURL(NSURL(string: (order?.imageUrls![index])!)!)
                 images[index].clipsToBounds = true
                 images[index].setupForImageViewer(Constants.Color.BlackBackground)

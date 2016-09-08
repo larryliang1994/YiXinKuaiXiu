@@ -80,7 +80,7 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         if order?.images!.count == 0 {
             imageCell.hidden = true
         } else {
-            for var index in 0...(order?.images!.count)!-1 {
+            for index in 0...(order?.images!.count)!-1 {
                 images[index].image = UtilBox.getAssetThumbnail((order?.images![index].originalAsset)!)
                 images[index].clipsToBounds = true
                 images[index].setupForImageViewer(Constants.Color.BlackBackground)

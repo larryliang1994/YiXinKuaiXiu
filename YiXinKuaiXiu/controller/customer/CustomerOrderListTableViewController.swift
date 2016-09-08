@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerOrderListTableViewController: OrderListTableViewController, PopBottomViewDataSource, PopBottomViewDelegate, OrderListChangeDelegate, PopoverPayDelegate, UITextFieldDelegate {
+class CustomerOrderListTableViewController: OrderListTableViewController, PopBottomViewDataSource, PopBottomViewDelegate, OrderListChangeDelegate, PopoverPayDelegate, UITextFieldDelegate, PayDelegate {
     
     var mFee: String?
     
@@ -76,6 +76,11 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
                     
                     rightButton.setTitle("付打包费", forState: .Normal)
                     rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
+                } else if order.type == .Reservation {
+                    leftButton.hidden = true
+                    
+                    rightButton.setTitle("确定竣工", forState: .Normal)
+                    rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.confirmDone), forControlEvents: UIControlEvents.TouchUpInside)
                 } else {
                     leftButton.setTitle("购买配件", forState: .Normal)
                     leftButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.showPartsMallAction), forControlEvents: UIControlEvents.TouchUpInside)
@@ -85,7 +90,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
                 }
                 
             case .PaidMFee:
-                if order.type != .Pack {
+                if order.type == .Urgent  {
                     leftButton.setTitle("补购配件", forState: .Normal)
                     leftButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.showPartsMallAction), forControlEvents: UIControlEvents.TouchUpInside)
                 } else {
@@ -229,6 +234,29 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
         }
         
         return true
+    }
+    
+    func confirmDone(sender: UIButton) {
+        self.pleaseWait()
+        
+        let cell = sender.superview?.superview as! UITableViewCell
+        selectedIndexPath = tableView.indexPathForCell(cell)!
+        
+        let order = orders[(selectedIndexPath?.section)!]
+        
+        PayModel(payDelegate: self).goPay(order.date!, type: .MPFee, fee: "0", couponID: "")
+    }
+    
+    func onGoPayResult(result: Bool, info: String) {
+        self.clearAllNotice()
+        
+        if result {
+            self.noticeSuccess("已确定", autoClear: true, autoClearTime: 2)
+            
+            didChange()
+        } else {
+            UtilBox.alert(self, message: info)
+        }
     }
     
     func goPayAction(sender: UIButton) {

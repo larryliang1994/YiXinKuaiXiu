@@ -17,6 +17,10 @@ class UserInfoModel: UserInfoProtocol {
     }
     
     func doGetUserInfo() {
+        if Config.Aid == nil || Config.VerifyCode == nil {
+            return
+        }
+        
         AlamofireUtil.doRequest(Urls.GetUserInfo, parameters: ["id": Config.Aid!, "tok": Config.VerifyCode!]) { (result, response) in
             if result {
                 let responseDic = UtilBox.convertStringToDictionary(response)
@@ -127,7 +131,7 @@ class UserInfoModel: UserInfoProtocol {
                 var dateList: [String] = []
                 
                 if rating != nil && rating.count != 0 {
-                    for var index in 0 ... rating.count - 1 {
+                    for index in 0 ... rating.count - 1 {
                         starList.append(rating[index]["fen"].intValue)
                         descList.append(rating[index]["fem"].stringValue)
                         dateList.append(rating[index]["dte"].stringValue)
@@ -189,7 +193,7 @@ class UserInfoModel: UserInfoProtocol {
     }
     
     func doReadMessages() {
-        for var message in Config.Messages {
+        for message in Config.Messages {
             let parameters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "dte": message.date!]
             
             AlamofireUtil.doRequest(Urls.SetMessageRead, parameters: parameters) { (result, response) in

@@ -70,6 +70,10 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
     }
     
     func pullOrderList(requestIndex: Int, pullType: PullOrderListType) {
+        if Config.Aid == nil || Config.VerifyCode == nil {
+            return
+        }
+        
         let paramters = ["id": Config.Aid!, "tok": Config.VerifyCode!, "ste": pullType.rawValue.toString(), "dts": "", "dte": "", "stt": "", "cnt": ""]
         
         AlamofireUtil.doRequest(Config.Role == Constants.Role.Customer ? Urls.PullCustomerOrderList : Urls.PullHandymanOrderList, parameters: paramters) { (result, response) in
@@ -87,7 +91,7 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                     Config.canGrabUrgentOrder = true
                 }
                 
-                print(response)
+                //print(response)
                 
                 let json = JSON(responseDic!)
                 
@@ -107,7 +111,7 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                         
                         let desc = orderJson["cmt"].stringValue
                         
-                        let type = orderJson["tpe"].intValue
+                        //let type = orderJson["tpe"].intValue
                         
                         let order = Order(
                             id: orderJson["id"].stringValue,
@@ -137,7 +141,7 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                         order.senderTotalNum = orderJson["cnt"].intValue
                         
                         let imgs = orderJson["pic"].stringValue.componentsSeparatedByString(",")
-                        for var index in 0...imgs.count-1 {
+                        for index in 0...imgs.count-1 {
                             if imgs[index] != "" {
                                 order.imageUrls?.append(Urls.OrderImgServer + order.senderID! + "/" + imgs[index] + ".jpg")
                             }
@@ -179,7 +183,7 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                             
                             if partDetailJson != "" && partDetailJson.count != 0 {
                                 var parts: [Part] = []
-                                for var index in 0...partDetailJson.count-1 {
+                                for index in 0...partDetailJson.count-1 {
                                     parts.append(Part(
                                         name: partDetailJson[index]["nme"].stringValue,
                                         num: partDetailJson[index]["num"].intValue,
@@ -245,7 +249,7 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                             fee: orderJson["fe1"].stringValue)
                         
                         let imgs = orderJson["pic"].stringValue.componentsSeparatedByString(",")
-                        for var index in 0...imgs.count-1 {
+                        for index in 0...imgs.count-1 {
                             if imgs[index] != "" {
                                 order.imageUrls?.append(Urls.OrderImgServer + order.senderID! + "/" + imgs[index] + ".jpg")
                             }
