@@ -40,7 +40,7 @@ extension HeaderItemView{
     
     class func getHeaderItemView(title: String) -> HeaderItemView{
         
-        let itemView = NSBundle.mainBundle().loadNibNamed("HeaderItemView", owner: nil, options: nil).first as! HeaderItemView
+        let itemView = NSBundle.mainBundle().loadNibNamed("HeaderItemView", owner: nil, options: nil)!.first as! HeaderItemView
         itemView.itemLabel.text = title
         
         return itemView

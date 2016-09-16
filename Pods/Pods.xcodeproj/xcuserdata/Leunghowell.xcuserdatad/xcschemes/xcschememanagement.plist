@@ -54,25 +54,25 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>XLRefreshSwift-XLRefreshSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>XLRefreshSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2C2B1953A91633859BF7AD238FF567A0</key>
+		<key>008C4CE30982EBF9D25DEF5E1C6FE7C5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>31165386FD92280CEE26C7C4200B8A52</key>
+		<key>10374048BC82579583EBD68F90A2DA15</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>15BF6F32637F4D48DF95970C633DFA76</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2C2B1953A91633859BF7AD238FF567A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5DA14C9114959CA2ECA137EEF0CF79B5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6A17BE5F7A08BF8ACD9FBFA49011BE93</key>
+		<key>503E1DCD0C4BB89C61C80530F39BE0D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,32 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8EC1FDB98A8816315E54BA51642264BA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>A376E868ED408EE8EEBD1DDBCE639EF5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A6217BD7CF3A85824FE10B10EEF1129D</key>
+		<key>F156B9B5F8642959FE42C4181D2D4DB8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BBC8797B6C5AC6180D3C706CED167A4B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C96BE230DC42F00EE46AA31492FAACCC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E2D579373CC529B1C102876CBD800470</key>
+		<key>F4F6285A25888316DC39FABFF3F86BEC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

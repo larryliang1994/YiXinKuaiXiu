@@ -37,7 +37,7 @@ class PartDetailPopover: UIView, UITableViewDelegate, UITableViewDataSource {
         var cell = tableView.dequeueReusableCellWithIdentifier("PartDetailPopoverCell") as? PartDetailPopoverCell
         
         if cell == nil {
-            cell = NSBundle.mainBundle().loadNibNamed("PartDetailPopoverCell", owner: self, options: nil)[0] as? PartDetailPopoverCell
+            cell = NSBundle.mainBundle().loadNibNamed("PartDetailPopoverCell", owner: self, options: nil)![0] as? PartDetailPopoverCell
         }
         
         cell?.part = parts[indexPath.row]

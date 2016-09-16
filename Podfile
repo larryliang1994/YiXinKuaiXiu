@@ -3,37 +3,35 @@ platform :ios, '9.3'
 use_frameworks!
 
 target 'YiXinKuaiXiu' do
-    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+    pod 'SwiftyJSON', '~> 2.3.2'
 end
 
-pod 'SWXMLHash'
+pod 'SWXMLHash', '~> 2.5.1'
 
-pod 'Alamofire'
+pod 'Alamofire', '~> 3.4.2’
 
-pod 'HanekeSwift'
+pod 'HanekeSwift', '~> 0.10.1'
 
-pod 'UMengAnalytics'
+pod 'UMengAnalytics', '~> 4.1.0'
 
-pod 'Bugly'
+pod 'Bugly', '~> 2.4.0'
 
-pod 'KYDrawerController'
+pod 'KYDrawerController', '~> 1.1.5'
 
-pod 'ReachabilitySwift'
+pod 'BaiduMapKit', '~> 3.0.0' #百度地图SDK
 
-pod 'BaiduMapKit' #百度地图SDK
+pod 'SwiftyTimer', '~> 1.4.1'
 
-pod 'EasyAnimation'
+pod 'UsefulPickerView', '~> 0.1.2'
 
-pod 'XLRefreshSwift'
+pod 'ReachabilitySwift', '~> 2.4'
 
-pod 'SwiftyTimer'
-
-pod 'UsefulPickerView'
+pod 'EasyAnimation', '~> 1.0.5'
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
-            config.build_settings[‘ENABLE_BITCODE‘] = ‘NO‘
+            config.build_settings['ENABLE_BITCODE'] = 'NO'
         end
     end
 end

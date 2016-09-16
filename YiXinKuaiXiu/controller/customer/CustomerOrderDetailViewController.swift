@@ -246,6 +246,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
     
     @IBAction func contact(sender: UIButton) {
         if self.telephoneNum == nil {
+            UtilBox.alert(self, message: "获取师傅信息失败")
             return
         }
         

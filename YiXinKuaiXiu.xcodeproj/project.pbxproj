@@ -1703,7 +1703,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = LeungHowell;
 				TargetAttributes = {
 					4991F30B1CB0FCD600E1BF85 = {
@@ -2090,6 +2090,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -2100,8 +2101,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Jiu Bai Wang Network Technology Co. Ltd (W8C6FGP93V)";
@@ -2129,6 +2132,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -2136,6 +2140,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -2146,8 +2151,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Jiu Bai Wang Network Technology Co. Ltd (W8C6FGP93V)";
@@ -2167,6 +2174,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2175,6 +2184,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5D71ECBF79F79DDB689A7357 /* Pods-YiXinKuaiXiu.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2183,11 +2193,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/YiXinKuaiXiu/BCPay/Channel/AliPay",
 					"$(PROJECT_DIR)/build/Release-iphoneos/Alamofire",
-					"$(PROJECT_DIR)/build/Release-iphoneos/EasyAnimation",
 					"$(PROJECT_DIR)/build/Release-iphoneos/HanekeSwift",
 					"$(PROJECT_DIR)/build/Release-iphoneos/KYDrawerController",
 					"$(PROJECT_DIR)/build/Release-iphoneos",
-					"$(PROJECT_DIR)/build/Release-iphoneos/ReachabilitySwift",
 					"$(PROJECT_DIR)/build/Release-iphoneos/SwiftyJSON",
 					"$(PROJECT_DIR)/build/Release-iphoneos/SWXMLHash",
 					"$(PROJECT_DIR)/Pods/UMengAnalytics/umsdk_IOS_analyics_idfa_v4.0.4",
@@ -2204,6 +2212,7 @@
 				PRODUCT_NAME = "谊心快修";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = YiXinKuaiXiu/support/Bridge.h;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2212,6 +2221,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E8C2A98F15285661340C7D4D /* Pods-YiXinKuaiXiu.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2220,11 +2230,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/YiXinKuaiXiu/BCPay/Channel/AliPay",
 					"$(PROJECT_DIR)/build/Release-iphoneos/Alamofire",
-					"$(PROJECT_DIR)/build/Release-iphoneos/EasyAnimation",
 					"$(PROJECT_DIR)/build/Release-iphoneos/HanekeSwift",
 					"$(PROJECT_DIR)/build/Release-iphoneos/KYDrawerController",
 					"$(PROJECT_DIR)/build/Release-iphoneos",
-					"$(PROJECT_DIR)/build/Release-iphoneos/ReachabilitySwift",
 					"$(PROJECT_DIR)/build/Release-iphoneos/SwiftyJSON",
 					"$(PROJECT_DIR)/build/Release-iphoneos/SWXMLHash",
 					"$(PROJECT_DIR)/Pods/UMengAnalytics/umsdk_IOS_analyics_idfa_v4.0.4",
@@ -2241,6 +2249,7 @@
 				PRODUCT_NAME = "谊心快修";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = YiXinKuaiXiu/support/Bridge.h;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -2253,6 +2262,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.YiXinKuaiXiuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YiXinKuaiXiu.app/YiXinKuaiXiu";
 			};
 			name = Debug;
@@ -2265,6 +2275,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.YiXinKuaiXiuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YiXinKuaiXiu.app/YiXinKuaiXiu";
 			};
 			name = Release;
@@ -2276,6 +2287,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.YiXinKuaiXiuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = YiXinKuaiXiu;
 			};
 			name = Debug;
@@ -2287,6 +2299,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiubai.YiXinKuaiXiuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = YiXinKuaiXiu;
 			};
 			name = Release;

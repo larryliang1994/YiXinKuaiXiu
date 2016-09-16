@@ -43,7 +43,7 @@ class ShoppingCartPopoverView: UIView, UITableViewDelegate, UITableViewDataSourc
         var cell = tableView.dequeueReusableCellWithIdentifier("ShoppingCartPopoverViewCell") as? ShoppingCartPopoverViewCell
         
         if cell == nil {
-            cell = NSBundle.mainBundle().loadNibNamed("ShoppingCartPopoverViewCell", owner: self, options: nil)[0] as? ShoppingCartPopoverViewCell
+            cell = NSBundle.mainBundle().loadNibNamed("ShoppingCartPopoverViewCell", owner: self, options: nil)![0] as? ShoppingCartPopoverViewCell
         }
         
         cell?.part = parts[indexPath.row]

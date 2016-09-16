@@ -213,7 +213,7 @@ class UtilBox {
             let newImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             
-            imageData = newImage.asData()
+            imageData = newImage!.asData()
             
             scale -= 0.2
         }

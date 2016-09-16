@@ -29,7 +29,7 @@ class LunchAnimation:NSObject,UIViewControllerAnimatedTransitioning {
         toVC.contentView!.transform = CGAffineTransformMakeScale(0.8, 0.8)
         
         let containerView = transitionContext.containerView()
-        containerView!.insertSubview(toVC.view, aboveSubview: fromVC.view)
+        containerView.insertSubview(toVC.view, aboveSubview: fromVC.view)
         
         UIView.animateWithDuration(
             

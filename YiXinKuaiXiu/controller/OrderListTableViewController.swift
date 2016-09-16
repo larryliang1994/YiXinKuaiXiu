@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import XLRefreshSwift
 import SwiftyTimer
 
 class OrderListTableViewController: UITableViewController, OrderDelegate {
