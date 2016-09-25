@@ -25,6 +25,8 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
     var timer: NSTimer?
     var isRefreshing = false
     
+    var toDrawer = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -82,7 +84,7 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
             
             Config.CurrentLocationInfo = userLocation.location
             
-            GetNearbyModel(getNearbyDelegate: self).doGetNearby(localLatitude.description, longitude: localLongitude.description, distance: 30)
+            //GetNearbyModel(getNearbyDelegate: self).doGetNearby(localLatitude.description, longitude: localLongitude.description, distance: 30)
             
             gotLocation = true
         }
@@ -140,7 +142,7 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
     
     func mapView(mapView: BMKMapView!, viewForAnnotation annotation: BMKAnnotation!) -> BMKAnnotationView! {
         let view =  BMKPinAnnotationView(annotation: annotation, reuseIdentifier: "aaa")
-        view.animatesDrop = true
+        view.animatesDrop = false
         view.image = UIImage(named: "customerLocation")
         
         return view
@@ -191,6 +193,7 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
     }
     
     @IBAction func drawerToggle(sender: UIBarButtonItem) {
+        toDrawer = true
         drawerController?.setDrawerState(KYDrawerController.DrawerState.Opened, animated: true)
     }
     
@@ -230,6 +233,10 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
         case 6:
             performSegueWithIdentifier(Constants.SegueID.HandymanDrawerToBlacklistSegue, sender: self)
             
+        case 7:
+            let projectBidingVC = UtilBox.getController(Constants.ControllerID.ProjectBiding) as! ProjectBidingViewController
+            self.navigationController?.showViewController(projectBidingVC, sender: self)
+            
         default:    break
         }
     }
@@ -252,7 +259,16 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if toDrawer {
+            toDrawer = false
+            return
+        }
+        
         mapView.viewWillAppear()
+        
+        toDrawer = false
+        
         mapView.delegate = self // 此处记得不用的时候需要置nil，否则影响内存的释放
         
         gotLocation = false
@@ -270,6 +286,11 @@ class HandymanHomeViewController: UIViewController, HandymanDrawerDelegate, BMKM
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         mapView.viewWillDisappear()
+        
+        if toDrawer {
+            return
+        }
+        
         mapView.delegate = nil // 不用时，置nil
         
         locationService.delegate = nil

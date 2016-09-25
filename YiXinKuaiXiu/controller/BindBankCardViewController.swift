@@ -65,7 +65,7 @@ class BindBankCardViewController: UITableViewController, UserInfoDelegate {
         return 10
     }
     
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
-    }
+//    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 1
+//    }
 }

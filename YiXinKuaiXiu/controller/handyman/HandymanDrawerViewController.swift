@@ -48,7 +48,7 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 8
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -122,6 +122,10 @@ class HandymanDrawerViewController: UIViewController, UITableViewDelegate, UITab
             } else if indexPath.row == 6 {
                 image.image = UIImage(named: "blacklist")
                 title.text = "信用名单查询"
+                label.alpha = 0
+            } else if indexPath.row == 7 {
+                title.text = "项目招标"
+                image.image = UIImage(named: "projectBinding")
                 label.alpha = 0
             }
             

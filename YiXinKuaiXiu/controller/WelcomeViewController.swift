@@ -32,7 +32,7 @@ class WelcomeViewController: UIViewController {
     func setImageViewAnimation() {
         let origin = mainImageView.frame
         let center = mainImageView.center
-        mainImageView.frame.size = CGSize(width: origin.width * 0.8, height: origin.height * 0.8)
+        mainImageView.frame.size = CGSize(width: origin.width * 0.9, height: origin.height * 0.9)
         mainImageView.center = center
         
         UIView.animateWithDuration(1) {

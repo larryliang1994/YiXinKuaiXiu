@@ -109,15 +109,8 @@ class OrderListTableViewController: UITableViewController, OrderDelegate {
         } else {
             UtilBox.alert(self, message: info)
         }
-        
-        let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
-        dispatch_async(dispatch_get_global_queue(qos, 0)) { () -> Void in
-            sleep(1)
-            dispatch_async(dispatch_get_main_queue(), {
-                self.refreshControl?.endRefreshing()
-            })
-        }
-        
+
+        self.refreshControl?.endRefreshing()
         isRefreshing = false
     }
     

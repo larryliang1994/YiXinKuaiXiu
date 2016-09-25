@@ -213,7 +213,25 @@ class AuditIDViewController: UITableViewController, ChooseMTypeDelegete, ChooseL
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
+        return section == 0 ? 1 : 30
+    }
+    
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section != 0 {
+            let button = UIButton(frame: CGRectMake(0, 0, 30, 200))
+            button.userInteractionEnabled = true
+            button.setTitle("客户服务热线：025-52255155", forState: .Normal)
+            button.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            button.titleLabel?.font = UIFont(name: (button.titleLabel?.font?.fontName)!, size: 15)
+            button.addTarget(self, action: #selector(makeCall), forControlEvents: .TouchUpInside)
+            return button
+        } else {
+            return nil
+        }
+    }
+    
+    func makeCall() {
+        UtilBox.makeCall(self, telephoneNum: "02552255155")
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

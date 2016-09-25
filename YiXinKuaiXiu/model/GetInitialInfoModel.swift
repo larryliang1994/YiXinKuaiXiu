@@ -38,9 +38,9 @@ class GetInitialInfoModel: GetInitialInfoProtocol {
                     for index in 0 ... ret.count - 1 {
                         let mtypeJson = ret[index]
                         
-                        let mtype = MaintenanceType(id: mtypeJson["id"].stringValue, name: mtypeJson["nme"].stringValue)
-                        
-                        Config.MTypeNames?.append(mtypeJson["nme"].stringValue + "维修")
+                        let mtype = MaintenanceType(id: mtypeJson["id"].stringValue, name: mtypeJson["nme"].stringValue.stringByReplacingOccurrencesOfString("维修", withString: ""))
+                       
+                        Config.MTypeNames?.append(mtypeJson["nme"].stringValue.stringByReplacingOccurrencesOfString("维修", withString: "") + "维修")
                         Config.MTypes?.append(mtype)
                     }
                     

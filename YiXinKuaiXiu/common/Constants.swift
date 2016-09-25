@@ -35,6 +35,9 @@ class Constants {
         static let Coupon = "couponController"
         
         static let PartsMallSearch = "partsMallSearchController"
+        
+        static let BlackList = "blackListController"
+        static let ProjectBiding = "projectBidingController"
     }
     
     struct UserDefaultKey {

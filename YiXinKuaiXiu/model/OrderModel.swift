@@ -88,10 +88,8 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                 
                 // 为了不让已经抢了紧急单的师傅再抢紧急单
                 if Config.Role! == Constants.Role.Handyman {
-                    Config.canGrabUrgentOrder = true
+                    Config.UrgentOrderNumber = 0
                 }
-                
-                //print(response)
                 
                 let json = JSON(responseDic!)
                 
@@ -155,8 +153,8 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                         if order.type == .Urgent {
                             order.payments?.append(Payment(name: "紧急检查费", price: Float(order.fee!)!,
                                 paid: order.state!.rawValue > State.NotPayFee.rawValue))
-                            if Config.Role! == Constants.Role.Handyman {
-                                Config.canGrabUrgentOrder = false
+                            if Config.Role! == Constants.Role.Handyman && pullType == .OnGoing {
+                                Config.UrgentOrderNumber += 1
                             }
                         }
                         if order.mFee != nil && order.mFee != "" && order.mFee != "0" {
@@ -167,7 +165,7 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                                 paid: order.state!.rawValue >= State.PaidMFee.rawValue))
                         }
                         if order.partFee != nil && order.partFee != "" && order.partFee != "0" {
-                            order.payments?.append(Payment(name: "配件费", price: Float(order.partFee!)!, paid: true))
+                            order.payments?.append(Payment(name: "配件设备费", price: Float(order.partFee!)!, paid: true))
                         }
                         
                         let partsString = orderJson["co3"].stringValue.stringByReplacingOccurrencesOfString("&quot;", withString: "\"")
@@ -218,8 +216,6 @@ class OrderModel: OrderProtocol, UploadImageDelegate {
                     self.orderDelegate?.onPullGrabOrderListResult(false, info: "获取订单列表失败", orderList: [])
                     return
                 }
-                
-                print(response)
                 
                 let json = JSON(responseDic!)
                 

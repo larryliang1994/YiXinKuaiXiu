@@ -57,7 +57,11 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
     }
     
     func initView() {
-        descLabel.text = order?.desc
+        if order?.desc == nil || order?.desc == "" {
+            descLabel.text = "无"
+        } else {
+            descLabel.text = order?.desc
+        }
         
         locationLabel.text = order?.location
         
@@ -78,7 +82,9 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         images.append(picture4ImageView)
         
         if order?.images!.count == 0 {
-            imageCell.hidden = true
+            for index in 0...3 {
+                images[index].alpha = 0
+            }
         } else {
             for index in 0...(order?.images!.count)!-1 {
                 images[index].image = UtilBox.getAssetThumbnail((order?.images![index].originalAsset)!)
@@ -145,24 +151,24 @@ class OrderPublishConfirmViewController: UITableViewController, PopBottomViewDat
         
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 130
-        case 1:
-            if indexPath.row == 0 {
-                return descLabel.frame.size.height + 28
-            } else if indexPath.row == 2 {
-                return locationLabel.frame.size.height + 28
-            } else if indexPath.row == 1{
-               return order?.images!.count == 0 ? 0 : 70
-            } else {
-                return 44
-            }
-        default:
-            return 44
-        }
-    }
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        switch indexPath.section {
+//        case 0:
+//            return 180
+//        case 1:
+//            if indexPath.row == 0 {
+//                return descLabel.frame.size.height + 28
+//            } else if indexPath.row == 2 {
+//                return locationLabel.frame.size.height + 28
+//            } else if indexPath.row == 1{
+//               return order?.images!.count == 0 ? 0 : 70
+//            } else {
+//                return 44
+//            }
+//        default:
+//            return 44
+//        }
+//    }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 1 : 5

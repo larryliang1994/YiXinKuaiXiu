@@ -109,7 +109,11 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             serviceRating.rating = Float((order?.ratingStar)!)
         }
         
-        descLabel.text = order?.desc
+        if order?.desc == nil || order?.desc == "" {
+            descLabel.text = "无"
+        } else {
+            descLabel.text = order?.desc
+        }
         
         locationLabel.text = order?.location
         
@@ -134,6 +138,12 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             } else {
                 showPartDetailButton.hidden = false
             }
+        } else {
+            feeLabel.text = "无"
+            mFeeLabel.text = "无"
+            partFeeLabel.text = "无"
+            totalFeeLabel.text = "无"
+            showPartDetailButton.hidden = true
         }
         
         if !((order!.state == .HasBeenGrabbed || order!.state == .PaidMFee) && order!.type == .Urgent) {
@@ -148,7 +158,9 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         images.append(picture4ImageView)
         
         if order?.imageUrls!.count == 0 {
-            imageCell.hidden = true
+            for index in 0...3 {
+                images[index].alpha = 0
+            }
         } else {
             for index in 0...(order?.imageUrls!.count)!-1 {
                 images[index].hnk_setImageFromURL(NSURL(string: (order?.imageUrls![index])!)!)
@@ -250,19 +262,7 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
             return
         }
         
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        
-        alert.addAction(UIAlertAction(
-            title: "呼叫" + self.telephoneNum!,
-            style: .Default)
-        { (action: UIAlertAction) -> Void in
-            UIApplication.sharedApplication().openURL(NSURL(string :"tel://" + self.telephoneNum!)!)
-        }
-        )
-        
-        alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
-        
-        presentViewController(alert, animated: true, completion: nil)
+        UtilBox.makeCall(self, telephoneNum: self.telephoneNum!)
     }
     
     @IBAction func cancelOrder(sender: UIButton) {
@@ -329,41 +329,69 @@ class CustomerOrderDetailViewController: UITableViewController, UserInfoDelegate
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return indexPath.row == 0 ? 60 : 49
-            
-        case 1:
-            switch indexPath.row {
-            case 0: return descLabel.frame.size.height + 24
-            case 1: return order?.imageUrls!.count == 0 ? 0 : 70
-            case 2: return locationLabel.frame.size.height + 24
-            case 3: return 44
-            default:    return 44
-            }
-            
-        case 2:
-            if order?.type == .Urgent {
-                return 129
-            } else if order?.type == .Pack {
-                return 74
-            } else {
-                return 0
-            }
-            
-        case 3: return order?.state?.rawValue < State.HasBeenRated.rawValue ? 0 : ratingLabel.frame.size.height + 64
-            
-        default:    return 44
-        }
-    }
-
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        switch indexPath.section {
+//        case 0:
+//            return indexPath.row == 0 ? 60 : 49
+//            
+//        case 1:
+//            switch indexPath.row {
+//            case 0: return descLabel.frame.size.height + 24
+//            case 1: return order?.imageUrls!.count == 0 ? 0 : 70
+//            case 2: return UITableViewAutomaticDimension //locationLabel.frame.size.height + 24
+//            case 3: return 44
+//            default:    return 44
+//            }
+//            
+//        case 2:
+//            if order?.type == .Urgent {
+//                return 129
+//            } else if order?.type == .Pack {
+//                return 74
+//            } else {
+//                return 0
+//            }
+//            
+//        case 3: return order?.state?.rawValue < State.HasBeenRated.rawValue ? 0 : ratingLabel.frame.size.height + 64
+//            
+//        default:    return 44
+//        }
+//    }
+    
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 9
+        if order?.state?.rawValue < State.HasBeenRated.rawValue && section == 2 {
+            return 30
+        } else if order?.state?.rawValue == State.HasBeenRated.rawValue && section == 3 {
+            return 30
+        } else {
+            return 9
+        }
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return order?.state?.rawValue < State.HasBeenRated.rawValue ? 3 : 4
+    }
+    
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if (order?.state?.rawValue < State.HasBeenRated.rawValue && section == 2) || (order?.state?.rawValue == State.HasBeenRated.rawValue && section == 3) {
+            let button = UIButton(frame: CGRectMake(0, 0, 30, 200))
+            button.userInteractionEnabled = true
+            button.setTitle("客户服务热线：025-52255155", forState: .Normal)
+            button.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            button.titleLabel?.font = UIFont(name: (button.titleLabel?.font?.fontName)!, size: 15)
+            button.addTarget(self, action: #selector(makeCall), forControlEvents: .TouchUpInside)
+            return button
+        } else {
+            return nil
+        }
+    }
+    
+    func makeCall() {
+        UtilBox.makeCall(self, telephoneNum: "02552255155")
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

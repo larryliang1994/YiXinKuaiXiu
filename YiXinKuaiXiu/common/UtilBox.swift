@@ -299,12 +299,13 @@ class UtilBox {
                 return mType.name
             }
         }
-        
+
         return "找不到这个"
     }
     
     // 通过维修类别名查找ID
     static func findMTypeIDByName(name: String) -> String? {
+        
         for mType in Config.MTypes! {
             if mType.name == name {
                 return mType.id
@@ -356,6 +357,21 @@ class UtilBox {
         Bugly.reportError(NSError(domain: "domain", code: 101, userInfo: ["msg": message]))
     }
     
+    static func makeCall(viewController: UIViewController, telephoneNum: String) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        alert.addAction(UIAlertAction(
+            title: "呼叫" + telephoneNum,
+            style: .Default)
+        { (action: UIAlertAction) -> Void in
+            UIApplication.sharedApplication().openURL(NSURL(string :"tel://" + telephoneNum)!)
+            }
+        )
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        
+        viewController.presentViewController(alert, animated: true, completion: nil)
+    }
 }
 
 extension Int {

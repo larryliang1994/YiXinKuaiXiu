@@ -110,10 +110,20 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
     }
     
     @IBAction func grab(sender: UIButton) {
-        if order?.type == .Urgent && !Config.canGrabUrgentOrder {
-            UtilBox.alert(self, message: "你还有未完成的紧急订单")
+        if order?.type == .Urgent && Config.UrgentOrderNumber >= 2 {
+            UtilBox.alert(self, message: "你还有2个未完成的紧急订单！")
         } else {
             self.pleaseWait()
+            OrderModel(orderDelegate: self).pullOrderList(0, pullType: .OnGoing)
+            //OrderModel(orderDelegate: self).grabOrder(order!)
+        }
+    }
+    
+    func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {
+        if order?.type == .Urgent && Config.UrgentOrderNumber >= 2 {
+            UtilBox.alert(self, message: "你还有2个未完成的紧急订单！")
+            self.clearAllNotice()
+        } else {
             OrderModel(orderDelegate: self).grabOrder(order!)
         }
     }
@@ -144,8 +154,6 @@ class OrderGrabDetailViewController: UIViewController, OrderDelegate, BMKMapView
     }
     
     func onPublishOrderResult(result: Bool, info: String) {}
-    
-    func onPullOrderListResult(result: Bool, info: String, orderList: [Order]) {}
     
     func onPullGrabOrderListResult(result: Bool, info: String, orderList: [Order]) {}
     

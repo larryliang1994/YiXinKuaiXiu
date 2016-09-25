@@ -14,6 +14,7 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     @IBOutlet var mapView: BMKMapView!
     @IBOutlet var getLocationButton: UIButton!
     @IBOutlet var publishButton: PrimaryButton!
+    @IBOutlet var drawerButton: UIBarButtonItem!
     
     var personList: [Person]?
     
@@ -25,6 +26,8 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     
     var timer: NSTimer?
     var isRefreshing = false
+    
+    var toDrawer = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +57,6 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     }
     
     @IBAction func getLocation(sender: UIButton) {
-//        if !mapView.userLocationVisible {
-//            locationService.startUserLocationService()
-//        }
-        
         if Config.CurrentLocationInfo != nil {
             mapView.centerCoordinate = (Config.CurrentLocationInfo?.coordinate)!
         }
@@ -134,7 +133,7 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     
     func mapView(mapView: BMKMapView!, viewForAnnotation annotation: BMKAnnotation!) -> BMKAnnotationView! {
         let view =  BMKPinAnnotationView(annotation: annotation, reuseIdentifier: "aaa")
-        view.animatesDrop = true
+        view.animatesDrop = false
         view.image = UIImage(named: "handymanLocation")
         
         return view
@@ -149,6 +148,7 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     }
     
     @IBAction func drawerToggle(sender: UIBarButtonItem) {
+        toDrawer = true
         drawerController?.setDrawerState(KYDrawerController.DrawerState.Opened, animated: true)
     }
     
@@ -176,6 +176,10 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
             
         case 5:
             segue = Constants.SegueID.CustomerDrawerToProjectBidingSegue
+            
+        case 6:
+            let blackListVC = UtilBox.getController(Constants.ControllerID.BlackList) as! BlacklistTableViewController
+            self.navigationController?.showViewController(blackListVC, sender: self)
             
         default:
             break
@@ -231,7 +235,15 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        if toDrawer {
+            toDrawer = false
+            return
+        }
+        
         mapView.viewWillAppear()
+        
+        toDrawer = false
+        
         mapView.delegate = self // 此处记得不用的时候需要置nil，否则影响内存的释放
         
         gotLocation = false
@@ -249,7 +261,12 @@ class CustomerHomeViewController: UIViewController, CustomerDrawerDelegate, Modi
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        if toDrawer {
+            return
+        }
+        
         mapView.viewWillDisappear()
+        
         mapView.delegate = nil // 不用时，置nil
         
         locationService.delegate = nil

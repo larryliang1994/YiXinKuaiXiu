@@ -65,16 +65,12 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
                 
                 rightButton.setTitle("付检查费", forState: .Normal)
                 rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
-                
-            case .PaidFee:
-                leftButton.hidden = true
-                rightButton.hidden = true
-                
+
             case .HasBeenGrabbed:
                 if order.type == .Pack {
                     leftButton.hidden = true
                     
-                    rightButton.setTitle("付打包费", forState: .Normal)
+                    rightButton.setTitle("竣工付费", forState: .Normal)
                     rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
                 } else if order.type == .Reservation {
                     leftButton.hidden = true
@@ -88,7 +84,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
                     rightButton.setTitle("竣工付费", forState: .Normal)
                     rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goPayAction), forControlEvents: UIControlEvents.TouchUpInside)
                 }
-                
+
             case .PaidMFee:
                 if order.type == .Urgent  {
                     leftButton.setTitle("补购配件", forState: .Normal)
@@ -99,7 +95,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
                 
                 rightButton.setTitle("立即评价", forState: .Normal)
                 rightButton.addTarget(self, action: #selector(CustomerOrderListTableViewController.goRatingAction), forControlEvents: UIControlEvents.TouchUpInside)
-                
+
             case .Cancelling:
                 leftButton.hidden = true
                 rightButton.hidden = true
@@ -109,7 +105,7 @@ class CustomerOrderListTableViewController: OrderListTableViewController, PopBot
                 leftButton.hidden = true
                 rightButton.hidden = true
             }
-            
+        
             return cell
         } else {
             let payment = order.payments![indexPath.row - 1]

@@ -67,7 +67,7 @@ class ChangePasswordViewController: UITableViewController, UITextFieldDelegate, 
     
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
+        return section == 0 ? 1 : 30
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

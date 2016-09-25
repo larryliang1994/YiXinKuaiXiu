@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HollowButton: ZFRippleButton {
+class HollowButton: UIButton {
     convenience init() {
         self.init(frame: CGRect.zero)
     }
@@ -24,13 +24,15 @@ class HollowButton: ZFRippleButton {
     }
     
     private func setupView() {
-        rippleColor = UIColor(white: 0.9, alpha: 1)
+//        rippleColor = UIColor(white: 0.9, alpha: 1)
+//        
+//        buttonCornerRadius = 3
+//        trackTouchLocation = true
+//        touchUpAnimationTime = 0.5
+//        ripplePercent = 1.0
+//        shadowRippleEnable = true
         
-        buttonCornerRadius = 3
-        trackTouchLocation = true
-        touchUpAnimationTime = 0.5
-        ripplePercent = 1.0
-        shadowRippleEnable = true
+        layer.cornerRadius = 3
         
         layer.borderColor = Constants.Color.Primary.CGColor
         layer.borderWidth = 1

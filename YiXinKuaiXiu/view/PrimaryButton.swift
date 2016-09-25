@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PrimaryButton: ZFRippleButton {
+class PrimaryButton: UIButton {
     convenience init() {
         self.init(frame: CGRect.zero)
     }
@@ -24,12 +24,14 @@ class PrimaryButton: ZFRippleButton {
     }
     
     private func setupView() {
-        rippleColor = UIColor(white: 0.9, alpha: 0.2)
-        rippleBackgroundColor = Constants.Color.Primary
-        buttonCornerRadius = 3
-        trackTouchLocation = true
-        touchUpAnimationTime = 0.5
-        ripplePercent = 1.0
+//        rippleColor = UIColor(white: 0.9, alpha: 0.2)
+//        rippleBackgroundColor = Constants.Color.Primary
+//        buttonCornerRadius = 3
+//        trackTouchLocation = true
+//        touchUpAnimationTime = 0.5
+//        ripplePercent = 1.0
+        
+        layer.cornerRadius = 3
         
         setTitleColor(UIColor.whiteColor(), forState: .Normal)
         backgroundColor = Constants.Color.Primary

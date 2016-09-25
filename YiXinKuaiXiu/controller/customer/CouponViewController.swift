@@ -63,7 +63,13 @@ class CouponViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 16 : 10
+        if section == 0 {
+            return 16
+        } else if section == Config.CouponList.count {
+            return 0
+        } else {
+            return 10
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,7 +77,7 @@ class CouponViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return Config.CouponList.count
+        return Config.CouponList.count + 1
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -79,32 +85,41 @@ class CouponViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("couponCell", forIndexPath: indexPath)
+        if indexPath.section == Config.CouponList.count {
+            return tableView.dequeueReusableCellWithIdentifier("couponTipsCell", forIndexPath: indexPath)
+        } else {
         
-        cell.layer.borderWidth = 0.5
-        cell.layer.borderColor = UIColor.lightGrayColor().CGColor
-        cell.layer.cornerRadius = 3
-        cell.contentView.layer.cornerRadius = 3
+            let cell = tableView.dequeueReusableCellWithIdentifier("couponCell", forIndexPath: indexPath)
         
-        let feeLabel = cell.viewWithTag(1) as! UILabel
-        let usageLabel = cell.viewWithTag(2) as! UILabel
-        let descLabel = cell.viewWithTag(3) as! UILabel
-        let dateLabel = cell.viewWithTag(4) as! UILabel
-        let usedLabel = cell.viewWithTag(5) as! UILabel
+            cell.layer.borderWidth = 0.5
+            cell.layer.borderColor = UIColor.lightGrayColor().CGColor
+            cell.layer.cornerRadius = 3
+            cell.contentView.layer.cornerRadius = 3
         
-        let coupon = Config.CouponList[indexPath.section]
-        feeLabel.text = coupon.fee!.toString()
-        usageLabel.text = "抵用" + coupon.fee!.toString() + "元"
-        descLabel.text = coupon.desc
-        dateLabel.text = "获取日期：" + UtilBox.getDateFromString(coupon.date!, format: Constants.DateFormat.YMD)
-        usedLabel.text = coupon.used! ? "已使用" : "可用"
-        usedLabel.textColor = coupon.used! ? UIColor.darkGrayColor() : Constants.Color.Primary
-        //cell.backgroundColor = coupon.used! ? UIColor.groupTableViewBackgroundColor() : UIColor.whiteColor()
+            let feeLabel = cell.viewWithTag(1) as! UILabel
+            let usageLabel = cell.viewWithTag(2) as! UILabel
+            let descLabel = cell.viewWithTag(3) as! UILabel
+            let dateLabel = cell.viewWithTag(4) as! UILabel
+            let usedLabel = cell.viewWithTag(5) as! UILabel
         
-        return cell
+            let coupon = Config.CouponList[indexPath.section]
+            feeLabel.text = coupon.fee!.toString()
+            usageLabel.text = "抵用" + coupon.fee!.toString() + "元"
+            descLabel.text = coupon.desc
+            dateLabel.text = "获取日期：" + UtilBox.getDateFromString(coupon.date!, format: Constants.DateFormat.YMD)
+            usedLabel.text = coupon.used! ? "已使用" : "可用"
+            usedLabel.textColor = coupon.used! ? UIColor.darkGrayColor() : Constants.Color.Primary
+            //cell.backgroundColor = coupon.used! ? UIColor.groupTableViewBackgroundColor() : UIColor.whiteColor()
+        
+            return cell
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == Config.CouponList.count {
+            return
+        }
+        
         let coupon = Config.CouponList[indexPath.section]
         if coupon.used! || justCheck {
             tableView.cellForRowAtIndexPath(indexPath)?.selected = false

@@ -27,6 +27,10 @@ class OrderTypeViewController: UIViewController, UITableViewDelegate, UITableVie
         return section == 0 ? 16 : 10
     }
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section == 2 ? 30 : 0
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -35,19 +39,33 @@ class OrderTypeViewController: UIViewController, UITableViewDelegate, UITableVie
         return 3
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 2 {
+            let button = UIButton(frame: CGRectMake(0, 0, 30, 200))
+            button.userInteractionEnabled = true
+            button.setTitle("客户服务热线：025-52255155", forState: .Normal)
+            button.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            button.titleLabel?.font = UIFont(name: (button.titleLabel?.font?.fontName)!, size: 15)
+            button.addTarget(self, action: #selector(makeCall), forControlEvents: .TouchUpInside)
+            return button
+        } else {
+            return nil
+        }
+    }
+    
+    func makeCall() {
+        UtilBox.makeCall(self, telephoneNum: "02552255155")
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("orderTypeCell")
+        let cell = tableView.dequeueReusableCellWithIdentifier("orderTypeCell", forIndexPath: indexPath)
         
-        cell?.layer.cornerRadius = 3
-        cell?.contentView.layer.cornerRadius = 3
-        
-        let image = cell?.viewWithTag(Constants.Tag.OrderTypeCellImage) as! UIImageView
-        let title = cell?.viewWithTag(Constants.Tag.OrderTypeCellTitle) as! UILabel
-        let desc = cell?.viewWithTag(Constants.Tag.OrderTypeCellDesc) as! UILabel
+        cell.layer.cornerRadius = 3
+        cell.contentView.layer.cornerRadius = 3
+            
+        let image = cell.viewWithTag(Constants.Tag.OrderTypeCellImage) as! UIImageView
+        let title = cell.viewWithTag(Constants.Tag.OrderTypeCellTitle) as! UILabel
+        let desc = cell.viewWithTag(Constants.Tag.OrderTypeCellDesc) as! UILabel
         
         if indexPath.section == 0 {
             image.image = UIImage(named: "normalOrder")
@@ -63,7 +81,7 @@ class OrderTypeViewController: UIViewController, UITableViewDelegate, UITableVie
             desc.text = "预约维修，不收取上门检查费"
         }
         
-        return cell!
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

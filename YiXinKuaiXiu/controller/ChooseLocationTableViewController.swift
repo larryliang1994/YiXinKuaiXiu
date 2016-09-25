@@ -94,6 +94,7 @@ class ChooseLocationTableViewController: UIViewController, UITableViewDelegate, 
         }
     }
     
+    
     func onGetReverseGeoCodeResult(searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
         if error == BMK_SEARCH_NO_ERROR {
             let cityName = result.addressDetail.city.stringByReplacingOccurrencesOfString("市", withString: "")

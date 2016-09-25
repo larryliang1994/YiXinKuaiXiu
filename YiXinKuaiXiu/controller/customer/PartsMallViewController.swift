@@ -106,6 +106,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func onGetCategoryInfoResult(result: Bool, info: String) {
         if result {
+            
             initCPIndex()
             
             leftTableView.reloadData()
@@ -359,7 +360,11 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView.tag == Constants.Tag.PartsMallLeftTableView ? Config.Categorys.count + 1 : Config.Parts.count
+        if tableView.tag == Constants.Tag.PartsMallLeftTableView {
+            return Config.Categorys.count + 1
+        } else {
+            return Config.Parts.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -391,17 +396,19 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("rightTableViewCell")
             
+            let part = Config.Parts[indexPath.row]
+            
             let titleLabel = cell?.viewWithTag(Constants.Tag.PartsMallRightTitle) as! UILabel
-            titleLabel.text = Config.Parts[indexPath.row].name
+            titleLabel.text = part.name
             
             let priceLabel = cell?.viewWithTag(Constants.Tag.PartsMallRightPrice) as! UILabel
-            priceLabel.text = "￥" + String(Config.Parts[indexPath.row].price!)
+            priceLabel.text = "￥" + String(part.price!)
             priceLabel.textColor = Constants.Color.Orange
             
             let descLabel = cell?.viewWithTag(1) as! UILabel
-            descLabel.text = Config.Parts[indexPath.row].desc
+            descLabel.text = part.desc
             
-            if Config.Parts[indexPath.row].desc == "" || Config.Parts[indexPath.row].desc == "无" {
+            if part.desc == "" || part.desc == "无" {
                 descLabel.font = UIFont(name: (descLabel.font?.familyName)!, size: 0)
             } else {
                 descLabel.font = UIFont(name: (descLabel.font?.familyName)!, size: 11)
@@ -427,7 +434,7 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
             } else {
                 reduceButton.hidden = false
                 numLabel.hidden = false
-                numLabel.text = Config.Parts[indexPath.row].num!.toString()
+                numLabel.text = part.num!.toString()
             }
             
             return cell!
@@ -438,14 +445,17 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = sender.superview?.superview as! UITableViewCell
         let indexPath = rightTableView.indexPathForCell(cell)!
         
-        if Config.Parts[indexPath.row].num != 99 {
+        let part = Config.Parts[indexPath.row]
+        
+        if part.num != 99 {
+            
             Config.Parts[indexPath.row].num! += 1
             
             rightTableView.reloadData()
             
             totalNum += 1
             
-            totalPrice += Float(Config.Parts[indexPath.row].price!)
+            totalPrice += Float(part.price!)
             
             updateBottonView()
         }
@@ -455,14 +465,16 @@ class PartsMallViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = sender.superview?.superview as! UITableViewCell
         let indexPath = rightTableView.indexPathForCell(cell)!
         
-        if Config.Parts[indexPath.row].num != 0 {
+        let part = Config.Parts[indexPath.row]
+        
+        if part.num != 0 {
             Config.Parts[indexPath.row].num! -= 1
         
             rightTableView.reloadData()
             
             totalNum -= 1
             
-            totalPrice -= Config.Parts[indexPath.row].price!
+            totalPrice -= part.price!
             
             updateBottonView()
         }
